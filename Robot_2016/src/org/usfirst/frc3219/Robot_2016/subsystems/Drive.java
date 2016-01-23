@@ -35,7 +35,7 @@ public class Drive extends Subsystem {
 	}
 	
 	public void setSafety(boolean safely){
-		driveMotors.setSafetyEnabled(safely);
+		driveMotors.setSafetyEnabled(safely); // DISABLED/ENABLED on the actual robot. This command is run on startup to stop the robot from doing it's own thing and breaking someone's legs.
 	}
 	
 	public double powerFromSpeed(double speed){

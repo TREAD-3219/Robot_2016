@@ -10,13 +10,14 @@ import org.usfirst.frc3219.Robot_2016.RobotMap;
  *
  */
 public class Drive extends Subsystem {
+	// For Math
 	private static final double MAX_MOTOR_RPM = 4000;
 	private static final double WHEEL_DIAMETER = 4.0;
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
-	private static final double GEAR_RATIO = 8.45;
-	private static final double MAX_WHEEL_RPM = MAX_MOTOR_RPM / GEAR_RATIO;
-	public static final double MAX_SPEED_IPM = WHEEL_CIRCUMFERENCE * MAX_WHEEL_RPM;
-	public static final double MAX_SPEED_IPS = MAX_SPEED_IPM / 60.0;
+	private static final double GEAR_RATIO = 8.45; // 
+	private static final double MAX_WHEEL_RPM = MAX_MOTOR_RPM / GEAR_RATIO; // Slowing down the MAX_WHEEL_RPM to comply with the Gear Ratio
+	public static final double MAX_SPEED_IPM = WHEEL_CIRCUMFERENCE * MAX_WHEEL_RPM; // Inches per Minute
+	public static final double MAX_SPEED_IPS = MAX_SPEED_IPM / 60.0; // Inches per second
 	public static final double WHEEL_BASE = 27.75;// distance between the wheel centers
 	private static final double ROTATION_CIRCLE = Math.PI * WHEEL_BASE;
 	private static final double MAX_TURN_RATE = MAX_SPEED_IPS / ROTATION_CIRCLE;

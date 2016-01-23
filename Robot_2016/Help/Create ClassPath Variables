@@ -1,0 +1,7 @@
+Create ClassPath Variables
+--------------------------
+1.	In Eclipse, select Window > Preferences.
+2.	Select Java > Build Path > Classpath Variables.
+3.	Add the following classpath variables, substituting <User> with your username:
+	- networktables: C:/Users/<User>/wpilib/java/current/lib/NetworkTables.jar
+	- wpilib: C:/Users/<User>/wpilib/java/current/lib/WPILib.jar

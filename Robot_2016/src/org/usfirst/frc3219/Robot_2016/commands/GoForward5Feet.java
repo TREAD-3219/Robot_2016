@@ -7,6 +7,6 @@ public class GoForward5Feet extends CommandGroup{
 		createGoForwardCommand();
 	}
 	private void createGoForwardCommand(){
-		this.addSequential(new AutoDrive(50, 10));
+		//this.addSequential();
 	}
 }

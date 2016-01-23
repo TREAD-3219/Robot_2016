@@ -1,0 +1,13 @@
+Reinstall JAVA Libraries
+------------------------
+1.	Open Eclipse.
+2.	Select "Help"
+3.	Click "Install new software". 
+4.	Enter “http://first.wpi.edu/FRC/roborio/release/eclipse/” at the Work with prompt.
+5.	Click “Add”.
+6.	Check the “Robot Java Development” box.
+7.	Click "Next".
+8.	Click “Next” after reviewing the installation details.
+9.	Review the license and select the “accept” radio button and click “Finish”.  This will begin the installation.
+10.	Click “OK” on any security warnings.
+11.	Click “Yes” when prompted to restart Eclipse.

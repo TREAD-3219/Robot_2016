@@ -45,7 +45,7 @@ public class Navigation extends Subsystem{
 
 	public void lidarTriangulation() {
 		lidar1 = sensors.readLidar1();
-		lidar2 = sensors.readLidar2(); // this will maybe be added later?
+		//lidar2 = sensors.readLidar2(); // this will maybe be added later?
 		int C = 45;
 		double c = Math.sqrt(lidar1 * lidar1 + lidar2 * lidar2 - 2 * lidar1 * lidar2 * Math.cos(C));
 		double B = Math.asin((lidar2 * Math.sin(C)) / c);

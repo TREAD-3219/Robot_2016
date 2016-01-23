@@ -1,0 +1,29 @@
+Potential Issues found in Code
+------------------------------
+1.	Clean the project, by selecting menu option Project > Clean.
+2.	If the “> src” folder has a white x in a red square on its icon, 
+	a.	You may need to reinstall the JAVA Libraries.  See the “Reinstall JAVA Libraries” section in this document.
+	b.	Or …
+		i.	Delete NetworkTables and WPILib from the Java Build Path.
+		ii.	Add NetworkTables and WPILib as External JAR files. 
+3.	If there is no WPILib option on the Eclipse menu, import the JAR files.
+4.	If there are PIDSourceType errors, the WPILib.jar file is not up-to-date.
+	a.	Uninstall the current WPILib.jar
+		i.	In Eclipse, select menu option Help > Installation Details.
+		ii.	Click on Robot Java Development.
+		iii.	Click on Uninstall.
+		iv.	Click on Finish.  The uninstall will run.
+		v.	Click Yes when asked if you want to restart Eclipse now.
+		vi.	Delete or rename the WPILib folder in your user home on the local machine (e.g. C:\Users\bachran000).
+		vii.	Log into Eclipse.
+		viii.	Reinstall the JAVA libraries.
+		ix.	If there are errors saying the NetworkTables and WPILib files are missing,
+			1.	Delete NetworkTables and WPILib from the Java Build Path.
+			2.	Add NetworkTables and WPILib as External JAR files. 
+			3.	Project > Clean.
+		x.	If you still get an error saying the PIDSourceType cannot be resolved to a variable, 
+			1.	Hover over the offending code.  A popup of solution options will appear.
+			2.	Click on the solution option “Import ‘PIDSourceType’ (edu.wpi.first.wpilibj)”.
+			3.	Save the file.
+			4.	Project > Clean.
+	

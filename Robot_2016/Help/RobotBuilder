@@ -1,0 +1,8 @@
+RobotBuilder
+------------
+1.	Open Eclipse.
+2.	Select menu option WPILib > Run RobotBuilder.  If nothing happens, follow the directions for the alternate below.
+Alternate:
+1.	Open Windows Explorer.
+2.	Navigate to the WPILIb > Tools folder in your user folder on the C: drive (e.g. C:\Users\smithann000\wpilib\tools).
+3.	Double click on the RobotBuilder file.

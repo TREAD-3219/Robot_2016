@@ -1,0 +1,12 @@
+Import JAR Files – Don’t do this, use classpath variables instead.
+----------------
+1.	Open Eclipse.
+2.	Select your workspace, which should be in your student folder.
+3.	Select menu option Project > Properties.
+4.	Select Java Build Path from the vertical menu.
+5.	Click the “Add External JARs” button.
+6.	Browse to user home on the local machine and open the wpilib > java > current > lib folder (e.g. C:\Users\bachran000\wpilib\java\current\lib).
+7.	Select the NetworkTables and WPILib files.
+8.	Click “Open”.  You’ll be returned to the Java Build Path page.
+9.	Click “Apply”.
+10.	Click “OK”. 

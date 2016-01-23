@@ -1,0 +1,26 @@
+Install ECLIPSE
+---------------
+Warning: you need to be an Admin on the computer to install eclipse.
+
+1.	Open the Eclipse web site: http://www.eclipse.org.
+2.	Click "Download".
+3.	In the Eclipse IDE for Java EE Developers section, click the “32 bit” link.
+4.	On the Eclipse downloads – Select a mirror page, select a source and click the “Download” button.  
+5.	Choose the option to save the zip file.  (This may take a few minutes.)  
+6.	Once the download is complete, click the Open option.
+7.	Open the Eclipse folder.
+8.	Double click on the eclipse application icon.
+9.	Click “Extract all”.
+10.	Select “C:\Program Files” for the destination. 
+11.	Click “Extract”.  (This will take a few minutes.)
+12.	When the extract is complete, create a shortcut on the desktop.
+	a.	Right click on the desktop and select New > Shortcut.
+	b.	Type “C:\Program Files\eclipse\eclipse.exe” for the location.
+	c.	Click “Next”.
+	d.	Type “eclipse” for the name.
+	e.	Click “Finish”.
+13.	Double click on the new desktop shortcut to open Eclipse.
+14.	If you receive an “Open File – Security Warning”, click “Run”.
+15.	Select the workspace that will be used to store your projects.  This should be a folder within your student folder. (E.g. Computer > Students > Class of 2016 > smithann000 > Workspace.)
+16.	Click “OK”.
+17.	Click “OK” on the Workspace Launcher.

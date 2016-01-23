@@ -1,6 +1,6 @@
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
-import edu.wpi.first.wpilibj.TalonSRX;
+import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
@@ -23,10 +23,10 @@ public class Drive extends Subsystem {
 	public static final double MAX_TURN_RATE_DPS = MAX_TURN_RATE * 360.0;
 	
 	
-	TalonSRX rightDriveFront = RobotMap.driveRightDriveFront;
-	TalonSRX rightDriveBack = RobotMap.driveRightDriveBack;
-	TalonSRX leftDriveFront = RobotMap.driveLeftDriveFront;
-	TalonSRX leftDriveBack = RobotMap.driveLeftDriveBack;
+	CANJaguar rightDriveFront = RobotMap.driveRightDriveFront;
+	CANJaguar rightDriveBack = RobotMap.driveRightDriveBack;
+	CANJaguar leftDriveFront = RobotMap.driveLeftDriveFront;
+	CANJaguar leftDriveBack = RobotMap.driveLeftDriveBack;
 	RobotDrive driveMotors = RobotMap.driveDriveMotors;
 	
 	public void driveValues(double forward, double turnRate){

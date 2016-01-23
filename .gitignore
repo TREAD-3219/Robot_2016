@@ -12,3 +12,7 @@
 hs_err_pid*
 
 .classpath
+
+.gitignore~
+
+Robot_2016/.classpath

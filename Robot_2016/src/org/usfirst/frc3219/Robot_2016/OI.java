@@ -75,7 +75,6 @@ public class OI {
         shoot.whileHeld(new Shooting_Joy());
         button.whileHeld(new RollerMotor());
 
-
         // SmartDashboard Buttons
         SmartDashboard.putData("Shooting_Joy", new Shooting_Joy());
         SmartDashboard.putData("Shooting_GC", new Shooting_GC());

@@ -32,7 +32,7 @@ public class Sensors extends Subsystem {
 	public double readLidar1(){
 		byte[] bytes = new byte[2];
 		double res = -1.0;
-		//read the data from the last measur command
+		//read the data from the last measure command
 		if (lidar1.read(LIDAR_READ_START, 2, bytes)){
 			
 			int cms = Utility.getShort(bytes, 0);

@@ -85,7 +85,7 @@ public class OI {
         // SmartDashboard Buttons
         SmartDashboard.putData("Shooting_Joy", new Shooting_Joy());
         SmartDashboard.putData("Shooting_GC", new Shooting_GC());
-        SmartDashboard.putData("Turn: Default", new Turn(90));
+        SmartDashboard.putData("Turn: Default", new Turn(90, 10));
         SmartDashboard.putData("Autonomous", new Autonomous());
         SmartDashboard.putData("goFoward: goFoward", new goFoward(1, 10, 10));
 

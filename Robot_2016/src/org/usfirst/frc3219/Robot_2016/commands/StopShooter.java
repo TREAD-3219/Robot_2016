@@ -4,41 +4,40 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class FeedShooter extends Command {
+public class StopShooter extends Command {
 	
-	public FeedShooter() {
+	public StopShooter() {
 		requires(Robot.shooter);
 	}
 
 	@Override
-	protected void initialize() {
-		Robot.shooter.feed(10.0);
-		this.setTimeout(5);
+	protected void end() {
+		Robot.shooter.shoot(0.0);
 		
 	}
 
 	@Override
 	protected void execute() {
+		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
+	protected void initialize() {
+		Robot.shooter.shoot(0.0);
+		
+	}
 
 	@Override
 	protected void interrupted() {
-		end();
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	protected boolean isFinished() {
-			
-		return this.isTimedOut();
-	}
-	
-	@Override
-	protected void end() {
-		Robot.shooter.feed(0.0);
-		
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

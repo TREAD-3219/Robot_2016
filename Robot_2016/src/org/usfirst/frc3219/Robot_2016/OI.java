@@ -25,6 +25,11 @@ import org.usfirst.frc3219.Robot_2016.subsystems.*;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+	//IMPORTANT! controls for robot: 
+		//Left joystick - multiTool down/up
+		//right joystick - Shooter speed
+		//A button - feed shooter a ball
+		//B button - activate multiTool roller
 	private static boolean RollerMotorIsFinished;
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
@@ -70,10 +75,12 @@ public class OI {
         shoot_Alt = new JoystickButton(gameController, 1);
         shoot_Alt.whileHeld(new Shooting_GC());
         joystick = new Joystick(1);
-        Button button = new JoystickButton(gameController, 2); //place holder number
+        Button buttonB = new JoystickButton(gameController, 2); //place holder number
+        Button buttonA = new JoystickButton(gameController, 1);
         shoot = new JoystickButton(joystick, 1);
         shoot.whileHeld(new Shooting_Joy());
-        button.whileHeld(new RollerMotor());
+        buttonB.whileHeld(new RollerMotor());
+        buttonA.whileHeld(new FeedShooter());
 
         // SmartDashboard Buttons
         SmartDashboard.putData("Shooting_Joy", new Shooting_Joy());

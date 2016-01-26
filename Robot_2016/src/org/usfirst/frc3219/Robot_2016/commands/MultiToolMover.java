@@ -29,7 +29,7 @@ public class MultiToolMover extends Command{
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
+		end();
 		
 	}
 
@@ -47,7 +47,7 @@ public class MultiToolMover extends Command{
 	
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
+		Robot.multiTool.driveMultiTool(0.0);
 		
 	}
 }

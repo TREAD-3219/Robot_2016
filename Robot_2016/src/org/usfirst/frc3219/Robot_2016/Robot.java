@@ -99,6 +99,14 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        JoystickDrive joystickDrive = new JoystickDrive();
+        Scheduler.getInstance().add(joystickDrive);
+        
+        MultiToolMover multiTool = new MultiToolMover();
+        Scheduler.getInstance().add(multiTool);
+        
+        ManualShoot manualShoot = new ManualShoot();
+        Scheduler.getInstance().add(manualShoot);
     }
 
     /**

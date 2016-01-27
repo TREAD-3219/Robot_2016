@@ -1,0 +1,97 @@
+Nav subsystem 
+	Tracks current
+	Location, orientation
+	Motion vector
+
+Climbing command
+	Flies out and pulls robot up
+
+Climber subsystems
+	actuator to let climbing hook fly out and pull robot up
+
+Sensor subsystem
+	LIDAR
+	NAVX
+	Encoders
+	Ultrasonics
+	Sharps
+	Camera
+
+Navigate command (tele op)
+	use location, orientation and motion vector to give general position on field auto target on high goal
+
+Pick up tool subsystem
+	1 motor
+	reversible 
+pivots up and down
+	
+Drive subsystem
+	run each side separately as well as being able to drive all at once
+	4 motors
+	1 speed?
+	6 wheels
+	drive over all obstacles with help from pick up tool
+
+Navigate command (autonomous)
+	drive over 
+		rough terrain
+		moat
+		rock wall
+		cheval de frise
+		rampart 
+			and shoot 
+				then reposition near another ball
+
+open for other bots:?
+	sally port
+	drawbridge
+	portcullis 
+		then shoot?
+
+Shooter command 
+	target sensing
+		dashboard
+			camera
+			radar
+		motor control
+			2 motors with gearboxes
+	pivoting?
+	fireballs
+	get balls from pickup tools
+
+Pull in balls command
+	motor control:
+		1 motor
+
+Multitool subsystem
+	2motors
+	goes forward and back
+	opens portcullis and sally gate
+
+Sensor watch command
+	put sensors to dashboard:
+		LIDAR
+		NAVX
+		encoders
+		ultrasonics
+		sharps
+		camera
+	add data to dashboard:
+		voltage (sensors)
+		current (sensors)
+		current (left motor)
+		current (right motor)
+		power
+		energy used
+		PDP temperature
+	read data from sensors
+
+Sally port command
+	use multitools
+
+Portcullis command
+	up and down to open portcullis 
+	uses multi tool
+
+Spit out balls command
+	spit balls out through pick up mechanism 

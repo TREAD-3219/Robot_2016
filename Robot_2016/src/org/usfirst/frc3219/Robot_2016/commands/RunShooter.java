@@ -4,28 +4,35 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ManualShoot extends Command {
+public class RunShooter extends Command {
+	private double speed;
 	
-	public ManualShoot() {
+	public RunShooter() {
 		requires(Robot.shooter);
+		speed = 10.0;
 	}
 	
-	
+	public RunShooter(double wheelSpeed) {
+		requires(Robot.shooter);
+		speed = wheelSpeed;
+	}
+
 	@Override
 	protected void initialize() {
-		Robot.shooter.shoot(0.0);
-		
-	}
-	
-	@Override
-	protected void execute() {
-		Robot.shooter.shoot(Robot.oi.gameController.getThrottle());
+		Robot.shooter.shoot(speed);
 		
 	}
 
 	@Override
+	protected void execute() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
 	protected void interrupted() {
 		end();
+		
 	}
 
 	@Override

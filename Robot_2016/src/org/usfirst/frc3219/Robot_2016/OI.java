@@ -30,6 +30,7 @@ public class OI {
 		//right joystick - Shooter speed
 		//A button - feed shooter a ball
 		//B button - activate multiTool roller
+		//X button - shoot wheel with a single button
 	private static boolean RollerMotorIsFinished;
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
@@ -75,17 +76,19 @@ public class OI {
         shoot_Alt = new JoystickButton(gameController, 1);
         shoot_Alt.whileHeld(new Shooting_GC());
         joystick = new Joystick(1);
-        Button buttonB = new JoystickButton(gameController, 2); //place holder number
+        Button buttonB = new JoystickButton(gameController, 2);
         Button buttonA = new JoystickButton(gameController, 1);
+        Button buttonX = new JoystickButton(gameController, 0);
         shoot = new JoystickButton(joystick, 1);
         shoot.whileHeld(new Shooting_Joy());
         buttonB.whileHeld(new RollerMotor());
         buttonA.whileHeld(new FeedShooter());
+        buttonX.whenPressed(new AutoShoot());
 
         // SmartDashboard Buttons
         SmartDashboard.putData("Shooting_Joy", new Shooting_Joy());
         SmartDashboard.putData("Shooting_GC", new Shooting_GC());
-        SmartDashboard.putData("Turn: Default", new Turn(90));
+        SmartDashboard.putData("Turn: Default", new Turn(90, 10));
         SmartDashboard.putData("Autonomous", new Autonomous());
         SmartDashboard.putData("goFoward: goFoward", new goFoward(1, 10, 10));
 

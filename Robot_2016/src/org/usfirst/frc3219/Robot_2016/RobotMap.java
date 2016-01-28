@@ -79,7 +79,6 @@ public class RobotMap {
     	driveLeftDriveBack = new CANJaguar(2);
     	
     	driveDriveMotors = new RobotDrive(driveLeftDriveFront, driveLeftDriveBack, driveRightDriveFront, driveRightDriveBack);
-    	
     	driveRollerMotorController = new CANJaguar(5);
     	
     	driveMultiToolMotor1 = new CANJaguar(6);

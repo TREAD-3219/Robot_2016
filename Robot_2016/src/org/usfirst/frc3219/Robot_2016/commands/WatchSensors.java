@@ -15,6 +15,7 @@ public class WatchSensors extends Command {
 	public static void showDataFromSensor() {
 		Sensors sensors = Robot.sensors;
 		SmartDashboard.putNumber("Lidar1", sensors.readLidar1());
+		SmartDashboard.putNumber("Shooter RPM", sensors.readShooterCounter() );
 		
 		
 	}
@@ -27,7 +28,7 @@ public class WatchSensors extends Command {
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
+		showDataFromSensor();
 		
 	}
 

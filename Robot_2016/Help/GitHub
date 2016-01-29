@@ -1,0 +1,49 @@
+Install GitHub Desktop
+----------------------
+1.	Open GitHub Desktop web site https://desktop.github.com.
+2.	Click the download button.
+3.	When prompted to run or save, click “Run”.
+4.	Select “Install” on the security warning.
+
+Create Personal Branch in GitHub
+--------------------------------
+Specify a meaningful name for the branch (e.g. your user name).
+1.	Open GitHub web site https://github.com.
+2.	Click Sign In and log in using your personal GitHub account.  If you don’t have an account, you’ll need to create one.
+3.	Click the arrow on the Branch selector, type the new Branch name in the text box, and then click “Create Branch”. 
+
+Download Code from GitHub
+-------------------------
+Assumes that GitHub Desktop is already installed on your computer, and that you’ve created a personal branch.
+1.	Open GitHub web site https://github.com.
+2.	If you aren’t automatically recognized, click Sign In and log in using your personal GitHub account.  If you don’t have an account, you’ll need to create one.
+3.	In the “Repositories you contribute to” section, click on the desired repository (e.g. Robot_3219).  If you don’t see the repository that you need, switch to the TREAD-3219 using the switch context button in the upper left corner of the main page.  (It defaults to your personal dashboard.)  Then select the desired repository in the “Repositories” section.
+4.	Select your personal branch.
+5.	Click the “Save to Desktop” icon (computer and down arrow).  Click “Allow” on any security messages.
+6.	On the “Browse for folder” dialog box, select “Workspace” folder in your student folder (E.g. Computer > Students > Class of 2016 > smithann000 > Workspace.).
+7.	Click “OK”.  The GitHub repository window will be displayed.
+8.	Double click on the desktop shortcut to open Eclipse.
+9.	If you receive an “Open File – Security Warning”, click “Run”.
+10.	Select the workspace that will be used to store your projects.  This should be a folder within your student folder. (E.g. Computer > Students > Class of 2016 > smithann000 > Workspace.)
+11.	Click “OK”.
+12.	Click “OK” on the Workspace Launcher.
+13.	(WHEN IS THIS NECESSARY?) To import the new project, 
+	a.	Select menu option File > Import.
+	b.	Select General > Existing Projects into Workspace.
+	c.	Click “Next”.  
+	d.	Select the root directory (e.g. S:\Class of 2016\SMITHANN000\Workspace\Robot_2016).
+	e.	…
+14.	In the “Package Explorer” tab, expand your project (e.g. “3219Mule”).
+
+Commit to GitHub
+----------------
+1.	Save all files in Eclipse.
+2.	Log onto GitHub Desktop.
+3.	Select the Robot_2016 repository.
+4.	Click on the Changes button at the top of the screen.
+5.	Review the changes.  Click on the file name to display the code.  (Changed files are displayed with green, red and orange indicators.  Green for additions, red for deletions and orange for changes.)
+6.	If there are any unexpected changes, resolve them. 
+7.	Uncheck any files that you do not want to commit.
+8.	When ready to commit the changes, fill in the Summary and Description, and then click Commit to master.
+9.	Click Pull request in the upper right corner.
+10.	Notify an admin that you’ve submitted a pull request.  They will need to merge your changes into the master.

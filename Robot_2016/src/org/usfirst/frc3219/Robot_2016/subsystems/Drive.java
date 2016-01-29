@@ -26,9 +26,7 @@ public class Drive extends Subsystem {
 	
 	
 	Jaguar rightDriveFront = RobotMap.driveRightDrive;
-	//CANJaguar rightDriveBack = RobotMap.driveRightDriveBack;
 	Jaguar leftDriveFront = RobotMap.driveLeftDrive;
-	//CANJaguar leftDriveBack = RobotMap.driveLeftDriveBack;
 	RobotDrive driveMotors = RobotMap.driveDriveMotors;
 	
 	public void driveValues(double forward, double turnRate){
@@ -52,8 +50,6 @@ public class Drive extends Subsystem {
 	}
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

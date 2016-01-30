@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class RollerMotor extends Command{
-	public Joystick rollerSpeedSlider = Robot.oi.joystick;
+	public Joystick rollerSpeedSlider = Robot.oi.joystick; //
 	public RollerMotor() {
 		requires(Robot.drive);
 	}
@@ -18,7 +18,7 @@ public class RollerMotor extends Command{
 	
 	@Override
 	protected void execute() {
-		Robot.multiTool.driveRoller(10.0 * rollerSpeedSlider.getThrottle());
+		Robot.multiTool.driveRoller(10.0 * rollerSpeedSlider.getThrottle()); //
 		
 	}
 	

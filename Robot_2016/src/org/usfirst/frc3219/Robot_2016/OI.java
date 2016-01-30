@@ -11,13 +11,19 @@
 
 package org.usfirst.frc3219.Robot_2016;
 
-import org.usfirst.frc3219.Robot_2016.commands.*;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.*;
-import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
+import org.usfirst.frc3219.Robot_2016.commands.Autonomous;
+import org.usfirst.frc3219.Robot_2016.commands.FeedShooter;
+import org.usfirst.frc3219.Robot_2016.commands.RollerMotor;
+import org.usfirst.frc3219.Robot_2016.commands.Shooting_GC;
+import org.usfirst.frc3219.Robot_2016.commands.Shooting_Joy;
+import org.usfirst.frc3219.Robot_2016.commands.Turn;
+import org.usfirst.frc3219.Robot_2016.commands.goFoward;
 
-import org.usfirst.frc3219.Robot_2016.subsystems.*;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**

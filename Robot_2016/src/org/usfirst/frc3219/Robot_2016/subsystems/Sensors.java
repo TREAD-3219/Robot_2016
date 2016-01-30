@@ -20,6 +20,7 @@ public class Sensors extends Subsystem {
 	private static final byte LIDAR_READ_START =(byte) 0x8F;
 	private static final int START_MEASUREMENT = 0x04;
 	private static final int READ_CONTROL_REGISTER = 0x00;
+	public static final String LINE_SEEKER_TAG = "Line Seeker";
 	
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	I2C lidar1 = new I2C(I2C.Port.kMXP, LIDAR_1_ADDR);
@@ -60,5 +61,9 @@ public class Sensors extends Subsystem {
 		// boolean direction = RobotMap.normalCounter.getDirection();
 		// boolean stopped = RobotMap.normalCounter.getStopped();
 		
+	}
+	
+	public boolean readLineSeeker() {
+		return RobotMap.lineSeekerInput.get();
 	}
 }

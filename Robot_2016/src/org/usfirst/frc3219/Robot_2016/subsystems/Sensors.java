@@ -1,5 +1,7 @@
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
+import org.usfirst.frc3219.Robot_2016.RobotMap;
+
 import Robot_2016.utility.Utility;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -46,5 +48,17 @@ public class Sensors extends Subsystem {
 		}
 		
 		return res;
+	}
+	public double readShooterCounter() {
+		return RobotMap.normalCounter.getPeriod();
+		
+	// public void gettingCounterValue() {
+		// int count = RobotMap.normalCounter.get();
+		// double distance = RobotMap.normalCounter.getDistance();
+		// double period = RobotMap.normalCounter.getPeriod();
+		// double rate = RobotMap.normalCounter.getRate();
+		// boolean direction = RobotMap.normalCounter.getDirection();
+		// boolean stopped = RobotMap.normalCounter.getStopped();
+		
 	}
 }

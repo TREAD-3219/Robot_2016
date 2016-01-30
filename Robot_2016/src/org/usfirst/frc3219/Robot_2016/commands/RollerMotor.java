@@ -37,7 +37,8 @@ public class RollerMotor extends Command{
 	
 	@Override
 	protected void end() {
-		//Robot.multiTool.driveRoller(0.0);
+		Robot.multiTool.driveRoller(0.0);
+		//
 		
 	}
 	

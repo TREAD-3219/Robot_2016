@@ -24,11 +24,13 @@ public class JoystickDrive extends Command {
 	protected void execute() {
 		if (driveStick != null) {
 			double rawFwd = driveStick.getY();
-			double rawTurn = driveStick.getX();
+			double rawTurn = driveStick.getZ();
+			double speedScale = driveStick.getThrottle();
 
-			Robot.drive.driveValues(rawFwd, rawTurn);
-			SmartDashboard.putNumber("Forward", rawFwd);
-			SmartDashboard.putNumber("Turn", rawTurn);
+			Robot.drive.driveValues(rawFwd * speedScale, rawTurn * speedScale);
+			SmartDashboard.putNumber("Forward", rawFwd * speedScale);
+			SmartDashboard.putNumber("Turn", rawTurn * speedScale);
+			SmartDashboard.putNumber("Speed Scale", speedScale);
 		}
 
 	}
@@ -47,7 +49,7 @@ public class JoystickDrive extends Command {
 
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
+		Robot.drive.driveValues(0.0, 0.0);
 
 	}
 }

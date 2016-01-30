@@ -18,7 +18,7 @@ public class RollerMotor extends Command{
 	
 	@Override
 	protected void execute() {
-		Robot.multiTool.driveRoller(3.0); // as of 1/30/2016, 9:48 AM the roller motor is broken and needs to be replaced.
+		Robot.multiTool.driveRoller(3.0); // as of 1/30/2016, 12:10 AM the roller motor is broken and needs to be replaced.
 		
 	}
 	

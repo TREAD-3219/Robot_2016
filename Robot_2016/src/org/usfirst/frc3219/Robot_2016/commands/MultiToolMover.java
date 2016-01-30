@@ -21,8 +21,7 @@ public class MultiToolMover extends Command{
 	@Override
 	protected void execute() {
 		speed = joystick.getY();
-		Robot.multiTool.driveMultiTool(speed);
-		
+		Robot.multiTool.driveArmUpDown(speed);
 	}
 
 
@@ -47,7 +46,6 @@ public class MultiToolMover extends Command{
 	
 	@Override
 	protected void end() {
-		Robot.multiTool.driveMultiTool(0.0);
-		
+		Robot.multiTool.driveArmUpDown(0.0);
 	}
 }

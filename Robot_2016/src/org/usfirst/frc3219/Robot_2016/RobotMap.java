@@ -38,15 +38,13 @@ public class RobotMap {
 	public static RobotDrive driveDriveMotors;
 
 	public static Jaguar spinShooterWheel;
-	public static Jaguar shooterFeeder;
-	
-	public static DigitalSource lineFinder;
+	public static Victor shooterFeeder;
+
+	public static DigitalInput lineFinder;
 
     public static Victor driveRollerMotorController;
 	public static Victor driveMultiToolMotor1;
 
-	public static Victor spinShooterWheel;
-	public static Victor shooterFeeder;
 	public static Counter normalCounter;
 	public static DigitalInput lineSeekerInput;
 	

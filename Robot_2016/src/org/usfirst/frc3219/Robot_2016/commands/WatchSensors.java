@@ -1,6 +1,7 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -16,14 +17,11 @@ public class WatchSensors extends Command {
 		Sensors sensors = Robot.sensors;
 		SmartDashboard.putNumber("Lidar1", sensors.readLidar1());
 		SmartDashboard.putNumber("Shooter RPM", sensors.readShooterCounter() );
-		
-		
+		SmartDashboard.putBoolean(Sensors.LINE_SEEKER_TAG, Robot.sensors.readLineSeeker());
 	}
 	
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

@@ -51,7 +51,7 @@ public class Shooter extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     	
         // Set up counter mode
-        RobotMap.normalCounter.setUpSource(1);
+        /*RobotMap.normalCounter.setUpSource(1);
     	RobotMap.normalCounter.setUpDownCounterMode();
     	
     	// Reset
@@ -59,10 +59,11 @@ public class Shooter extends Subsystem {
     	
     	// Counter Setting
     	RobotMap.normalCounter.setMaxPeriod(.1);
-    	RobotMap.normalCounter.setUpdateWhenEmpty(true);
+    	RobotMap.normalCounter.setUpdateWhenEmpty(true);lk;ajdflakjflkafjalk;jfal;kjfalkfjaslkfj aj  this laptop sucks i quit - Kyle Gatley
+    	RobotMpa.normalCounter
     	RobotMap.normalCounter.setReverseDirection(false);
     	RobotMap.normalCounter.setSamplesToAverage(10);
-    	RobotMap.normalCounter.setDistancePerPulse(12);
+    	RobotMap.normalCounter.setDistancePerPulse(12);*/
     }
 }
 

@@ -88,7 +88,7 @@ public class OI {
         Button buttonX = new JoystickButton(gameController, 3);
         shoot = new JoystickButton(joystick, 1);
         shoot.whileHeld(new Shooting_Joy());
-        buttonB.whileHeld(new RollerMotor());
+        //buttonB.whileHeld(new RollerMotor());
         buttonA.whileHeld(new FeedShooter());
         buttonX.whenPressed(new AutoShoot());
 

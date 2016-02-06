@@ -12,7 +12,7 @@ public class FeedShooter extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.shooter.feed(10.0);
+		//Robot.shooter.feed(10.0);
 		this.setTimeout(5);
 		
 	}
@@ -37,7 +37,7 @@ public class FeedShooter extends Command {
 	
 	@Override
 	protected void end() {
-		Robot.shooter.feed(0.0);
+		//Robot.shooter.feed(0.0);
 		
 	}
 

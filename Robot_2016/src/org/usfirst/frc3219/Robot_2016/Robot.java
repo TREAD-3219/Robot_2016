@@ -101,8 +101,8 @@ public class Robot extends IterativeRobot {
         JoystickDrive joystickDrive = new JoystickDrive();
         Scheduler.getInstance().add(joystickDrive);
         
-        //MultiToolMover multiTool = new MultiToolMover();
-        //Scheduler.getInstance().add(multiTool);
+        MultiToolMover multiTool = new MultiToolMover();
+        Scheduler.getInstance().add(multiTool);
         
         //ManualShoot manualShoot = new ManualShoot();
         //Scheduler.getInstance().add(manualShoot);

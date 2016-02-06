@@ -13,6 +13,7 @@ package org.usfirst.frc3219.Robot_2016;
 import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -41,6 +42,9 @@ public class RobotMap {
 
     public static Jaguar spinShooterWheel;
 	public static Victor shooterFeeder;
+	
+	public static CANTalon driveRightDriveShooter;
+	public static CANTalon driveLeftDriveShooter;
 
 	public static DigitalInput lineFinder;
 
@@ -83,6 +87,11 @@ public class RobotMap {
 			driveMultiToolArmMotor = new Victor(3);
 			multiToolLimitSwitchHigh = new DigitalInput(6);
 			multiToolLimitSwitchLow = new DigitalInput(7);
+			//Shooter
+			driveRightDriveShooter = new CANTalon(4);
+			driveLeftDriveShooter = new CANTalon(5);
+			
+			normalCounter = new Counter(5);
 			
 			
 
@@ -98,8 +107,8 @@ public class RobotMap {
 		climberLimit_Switch_2 = new DigitalInput(5);
 		LiveWindow.addSensor("Climber", "Limit_Switch_2", climberLimit_Switch_2);
 
-		//lineSeekerInput = new DigitalInput(6);
-		//SmartDashboard.putBoolean(Sensors.LINE_SEEKER_TAG, lineSeekerInput.get());
+		lineSeekerInput = new DigitalInput(4);
+		SmartDashboard.putBoolean(Sensors.LINE_SEEKER_TAG, lineSeekerInput.get());
 		
 		sensorsUltraSonic1 = new AnalogInput(0);
 		LiveWindow.addSensor("Sensors", "Ultrasonic1", sensorsUltraSonic1);

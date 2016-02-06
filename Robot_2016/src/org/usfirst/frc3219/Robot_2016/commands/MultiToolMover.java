@@ -7,13 +7,13 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class MultiToolMover extends Command{
-<<<<<<< HEAD
+
 	
 	
-	Joystick joystick = null;
-=======
+	Joystick joystick1 = null;
+
 	Joystick joystick;
->>>>>>> refs/remotes/origin/master
+
 	double speed = 0.0;
 	public MultiToolMover() {
 		requires(Robot.drive);
@@ -21,12 +21,12 @@ public class MultiToolMover extends Command{
 	
 	@Override
 	protected void initialize() {
-		joystick = Robot.oi.gameController;
+		joystick1 = Robot.oi.gameController;
 	}
 	
 	@Override
 	protected void execute() {
-		speed = joystick.getY();
+		speed = joystick1.getY();
 		Robot.multiTool.driveArmUpDown(speed);
 		
 		Robot.multiTool.isSwitchSetHigh();
@@ -43,21 +43,21 @@ public class MultiToolMover extends Command{
 	@Override
 	protected boolean isFinished() {
 		boolean finished = false;
-<<<<<<< HEAD
+
 		if (Robot.multiTool.isSwitchSetLow() && speed < 0.0) {
-=======
-		/*if (Robot.multiTool.limitSwitchLow.get() && speed < 0.0) {
->>>>>>> refs/remotes/origin/master
+
+
+
 			finished = true;
 		}
-		if (Robot.multiTool.isSwitchSetLow() && speed > 0.0) {
+		if (Robot.multiTool.isSwitchSetHigh() && speed > 0.0) {
 			finished = true;
-<<<<<<< HEAD
+
 		}
 		
-=======
-		}*/
->>>>>>> refs/remotes/origin/master
+
+		
+
 		return finished;
 	}
 	

@@ -188,7 +188,7 @@ public class RobotMap {
 		 * feedMechRobotDrive21.setMaxOutput(1.0);
 		 */
 
-		multiToolLimit_Switch_1 = new DigitalInput(6);
+		multiToolLimit_Switch_1 = new DigitalInput(8);
 		LiveWindow.addSensor("multiTool", "Limit_Switch_1", multiToolLimit_Switch_1);
 
 		/*
@@ -201,7 +201,7 @@ public class RobotMap {
 		// LiveWindow.addActuator("multiToolRoller", "Speed_Controller_9",
 		// (CANJaguar) multiToolRollerSpeedController);
 
-		multiToolLimit_Switch_2 = new DigitalInput(7);
+		multiToolLimit_Switch_2 = new DigitalInput(9);
 		LiveWindow.addSensor("multiTool", "Limit_Switch_2", multiToolLimit_Switch_2);
 
 		climberLimitSwitch_1 = new DigitalInput(0);

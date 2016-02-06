@@ -3,6 +3,7 @@ package org.usfirst.frc3219.Robot_2016.subsystems;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import Robot_2016.utility.Utility;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -27,6 +28,8 @@ public class Sensors extends Subsystem {
 	double lastLidar1Read = 0.0;
 	private int totalPackets = 0;
 	
+	AnalogInput ultrasonic1 = RobotMap.sensorsUltraSonic1;
+	
 	private void startLidarMeasurement(){
 		boolean res = lidar1.write(READ_CONTROL_REGISTER, START_MEASUREMENT);
 		SmartDashboard.putBoolean("Start Lidar", res);
@@ -50,8 +53,8 @@ public class Sensors extends Subsystem {
 		
 		return res;
 	}
-	public double readShooterCounter() {
-		return RobotMap.normalCounter.getPeriod();
+	//public double readShooterCounter() {
+		//return RobotMap.normalCounter.getPeriod();
 		
 	// public void gettingCounterValue() {
 		// int count = RobotMap.normalCounter.get();
@@ -61,9 +64,14 @@ public class Sensors extends Subsystem {
 		// boolean direction = RobotMap.normalCounter.getDirection();
 		// boolean stopped = RobotMap.normalCounter.getStopped();
 		
-	}
+	//}
 	
 	public boolean readLineSeeker() {
 		return RobotMap.lineSeekerInput.get();
+	}
+	
+	public double readUltraSonic1(){
+		double ultraValue1 = ultrasonic1.getVoltage() * 0.00003842519685;
+		return ultraValue1;
 	}
 }

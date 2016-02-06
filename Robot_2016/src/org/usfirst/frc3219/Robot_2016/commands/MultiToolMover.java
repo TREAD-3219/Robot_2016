@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class MultiToolMover extends Command{
-	Joystick joystick = null;
+	Joystick joystick;
 	double speed = 0.0;
 	public MultiToolMover() {
 		requires(Robot.drive);
@@ -21,8 +21,7 @@ public class MultiToolMover extends Command{
 	@Override
 	protected void execute() {
 		speed = joystick.getY();
-		Robot.multiTool.driveMultiTool(speed);
-		
+		Robot.multiTool.driveArmUpDown(speed);
 	}
 
 
@@ -36,18 +35,17 @@ public class MultiToolMover extends Command{
 	@Override
 	protected boolean isFinished() {
 		boolean finished = false;
-		if (Robot.multiTool.limitSwitchLow.get() && speed < 0.0) {
+		/*if (Robot.multiTool.limitSwitchLow.get() && speed < 0.0) {
 			finished = true;
 		}
 		if (Robot.multiTool.limitSwitchHigh.get() && speed > 0.0) {
 			finished = true;
-		}
+		}*/
 		return finished;
 	}
 	
 	@Override
 	protected void end() {
-		Robot.multiTool.driveMultiTool(0.0);
-		
+		Robot.multiTool.driveArmUpDown(0.0);
 	}
 }

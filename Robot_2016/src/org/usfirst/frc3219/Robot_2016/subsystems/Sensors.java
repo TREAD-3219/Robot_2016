@@ -1,5 +1,7 @@
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
+import org.usfirst.frc3219.Robot_2016.RobotMap;
+
 import Robot_2016.utility.Utility;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -18,6 +20,7 @@ public class Sensors extends Subsystem {
 	private static final byte LIDAR_READ_START =(byte) 0x8F;
 	private static final int START_MEASUREMENT = 0x04;
 	private static final int READ_CONTROL_REGISTER = 0x00;
+	public static final String LINE_SEEKER_TAG = "Line Seeker";
 	
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	I2C lidar1 = new I2C(I2C.Port.kMXP, LIDAR_1_ADDR);
@@ -46,5 +49,21 @@ public class Sensors extends Subsystem {
 		}
 		
 		return res;
+	}
+	public double readShooterCounter() {
+		return RobotMap.normalCounter.getPeriod();
+		
+	// public void gettingCounterValue() {
+		// int count = RobotMap.normalCounter.get();
+		// double distance = RobotMap.normalCounter.getDistance();
+		// double period = RobotMap.normalCounter.getPeriod();
+		// double rate = RobotMap.normalCounter.getRate();
+		// boolean direction = RobotMap.normalCounter.getDirection();
+		// boolean stopped = RobotMap.normalCounter.getStopped();
+		
+	}
+	
+	public boolean readLineSeeker() {
+		return RobotMap.lineSeekerInput.get();
 	}
 }

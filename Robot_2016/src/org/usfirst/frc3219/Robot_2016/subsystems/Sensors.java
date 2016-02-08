@@ -11,11 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Sensors extends Subsystem {
 
-	@Override
-	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	private static final byte LIDAR_1_ADDR = 0x62;
 	private static final byte LIDAR_READ_START =(byte) 0x8F;
@@ -77,5 +73,11 @@ public class Sensors extends Subsystem {
 	
 	public int readShooterCounter(){
 		return RobotMap.normalCounter.get();
+	}
+	
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
+		
 	}
 }

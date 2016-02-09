@@ -68,7 +68,7 @@ public class Sensors extends Subsystem {
 	}
 	
 	public double readUltraSonic1(){
-		double ultraValue1 = ultrasonic1.getVoltage() * 0.00003842519685;
+		double ultraValue1 = RobotMap.sensorsUltraSonic1.getValue();
 		return ultraValue1;
 	}
 	

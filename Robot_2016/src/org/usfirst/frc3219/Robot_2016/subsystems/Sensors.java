@@ -49,22 +49,23 @@ public class Sensors extends Subsystem {
 		
 		return res;
 	}
-	//public double readShooterCounter() {
-		//return RobotMap.normalCounter.getPeriod();
+	public double readShooterCounter1(){
+		return RobotMap.normalCounter.getPeriod();
+	}
 		
-	// public void gettingCounterValue() {
-		// int count = RobotMap.normalCounter.get();
-		// double distance = RobotMap.normalCounter.getDistance();
-		// double period = RobotMap.normalCounter.getPeriod();
-		// double rate = RobotMap.normalCounter.getRate();
-		// boolean direction = RobotMap.normalCounter.getDirection();
-		// boolean stopped = RobotMap.normalCounter.getStopped();
+	public void gettingCounterValue() {
+		int count = RobotMap.normalCounter.get();
+		double distance = RobotMap.normalCounter.getDistance();
+		double period = RobotMap.normalCounter.getPeriod();
+		double rate = RobotMap.normalCounter.getRate();
+		boolean direction = RobotMap.normalCounter.getDirection();
+		boolean stopped = RobotMap.normalCounter.getStopped();
 		
-	//}
+	}
 	
-	//public boolean readLineSeeker() {
-		//return RobotMap.lineSeekerInput.get();
-	//}
+	public boolean readLineSeeker() {
+		return RobotMap.lineSeekerInput.get();
+	}
 	
 	public double readUltraSonic1(){
 		double ultraValue1 = ultrasonic1.getVoltage() * 0.00003842519685;

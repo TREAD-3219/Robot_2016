@@ -16,8 +16,9 @@ public class WatchSensors extends Command {
 		Sensors sensors = Robot.sensors;
 		SmartDashboard.putNumber("Lidar1", sensors.readLidar1());
 		SmartDashboard.putNumber("Shooter RPM", sensors.readShooterCounter() );
-		//SmartDashboard.putBoolean(Sensors.LINE_SEEKER_TAG, Robot.sensors.readLineSeeker());
+		SmartDashboard.putBoolean(Sensors.LINE_SEEKER_TAG, Robot.sensors.readLineSeeker());
 		SmartDashboard.putNumber("Ultra1", sensors.readUltraSonic1());
+		SmartDashboard.putNumber("RotationCounter", sensors.readShooterCounter1());
 	}
 	
 	@Override

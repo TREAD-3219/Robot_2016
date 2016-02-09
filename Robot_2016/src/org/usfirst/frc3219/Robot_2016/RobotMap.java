@@ -85,8 +85,8 @@ public class RobotMap {
 			//MultiTool
 			driveRollerMotorController = new Victor(2);
 			driveMultiToolArmMotor = new Victor(3);
-			//multiToolLimitSwitchHigh = new DigitalInput(6);
-			//multiToolLimitSwitchLow = new DigitalInput(7);
+			multiToolLimitSwitchHigh = new DigitalInput(6);
+			multiToolLimitSwitchLow = new DigitalInput(7);
 			//Shooter
 			driveRightDriveShooter = new CANTalon(4);
 			driveLeftDriveShooter = new CANTalon(5);
@@ -104,10 +104,10 @@ public class RobotMap {
 		climberLimitSwitch_1 = new DigitalInput(0);
 		LiveWindow.addSensor("Climber", "Limit Switch_1", climberLimitSwitch_1);
 
-		climberLimit_Switch_2 = new DigitalInput(5);
+		climberLimit_Switch_2 = new DigitalInput(8);
 		LiveWindow.addSensor("Climber", "Limit_Switch_2", climberLimit_Switch_2);
 
-		lineSeekerInput = new DigitalInput(4);
+		lineSeekerInput = new DigitalInput(9);
 		SmartDashboard.putBoolean(Sensors.LINE_SEEKER_TAG, lineSeekerInput.get());
 		
 		sensorsUltraSonic1 = new AnalogInput(0);

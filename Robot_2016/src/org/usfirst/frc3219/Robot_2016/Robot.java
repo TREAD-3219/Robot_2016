@@ -77,7 +77,7 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
-    	Scheduler.getInstance().add(new WatchSensors());
+    	//Scheduler.getInstance().add(new WatchSensors());
     }
 
     public void disabledPeriodic() {

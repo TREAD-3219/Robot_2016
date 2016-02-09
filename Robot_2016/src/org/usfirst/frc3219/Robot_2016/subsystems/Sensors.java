@@ -62,9 +62,9 @@ public class Sensors extends Subsystem {
 		
 	//}
 	
-	public boolean readLineSeeker() {
-		return RobotMap.lineSeekerInput.get();
-	}
+	//public boolean readLineSeeker() {
+		//return RobotMap.lineSeekerInput.get();
+	//}
 	
 	public double readUltraSonic1(){
 		double ultraValue1 = ultrasonic1.getVoltage() * 0.00003842519685;

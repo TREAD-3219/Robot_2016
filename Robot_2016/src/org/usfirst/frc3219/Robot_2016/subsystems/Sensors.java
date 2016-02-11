@@ -3,6 +3,7 @@ package org.usfirst.frc3219.Robot_2016.subsystems;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import Robot_2016.utility.Utility;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -10,11 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Sensors extends Subsystem {
 
-	@Override
-	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	private static final byte LIDAR_1_ADDR = 0x62;
 	private static final byte LIDAR_READ_START =(byte) 0x8F;
@@ -26,6 +23,8 @@ public class Sensors extends Subsystem {
 	I2C lidar1 = new I2C(I2C.Port.kMXP, LIDAR_1_ADDR);
 	double lastLidar1Read = 0.0;
 	private int totalPackets = 0;
+	
+	AnalogInput ultrasonic1 = RobotMap.sensorsUltraSonic1;
 	
 	private void startLidarMeasurement(){
 		boolean res = lidar1.write(READ_CONTROL_REGISTER, START_MEASUREMENT);
@@ -50,20 +49,36 @@ public class Sensors extends Subsystem {
 		
 		return res;
 	}
-	public double readShooterCounter() {
+	public double readShooterCounter1(){
 		return RobotMap.normalCounter.getPeriod();
+	}
 		
-	// public void gettingCounterValue() {
-		// int count = RobotMap.normalCounter.get();
-		// double distance = RobotMap.normalCounter.getDistance();
-		// double period = RobotMap.normalCounter.getPeriod();
-		// double rate = RobotMap.normalCounter.getRate();
-		// boolean direction = RobotMap.normalCounter.getDirection();
-		// boolean stopped = RobotMap.normalCounter.getStopped();
+	public void gettingCounterValue() {
+		int count = RobotMap.normalCounter.get();
+		double distance = RobotMap.normalCounter.getDistance();
+		double period = RobotMap.normalCounter.getPeriod();
+		double rate = RobotMap.normalCounter.getRate();
+		boolean direction = RobotMap.normalCounter.getDirection();
+		boolean stopped = RobotMap.normalCounter.getStopped();
 		
 	}
 	
 	public boolean readLineSeeker() {
 		return RobotMap.lineSeekerInput.get();
+	}
+	
+	public double readUltraSonic1(){
+		double ultraValue1 = RobotMap.sensorsUltraSonic1.getVoltage() * 0.0000384251985;
+		return ultraValue1;
+	}
+	
+	public int readShooterCounter(){
+		return RobotMap.normalCounter.get();
+	}
+	
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
+		
 	}
 }

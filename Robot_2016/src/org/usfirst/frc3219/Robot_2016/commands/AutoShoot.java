@@ -12,10 +12,8 @@ public class AutoShoot extends CommandGroup {
 	}
 	
 	public void createShooterCommands() {
-		this.addSequential(new RunShooter(10.0));
 		this.addSequential(new AutoTimeout(.05));
 		this.addSequential(new FeedShooter());
-		this.addSequential(new StopShooter());
 	}
 	
 }

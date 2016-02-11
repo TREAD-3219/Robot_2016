@@ -12,7 +12,8 @@ public class FeedShooter extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.shooter.shooterFeeder.set(10.0);
+		//Robot.shooter.feed(10.0);
+		this.setTimeout(5);
 		
 	}
 
@@ -31,12 +32,12 @@ public class FeedShooter extends Command {
 	@Override
 	protected boolean isFinished() {
 			
-		return false;
+		return this.isTimedOut();
 	}
 	
 	@Override
 	protected void end() {
-		Robot.shooter.shooterFeeder.set(0.0);
+		//Robot.shooter.feed(0.0);
 		
 	}
 

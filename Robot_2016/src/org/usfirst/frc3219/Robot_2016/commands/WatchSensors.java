@@ -7,18 +7,20 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class WatchSensors extends Command {
+	private static Sensors sensors = Robot.sensors;
 
 	public WatchSensors() {
 		requires(Robot.sensors);
 	}
 	
 	public static void showDataFromSensor() {
-		Sensors sensors = Robot.sensors;
-		SmartDashboard.putNumber("Lidar1", sensors.readLidar1());
-		SmartDashboard.putNumber("Shooter RPM", sensors.readShooterCounter() );
+		SmartDashboard.putNumber(Sensors.LIDAR_TAG, sensors.readLidar1());
+		SmartDashboard.putNumber(Sensors.SHOOTER_RPM_TAG, sensors.readShooterCounter() );
 		SmartDashboard.putBoolean(Sensors.LINE_SEEKER_TAG, Robot.sensors.readLineSeeker());
-		SmartDashboard.putNumber("Ultra1", sensors.readUltraSonic1());
-		SmartDashboard.putNumber("RotationCounter", sensors.readShooterCounter1());
+		SmartDashboard.putNumber(Sensors.ULTRASONIC_TAG, sensors.readUltraSonic1());
+		SmartDashboard.putNumber(Sensors.ROTATION_COUNTER_TAG, sensors.readShooterCounter1());
+		double compassAngle = sensors.getCompass();
+		SmartDashboard.putNumber(Sensors.COMPASS_TAG, compassAngle);
 	}
 	
 	@Override
@@ -28,24 +30,20 @@ public class WatchSensors extends Command {
 	@Override
 	protected void execute() {
 		showDataFromSensor();
-		
 	}
 
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
-		
+		this.showDataFromSensor();
 	}
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
-		
+		end();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

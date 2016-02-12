@@ -11,7 +11,7 @@ public class Navigation extends Subsystem{
 	private static String deadRecArea = "null";
 	// the code tells the robot to move.
 	private static double deadRecAngle;
-	private double deadRecTotalForward;
+	private static double deadRecTotalForward;
 	private double deadRecLidar1Prediction;
 	private double deadRecLidar2Prediction;
 	private Point lidarLocation = new Point(0, 0);
@@ -54,8 +54,9 @@ public class Navigation extends Subsystem{
 	}
 	
 	public static void deadRecMoved(double distance) {
-		deadRecX = distance * Math.sin(deadRecAngle * (Math.PI / 180));
-		deadRecY = distance * Math.cos(deadRecAngle * (Math.PI / 180));
+		deadRecX += distance * Math.sin(deadRecAngle * (Math.PI / 180));
+		deadRecY += distance * Math.cos(deadRecAngle * (Math.PI / 180));
+		deadRecTotalForward += distance;
 	}
 	
 	public static void deadRecTurned(double degrees) {

@@ -1,6 +1,9 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
+import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
+import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
+
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -19,7 +22,10 @@ public class DeadReckoningChecks extends Command {
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
+		double angleIsOffBy = Robot.sensors.getCompass() - Navigation.getDeadRecAngle();
+		if (Math.abs(angleIsOffBy) <= 1.0) {
+			Navigation.deadRecTurned(angleIsOffBy);
+		}
 		
 	}
 

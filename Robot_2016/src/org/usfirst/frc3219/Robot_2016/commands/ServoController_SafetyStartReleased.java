@@ -3,7 +3,7 @@ package org.usfirst.frc3219.Robot_2016.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ServoController_SafetyStartReleased extends Command {
-	public double safetyStartPressed_value;
+	public static double safetyStartPressed_value;
 	//RELEASED RELEASED RELEASED RELEASED 
 	//START START START START START
 	@Override

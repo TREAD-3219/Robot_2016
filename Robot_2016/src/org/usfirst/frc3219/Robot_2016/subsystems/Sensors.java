@@ -58,7 +58,7 @@ public class Sensors extends Subsystem {
 	}
 	
 	public double getCompass() {
-		return this.navx.getCompassHeading();
+		return this.navx.getAngle();
 	}
 	
 	public double readShooterCounter1(){

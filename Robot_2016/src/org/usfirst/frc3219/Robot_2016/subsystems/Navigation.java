@@ -11,6 +11,7 @@ public class Navigation extends Subsystem{
 	private static String deadRecArea = "null";
 	// the code tells the robot to move.
 	private static double deadRecAngle;
+	private static double deadRecSpeed;
 	private static double deadRecTotalForward;
 	private double deadRecLidar1Prediction;
 	private double deadRecLidar2Prediction;
@@ -27,6 +28,13 @@ public class Navigation extends Subsystem{
 		double B = 90 - A;
 		double finalTurnDegrees = B + deadRecAngle;
 		return finalTurnDegrees;
+	}
+	public static void setSpeed(double speed) {
+		deadRecSpeed = speed;
+	}
+	
+	public static double getSpeed() {
+		return deadRecSpeed;
 	}
 	
 	public static double distanceToPoint(double x, double y) { 

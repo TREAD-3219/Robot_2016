@@ -1,14 +1,18 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
+
+import org.usfirst.frc3219.Robot_2016.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ServoController_SafetyStartPressed extends Command {
-	public static double safetyStartPressed_value;
+	
 	//PRESSED PRESSED PRESSED PRESSED 
 	//START START START START START
 	@Override
 	protected void end() {
-
+		Robot.oi.safetyStartPressed_value = false;
+		
 	}
 
 	@Override
@@ -18,19 +22,16 @@ public class ServoController_SafetyStartPressed extends Command {
 
 	@Override
 	protected void initialize() {
-		if(safetyStartPressed_value == 1) {
-			System.out.print("the button Start was pressed while pressed. The value is " + safetyStartPressed_value);
-			end();
-			
-		}else {
-			 safetyStartPressed_value = 1;
-			 end();
+	
+		Robot.oi.safetyStartPressed_value = true;
+		
+		
 		}
-	}
+	
 
 	@Override
 	protected void interrupted() {
-
+		end();
 	}
 
 	@Override

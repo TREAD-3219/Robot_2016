@@ -1,5 +1,7 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
+import org.usfirst.frc3219.Robot_2016.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ServoController_SafetyYPressed extends Command {
@@ -8,7 +10,7 @@ public class ServoController_SafetyYPressed extends Command {
 	//Y Y Y Y Y Y Y Y
 	@Override
 	protected void end() {
-
+		Robot.oi.safetyYPressed_value = true;
 	}
 	
 	@Override
@@ -18,22 +20,19 @@ public class ServoController_SafetyYPressed extends Command {
 
 	@Override
 	protected void initialize() {
-		if(safetyYPressed_value == 1) {
-			System.out.print("the button Y was pressed while pressed. The value is " + safetyYPressed_value);
-			end();
-			
-		}else {
-			safetyYPressed_value = 1;
-			end();
+		Robot.oi.safetyYPressed_value = true;
+		
+		
+		
 		}
 		
 		
 		
-	}
+	
 
 	@Override
 	protected void interrupted() {
-		
+		end();
 	}
 
 	@Override

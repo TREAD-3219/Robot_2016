@@ -3,8 +3,7 @@ package org.usfirst.frc3219.Robot_2016.commands;
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -63,14 +62,14 @@ public class ServoController extends Command {
 				}else {
 					
 					
-					if(safetyStartPressed_value == 1 &&  && EnableClimberButtons.SafetyClimberEnable)
+					if(Robot.oi.safetyStartPressed_value && Robot.oi.safetyYPressed_value  && EnableClimberButtons.SafetyClimberEnable)
 					{
 						RobotMap.pwmServo_4.setRaw(2000);
-						
-					}else {
-						
-						
+						System.out.print("The quick release has been triggered.");
 					}
+						
+						
+					
 					
 					
 					

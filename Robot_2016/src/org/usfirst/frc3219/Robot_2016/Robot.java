@@ -110,8 +110,8 @@ public class Robot extends IterativeRobot {
         
         Scheduler.getInstance().add(new WatchSensors());
         
-        //ManualShoot manualShoot = new ManualShoot();
-        //Scheduler.getInstance().add(manualShoot);
+        Scheduler.getInstance().add(new ManualShoot());
+
     }
 
     /**

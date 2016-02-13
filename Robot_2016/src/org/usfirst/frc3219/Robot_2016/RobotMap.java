@@ -43,6 +43,7 @@ public class RobotMap {
 
     public static Jaguar spinShooterWheel;
 	public static Victor shooterFeeder;
+	public static DigitalInput feederLimitSwitch;
 	
 	public static CANTalon driveRightDriveShooter;
 	public static CANTalon driveLeftDriveShooter;
@@ -93,7 +94,10 @@ public class RobotMap {
 			//Shooter
 			driveRightDriveShooter = new CANTalon(4);
 			driveLeftDriveShooter = new CANTalon(5);
-			
+			//Feed Mech
+			shooterFeeder = new Victor(8); //incorrect port
+			feederLimitSwitch = new DigitalInput(5); //incorrect port
+			//Counter
 			normalCounter = new Counter(5);
 			
 			

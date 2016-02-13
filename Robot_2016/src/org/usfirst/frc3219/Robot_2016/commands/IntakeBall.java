@@ -4,41 +4,37 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class FeedShooter extends Command {
-	
-	public FeedShooter() {
-		requires(Robot.shooter);
+public class IntakeBall extends Command { // Starts feeder motor
+	// stops either when button b is released, or limit switch is hit
+	public IntakeBall() {
+		requires(Robot.feedMech);
 	}
 
 	@Override
 	protected void initialize() {
 		Robot.feedMech.spinFeeder();
-		this.setTimeout(5);
-		
+
 	}
 
 	@Override
 	protected void execute() {
-		
-	}
-
-
-	@Override
-	protected void interrupted() {
-		end();
-		
 	}
 
 	@Override
 	protected boolean isFinished() {
-			
-		return this.isTimedOut();
+		return Robot.feedMech.getLimitSwitch();
 	}
-	
+
 	@Override
 	protected void end() {
 		Robot.feedMech.stopFeeder();
-		
+
+	}
+
+	@Override
+	protected void interrupted() {
+		end();
+
 	}
 
 }

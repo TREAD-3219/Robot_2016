@@ -5,7 +5,8 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class RollerMotor extends Command{
+public class RollerMotor extends Command{// Starts roller motor
+	// stops either when button b is released, or feed mech limit switch is hit
 	//public Joystick rollerSpeedSlider = Robot.oi.joystick; 
 	public RollerMotor() {
 		requires(Robot.drive);
@@ -31,8 +32,7 @@ public class RollerMotor extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
+		return Robot.feedMech.getLimitSwitch();
 	}
 	
 	@Override

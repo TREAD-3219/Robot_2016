@@ -39,7 +39,7 @@ public class MultiTool extends Subsystem {
     }
     
     public void driveArmUpDown(double speed) {
-    	this.driveArmMotor.set(speed);
+    	driveArmMotor.set(speed);
     }
 
     public void initDefaultCommand() {

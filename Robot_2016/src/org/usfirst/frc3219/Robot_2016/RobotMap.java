@@ -42,6 +42,8 @@ public class RobotMap {
 	public static Victor driveRollerMotorController;
 	public static Victor driveMultiToolArmMotor;
 	public static Encoder multiToolEncoder;
+	public static DigitalInput multiToolLimitSwitch;
+	
     public static Jaguar spinShooterWheel;
 	public static Victor shooterFeeder;
 	
@@ -93,6 +95,7 @@ public class RobotMap {
 			driveRollerMotorController = new Victor(2);
 			driveMultiToolArmMotor = new Victor(3);
 			multiToolEncoder = new Encoder(5, 6, false, EncodingType.k4X);
+			multiToolLimitSwitch = new DigitalInput(6);
 			//Shooter
 			driveRightDriveShooter = new CANTalon(4);
 			driveLeftDriveShooter = new CANTalon(5);

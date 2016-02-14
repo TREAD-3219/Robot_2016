@@ -13,6 +13,7 @@ package org.usfirst.frc3219.Robot_2016;
 
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
 import org.usfirst.frc3219.Robot_2016.commands.Autonomous;
+import org.usfirst.frc3219.Robot_2016.commands.CycleTool;
 import org.usfirst.frc3219.Robot_2016.commands.FeedShooter;
 import org.usfirst.frc3219.Robot_2016.commands.RollerMotor;
 import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyStartPressed;
@@ -96,15 +97,16 @@ public class OI {
         Button buttonX = new JoystickButton(gameController, 3);
         buttonY = new JoystickButton(gameController, 4);
         buttonStart = new JoystickButton(gameController, 8);
+        Button buttonLB = new JoystickButton(gameController, 5);
+        Button buttonRB = new JoystickButton(gameController, 6);
         
         shoot = new JoystickButton(joystick, 1);
         shoot.whileHeld(new Shooting_Joy());
         //buttonB.whileHeld(new RollerMotor());
         buttonA.whileHeld(new FeedShooter());
         buttonX.whenPressed(new AutoShoot());
-        
-        
-        
+        buttonLB.whenPressed(new CycleTool(1));
+        buttonRB.whenPressed(new CycleTool(-1));
         
         //Start button
         buttonStart.whileHeld(new ServoController_SafetyStartPressed());

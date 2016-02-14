@@ -35,12 +35,24 @@ public class MultiToolMover extends Command{
 	@Override
 	protected boolean isFinished() {
 		boolean finished = false;
-		/*if (Robot.multiTool.limitSwitchLow.get() && speed < 0.0) {
-			finished = true;
+		double encoder = Robot.multiTool.multiToolEncoder.getDistance();
+		if (Robot.multiTool.selectedTool == 0) {
+			if (encoder <= 1 || encoder >= 75) {
+				finished = true;
+			}
+		} else if (Robot.multiTool.selectedTool == 1) { //THESE STILL NEED TO BE FILLED IN
+			if (encoder <= 1 || encoder >= 75) { //THESE VALUES STILL NEED TO BE SET CORRECTLY
+				finished = true;
+			}
+		} else if (Robot.multiTool.selectedTool == 2) {
+			if (encoder <= 1 || encoder >= 75) {
+				finished = true;
+			}
+		} else if (Robot.multiTool.selectedTool == 3) {
+			if (encoder <= 1 || encoder >= 75) {
+				finished = true;
+			}
 		}
-		if (Robot.multiTool.limitSwitchHigh.get() && speed > 0.0) {
-			finished = true;
-		}*/
 		return finished;
 	}
 	

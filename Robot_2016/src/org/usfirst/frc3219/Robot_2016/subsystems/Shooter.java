@@ -28,6 +28,15 @@ public class Shooter extends Subsystem {
 	
 	CANTalon shooterTopMotor = RobotMap.driveLeftDriveShooter;
 	CANTalon shooterBottomMotor = RobotMap.driveRightDriveShooter;
+	
+	public double findVelocityForPoint(double x, double y) {
+		double v;
+		double y0 = 30;
+		double g = 386.088583;
+		double theta = 45 * (Math.PI / 180);
+		v = Math.sqrt(((g * x * x) * (Math.pow(Math.tan(theta), 2) + 1)) / (2 * (Math.tan(theta) * x - y0)));
+		return v;
+	}
 
 
 	public void init() {

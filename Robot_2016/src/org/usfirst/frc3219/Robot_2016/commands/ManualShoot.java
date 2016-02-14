@@ -13,13 +13,13 @@ public class ManualShoot extends Command {
 	
 	@Override
 	protected void initialize() {
-		Robot.shooter.shoot(0.0);
+		//Robot.shooter.shoot(0.0);
 		
 	}
 	
 	@Override
 	protected void execute() {
-		Robot.shooter.shoot(Robot.oi.gameController.getThrottle());
+		//Robot.shooter.shoot(Robot.oi.gameController.getThrottle());
 		
 	}
 
@@ -36,7 +36,7 @@ public class ManualShoot extends Command {
 	
 	@Override
 	protected void end() {
-		Robot.shooter.shoot(0.0);
+		//Robot.shooter.shoot(0.0);
 		
 	}
 	

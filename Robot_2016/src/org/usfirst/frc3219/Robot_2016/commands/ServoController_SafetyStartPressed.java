@@ -1,43 +1,42 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
+
 import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class StopShooter extends Command {
+public class ServoController_SafetyStartPressed extends Command {
 	
-	public StopShooter() {
-		requires(Robot.shooter);
-	}
-
+	//PRESSED PRESSED PRESSED PRESSED 
+	//START START START START START
 	@Override
 	protected void end() {
-		Robot.shooter.shoot(0.0);
+		Robot.oi.safetyStartPressed_value = false;
 		
 	}
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.shooter.shoot(0.0);
+	
+		Robot.oi.safetyStartPressed_value = true;
 		
-	}
+		
+		}
+	
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
-		
+		end();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
 }

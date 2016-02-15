@@ -1,8 +1,7 @@
 package frc3219.autonomousLibrary;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc3219.Robot;
-
+import org.usfirst.frc3219.Robot;
 public class OnRamp extends Command {
 
 	String state = "";

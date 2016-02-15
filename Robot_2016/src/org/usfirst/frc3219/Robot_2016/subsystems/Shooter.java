@@ -11,6 +11,9 @@
 
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
+import java.awt.Point;
+
+import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -29,12 +32,22 @@ public class Shooter extends Subsystem {
 	CANTalon shooterTopMotor = RobotMap.driveLeftDriveShooter;
 	CANTalon shooterBottomMotor = RobotMap.driveRightDriveShooter;
 	
+	public double findXPoint() { //YPoint is always 8'1", or 97"
+		double lidar = Robot.sensors.readLidar1();
+		double x = lidar + 5.55079;
+		return x;
+	}
+	
+	public double findMotorSpeed(double v) { //gets the speed the motor has to shoot to hit a certain point
+		double motorSpeed; //velocity times speed/velocity ratio
+		return motorSpeed;
+	}
+	
 	public double findVelocityForPoint(double x, double y) {
 		double v;
-		double y0 = 30;
 		double g = 386.088583;
 		double theta = 45 * (Math.PI / 180);
-		v = Math.sqrt(((g * x * x) * (Math.pow(Math.tan(theta), 2) + 1)) / (2 * (Math.tan(theta) * x - y0)));
+		v = Math.sqrt(((g * x * x) * (Math.pow(Math.tan(theta), 2) + 1)) / (2 * (Math.tan(theta) * x - y)));
 		return v;
 	}
 

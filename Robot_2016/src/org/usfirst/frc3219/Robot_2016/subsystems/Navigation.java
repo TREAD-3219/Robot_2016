@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Navigation extends Subsystem{
 	Sensors sensors = new Sensors();
-	private static double deadRecX;
-	private static double deadRecY;
+	public static double deadRecX;
+	public static double deadRecY;
 	private static String deadRecArea = "null";
 	// the code tells the robot to move.
 	private static double deadRecAngle;
@@ -19,6 +19,7 @@ public class Navigation extends Subsystem{
 	private Point ultraSonicLocation = new Point(0, 0);
 	private Point trustedPosition = new Point(0, 0);
 	private double trustedAngle;
+	public static boolean inOuterWorks = false;
 	
 	public static double angleTurnToward(double x, double y) {
 		double a = x - deadRecX;

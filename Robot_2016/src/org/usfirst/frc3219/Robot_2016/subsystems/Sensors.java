@@ -28,7 +28,7 @@ public class Sensors extends Subsystem {
 	
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	I2C lidar1 = new I2C(I2C.Port.kMXP, LIDAR_1_ADDR);
-	AHRS navx = new AHRS(Port.kMXP);
+	public static AHRS navx = new AHRS(Port.kMXP);
 	AnalogInput ultrasonic1 = RobotMap.sensorsUltraSonic1;
 
 	double lastLidar1Read = 0.0;

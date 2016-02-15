@@ -23,8 +23,25 @@ public class DeadReckoningChecks extends Command {
 	@Override
 	protected void execute() {
 		double angleIsOffBy = Robot.sensors.getCompass() - Navigation.getDeadRecAngle();
+		double pitch = Robot.sensors.navx.getPitch();
+		//Angle checks
 		if (Math.abs(angleIsOffBy) <= 1.0) {
 			Navigation.deadRecTurned(angleIsOffBy);
+		}
+		//OuterWorks Checks
+		if (Math.abs(pitch) >= 5.0) {
+			Navigation.inOuterWorks = true;
+		} else {
+			Navigation.inOuterWorks = false;
+		}
+		if (Navigation.inOuterWorks) {
+			if (Navigation.getDeadRecArea().equals("Enemy Outer Works")) {
+				Navigation.deadRecX = 410;
+				
+			} else if (Navigation.getDeadRecArea().equals("Friendly Outer Works")) {
+				Navigation.deadRecX = 190;
+			}
+			
 		}
 		
 	}

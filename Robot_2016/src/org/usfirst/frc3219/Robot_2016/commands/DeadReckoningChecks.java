@@ -7,6 +7,7 @@ import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DeadReckoningChecks extends Command {
 	
@@ -43,6 +44,10 @@ public class DeadReckoningChecks extends Command {
 			}
 			
 		}
+		SmartDashboard.putNumber("Dead Rec X", Navigation.getDeadRecX());
+		SmartDashboard.putNumber("Dead Rec Y", Navigation.getDeadRecY());
+		SmartDashboard.putNumber("Dead Rec Angle", Navigation.getDeadRecAngle());
+		SmartDashboard.putString("Dead Rec Area", Navigation.getDeadRecArea());
 		
 	}
 

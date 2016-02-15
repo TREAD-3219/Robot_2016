@@ -38,7 +38,7 @@ public class JoystickDrive extends Command {
 			double newLeftDist = RobotMap.driveEncoderLeft.getDistance() - lastLeftEncoder;
 			double newRightDist = RobotMap.driveEncoderRight.getDistance() - lastRightEncoder;
 			double avgDist = (newLeftDist + newRightDist) / 2;
-			Navigation.deadRecMoved(avgDist * (1 / 45));
+			Navigation.deadRecMoved(avgDist);
 			double degrees = 2 * (newLeftDist - newRightDist);
 			Navigation.deadRecTurned(degrees);
 			lastLeftEncoder = RobotMap.driveEncoderLeft.getDistance();

@@ -11,8 +11,6 @@
 
 package org.usfirst.frc3219.Robot_2016;
 
-import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
-import org.usfirst.frc3219.Robot_2016.commands.Autonomous;
 import org.usfirst.frc3219.Robot_2016.commands.FeedShooter;
 import org.usfirst.frc3219.Robot_2016.commands.RollerMotor;
 import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyStartPressed;
@@ -28,6 +26,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc3219.autonomousLibrary.AutoShoot;
+import frc3219.autonomousLibrary.Autonomous;
 
 
 /**

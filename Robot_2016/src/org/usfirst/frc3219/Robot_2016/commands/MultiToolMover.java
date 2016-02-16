@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class MultiToolMover extends Command{
 	Joystick joystick;
-	double speed = 0.0;
+	double velocity = 0.0;
 	public MultiToolMover() {
 		requires(Robot.drive);
 	}
@@ -20,8 +20,8 @@ public class MultiToolMover extends Command{
 
 	@Override
 	protected void execute() {
-		speed = joystick.getY();
-		Robot.multiTool.driveArmUpDown(speed);
+		velocity = joystick.getY();
+		Robot.multiTool.driveArmUpDown(velocity);
 	}
 
 
@@ -35,10 +35,10 @@ public class MultiToolMover extends Command{
 	@Override
 	protected boolean isFinished() {
 		boolean finished = false;
-		if (Robot.multiTool.limitSwitchLow.get() && speed < 0.0) {
+		if (Robot.multiTool.limitSwitchLow.get() && velocity < 0.0) { // speed is a scalar and has no direction (no negative) velocity has both magnitude and direction
 			finished = true;
 		}
-		if (Robot.multiTool.limitSwitchHigh.get() && speed > 0.0) {
+		if (Robot.multiTool.limitSwitchHigh.get() && velocity > 0.0) {
 			finished = true;
 		}
 		return finished;
@@ -46,6 +46,6 @@ public class MultiToolMover extends Command{
 	
 	@Override
 	protected void end() {
-		Robot.multiTool.driveArmUpDown(0.0);
+		Robot.multiTool.driveArmUpDown(0.0); //stop motors
 	}
 }

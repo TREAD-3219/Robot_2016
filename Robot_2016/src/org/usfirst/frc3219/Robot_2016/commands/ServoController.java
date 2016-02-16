@@ -64,7 +64,8 @@ public class ServoController extends Command {
 					
 					if(Robot.oi.safetyStartPressed_value && Robot.oi.safetyYPressed_value  && EnableClimberButtons.SafetyClimberEnable)
 					{
-						RobotMap.pwmServo_4.setRaw(2000);
+						RobotMap.pwmServo_4.setRaw((int) PwmServo4ValueMax);
+						RobotMap.pwmServo_5.setRaw((int) PwmServo4ValueMax);
 						System.out.print("The quick release has been triggered.");
 					}
 						

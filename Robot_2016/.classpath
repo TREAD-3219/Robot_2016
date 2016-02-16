@@ -6,6 +6,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="var" path="navx-mxp"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/gaubnik000/workspace/navx-mxp-libs/roborio/java/lib/navx_frc.jar"/>
+	<classpathentry kind="lib" path="S:/Class of 2019/GATLEKYL000/WORKSPACE/Robot_2016/navx_frc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

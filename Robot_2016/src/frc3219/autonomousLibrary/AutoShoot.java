@@ -2,6 +2,8 @@ package frc3219.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.commands.FeedShooter;
+import org.usfirst.frc3219.Robot_2016.commands.RunShooter;
+import org.usfirst.frc3219.Robot_2016.commands.StopShooter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 

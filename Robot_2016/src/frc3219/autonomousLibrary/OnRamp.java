@@ -1,10 +1,39 @@
 package frc3219.autonomousLibrary;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc3219.Robot;
 public class OnRamp extends Command {
 
-	String state = "";
+	@Override
+	protected void end() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void execute() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initialize() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void interrupted() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected boolean isFinished() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+/*	String state = "";
 
 	@Override
 	protected void end() {
@@ -53,5 +82,5 @@ public class OnRamp extends Command {
 		}
 		return false;
 	}
-
+*/
 }

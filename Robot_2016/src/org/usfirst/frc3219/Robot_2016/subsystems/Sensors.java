@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc3219.Robot;
 
 public class Sensors extends Subsystem {
 	private static final byte LIDAR_1_ADDR = 0x62;
@@ -29,7 +28,7 @@ public class Sensors extends Subsystem {
 	
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	I2C lidar1 = new I2C(I2C.Port.kMXP, LIDAR_1_ADDR);
-	AHRS navx = new AHRS(Port.kMXP);
+	public AHRS navx = new AHRS(Port.kMXP);
 	AnalogInput ultrasonic1 = RobotMap.sensorsUltraSonic1;
 
 	double lastLidar1Read = 0.0;

@@ -15,6 +15,7 @@ import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
 import org.usfirst.frc3219.Robot_2016.commands.Autonomous;
 import org.usfirst.frc3219.Robot_2016.commands.FeedShooter;
 import org.usfirst.frc3219.Robot_2016.commands.IntakeBall;
+import org.usfirst.frc3219.Robot_2016.commands.PickupBall;
 import org.usfirst.frc3219.Robot_2016.commands.RollerMotor;
 import org.usfirst.frc3219.Robot_2016.commands.Shooting_GC;
 import org.usfirst.frc3219.Robot_2016.commands.Shooting_Joy;
@@ -95,8 +96,7 @@ public class OI {
 		shoot = new JoystickButton(joystick, 1);
 		shoot.whileHeld(new Shooting_Joy());
 		
-		buttonB.whileHeld(new RollerMotor()); //Button b starts both roller and feeder, stops both
-		buttonB.whileHeld(new IntakeBall());
+		buttonB.whileHeld(new PickupBall()); //Button b starts both roller and feeder, stops both
 		
 		buttonA.whileHeld(new FeedShooter());
 		buttonX.whenPressed(new AutoShoot());

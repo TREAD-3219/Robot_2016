@@ -5,7 +5,7 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class FeedShooter extends Command {
-	
+	//need to feed shooter and check if limit switch is activated
 	public FeedShooter() {
 		requires(Robot.shooter);
 	}
@@ -31,7 +31,7 @@ public class FeedShooter extends Command {
 
 	@Override
 	protected boolean isFinished() {
-			
+			//return if timed out or if limit switch is clicked
 		return this.isTimedOut();
 	}
 	

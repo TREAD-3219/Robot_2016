@@ -56,6 +56,9 @@ public class Sensors extends Subsystem {
 		
 		return res;
 	}
+	public double getTip() {
+		return Math.abs(org.usfirst.frc3219.Robot_2016.Robot.sensors.navx.getPitch()) + Math.abs(org.usfirst.frc3219.Robot_2016.Robot.sensors.navx.getRoll());
+	}
 	
 	public double getCompass() {
 		return this.navx.getCompassHeading();

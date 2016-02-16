@@ -87,6 +87,8 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
+    	Scheduler.getInstance().add(new AutoNavigation());
+    	
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
@@ -112,6 +114,9 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().add(new WatchSensors());
         Scheduler.getInstance().add(new EnableClimberButtons());
         Scheduler.getInstance().add(new ServoController());
+        
+        Scheduler.getInstance().add(new DeadReckoningChecks());
+        Scheduler.getInstance().add(new CheckSpeed());
         
         //ManualShoot manualShoot = new ManualShoot();
         //Scheduler.getInstance().add(manualShoot);

@@ -13,7 +13,7 @@ public class FeedShooter extends Command {
 	@Override
 	protected void initialize() {
 		Robot.feedMech.spinFeeder();
-		this.setTimeout(5);
+		this.setTimeout(5.0);
 		
 	}
 

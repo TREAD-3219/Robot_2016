@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class PickUpBalls extends CommandGroup{
 	
-	public PickUpBalls(){
+	public PickUpBalls(){ //nice job, rand
 		requires(Robot.multiTool);
 	}
 	

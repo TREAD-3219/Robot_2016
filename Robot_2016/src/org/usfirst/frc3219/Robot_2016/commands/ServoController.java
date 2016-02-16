@@ -76,12 +76,16 @@ public class ServoController extends Command {
 				}
 		
 		
+/*
+ * servo 2 will be for the extra arm
+ * TODO set up servo 2
+ * 
+ * 
+ * 		
+ */
 		
-		
-		/*
-		 The intended use of Servo one is for the pin pulling mechanism.
-		 The intended use of Servo two is for some other thing that is important that Z talked about		 
-		 */
+
+
 	}
 
 	@Override

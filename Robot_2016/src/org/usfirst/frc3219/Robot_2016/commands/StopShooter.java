@@ -4,7 +4,8 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class StopShooter extends Command {
+public class StopShooter extends Command { //used in command groups
+	//this command just stops the shooter
 	boolean finished = false;
 	public StopShooter() {
 		requires(Robot.shooter);
@@ -30,7 +31,7 @@ public class StopShooter extends Command {
 
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
+		Robot.shooter.spinDown();
 		
 	}
 

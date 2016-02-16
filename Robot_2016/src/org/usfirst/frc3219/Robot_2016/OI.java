@@ -13,6 +13,7 @@ package org.usfirst.frc3219.Robot_2016;
 
 import org.usfirst.frc3219.Robot_2016.commands.FeedShooter;
 import org.usfirst.frc3219.Robot_2016.commands.IntakeBall;
+import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
 import org.usfirst.frc3219.Robot_2016.commands.PickupBall;
 import org.usfirst.frc3219.Robot_2016.commands.RollerMotor;
 import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyStartPressed;
@@ -100,6 +101,11 @@ public class OI {
 		Button buttonA = new JoystickButton(gameController, 1);
 		Button buttonX = new JoystickButton(gameController, 3);
 		Button leftTrigger = new JoystickButton(gameController, 7); // Test
+		Button leftBumper = new JoystickButton(gameController, 5);
+		Button rightBumper = new JoystickButton(gameController, 6);
+		leftBumper.whileHeld(new ManualShoot());
+		rightBumper.whenPressed(new AutoShoot());
+		
 
 		shoot = new JoystickButton(joystick, 1);
 		shoot.whileHeld(new Shooting_Joy());

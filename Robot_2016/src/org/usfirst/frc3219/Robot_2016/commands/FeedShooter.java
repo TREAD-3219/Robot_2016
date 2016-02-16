@@ -6,14 +6,19 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class FeedShooter extends Command {
 	//need to feed shooter and check if limit switch is activated
+	double time;
 	public FeedShooter() {
 		requires(Robot.shooter);
+	}
+	public FeedShooter(double seconds) {
+		requires(Robot.shooter);
+		time = seconds;
 	}
 
 	@Override
 	protected void initialize() {
 		Robot.feedMech.spinFeeder();
-		this.setTimeout(5.0);
+		this.setTimeout(time);
 		
 	}
 
@@ -26,7 +31,6 @@ public class FeedShooter extends Command {
 	@Override
 	protected void interrupted() {
 		end();
-		
 	}
 
 	@Override

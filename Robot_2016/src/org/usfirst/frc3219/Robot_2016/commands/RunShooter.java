@@ -11,7 +11,6 @@ public class RunShooter extends Command { //This command is to be used in Comman
 	//This only spins up the shooter DOES NOT SPIN DOWN SHOOTER!
 	double topPower;
 	double bottomPower;
-	Timer timer = new Timer();
 	double totalTime;
 	
 	public RunShooter() {
@@ -29,13 +28,12 @@ public class RunShooter extends Command { //This command is to be used in Comman
 		topPower = SmartDashboard.getNumber(Shooter.TOPSHOOTER, 0.0);
 		bottomPower = SmartDashboard.getNumber(Shooter.BOTTOMSHOOTER, 0.0);
 		Robot.shooter.spinUp(topPower, bottomPower);
-		timer.start();
+		this.setTimeout(totalTime);
 		
 	}
 
 	@Override
 	protected void execute() {
-		Robot.shooter.spinUp(topPower, bottomPower);
 		
 	}
 	
@@ -47,11 +45,7 @@ public class RunShooter extends Command { //This command is to be used in Comman
 
 	@Override
 	protected boolean isFinished() {
-		boolean finished = false;
-		if (timer.get() >= totalTime) {
-			finished = true;
-		}
-		return true;
+		return this.isTimedOut();
 	}
 	
 	@Override

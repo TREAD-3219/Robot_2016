@@ -22,10 +22,7 @@ public class ManualShoot extends Command { //This class spins shooter when the t
 
 	@Override
 	protected void execute() {
-		if (Robot.oi.driveStick.getTrigger()) {
 			Robot.shooter.spinUp(topPower, bottomPower);
-		}
-
 	}
 
 	@Override

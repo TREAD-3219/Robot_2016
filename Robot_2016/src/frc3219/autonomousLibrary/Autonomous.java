@@ -9,10 +9,12 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc3219.Robot_2016.commands;
+package frc3219.autonomousLibrary;
+
+import org.usfirst.frc3219.Robot_2016.commands.Turn;
+import org.usfirst.frc3219.Robot_2016.commands.goFoward;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.usfirst.frc3219.Robot_2016.subsystems.*;
 
 /**
  *

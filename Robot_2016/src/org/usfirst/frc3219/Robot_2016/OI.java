@@ -43,7 +43,7 @@ import frc3219.autonomousLibrary.Autonomous;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI { //this is for testing
+public class OI { 
 	public boolean safetyYPressed_value;
 	public boolean safetyStartPressed_value;
 	//IMPORTANT! controls for robot: 

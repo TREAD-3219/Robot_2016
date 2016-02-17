@@ -44,19 +44,13 @@ public class MultiToolMover extends Command{
 	protected boolean isFinished() {
 		boolean finished = false;
 
+
 		if (Robot.multiTool.isSwitchSetLow() && speed < 0.0) {
 
-
-
-			finished = true;
 		}
 		if (Robot.multiTool.isSwitchSetHigh() && speed > 0.0) {
 			finished = true;
-
 		}
-		
-
-		
 
 		return finished;
 	}

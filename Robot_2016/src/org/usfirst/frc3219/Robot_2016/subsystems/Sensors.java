@@ -28,7 +28,7 @@ public class Sensors extends Subsystem {
 	
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	I2C lidar1 = new I2C(I2C.Port.kMXP, LIDAR_1_ADDR);
-	AHRS navx = new AHRS(Port.kMXP);
+	public static AHRS navx = new AHRS(Port.kMXP);
 	AnalogInput ultrasonic1 = RobotMap.sensorsUltraSonic1;
 
 	double lastLidar1Read = 0.0;
@@ -56,9 +56,12 @@ public class Sensors extends Subsystem {
 		
 		return res;
 	}
+	public double getTip() {
+		return Math.abs(org.usfirst.frc3219.Robot_2016.Robot.sensors.navx.getPitch()) + Math.abs(org.usfirst.frc3219.Robot_2016.Robot.sensors.navx.getRoll());
+	}
 	
 	public double getCompass() {
-		return this.navx.getCompassHeading();
+		return this.navx.getAngle();
 	}
 	
 	public double readShooterCounter1(){

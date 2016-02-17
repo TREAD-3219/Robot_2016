@@ -71,6 +71,7 @@ public class RobotMap {
 	
 	//For ServoController
 	public static PWM pwmServo_4;
+	public static PWM pwmServo_5;
 	
 	
 	public static void init() {
@@ -103,6 +104,7 @@ public class RobotMap {
 			
 			//quick release / climber
 			pwmServo_4 = new PWM(4);
+			pwmServo_5 = new PWM(5);
 			
 
 		} catch (Exception e) {

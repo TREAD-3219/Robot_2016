@@ -15,6 +15,7 @@ import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -29,7 +30,7 @@ public class Shooter extends Subsystem {
 	CANTalon shooterBottomMotor = RobotMap.driveRightDriveShooter;
 
 
-	public void init(){
+	public void init() {
 		RobotMap.driveDriveMotors.setSafetyEnabled(false);
 		RobotMap.driveDriveMotors.setSensitivity(0.5);
 		RobotMap.driveDriveMotors.setMaxOutput(1.0);
@@ -51,6 +52,8 @@ public class Shooter extends Subsystem {
 		RobotMap.normalCounter.setSamplesToAverage(10);
 		RobotMap.normalCounter.setDistancePerPulse(12);
 		
+		SmartDashboard.putNumber(TOPSHOOTER, 1.0);
+		SmartDashboard.putNumber(BOTTOMSHOOTER, 1.0);
 		
 	}
 	

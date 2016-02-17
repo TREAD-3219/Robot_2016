@@ -1,22 +1,15 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
+import org.usfirst.frc3219.Robot_2016.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AutoTimeout extends Command {
-	private double timeout;
-	
-	public AutoTimeout() {
-		timeout = 10.0;
-	}
-	
-	public AutoTimeout(double timeoutInput) {
-		timeout = timeoutInput;
-	}
-	
+public class ReverseCommand extends Command{
+
 	@Override
 	protected void initialize() {
-		this.setTimeout(timeout);
-		
+		// TODO Auto-generated method stub
+		Robot.drive.reverse();
 	}
 
 	@Override
@@ -28,19 +21,19 @@ public class AutoTimeout extends Command {
 	
 	@Override
 	protected void interrupted() {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	protected boolean isFinished() {
-		boolean isTimedOut = this.isTimedOut();
-		return isTimedOut;
+		// TODO Auto-generated method stub
+		return false;
 	}
-	
+
 	@Override
 	protected void end() {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

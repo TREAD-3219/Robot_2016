@@ -35,7 +35,7 @@ public class RunShooter extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return !Robot.oi.driveStick.getTrigger();
+		return !Robot.oi.joystick.getTrigger();
 	}
 	
 	@Override

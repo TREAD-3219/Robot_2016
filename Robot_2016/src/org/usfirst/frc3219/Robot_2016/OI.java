@@ -13,9 +13,11 @@ package org.usfirst.frc3219.Robot_2016;
 
 import org.usfirst.frc3219.Robot_2016.commands.FeedShooter;
 import org.usfirst.frc3219.Robot_2016.commands.IntakeBall;
+import org.usfirst.frc3219.Robot_2016.commands.Interrupt;
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
 import org.usfirst.frc3219.Robot_2016.commands.PickupBall;
 import org.usfirst.frc3219.Robot_2016.commands.RollerMotor;
+import org.usfirst.frc3219.Robot_2016.commands.RunFeeder;
 import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyStartPressed;
 
 import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyYPressed;
@@ -94,27 +96,21 @@ public class OI {
 		gameController = new Joystick(1);
 		joystick = new Joystick(0);
 
-		shoot_Alt = new JoystickButton(gameController, 1);
-		shoot_Alt.whileHeld(new Shooting_GC());
-
-		Button buttonB = new JoystickButton(gameController, 2);
 		Button buttonA = new JoystickButton(gameController, 1);
+		Button buttonB = new JoystickButton(gameController, 2);
 		Button buttonX = new JoystickButton(gameController, 3);
-		Button leftTrigger = new JoystickButton(gameController, 7); // Test
 		Button leftBumper = new JoystickButton(gameController, 5);
 		Button rightBumper = new JoystickButton(gameController, 6);
-		leftBumper.whileHeld(new ManualShoot());
-		rightBumper.whenPressed(new AutoShoot());
-		
-
-		shoot = new JoystickButton(joystick, 1);
-		shoot.whileHeld(new Shooting_Joy());
+		Button select = new JoystickButton(gameController, 7);
 		
 		buttonB.whileHeld(new PickupBall()); //Button b starts both roller and feeder, stops both
+		buttonX.whileHeld(new RunFeeder());
+		leftBumper.whileHeld(new ManualShoot());
+		rightBumper.whenPressed(new AutoShoot());
+		select.whenPressed(new Interrupt());
 		
-		buttonA.whileHeld(new FeedShooter());
-		buttonX.whenPressed(new AutoShoot());
-		leftTrigger.whenPressed(new AutoCenterToGoal());
+		shoot = new JoystickButton(joystick, 1);
+		shoot.whileHeld(new Shooting_Joy());
 		
 		// SmartDashboard Buttons
 		SmartDashboard.putData("Shooting_Joy", new Shooting_Joy());

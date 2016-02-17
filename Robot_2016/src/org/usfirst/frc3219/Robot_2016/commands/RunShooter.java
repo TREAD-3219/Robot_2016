@@ -39,7 +39,7 @@ public class RunShooter extends Command { //This command is to be used in Comman
 	
 	@Override
 	protected void interrupted() {
-		end();
+		Robot.shooter.spinDown();
 		
 	}
 

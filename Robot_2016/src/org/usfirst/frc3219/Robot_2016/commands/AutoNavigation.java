@@ -4,6 +4,7 @@ import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class AutoNavigation extends Command {
 	double lastLeftEncoder;
@@ -25,6 +26,8 @@ public class AutoNavigation extends Command {
 		Navigation.deadRecTurned(degrees);
 		lastLeftEncoder = RobotMap.driveEncoderLeft.getDistance();
 		lastRightEncoder = RobotMap.driveEncoderRight.getDistance();
+		
+		
 		
 	}
 

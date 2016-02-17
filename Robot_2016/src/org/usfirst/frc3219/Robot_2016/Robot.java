@@ -88,6 +88,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
     	Scheduler.getInstance().add(new AutoNavigation());
+    	Scheduler.getInstance().add(new ChevelDeFrise());
     	
         if (autonomousCommand != null) autonomousCommand.start();
     }

@@ -13,9 +13,7 @@ public class ServoController extends Command {
 	double PwmServo4ValueMax = 2000;
 	double PwmServo4ValueMin = 50;
 	double PwmServo4Value = PwmServo4StartValue;
-
 	// button press values
-
 	// how to set up a timer
 	// http://stackoverflow.com/questions/4044726/how-to-set-a-timer-in-java
 	// TODO set up timer
@@ -35,27 +33,23 @@ public class ServoController extends Command {
 			double pwmServo4Value = SmartDashboard.getNumber("PwmServo1");
 			if (pwmServo4Value >= PwmServo4ValueMin && pwmServo4Value <= PwmServo4ValueMax) {
 				RobotMap.pwmServo_4.setRaw((int) pwmServo4Value);
-			} else {
-				if (pwmServo4Value < PwmServo4ValueMin) {
-					System.out.print("The Servo cannot be set to \"" + pwmServo4Value
-							+ "\"! You can only use values from 50 to 2000!");
-					RobotMap.pwmServo_4.setRaw((int) PwmServo4ValueMin);
-					SmartDashboard.putNumber("pwmServo_4", (int) PwmServo4ValueMin);
-				} else {
-					if (pwmServo4Value > PwmServo4ValueMax) {
-						System.out.print("The Servo cannot be set to \"" + pwmServo4Value
-								+ "\"! You can only use values from 50 to 2000!");
-						RobotMap.pwmServo_4.setRaw((int) PwmServo4ValueMax);
-						SmartDashboard.putNumber("pwmServo_4", (int) PwmServo4ValueMax);
-					} else {
-						System.out
-								.print("Something in ServoController Manual value setting went very, very wrong. The value that was entered is: "
-										+ pwmServo4Value);
-						RobotMap.pwmServo_4.setRaw((int) PwmServo4StartValue);
-						SmartDashboard.putNumber("pwmServo_4", PwmServo4StartValue);
-					}
+			} else if (pwmServo4Value < PwmServo4ValueMin) {
 
-				}
+				System.out.print("The Servo cannot be set to \"" + pwmServo4Value
+						+ "\"! You can only use values from 50 to 2000!");
+				RobotMap.pwmServo_4.setRaw((int) PwmServo4ValueMin);
+				SmartDashboard.putNumber("pwmServo_4", (int) PwmServo4ValueMin);
+			} else if (pwmServo4Value > PwmServo4ValueMax) {
+				System.out.print("The Servo cannot be set to \"" + pwmServo4Value
+						+ "\"! You can only use values from 50 to 2000!");
+				RobotMap.pwmServo_4.setRaw((int) PwmServo4ValueMax);
+				SmartDashboard.putNumber("pwmServo_4", (int) PwmServo4ValueMax);
+			} else {
+				System.out
+						.print("Something in ServoController Manual value setting went very, very wrong. The value that was entered is: "
+								+ pwmServo4Value);
+				RobotMap.pwmServo_4.setRaw((int) PwmServo4StartValue);
+				SmartDashboard.putNumber("pwmServo_4", PwmServo4StartValue);
 
 			}
 

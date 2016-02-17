@@ -125,8 +125,8 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().add(new DeadReckoningChecks());
         Scheduler.getInstance().add(new CheckSpeed());
         
-        //ManualShoot manualShoot = new ManualShoot();
-        //Scheduler.getInstance().add(manualShoot);
+        Scheduler.getInstance().add(new ManualShoot());
+
     }
 
     /**

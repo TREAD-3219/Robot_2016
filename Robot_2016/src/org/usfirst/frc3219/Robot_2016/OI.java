@@ -23,7 +23,6 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc3219.autonomousLibrary.AutoShoot;
-import frc3219.autonomousLibrary.Autonomous;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -94,7 +93,6 @@ public class OI {
 
 		// SmartDashboard Buttons
 		SmartDashboard.putData("Turn: Default", new Turn(90, 10));
-		SmartDashboard.putData("Autonomous", new Autonomous());
 	}
 
 	public Joystick getJoystick() {

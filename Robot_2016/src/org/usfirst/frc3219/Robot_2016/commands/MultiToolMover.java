@@ -35,6 +35,7 @@ public class MultiToolMover extends Command{
 	@Override
 	protected boolean isFinished() {
 		boolean finished = false;
+
 		double encoder = Robot.multiTool.multiToolEncoder.getDistance();
 		if (Robot.multiTool.selectedTool == 0) {
 			if (encoder <= 1 || encoder >= 75) {

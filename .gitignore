@@ -8,6 +8,11 @@
 *.war
 *.ear
 
+# don't ignore navx_frc.jar
+!navx_frc.jar
+# except in build
+Robot_2016/build/jars/navx_frc.jar
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
@@ -19,3 +24,8 @@ Robot_2016/.classpath
 
 Robot_2016/.classpath~
 Robot_2016/.classpath
+
+Robot_2016/Test plans/~$Test Plan Schedule.xlsx
+navx_frc.jar
+
+*.java~

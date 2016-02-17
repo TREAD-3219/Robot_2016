@@ -1,31 +1,29 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RunShooter extends Command {
-	private double speed;
+	double topPower;
+	double bottomPower;
 	
 	public RunShooter() {
-		requires(Robot.shooter);
-		speed = 10.0;
 	}
 	
-	public RunShooter(double wheelSpeed) {
-		requires(Robot.shooter);
-		speed = wheelSpeed;
-	}
-
 	@Override
 	protected void initialize() {
-		Robot.shooter.shoot(speed);
+		topPower = SmartDashboard.getNumber(Shooter.TOPSHOOTER, 0.0);
+		bottomPower = SmartDashboard.getNumber(Shooter.BOTTOMSHOOTER, 0.0);
+		Robot.shooter.spinUp(topPower, bottomPower);
 		
 	}
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
+		Robot.shooter.spinUp(topPower, bottomPower);
 		
 	}
 	
@@ -37,13 +35,12 @@ public class RunShooter extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
+		return !Robot.oi.driveStick.getTrigger();
 	}
 	
 	@Override
 	protected void end() {
-		Robot.shooter.shoot(0.0);
+		Robot.shooter.spinDown();
 		
 	}
 	

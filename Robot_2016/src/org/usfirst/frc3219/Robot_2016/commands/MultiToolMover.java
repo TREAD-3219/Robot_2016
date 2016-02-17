@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class MultiToolMover extends Command{
-	Joystick joystick = null;
+	Joystick joystick;
 	double speed = 0.0;
 	public MultiToolMover() {
 		requires(Robot.drive);

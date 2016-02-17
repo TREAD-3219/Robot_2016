@@ -35,12 +35,12 @@ public class MultiToolMover extends Command{
 	@Override
 	protected boolean isFinished() {
 		boolean finished = false;
-		/*if (Robot.multiTool.limitSwitchLow.get() && speed < 0.0) {
+		if (Robot.multiTool.limitSwitchLow.get() && speed < 0.0) {
 			finished = true;
 		}
 		if (Robot.multiTool.limitSwitchHigh.get() && speed > 0.0) {
 			finished = true;
-		}*/
+		}
 		return finished;
 	}
 	

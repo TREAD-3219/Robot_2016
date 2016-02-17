@@ -17,7 +17,6 @@ import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyStartPresse
 import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyYPressed;
 
 import org.usfirst.frc3219.Robot_2016.commands.Turn;
-import org.usfirst.frc3219.Robot_2016.commands.goFoward;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -96,7 +95,6 @@ public class OI {
 		// SmartDashboard Buttons
 		SmartDashboard.putData("Turn: Default", new Turn(90, 10));
 		SmartDashboard.putData("Autonomous", new Autonomous());
-		SmartDashboard.putData("goFoward: goFoward", new goFoward(1, 10, 10));
 	}
 
 	public Joystick getJoystick() {

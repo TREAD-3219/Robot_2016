@@ -8,11 +8,12 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoNavigation extends Command {
 	double lastLeftEncoder;
 	double lastRightEncoder;
+
 	@Override
 	protected void initialize() {
 		lastLeftEncoder = RobotMap.driveEncoderLeft.getDistance();
 		lastRightEncoder = RobotMap.driveEncoderRight.getDistance();
-		
+
 	}
 
 	@Override
@@ -25,7 +26,7 @@ public class AutoNavigation extends Command {
 		Navigation.deadRecTurned(degrees);
 		lastLeftEncoder = RobotMap.driveEncoderLeft.getDistance();
 		lastRightEncoder = RobotMap.driveEncoderRight.getDistance();
-		
+
 	}
 
 	@Override
@@ -37,13 +38,13 @@ public class AutoNavigation extends Command {
 	@Override
 	protected void end() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void interrupted() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

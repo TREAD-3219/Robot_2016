@@ -5,17 +5,18 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class MultiToolMover extends Command{
+public class MultiToolMover extends Command {
 	Joystick joystick;
 	double speed = 0.0;
+
 	public MultiToolMover() {
 		requires(Robot.drive);
 	}
-	
+
 	@Override
 	protected void initialize() {
 		joystick = Robot.oi.gameController;
-		
+
 	}
 
 	@Override
@@ -24,12 +25,10 @@ public class MultiToolMover extends Command{
 		Robot.multiTool.driveArmUpDown(speed);
 	}
 
-
-
 	@Override
 	protected void interrupted() {
 		end();
-		
+
 	}
 
 	@Override
@@ -43,7 +42,7 @@ public class MultiToolMover extends Command{
 		}
 		return finished;
 	}
-	
+
 	@Override
 	protected void end() {
 		Robot.multiTool.driveArmUpDown(0.0);

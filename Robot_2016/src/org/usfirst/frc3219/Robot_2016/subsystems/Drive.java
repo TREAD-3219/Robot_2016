@@ -26,9 +26,11 @@ public class Drive extends Subsystem {
 	Jaguar rightDriveFront = RobotMap.driveRightDrive;
 	Jaguar leftDriveFront = RobotMap.driveLeftDrive;
 	RobotDrive driveMotors = RobotMap.driveDriveMotors;
+	float reverse = 1.0f;
+	
+	public void driveValues(double forward, double turnRate){
+		driveMotors.arcadeDrive(forward*reverse, turnRate);
 
-	public void driveValues(double forward, double turnRate) {
-		driveMotors.arcadeDrive(forward, turnRate);
 	}
 
 	public void setSafety(boolean safely) {
@@ -47,7 +49,11 @@ public class Drive extends Subsystem {
 		double turns = turnRate / MAX_TURN_RATE_DPS;
 		driveMotors.drive(power, turns);
 	}
-
+	
+	public void reverse(){	
+		this.reverse *= -1.0f;
+	}
+	
 	@Override
 	protected void initDefaultCommand() {
 	}

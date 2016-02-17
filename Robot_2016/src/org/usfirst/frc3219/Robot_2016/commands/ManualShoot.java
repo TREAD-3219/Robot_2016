@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ManualShoot extends Command { //This class spins shooter when the trigger is pressed
 	double topPower;
 	double bottomPower;
-
 	public ManualShoot() {
 		requires(Robot.shooter);
 	}
@@ -39,7 +38,6 @@ public class ManualShoot extends Command { //This class spins shooter when the t
 	@Override
 	protected void end() {
 		Robot.shooter.spinDown();
-
 	}
 
 }

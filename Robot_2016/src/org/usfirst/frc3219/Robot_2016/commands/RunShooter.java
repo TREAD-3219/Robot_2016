@@ -12,7 +12,6 @@ public class RunShooter extends Command { //This command is to be used in Comman
 	double topPower;
 	double bottomPower;
 	double totalTime;
-	
 	public RunShooter() {
 		requires(Robot.shooter);
 		totalTime = 1.0;
@@ -22,36 +21,34 @@ public class RunShooter extends Command { //This command is to be used in Comman
 		requires(Robot.shooter);
 		totalTime = time;
 	}
-	
+
 	@Override
 	protected void initialize() {
 		topPower = SmartDashboard.getNumber(Shooter.TOPSHOOTER, 0.0);
 		bottomPower = SmartDashboard.getNumber(Shooter.BOTTOMSHOOTER, 0.0);
 		Robot.shooter.spinUp(topPower, bottomPower);
 		this.setTimeout(totalTime);
-		
 	}
 
 	@Override
 	protected void execute() {
-		
+		Robot.shooter.spinUp(topPower, bottomPower);
 	}
-	
+
 	@Override
 	protected void interrupted() {
-		Robot.shooter.spinDown();
-		
+		end();
 	}
 
 	@Override
 	protected boolean isFinished() {
 		return this.isTimedOut();
 	}
-	
+
 	@Override
 	protected void end() {
-		//Robot.shooter.spinDown(); 
-		
+		//Robot.shooter.spinDown();
+
 	}
-	
+
 }

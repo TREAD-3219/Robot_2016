@@ -8,7 +8,6 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
 import java.awt.Point;
@@ -20,7 +19,6 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
 /**
  *
  */
@@ -28,7 +26,7 @@ public class Shooter extends Subsystem {
 
 	public static final String TOPSHOOTER = "ShooterTop";
 	public static final String BOTTOMSHOOTER = "ShooterBottom";
-	
+
 	CANTalon shooterTopMotor = RobotMap.driveLeftDriveShooter;
 	CANTalon shooterBottomMotor = RobotMap.driveRightDriveShooter;
 	
@@ -51,7 +49,6 @@ public class Shooter extends Subsystem {
 		return v;
 	}
 
-
 	public void init() {
 		RobotMap.driveDriveMotors.setSafetyEnabled(false);
 		RobotMap.driveDriveMotors.setSensitivity(0.5);
@@ -60,14 +57,14 @@ public class Shooter extends Subsystem {
 		shooterBottomMotor.setSafetyEnabled(false);
 		shooterTopMotor.enableBrakeMode(false);
 		shooterBottomMotor.enableBrakeMode(false);
-		
-		//set up counter mode
+
+		// set up counter mode
 		RobotMap.normalCounter.setUpDownCounterMode();
-		
-		//Reset
+
+		// Reset
 		RobotMap.normalCounter.reset();
-		
-		//Counter Setting
+
+		// Counter Setting
 		RobotMap.normalCounter.setMaxPeriod(0.1);
 		RobotMap.normalCounter.setUpdateWhenEmpty(true);
 		RobotMap.normalCounter.setReverseDirection(false);
@@ -76,21 +73,19 @@ public class Shooter extends Subsystem {
 		
 		SmartDashboard.putNumber(TOPSHOOTER, 1.0);
 		SmartDashboard.putNumber(BOTTOMSHOOTER, 1.0);
-		
 	}
-	
-	public void spinUp(double TopPower, double BottomPower){
+
+	public void spinUp(double TopPower, double BottomPower) {
 		this.shooterTopMotor.set(TopPower);
 		this.shooterBottomMotor.set(BottomPower);
 	}
-	
-	public void spinDown(){
+
+	public void spinDown() {
 		this.shooterBottomMotor.set(0.0);
 		this.shooterTopMotor.set(0.0);
 	}
 
-    public void initDefaultCommand() {
-       
-    }
-}
+	public void initDefaultCommand() {
 
+	}
+}

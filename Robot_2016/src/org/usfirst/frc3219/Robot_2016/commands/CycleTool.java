@@ -4,16 +4,16 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class StopShooter extends Command { //used in command groups
-	//this command just stops the shooter
+public class CycleTool extends Command {
+	int change = 0;
 	boolean finished = false;
-	public StopShooter() {
-		requires(Robot.shooter);
+	public CycleTool(int change) {
+		this.change = change;
 	}
-	
+
 	@Override
 	protected void initialize() {
-		Robot.shooter.spinDown();
+		Robot.multiTool.selectedTool = (Robot.multiTool.selectedTool + change) % 4;
 		
 	}
 
@@ -25,20 +25,15 @@ public class StopShooter extends Command { //used in command groups
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return finished;
 	}
 
 	@Override
 	protected void end() {
-		Robot.shooter.spinDown();
-		
 	}
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -11,6 +11,7 @@
 
 package org.usfirst.frc3219.Robot_2016;
 
+import org.usfirst.frc3219.Robot_2016.commands.CycleTool;
 import org.usfirst.frc3219.Robot_2016.commands.FeedShooter;
 import org.usfirst.frc3219.Robot_2016.commands.IntakeBall;
 import org.usfirst.frc3219.Robot_2016.commands.Interrupt;
@@ -147,33 +148,17 @@ public class OI {
 		SmartDashboard.putData("High Wall", autoDefenseType);
 		autoDefenseType.addObject("Portcullis", 6);
 		SmartDashboard.putData("Portcullis", autoDefenseType);
-
+		
         buttonY = new JoystickButton(gameController, 4);
         buttonStart = new JoystickButton(gameController, 8);
-
-        //buttonB.whileHeld(new RollerMotor());
-        buttonA.whileHeld(new FeedShooter());
-        buttonX.whenPressed(new AutoShoot());
+        
         reverse = new JoystickButton(driveStick, 2);
         reverse.whenReleased(new ReverseCommand());
-        
         
         //Start button
         buttonStart.whileHeld(new ServoController_SafetyStartPressed());
          //Y Button
         buttonY.whileHeld(new ServoController_SafetyYPressed());
-        
-        
-        
-        
-        
-        
-        // SmartDashboard Buttons
-        SmartDashboard.putData("Shooting_Joy", new Shooting_Joy());
-        SmartDashboard.putData("Shooting_GC", new Shooting_GC());
-        SmartDashboard.putData("Turn: Default", new Turn(90, 10));
-        SmartDashboard.putData("Autonomous", new Autonomous());
-        SmartDashboard.putData("goFoward: goFoward", new goFoward(1, 10, 10));
 }
         public Joystick getJoystick() {
     		return joystick;

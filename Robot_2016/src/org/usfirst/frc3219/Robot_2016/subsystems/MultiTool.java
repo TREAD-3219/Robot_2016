@@ -14,19 +14,23 @@ package org.usfirst.frc3219.Robot_2016.subsystems;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
  *
  */
 public class MultiTool extends Subsystem {
-	
+
     public Victor driveRollerMotor = RobotMap.driveRollerMotorController;
     public Victor driveArmMotor = RobotMap.driveMultiToolArmMotor;
-    public DigitalInput limitSwitchLow = RobotMap.multiToolLimitSwitchLow;
-    public DigitalInput limitSwitchHigh = RobotMap.multiToolLimitSwitchHigh;
+    public Encoder multiToolEncoder = RobotMap.multiToolEncoder;
+    public DigitalInput LimitSwitch = RobotMap.multiToolLimitSwitch;
+    
+    public int selectedTool = 0;
 
     public void driveRoller(double speed) {
     	driveRollerMotor.set(speed);

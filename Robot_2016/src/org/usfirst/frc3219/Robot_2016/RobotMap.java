@@ -45,12 +45,13 @@ public class RobotMap {
 	// MultiTool
 	public static Victor driveRollerMotorController;
 	public static Victor driveMultiToolArmMotor;
-	public static DigitalInput multiToolLimitSwitchHigh;
-	public static DigitalInput multiToolLimitSwitchLow;
+	public static Encoder multiToolEncoder;
+	public static DigitalInput multiToolLimitSwitch;
 	// Shooter
 	public static CANTalon driveRightDriveShooter;
 	public static CANTalon driveLeftDriveShooter;
 	public static Victor shooterFeeder;
+	public static DigitalInput feederLimitSwitch;
 	// climber
 	public static DigitalInput climberLimitSwitch_1;
 	public static SpeedController climberSpeed_Controller_12;
@@ -84,13 +85,15 @@ public class RobotMap {
 			// MultiTool
 			driveRollerMotorController = new Victor(2);
 			driveMultiToolArmMotor = new Victor(3);
-			multiToolLimitSwitchHigh = new DigitalInput(6);
-			multiToolLimitSwitchLow = new DigitalInput(7);
-			// Shooter
+			multiToolEncoder = new Encoder(5, 6, false, EncodingType.k4X);
+			multiToolLimitSwitch = new DigitalInput(6);
+			//Shooter
 			driveRightDriveShooter = new CANTalon(4);
 			driveLeftDriveShooter = new CANTalon(5);
-
-			// Misc
+			//Feed Mech
+			shooterFeeder = new Victor(8); //incorrect port
+			feederLimitSwitch = new DigitalInput(5); //incorrect port
+			//Counter
 			normalCounter = new Counter(5);
 			lineSeekerInput = new DigitalInput(9);
 			sensorsUltraSonic1 = new AnalogInput(0);

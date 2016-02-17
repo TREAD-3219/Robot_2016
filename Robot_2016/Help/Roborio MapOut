@@ -1,6 +1,6 @@
 Map out of Roborio
 
-Digital Input\
+Digital Input
 0.Climber Limit Switch 1
 1.Encoder
 2.Encoder
@@ -24,9 +24,12 @@ PWM
 2.driveRollerMotorController
 3.driveMultiToolArmMotor
 4.Quick release servo 1
-5.quick release servo 2 (wip)
+5.quick release servo 2
+4.servo 1
+5.servo 2
 6.
 7.
 8.
 9.
+still some differences
 

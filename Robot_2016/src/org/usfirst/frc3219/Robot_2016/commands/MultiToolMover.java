@@ -26,6 +26,9 @@ public class MultiToolMover extends Command {
 		Robot.multiTool.driveArmUpDown(speed);
 		if (Robot.multiTool.selectedTool == 0) {
 			SmartDashboard.putString("Selected Tool", "0");
+			if (joystick.getTrigger()) {
+				//AutoCommand for obstacle
+			}
 			
 		} else if (Robot.multiTool.selectedTool == 1) {
 			SmartDashboard.putString("Selected Tool", "1");
@@ -50,25 +53,11 @@ public class MultiToolMover extends Command {
 	@Override
 	protected boolean isFinished() {
 		boolean finished = false;
-
 		double encoder = Robot.multiTool.multiToolEncoder.getDistance();
-		if (Robot.multiTool.selectedTool == 0) {
-			if (encoder <= 1 || encoder >= 75) {
-				finished = true;
-			}
-		} else if (Robot.multiTool.selectedTool == 1) { //THESE STILL NEED TO BE FILLED IN
 			if (encoder <= 1 || encoder >= 75) { //THESE VALUES STILL NEED TO BE SET CORRECTLY
 				finished = true;
 			}
-		} else if (Robot.multiTool.selectedTool == 2) {
-			if (encoder <= 1 || encoder >= 75) {
-				finished = true;
-			}
-		} else if (Robot.multiTool.selectedTool == 3) {
-			if (encoder <= 1 || encoder >= 75) {
-				finished = true;
-			}
-		}
+		
 		return finished;
 	}
 

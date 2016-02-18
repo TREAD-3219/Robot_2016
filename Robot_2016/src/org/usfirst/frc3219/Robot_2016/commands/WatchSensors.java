@@ -19,6 +19,7 @@ public class WatchSensors extends Command {
 		SmartDashboard.putBoolean("On Carpet", Robot.sensors.readLineSeeker());
 		SmartDashboard.putNumber("Angle", sensors.getAngle());
 		SmartDashboard.putString("Location", Navigation.getDeadRecArea());
+		SmartDashboard.
 	}
 	
 	@Override

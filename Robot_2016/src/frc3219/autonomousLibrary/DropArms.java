@@ -1,7 +1,8 @@
 package frc3219.autonomousLibrary;
 
+import org.usfirst.frc3219.Robot_2016.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
-import frc3219.Robot;
 
 public class DropArms extends Command {
 	

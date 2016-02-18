@@ -12,19 +12,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class AutonomousMain extends CommandGroup {
 	// Break Defense methods.
 	public AutonomousMain() {
-	RobotMap.driveLeftDrive.stopMotor();
-	RobotMap.driveRightDrive.stopMotor();
+		
+	org.usfirst.frc3219.Robot_2016.Robot.drive.setBreaksOff();
 
 	//this.addSequential(new AutoDrive(100.0, SmartDashboard.getNumber("AUTO_SPEED_ENGAGE_RAMP", 0.0))); // From edge of starting line to edge of front defense.
-	//this.addSequential(new EngageRamp());
-	//this.addSequential(new AutoRamparts());
+	this.addSequential(new EngageRamp());
+	this.addSequential(new AutoRamparts());
 	//this.addSequential(new AutoDrive(3, 0.5));
 	
 	//this.addSequential(new OnRamp());
 	//this.addSequential(new AutoStraighten()); NEEDS TESTING, DOES NOT WORK YET
 	
+	org.usfirst.frc3219.Robot_2016.Robot.drive.setBreaksOn();
+	
 	// FOR DRAWBRIDGE:
-	// First EngageDrawbridgeRamp --> parallel(EngageDrawBridge/dropArms) --> parallel(DrawbridgeExecuteArms/DrawbridgePID_Back) --> DriveOverObstacle --> ??.
+	// First EngageDrawbridgeRamp --> parallel(EngageDrawBridge/dropArms) --> parallel(DrawbridgeExecuteArms/DrawbridgePID_Back) --> DriveOverDrawbridge --> ??.
+
 	
 	// FOR MOAT:
 	// First EngageRamp --> Moat --> ??.
@@ -37,8 +40,11 @@ public class AutonomousMain extends CommandGroup {
 	
 	// FOR AUTORWALL:
 	// First EngageRamp --> AutoRWall --> ??
+<<<<<<< HEAD
 	
 	// FOR PORTCULLIS:
 	// First EngagePortcullisRamp --> AutoPortcullisAlign --> parallel(AutoPortcullisRaise/AutoPortcullisBackUp) --> DriveOverObstacle --> ??.
+=======
+>>>>>>> refs/remotes/origin/Master-test
 	}
 }

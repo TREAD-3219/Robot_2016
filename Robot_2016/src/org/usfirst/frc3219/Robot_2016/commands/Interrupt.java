@@ -4,36 +4,42 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ServoController_SafetyStartPressed extends Command {
+public class Interrupt extends Command {
+	
+	public Interrupt() {
+		requires(Robot.feedMech);
+		requires(Robot.shooter);
+		requires(Robot.multiTool);
+	}
 
-	// PRESSED PRESSED PRESSED PRESSED
-	// START START START START START
 	@Override
 	protected void end() {
-		Robot.oi.safetyStartPressed_value = false;
-
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	protected void execute() {
-
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	protected void initialize() {
-
-		Robot.oi.safetyStartPressed_value = true;
-
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	protected void interrupted() {
-		end();
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

@@ -23,7 +23,7 @@ public class CheckSpeed extends Command {
 		Navigation.setSpeed(speed);
 		lastTime = System.currentTimeMillis();
 		lastDistance = (RobotMap.driveEncoderLeft.getDistance() + RobotMap.driveEncoderRight.getDistance()) / 2;
-		
+
 	}
 
 	@Override
@@ -35,13 +35,13 @@ public class CheckSpeed extends Command {
 	@Override
 	protected void end() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void interrupted() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

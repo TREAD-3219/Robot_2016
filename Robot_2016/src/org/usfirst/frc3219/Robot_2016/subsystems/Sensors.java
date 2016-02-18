@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Sensors extends Subsystem {
 	private static final byte LIDAR_1_ADDR = 0x62;
-	private static final byte LIDAR_READ_START =(byte) 0x8F;
+	private static final byte LIDAR_READ_START = (byte) 0x8F;
 	private static final int START_MEASUREMENT = 0x04;
 	private static final int READ_CONTROL_REGISTER = 0x00;
 
@@ -25,49 +25,51 @@ public class Sensors extends Subsystem {
 	public static final String SHOOTER_RPM_TAG = "Shooter RPM";
 	public static final String ULTRASONIC_TAG = "Ultra1";
 	public static final String ROTATION_COUNTER_TAG = "RotationCounter";
-	
+
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	I2C lidar1 = new I2C(I2C.Port.kMXP, LIDAR_1_ADDR);
 	public static AHRS navx = new AHRS(Port.kMXP);
 	AnalogInput ultrasonic1 = RobotMap.sensorsUltraSonic1;
 
 	double lastLidar1Read = 0.0;
-	
-	private void startLidarMeasurement(){
+
+	private void startLidarMeasurement() {
 		boolean res = lidar1.write(READ_CONTROL_REGISTER, START_MEASUREMENT);
 		SmartDashboard.putBoolean("Start Lidar", res);
 	}
-	
-	public double readLidar1(){
+
+	public double readLidar1() {
 		byte[] bytes = new byte[2];
 		double res = -1.0;
-		//read the data from the last measure command
-		if (lidar1.read(LIDAR_READ_START, 2, bytes)){
-			
+		// read the data from the last measure command
+		if (lidar1.read(LIDAR_READ_START, 2, bytes)) {
+
 			int cms = Utility.getShort(bytes, 0);
 			res = cms / 2.54;
-			if (res != 0){
+			if (res != 0) {
 				lastLidar1Read = res;
-			}else {
+			} else {
 				res = lastLidar1Read;
 			}
 			startLidarMeasurement();
 		}
-		
+
 		return res;
 	}
+
 	public double getTip() {
-		return Math.abs(org.usfirst.frc3219.Robot_2016.Robot.sensors.navx.getPitch()) + Math.abs(org.usfirst.frc3219.Robot_2016.Robot.sensors.navx.getRoll());
+		return Math.abs(org.usfirst.frc3219.Robot_2016.Robot.sensors.navx.getPitch())
+				+ Math.abs(org.usfirst.frc3219.Robot_2016.Robot.sensors.navx.getRoll());
 	}
-	
+
 	public double getCompass() {
 		return this.navx.getAngle();
 	}
-	
-	public double readShooterCounter1(){
+
+	public double readShooterCounter1() {
 		return RobotMap.normalCounter.getPeriod();
 	}
-		
+
 	public void getCounterValues() {
 		int count = RobotMap.normalCounter.get();
 		SmartDashboard.putNumber(TACH_RAW, count);
@@ -77,23 +79,23 @@ public class Sensors extends Subsystem {
 		boolean direction = RobotMap.normalCounter.getDirection();
 		boolean stopped = RobotMap.normalCounter.getStopped();
 	}
-	
+
 	public boolean readLineSeeker() {
 		return RobotMap.lineSeekerInput.get();
 	}
-	
-	public double readUltraSonic1(){
+
+	public double readUltraSonic1() {
 		double ultraValue1 = RobotMap.sensorsUltraSonic1.getVoltage() * 0.0000384251985;
 		return ultraValue1;
 	}
-	
-	public int readShooterCounter(){
+
+	public int readShooterCounter() {
 		return RobotMap.normalCounter.get();
 	}
-	
+
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

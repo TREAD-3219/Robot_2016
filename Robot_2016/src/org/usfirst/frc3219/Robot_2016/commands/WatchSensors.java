@@ -12,17 +12,17 @@ public class WatchSensors extends Command {
 	public WatchSensors() {
 		requires(Robot.sensors);
 	}
-	
+
 	public static void showDataFromSensor() {
 		SmartDashboard.putNumber(Sensors.LIDAR_TAG, sensors.readLidar1());
-		SmartDashboard.putNumber(Sensors.SHOOTER_RPM_TAG, sensors.readShooterCounter() );
+		SmartDashboard.putNumber(Sensors.SHOOTER_RPM_TAG, sensors.readShooterCounter());
 		SmartDashboard.putBoolean(Sensors.LINE_SEEKER_TAG, Robot.sensors.readLineSeeker());
 		SmartDashboard.putNumber(Sensors.ULTRASONIC_TAG, sensors.readUltraSonic1());
 		SmartDashboard.putNumber(Sensors.ROTATION_COUNTER_TAG, sensors.readShooterCounter1());
 		double compassAngle = sensors.getCompass();
 		SmartDashboard.putNumber(Sensors.COMPASS_TAG, compassAngle);
 	}
-	
+
 	@Override
 	protected void end() {
 	}

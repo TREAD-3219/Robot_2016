@@ -3,8 +3,8 @@
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="var" path="networktables"/>
 	<classpathentry kind="var" path="wpilib"/>
+	<classpathentry kind="lib" path="S:/Class of 2016/TRUONNHA000/WORKSPACE/navx_frc.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="S:/Class of 2016/TRUONNHA000/WORKSPACE/navx_frc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

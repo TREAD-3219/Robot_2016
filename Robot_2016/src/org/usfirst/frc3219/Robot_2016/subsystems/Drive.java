@@ -23,7 +23,7 @@ public class Drive extends Subsystem {
 	private static final double ROTATION_CIRCLE = Math.PI * WHEEL_BASE;
 	private static final double MAX_TURN_RATE = MAX_SPEED_IPS / ROTATION_CIRCLE;
 	public static final double MAX_TURN_RATE_DPS = MAX_TURN_RATE * 360.0;
-		
+
 	CANTalon rightDriveFront = RobotMap.driveRightDriveB;
 	CANTalon rightDriveRear = RobotMap.driveRightDriveA;
 	CANTalon leftDriveFront = RobotMap.driveLeftDriveB;
@@ -65,5 +65,4 @@ public class Drive extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 	}
-}
 }

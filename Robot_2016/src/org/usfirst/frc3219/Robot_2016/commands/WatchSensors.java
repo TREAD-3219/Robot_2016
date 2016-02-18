@@ -20,7 +20,7 @@ public class WatchSensors extends Command {
 		SmartDashboard.putBoolean(Sensors.LINE_SEEKER_TAG, Robot.sensors.readLineSeeker());
 		SmartDashboard.putNumber(Sensors.ULTRASONIC_TAG, sensors.readUltraSonic1());
 		SmartDashboard.putNumber(Sensors.ROTATION_COUNTER_TAG, sensors.readShooterCounter1());
-		double compassAngle = sensors.getCompass();
+		double compassAngle = sensors.getAngle();
 		SmartDashboard.putNumber(Sensors.COMPASS_TAG, compassAngle);
 
 		SmartDashboard.putBoolean("On Carpet", Robot.sensors.readLineSeeker());

@@ -15,11 +15,8 @@ public class WatchSensors extends Command {
 	
 	public static void showDataFromSensor() {
 		SmartDashboard.putNumber(Sensors.LIDAR_TAG, sensors.readLidar1());
-		SmartDashboard.putNumber(Sensors.SHOOTER_RPM_TAG, sensors.readShooterCounter() );
-		SmartDashboard.putBoolean(Sensors.LINE_SEEKER_TAG, Robot.sensors.readLineSeeker());
-		SmartDashboard.putNumber(Sensors.ULTRASONIC_TAG, sensors.readUltraSonic1());
-		SmartDashboard.putNumber(Sensors.ROTATION_COUNTER_TAG, sensors.readShooterCounter1());
-		SmartDashboard.putNumber(Sensors.COMPASS_TAG, sensors.getAngle());
+		SmartDashboard.putBoolean("On Carpet", Robot.sensors.readLineSeeker());
+		SmartDashboard.putNumber("Angle", sensors.getAngle());
 	}
 	
 	@Override

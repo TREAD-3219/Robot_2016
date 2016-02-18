@@ -64,7 +64,6 @@ public class ServoController extends Command {
 			}
 
 		}
-
 		/*
 		 * The intended use of Servo one is for the pin pulling mechanism. The
 		 * intended use of Servo two is for some other thing that is important

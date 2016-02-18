@@ -3,11 +3,15 @@ package org.usfirst.frc3219.Robot_2016.commands;
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
+
 import edu.wpi.first.wpilibj.Servo;
+
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ServoController extends Command {
+
 
 	private static final String QUICK_RELEASE_OVERRIDE = "quick release override";
 
@@ -51,6 +55,7 @@ public class ServoController extends Command {
 
 	}
 
+
 	@Override
 	protected void end() {
 		this.servo4.setPosition(ZERO_POSITION);
@@ -59,6 +64,7 @@ public class ServoController extends Command {
 
 	@Override
 	protected void execute() {
+
 		SmartDashboard.getBoolean(QUICK_RELEASE_OVERRIDE);
 
 		if (quickReleaseOverride == true) {
@@ -85,6 +91,7 @@ public class ServoController extends Command {
 			}
 
 		}
+
 	}
 
 	@Override
@@ -97,9 +104,12 @@ public class ServoController extends Command {
 		servo4.setPosition(OPEN_POSITION);
 		servo5.setPosition(OPEN_POSITION);
 		System.out.print("Servo angle Set to through the use of \"initialize\" to " + PwmServo4Value);
+
 		SmartDashboard.putNumber("wait before lifting", 1);
 		SmartDashboard.putNumber("drive value", 0.5);
 		SmartDashboard.putNumber("wait before stopping", 2);
+
+
 	}
 
 	@Override

@@ -4,20 +4,21 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+
 public class EnableClimberButtons extends Command {
 	public static boolean SafetyClimberEnable = false;
 
 	@Override
 	protected void end() {
-		
+
 		SafetyClimberEnable = true;
 		System.out.print("The climber can now be used!");
-		//Scheduler.getInstance().add(); // TODO add the command
+		// Scheduler.getInstance().add(); // TODO add the command
 		/*
-		Command climbCommand = new ServoController();
-		Robot.oi.buttonStart.whenPressed(climbCommand);
-		Robot.oi.buttonY.whenPressed(climbCommand);
-		*/
+		 * Command climbCommand = new ServoController();
+		 * Robot.oi.buttonStart.whenPressed(climbCommand);
+		 * Robot.oi.buttonY.whenPressed(climbCommand);
+		 */
 	}
 
 	@Override
@@ -27,8 +28,8 @@ public class EnableClimberButtons extends Command {
 
 	@Override
 	protected void initialize() {
-		//1:55
-		this.setTimeout(60 + 55); //wait to trigger isFinished() to start end()
+		// 1:55
+		this.setTimeout(60 + 55); // wait to trigger isFinished() to start end()
 		SafetyClimberEnable = false;
 	}
 
@@ -39,7 +40,7 @@ public class EnableClimberButtons extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		
+
 		return this.isTimedOut();
 	}
 

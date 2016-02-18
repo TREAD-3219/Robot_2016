@@ -23,10 +23,20 @@ PWM
 1.driveRightDrive Jaguar
 2.driveRollerMotorController
 3.driveMultiToolArmMotor
+<<<<<<< HEAD:Robot_2016/Help/Roborio MapOut
 4.Quick release servo 1
 5.quick release servo 2
 4.servo 1
 5.servo 2
+=======
+<<<<<<< HEAD:Robot_2016/Help/Roborio MapOut
+4.Quick release servo 1
+5.Quick release servo 2
+=======
+4.servo 1
+5.servo 2
+>>>>>>> refs/remotes/origin/Master-test:Robot_2016/Map Outs/Roborio MapOut
+>>>>>>> origin/Gatley-Auto:Robot_2016/Map Outs/Roborio MapOut
 6.
 7.
 8.

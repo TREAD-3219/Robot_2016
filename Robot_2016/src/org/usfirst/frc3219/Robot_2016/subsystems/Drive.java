@@ -24,12 +24,10 @@ public class Drive extends Subsystem {
 	private static final double MAX_TURN_RATE = MAX_SPEED_IPS / ROTATION_CIRCLE;
 	public static final double MAX_TURN_RATE_DPS = MAX_TURN_RATE * 360.0;
 
-		
 	CANTalon rightDriveFront = RobotMap.driveRightDriveB;
 	CANTalon rightDriveRear = RobotMap.driveRightDriveA;
 	CANTalon leftDriveFront = RobotMap.driveLeftDriveB;
 	CANTalon leftDriveRear = RobotMap.driveLeftDriveA;
-
 	RobotDrive driveMotors = RobotMap.driveDriveMotors;
 
 	float reverse = 1.0f;
@@ -59,9 +57,24 @@ public class Drive extends Subsystem {
 		this.reverse *= -1.0f;
 	}
 	
+    public double speedFromPower(double power) {
+    	double result = Math.max(0, 71.882*power*power + 39.665* power - 11.083);
+    	return result;
+    }
+    public void setBreaksOn() {
+		RobotMap.driveLeftDriveA.enableBrakeMode(true);
+		RobotMap.driveLeftDriveB.enableBrakeMode(true);
+		RobotMap.driveRightDriveA.enableBrakeMode(true);
+		RobotMap.driveRightDriveB.enableBrakeMode(true);
+    }
+    public void setBreaksOff() {
+		RobotMap.driveLeftDriveA.enableBrakeMode(false);
+		RobotMap.driveLeftDriveB.enableBrakeMode(false);
+		RobotMap.driveRightDriveA.enableBrakeMode(false);
+		RobotMap.driveRightDriveB.enableBrakeMode(false);
+    }
+	
 	@Override
 	protected void initDefaultCommand() {
 	}
-
-
 }

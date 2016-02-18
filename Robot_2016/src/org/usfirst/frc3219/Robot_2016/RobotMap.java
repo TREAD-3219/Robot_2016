@@ -74,14 +74,12 @@ public class RobotMap {
 
 	public static void init() {
 		try {
-
 			//Drive
 			driveRightDriveA = new CANTalon(1);
 			driveRightDriveB = new CANTalon(2);
 			driveLeftDriveA = new CANTalon(3);
 			driveLeftDriveB = new CANTalon(4);
 			driveDriveMotors = new RobotDrive(driveLeftDriveA,  driveLeftDriveB, driveRightDriveA, driveRightDriveB);
-
 			driveDriveMotors.setSafetyEnabled(true);
 			driveDriveMotors.setExpiration(0.1);
 			driveDriveMotors.setSensitivity(0.5);

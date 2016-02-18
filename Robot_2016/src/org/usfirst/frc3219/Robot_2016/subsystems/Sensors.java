@@ -176,7 +176,7 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 		return armEncoder.getDistance();
 	}
 
-	public double getDistance() {
+	public double getAvgEncoderDist() {
 		return (leftEncoderDistance() + rightEncoderDistance()) / 2.0;
 	}
 

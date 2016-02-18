@@ -1,7 +1,6 @@
 package frc3219.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
-import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.commands.AutoStraightCommand;
 
 public class EngageDrawbridge extends AutoStraightCommand {
@@ -11,9 +10,7 @@ public class EngageDrawbridge extends AutoStraightCommand {
 	
 	@Override
 	protected void end() {
-		RobotMap.driveLeftDrive.enableBrakeMode(true);
-		RobotMap.driveRightDrive.enableBrakeMode(true);
-
+		Robot.drive.setBreaksOn();
 	}
 
 	@Override

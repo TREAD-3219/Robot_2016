@@ -48,8 +48,7 @@ public class DrawbridgePID_Back extends PIDCommand {
 
 	@Override
 	protected void end() {
-		RobotMap.driveLeftDrive.enableBrakeMode(true);
-		RobotMap.driveRightDrive.enableBrakeMode(true);
+		Robot.drive.setBreaksOn();
 		this.getPIDController().disable();
 	}
 

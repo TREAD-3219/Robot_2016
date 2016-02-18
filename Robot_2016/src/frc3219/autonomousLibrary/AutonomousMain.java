@@ -11,8 +11,8 @@ import frc3219.RobotMap;
 public class AutonomousMain extends CommandGroup {
 	// Break Defense methods.
 	public AutonomousMain() {
-//	RobotMap.driveLeftDrive.enableBrakeMode(false);
-//	RobotMap.driveRightDrive.enableBrakeMode(false);
+		
+	org.usfirst.frc3219.Robot_2016.Robot.drive.setBreaksOff();
 
 	//this.addSequential(new AutoDrive(100.0, SmartDashboard.getNumber("AUTO_SPEED_ENGAGE_RAMP", 0.0))); // From edge of starting line to edge of front defense.
 	this.addSequential(new EngageRamp());
@@ -22,8 +22,7 @@ public class AutonomousMain extends CommandGroup {
 	//this.addSequential(new OnRamp());
 	//this.addSequential(new AutoStraighten()); NEEDS TESTING, DOES NOT WORK YET
 	
-//	RobotMap.driveLeftDrive.enableBrakeMode(true);
-//	RobotMap.driveRightDrive.enableBrakeMode(true);
+	org.usfirst.frc3219.Robot_2016.Robot.drive.setBreaksOn();
 	
 	// FOR DRAWBRIDGE:
 	// First EngageDrawbridgeRamp --> parallel(EngageDrawBridge/dropArms) --> parallel(DrawbridgeExecuteArms/DrawbridgePID_Back) --> DriveOverDrawbridge --> ??.

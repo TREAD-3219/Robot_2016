@@ -61,6 +61,18 @@ public class Drive extends Subsystem {
     	double result = Math.max(0, 71.882*power*power + 39.665* power - 11.083);
     	return result;
     }
+    public void setBreaksOn() {
+		RobotMap.driveLeftDriveA.enableBrakeMode(true);
+		RobotMap.driveLeftDriveB.enableBrakeMode(true);
+		RobotMap.driveRightDriveA.enableBrakeMode(true);
+		RobotMap.driveRightDriveB.enableBrakeMode(true);
+    }
+    public void setBreaksOff() {
+		RobotMap.driveLeftDriveA.enableBrakeMode(false);
+		RobotMap.driveLeftDriveB.enableBrakeMode(false);
+		RobotMap.driveRightDriveA.enableBrakeMode(false);
+		RobotMap.driveRightDriveB.enableBrakeMode(false);
+    }
 	
 	@Override
 	protected void initDefaultCommand() {

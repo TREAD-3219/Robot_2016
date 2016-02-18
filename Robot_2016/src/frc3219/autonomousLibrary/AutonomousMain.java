@@ -2,8 +2,6 @@ package frc3219.autonomousLibrary;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc3219.Robot;
-import frc3219.RobotMap;
 
 
    // Parameters: Starting Position, Defense directing in front of Robot.

@@ -4,6 +4,7 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MultiToolMover extends Command {
 	Joystick joystick;
@@ -23,6 +24,21 @@ public class MultiToolMover extends Command {
 	protected void execute() {
 		speed = joystick.getY();
 		Robot.multiTool.driveArmUpDown(speed);
+		if (Robot.multiTool.selectedTool == 0) {
+			SmartDashboard.putString("Selected Tool", "0");
+			
+		} else if (Robot.multiTool.selectedTool == 1) {
+			SmartDashboard.putString("Selected Tool", "1");
+			
+		} else if (Robot.multiTool.selectedTool == 2) {
+			SmartDashboard.putString("Selected Tool", "2");
+			
+		} else if (Robot.multiTool.selectedTool == 3) {
+			SmartDashboard.putString("Selected Tool", "3");
+			
+		} else if (Robot.multiTool.selectedTool == 4) {
+			SmartDashboard.putString("Selected Tool", "4");
+		}
 	}
 
 	@Override

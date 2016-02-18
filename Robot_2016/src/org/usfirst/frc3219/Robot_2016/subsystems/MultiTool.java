@@ -32,6 +32,7 @@ public class MultiTool extends PIDSubsystem {
 	public static final String PORTCULLIS_END_TAG = "PORTCULLIS_END";
 	public static final String DRAWBRIDGE_END_TAG = "DRAWBRIDGE_END";
 	public static final String CHIVAL_DE_FRISE_END_TAG = "CHIVAL_DE_FRISE_END";
+	public static int selectedTool = 0;
 
 	// -----------
 	public static final double STOW = 1.0; // close to zero degrees.

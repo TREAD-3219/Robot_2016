@@ -54,6 +54,8 @@ public class RobotMap {
 	public static Victor shooterFeeder;
 	public static DigitalInput feederLimitSwitch;
 	// climber
+	public static Encoder sensorsArmEncoder;
+
 	public static DigitalInput climberLimitSwitch_1;
 	public static SpeedController climberSpeed_Controller_12;
 	public static DigitalInput climberLimit_Switch_2;
@@ -84,7 +86,11 @@ public class RobotMap {
 			driveEncoderRight = new Encoder(3, 4, false, EncodingType.k4X);
 			driveEncoderRight.setDistancePerPulse(1.0);
 			driveEncoderRight.setPIDSourceType(PIDSourceType.kRate);
-			// MultiTool
+			sensorsArmEncoder = new Encoder (4, 5, false, EncodingType.k4X);
+			LiveWindow.addSensor("Sensors", "ArmEncoder", sensorsArmEncoder);
+			sensorsArmEncoder.setDistancePerPulse(0.72434);
+			sensorsArmEncoder.setPIDSourceType(PIDSourceType.kRate);
+			//MultiTool
 			driveRollerMotorController = new Victor(2);
 			driveMultiToolArmMotor = new Victor(3);
 			multiToolEncoder = new Encoder(5, 6, false, EncodingType.k4X);

@@ -1,0 +1,44 @@
+package frc3219.autonomousLibrary;
+
+import org.usfirst.frc3219.Robot_2016.RobotMap;
+
+import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+
+
+   // Parameters: Starting Position, Defense directing in front of Robot.
+
+public class AutonomousMain extends CommandGroup {
+	// Break Defense methods.
+	public AutonomousMain() {
+	RobotMap.driveLeftDrive.stopMotor();
+	RobotMap.driveRightDrive.stopMotor();
+
+	//this.addSequential(new AutoDrive(100.0, SmartDashboard.getNumber("AUTO_SPEED_ENGAGE_RAMP", 0.0))); // From edge of starting line to edge of front defense.
+	//this.addSequential(new EngageRamp());
+	//this.addSequential(new AutoRamparts());
+	//this.addSequential(new AutoDrive(3, 0.5));
+	
+	//this.addSequential(new OnRamp());
+	//this.addSequential(new AutoStraighten()); NEEDS TESTING, DOES NOT WORK YET
+	
+	// FOR DRAWBRIDGE:
+	// First EngageDrawbridgeRamp --> parallel(EngageDrawBridge/dropArms) --> parallel(DrawbridgeExecuteArms/DrawbridgePID_Back) --> DriveOverObstacle --> ??.
+	
+	// FOR MOAT:
+	// First EngageRamp --> Moat --> ??.
+	
+	// FOR AUTOROUGH:
+	// First EngageRamp --> AutoRough --> ??
+	
+	// FOR AUTORAMPARTS:
+	// First EngageRamp --> AutoRampart --> ??
+	
+	// FOR AUTORWALL:
+	// First EngageRamp --> AutoRWall --> ??
+	
+	// FOR PORTCULLIS:
+	// First EngagePortcullisRamp --> AutoPortcullisAlign --> parallel(AutoPortcullisRaise/AutoPortcullisBackUp) --> DriveOverObstacle --> ??.
+	}
+}

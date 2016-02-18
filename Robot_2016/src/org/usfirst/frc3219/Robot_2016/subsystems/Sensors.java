@@ -28,7 +28,7 @@ public class Sensors extends Subsystem {
 	
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	I2C lidar1 = new I2C(I2C.Port.kMXP, LIDAR_1_ADDR);
-	public static AHRS navx = new AHRS(Port.kMXP);
+	public AHRS navx = new AHRS(Port.kMXP);
 	AnalogInput ultrasonic1 = RobotMap.sensorsUltraSonic1;
 
 	double lastLidar1Read = 0.0;
@@ -89,6 +89,10 @@ public class Sensors extends Subsystem {
 	
 	public int readShooterCounter(){
 		return RobotMap.normalCounter.get();
+	}
+	public double aveDistEncoders() {
+		return (RobotMap.driveEncoderLeft.getDistance() + RobotMap.driveEncoderRight.getDistance()) / 2;
+
 	}
 	
 	@Override

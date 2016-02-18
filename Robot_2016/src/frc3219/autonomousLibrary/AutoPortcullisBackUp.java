@@ -3,40 +3,34 @@ package frc3219.autonomousLibrary;
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
-import edu.wpi.first.wpilibj.command.Command;
-
-
 /**
  *
  */
-//forward then lower multi-tool, move forward with multi-tool under the portcullis
-//raise portcullis, then drive under
-public class AutoPortcullisRaise extends Command { 
-	//while finishing the raise, then drive forward and let the portcullis slide along the top of the frame
+public class AutoPortcullisBackUp extends AutoStraightCommand {
 
-	
     // Called just before this Command runs the first time
     protected void initialize() {
-		Robot.multiTool.driveArmUpDown(0.3);
+    	gyroStraight(-0.2);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.multiTool.driveArmUpDown(0.3);
+    	gyroStraight(-0.2);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(Robot.multiTool.readUpperMultiToolLimitSwitch()){
+    	if(Robot.multiTool.readUpperMultiToolLimitSwitch() || (Robot.sensors.aveDistEncoders() > 32)){
     		return true;
-    	}else{
+    	} else{
     		return false;
     	}
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	RobotMap.driveMultiToolArmMotor.stopMotor();
+    	RobotMap.driveLeftDrive.stopMotor();
+    	RobotMap.driveRightDrive.stopMotor();
     }
 
     // Called when another command which requires one or more of the same

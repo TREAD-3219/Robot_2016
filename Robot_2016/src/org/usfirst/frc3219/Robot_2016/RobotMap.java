@@ -71,7 +71,7 @@ public class RobotMap {
 	public static DigitalInput lineFinder;
 	public static AnalogInput sensorsUltraSonic1;
 	public static AnalogInput sensorsUltraSonic2;
-	
+
 	public static void init() {
 		try {
 
@@ -115,6 +115,7 @@ public class RobotMap {
 			// quick release / climber
 			climberLimitSwitch_1 = new DigitalInput(0);
 			climberLimit_Switch_2 = new DigitalInput(8);
+
 			pwmServo_4 = new Servo(4);
 			pwmServo_5 = new Servo(5);
 

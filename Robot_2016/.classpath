@@ -4,6 +4,11 @@
 	<classpathentry kind="var" path="networktables"/>
 	<classpathentry kind="var" path="wpilib"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< HEAD
 	<classpathentry kind="var" path="NAVX-FRC"/>
+=======
+	<classpathentry kind="var" path="navx-mxp"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+>>>>>>> refs/remotes/origin/Master-test
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -54,6 +54,11 @@ public class Drive extends Subsystem {
 		this.reverse *= -1.0f;
 	}
 	
+    public double speedFromPower(double power) {
+    	double result = Math.max(0, 71.882*power*power + 39.665* power - 11.083);
+    	return result;
+    }
+	
 	@Override
 	protected void initDefaultCommand() {
 	}

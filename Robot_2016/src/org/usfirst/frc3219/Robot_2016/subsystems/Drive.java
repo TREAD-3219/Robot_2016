@@ -2,6 +2,7 @@ package org.usfirst.frc3219.Robot_2016.subsystems;
 
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -22,9 +23,11 @@ public class Drive extends Subsystem {
 	private static final double ROTATION_CIRCLE = Math.PI * WHEEL_BASE;
 	private static final double MAX_TURN_RATE = MAX_SPEED_IPS / ROTATION_CIRCLE;
 	public static final double MAX_TURN_RATE_DPS = MAX_TURN_RATE * 360.0;
-
-	Jaguar rightDriveFront = RobotMap.driveRightDrive;
-	Jaguar leftDriveFront = RobotMap.driveLeftDrive;
+		
+	CANTalon rightDriveFront = RobotMap.driveRightDriveB;
+	CANTalon rightDriveRear = RobotMap.driveRightDriveA;
+	CANTalon leftDriveFront = RobotMap.driveLeftDriveB;
+	CANTalon leftDriveRear = RobotMap.driveLeftDriveA;
 	RobotDrive driveMotors = RobotMap.driveDriveMotors;
 
 	float reverse = 1.0f;
@@ -62,5 +65,5 @@ public class Drive extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 	}
-
+}
 }

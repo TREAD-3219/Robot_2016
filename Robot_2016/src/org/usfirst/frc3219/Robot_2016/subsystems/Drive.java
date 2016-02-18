@@ -26,11 +26,11 @@ public class Drive extends Subsystem {
 	Jaguar rightDriveFront = RobotMap.driveRightDrive;
 	Jaguar leftDriveFront = RobotMap.driveLeftDrive;
 	RobotDrive driveMotors = RobotMap.driveDriveMotors;
+
 	float reverse = 1.0f;
 	
 	public void driveValues(double forward, double turnRate){
 		driveMotors.arcadeDrive(forward*reverse, turnRate);
-
 	}
 
 	public void setSafety(boolean safely) {

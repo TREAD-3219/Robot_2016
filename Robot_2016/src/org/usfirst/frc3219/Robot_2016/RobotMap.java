@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -56,8 +57,8 @@ public class RobotMap {
 	public static DigitalInput climberLimitSwitch_1;
 	public static SpeedController climberSpeed_Controller_12;
 	public static DigitalInput climberLimit_Switch_2;
-	public static PWM pwmServo_4;// For ServoController
-	public static PWM pwmServo_5;
+	public static Servo pwmServo_4;// For ServoController
+	public static Servo pwmServo_5;
 	// misc
 	public static Camera camera;
 	public static Counter normalCounter;
@@ -65,7 +66,7 @@ public class RobotMap {
 	public static DigitalInput lineFinder;
 	public static AnalogInput sensorsUltraSonic1;
 	public static AnalogInput sensorsUltraSonic2;
-
+	
 	public static void init() {
 		try {
 			// Drive
@@ -101,8 +102,8 @@ public class RobotMap {
 			// quick release / climber
 			climberLimitSwitch_1 = new DigitalInput(0);
 			climberLimit_Switch_2 = new DigitalInput(8);
-			pwmServo_4 = new PWM(4);
-			pwmServo_5 = new PWM(5);
+			pwmServo_4 = new Servo(4);
+			pwmServo_5 = new Servo(5);
 
 		} catch (Exception e) {
 			System.out.println("ERROR ON THE RobotMapInit: " + e.getMessage());

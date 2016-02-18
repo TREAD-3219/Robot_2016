@@ -71,6 +71,7 @@ public class ServoController extends Command {
 			EnableClimberButtons.SafetyClimberEnable = true;
 
 		} else {
+			
 			if (Robot.oi.safetyStartPressed_value && Robot.oi.safetyYPressed_value
 					&& EnableClimberButtons.SafetyClimberEnable) {
 				// value setting
@@ -80,7 +81,9 @@ public class ServoController extends Command {
 				// releasing servo quick release
 				servo4.setAngle(OPEN_POSITION);
 				servo5.setAngle(OPEN_POSITION);
-
+				Robot.multiTool.driveArmUpDown(-0.5);
+				this.setTimeout(1);
+				Robot.multiTool.driveArmUpDown(0);
 				System.out.print("The quick release has been triggered.");
 				// climb
 				this.setTimeout(liftWait);
@@ -101,10 +104,7 @@ public class ServoController extends Command {
 
 		quickReleaseOverride = SmartDashboard.getBoolean(QUICK_RELEASE_OVERRIDE);
 		// SmartDashboard.putNumber("PwmServo1", PwmServo4Value);
-		servo4.setPosition(OPEN_POSITION);
-		servo5.setPosition(OPEN_POSITION);
 		System.out.print("Servo angle Set to through the use of \"initialize\" to " + PwmServo4Value);
-
 		SmartDashboard.putNumber("wait before lifting", 1);
 		SmartDashboard.putNumber("drive value", 0.5);
 		SmartDashboard.putNumber("wait before stopping", 2);
@@ -119,7 +119,6 @@ public class ServoController extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return this.isTimedOut();
-	}
+		return false;
 
-}
+}}

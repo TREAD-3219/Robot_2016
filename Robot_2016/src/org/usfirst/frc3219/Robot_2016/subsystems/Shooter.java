@@ -37,7 +37,7 @@ public class Shooter extends Subsystem {
 	}
 	
 	public double findMotorSpeed(double v) { //gets the speed the motor has to shoot to hit a certain point
-		double motorSpeed; //velocity times speed/velocity ratio
+		double motorSpeed = 0; //velocity times speed/velocity ratio
 		return motorSpeed;
 	}
 	

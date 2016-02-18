@@ -1,6 +1,7 @@
 package frc3219.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,7 +15,7 @@ public class SallyTwist extends Command {
 	// after this reverse drive the robot through the sally port
 	@Override
 	protected void initialize() {
-		initialDirection = Robot.ahrs.getFusedHeading();
+		initialDirection = Robot.sensors.navx.getFusedHeading();
 		Robot.drive.driveValues(0.0, 0.6);
 		
 	}
@@ -32,7 +33,7 @@ public class SallyTwist extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		finalDirection = Robot.ahrs.getFusedHeading();
+		finalDirection = Robot.sensors.navx.getFusedHeading();
 		boolean finished = false;
 		if (finalDirection - lastMeasurement > 300) {
 			initialDirection += 360;
@@ -50,8 +51,10 @@ public class SallyTwist extends Command {
 
 	@Override
 	protected void end() {
-		RobotMap.driveLeftDrive.enableBrakeMode(true);
-		RobotMap.driveRightDrive.enableBrakeMode(true);
+		RobotMap.driveLeftDriveA.enableBrakeMode(true);
+		RobotMap.driveLeftDriveB.enableBrakeMode(true);
+		RobotMap.driveRightDriveA.enableBrakeMode(true);
+		RobotMap.driveRightDriveB.enableBrakeMode(true);
 		Robot.drive.driveValues(0.0, 0.0);
 	}
 }

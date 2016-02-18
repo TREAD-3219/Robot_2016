@@ -16,8 +16,10 @@ public class SallyDoorOpen extends Command{
 	
 	@Override
 	protected void end() {
-		RobotMap.driveLeftDrive.stopMotor();
-		RobotMap.driveRightDrive.stopMotor();
+		RobotMap.driveLeftDriveA.enableBrakeMode(true);
+		RobotMap.driveLeftDriveB.enableBrakeMode(true);
+		RobotMap.driveRightDriveA.enableBrakeMode(true);
+		RobotMap.driveRightDriveB.enableBrakeMode(true);
 		Robot.drive.driveValues(0, 0);
 	}
 

@@ -36,16 +36,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * floating around.
  */
 public class RobotMap {
-<<<<<<< HEAD
+
 	public static CANTalon driveRightDriveA;
 	public static CANTalon driveRightDriveB;
 	public static CANTalon driveLeftDriveA;
 	public static CANTalon driveLeftDriveB;
-=======
-	// drive
-	public static Jaguar driveRightDrive;
-	public static Jaguar driveLeftDrive;
->>>>>>> Master-test
+
 	public static RobotDrive driveDriveMotors;
 	// Encoders
 	public static Encoder driveEncoderLeft;

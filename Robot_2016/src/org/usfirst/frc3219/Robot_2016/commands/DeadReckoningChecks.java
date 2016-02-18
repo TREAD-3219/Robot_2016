@@ -23,7 +23,7 @@ public class DeadReckoningChecks extends Command {
 
 	@Override
 	protected void execute() {
-		double angleIsOffBy = Robot.sensors.getCompass() - Navigation.getDeadRecAngle();
+		double angleIsOffBy = Robot.sensors.getAngle() - Navigation.getDeadRecAngle();
 		double pitch = Robot.sensors.navx.getPitch();
 		// Angle checks
 		if (Math.abs(angleIsOffBy) <= 1.0) {

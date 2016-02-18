@@ -1,6 +1,7 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
 import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,6 +22,11 @@ public class WatchSensors extends Command {
 		SmartDashboard.putNumber(Sensors.ROTATION_COUNTER_TAG, sensors.readShooterCounter1());
 		double compassAngle = sensors.getCompass();
 		SmartDashboard.putNumber(Sensors.COMPASS_TAG, compassAngle);
+
+		SmartDashboard.putBoolean("On Carpet", Robot.sensors.readLineSeeker());
+		SmartDashboard.putNumber("Angle", sensors.getAngle());
+		SmartDashboard.putString("Location", Navigation.getDeadRecArea());
+
 	}
 
 	@Override

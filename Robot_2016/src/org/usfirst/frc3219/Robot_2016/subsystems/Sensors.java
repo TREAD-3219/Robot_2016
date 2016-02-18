@@ -126,7 +126,7 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	}
 
 	
-	public double aveDistEncoder(){
+	public double aveDistEncoders(){
 		return(RobotMap.driveEncoderLeft.getDistance() + RobotMap.driveEncoderRight.getDistance()) / 2;
 	}
 

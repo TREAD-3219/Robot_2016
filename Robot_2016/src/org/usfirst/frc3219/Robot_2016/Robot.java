@@ -127,7 +127,6 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putString("test", "true");
         //System.out.println(SmartDashboard.getNumber("Lidar1", sensors.readUltraSonic1()) + "!");
         //SmartDashboard.putNumber("lidar check", SmartDashboard.getNumber("Lidar1"));
     }

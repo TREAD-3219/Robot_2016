@@ -14,9 +14,6 @@ public class DrawbridgePID_Back extends PIDCommand {
 	double I = 0.001;
 	double D = 0.0;
 	
-	public DrawbridgePID_Back(double p, double i, double d) {
-		super(p, i, d);
-	}
 
 	@Override
 	protected double returnPIDInput() {

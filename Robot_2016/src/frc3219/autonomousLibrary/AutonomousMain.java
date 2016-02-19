@@ -26,25 +26,22 @@ public class AutonomousMain extends CommandGroup {
 	org.usfirst.frc3219.Robot_2016.Robot.drive.setBreaksOn();
 	
 	// FOR DRAWBRIDGE:
-	// First EngageDrawbridgeRamp --> parallel(EngageDrawBridge/dropArms) --> parallel(DrawbridgeExecuteArms/DrawbridgePID_Back) --> DriveOverDrawbridge --> ??.
+	// First EngageDrawbridgeRamp --> parallel(EngageDrawBridge/dropArms) --> parallel(DrawbridgeExecuteArms/DrawbridgePID_Back) --> DriveOverObstacle --> AutoTurnAndShoot.
 
-	
 	// FOR MOAT:
-	// First EngageRamp --> Moat --> ??.
+	// First EngageRamp --> Moat --> AutoTurnAndShoot
 	
 	// FOR AUTOROUGH:
-	// First EngageRamp --> AutoRough --> ??
+	// First EngageRamp --> AutoRough --> AutoTurnAndShoot
 	
 	// FOR AUTORAMPARTS:
-	// First EngageRamp --> AutoRampart --> ??
+	// First EngageRamp --> AutoRampart --> AutoTurnAndShoot
 	
 	// FOR AUTORWALL:
-	// First EngageRamp --> AutoRWall --> ??
-<<<<<<< HEAD
-	
+	// First EngageRamp --> AutoRWall --> AutoTurnAndShoot
+
 	// FOR PORTCULLIS:
-	// First EngagePortcullisRamp --> AutoPortcullisAlign --> parallel(AutoPortcullisRaise/AutoPortcullisBackUp) --> DriveOverObstacle --> ??.
-=======
->>>>>>> refs/remotes/origin/Master-test
+	// First EngagePortcullisRamp --> AutoPortcullisAlign --> parallel(AutoPortcullisRaise/AutoPortcullisBackUp) --> DriveOverObstacle --> AutoTurnAndShoot.
+
 	}
 }

@@ -1,29 +1,32 @@
 package frc3219.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
-import org.usfirst.frc3219.Robot_2016.commands.AutoStraightCommand;
 
-public class DriveOverDrawbridge extends AutoStraightCommand {
-	
+
+/**
+ *
+ */
+public class DriveOverObstacleBackwards extends AutoStraightCommand {
+
 	double initEncoder;
 	public static final double MIN_ENCODER_DISTANCE = 60;
 
 	@Override
 	protected void end() {
-		Robot.drive.driveValues(0.0, 0.0);
+		Robot.drive.setBreaksOn();
 
 	}
 
 	@Override
 	protected void execute() {
-		gyroStraight(0.5);
+		gyroStraight(-0.5);
 
 	}
 
 	@Override
 	protected void initialize() {
 		initEncoder = Robot.sensors.getAvgEncoderDist();
-		gyroStraight(0.5);
+		gyroStraight(-0.5);
 
 	}
 
@@ -41,5 +44,4 @@ public class DriveOverDrawbridge extends AutoStraightCommand {
 		}
 		return false;
 	}
-
 }

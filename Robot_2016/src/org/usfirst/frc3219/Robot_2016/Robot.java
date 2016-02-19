@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
 import org.usfirst.frc3219.Robot_2016.subsystems.Drive;
 import org.usfirst.frc3219.Robot_2016.subsystems.FeedMech;
+import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -27,7 +28,7 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	public static OI oi;
 	public static FeedMech feedMech;
-
+	public static MultiTool multiTool;
     Command autonomousCommand;
     SendableChooser chooser;
 
@@ -40,6 +41,7 @@ public class Robot extends IterativeRobot {
     	drive = new Drive();
     	shooter = new Shooter();
     	feedMech = new FeedMech();
+    	multiTool = new MultiTool();
 		oi = new OI();
         chooser = new SendableChooser();
 //        chooser.addObject("My Auto", new MyAutoCommand());

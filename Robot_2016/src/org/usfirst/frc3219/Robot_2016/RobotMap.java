@@ -38,6 +38,11 @@ public class RobotMap {
 	public static Servo pwmServo_4;
 	public static Servo pwmServo_5;
 	
+	public static Victor driveRollerMotorController;
+	public static Victor driveMultiToolArmMotor;
+	public static DigitalInput multiToolLimitSwitchHigh;
+	public static DigitalInput multiToolLimitSwitchLow;
+	
 	public static Camera camera;
 	
 	public static void init(){
@@ -55,6 +60,11 @@ public class RobotMap {
 		
 		pwmServo_4 = new Servo(4);
 		pwmServo_5 = new Servo(5);
+		
+		driveRollerMotorController = new Victor(2);
+		driveMultiToolArmMotor = new Victor(3);
+		multiToolLimitSwitchHigh = new DigitalInput(6);
+		multiToolLimitSwitchLow = new DigitalInput(7);
 	}
 
 	

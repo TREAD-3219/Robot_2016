@@ -133,17 +133,17 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
         JoystickDrive joystickDrive = new JoystickDrive();
-        Scheduler.getInstance().add(joystickDrive);
+        //Scheduler.getInstance().add(joystickDrive);
         
         MultiToolMover multiTool = new MultiToolMover();
-        Scheduler.getInstance().add(multiTool);
+        //Scheduler.getInstance().add(multiTool);
         
-        Scheduler.getInstance().add(new WatchSensors());
-        Scheduler.getInstance().add(new EnableClimberButtons());
-        Scheduler.getInstance().add(new ServoController());
+        //Scheduler.getInstance().add(new WatchSensors());
+        //Scheduler.getInstance().add(new EnableClimberButtons());
+        //Scheduler.getInstance().add(new ServoController());
         
-        Scheduler.getInstance().add(new DeadReckoningChecks());
-        Scheduler.getInstance().add(new CheckSpeed());
+       // Scheduler.getInstance().add(new DeadReckoningChecks());
+        //Scheduler.getInstance().add(new CheckSpeed());
     }
 
     /**

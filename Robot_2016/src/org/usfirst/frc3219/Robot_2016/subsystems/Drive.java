@@ -23,8 +23,8 @@ public class Drive extends Subsystem {
 	private static final double MAX_TURN_RATE = MAX_SPEED_IPS / ROTATION_CIRCLE;
 	public static final double MAX_TURN_RATE_DPS = MAX_TURN_RATE * 360.0;
 
-	Jaguar rightDriveFront = RobotMap.driveRightDrive;
-	Jaguar leftDriveFront = RobotMap.driveLeftDrive;
+	//Jaguar rightDriveFront = RobotMap.driveRightDrive;
+	//Jaguar leftDriveFront = RobotMap.driveLeftDrive;
 	RobotDrive driveMotors = RobotMap.driveDriveMotors;
 	float reverse = 1.0f;
 	

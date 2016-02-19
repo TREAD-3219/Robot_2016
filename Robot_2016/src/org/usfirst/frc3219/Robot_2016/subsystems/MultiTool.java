@@ -28,7 +28,7 @@ public class MultiTool extends Subsystem {
     public Victor driveRollerMotor = RobotMap.driveRollerMotorController;
     public Victor driveArmMotor = RobotMap.driveMultiToolArmMotor;
     public Encoder multiToolEncoder = RobotMap.multiToolEncoder;
-    public DigitalInput LimitSwitch = RobotMap.multiToolLimitSwitch;
+    public DigitalInput LimitSwitch = RobotMap.multiToolLimitSwitchHigh;
     
     public int selectedTool = 0;
 

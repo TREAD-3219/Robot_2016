@@ -27,8 +27,8 @@ public class Shooter extends Subsystem {
 	public static final String TOPSHOOTER = "ShooterTop";
 	public static final String BOTTOMSHOOTER = "ShooterBottom";
 
-	CANTalon shooterTopMotor = RobotMap.driveLeftDriveShooter;
-	CANTalon shooterBottomMotor = RobotMap.driveRightDriveShooter;
+	CANTalon shooterTopMotor = RobotMap.driveTopShooter;
+	CANTalon shooterBottomMotor = RobotMap.driveBottomShooter;
 	
 	public double findXPoint() { //YPoint is always 8'1", or 97"
 		double lidar = Robot.sensors.readLidar1();

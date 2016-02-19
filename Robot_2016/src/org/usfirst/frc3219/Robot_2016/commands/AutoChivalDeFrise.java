@@ -4,7 +4,7 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ChevelDeFrise extends Command {
+public class AutoChivalDeFrise extends Command {
 	double invert;
 
 	@Override

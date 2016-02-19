@@ -25,12 +25,18 @@ public class RobotMap {
 	public static CANTalon driveLeftDriveB;
 	public static RobotDrive driveDriveMotors;
 	
+	public static CANTalon driveTopShooter;
+	public static CANTalon driveBottomShooter;
+	
 	public static void init(){
-		driveRightDriveA  = new CANTalon(1);
-		driveRightDriveB  = new CANTalon(2);
-		driveLeftDriveA  = new CANTalon(3);
-		driveLeftDriveB  = new CANTalon(4);
+		driveRightDriveA  = new CANTalon(4);
+		driveRightDriveB  = new CANTalon(5);
+		driveLeftDriveA  = new CANTalon(2);
+		driveLeftDriveB  = new CANTalon(3);
 		driveDriveMotors = new RobotDrive(driveLeftDriveA, driveLeftDriveB, driveRightDriveA, driveRightDriveB);
+		
+		driveTopShooter = new CANTalon(6);
+		driveBottomShooter = new CANTalon(1);
 	}
 
 	

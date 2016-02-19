@@ -28,7 +28,7 @@
  -Drive subsystem
  -	run each side separately as well as being able to drive all at once
  -	4 motors
- -	1 speed?
+ -	1 speed? 
  -	6 wheels
  -	drive over all obstacles with help from pick up tool
  -
@@ -42,7 +42,7 @@
  -			and shoot 
  -				then reposition near another ball
  -
- -open for other bots:?
+ -open for other robots?
  -	sally port
  -	drawbridge
  -	portcullis 
@@ -56,10 +56,10 @@
  -		motor control
  -			2 motors with gearboxes
  -	pivoting?
- -	fireballs
- -	get balls from pickup tools
+ -	fire boulders
+ -	get boulders from pickup tools
  -
- -Pull in balls command
+ -Pull in boulders command
  -	motor control:
  -		1 motor
  -
@@ -93,5 +93,5 @@
  -	up and down to open portcullis 
  -	uses multi tool
  -
- -Spit out balls command
- -	spit balls out through pick up mechanism 
+ -Spit out boulders command
+ -	spit boulders out through pick up mechanism (probably just reverse shooter motors and roller motor. toggle?)

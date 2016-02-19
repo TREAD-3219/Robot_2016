@@ -1,6 +1,7 @@
 package org.usfirst.frc3219.Robot_2016;
 
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
+import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -17,11 +18,14 @@ public class OI {
     // number it is.
     public Joystick joystick;
     public JoystickButton shoot;
+    public JoystickButton reverse;
     
     public OI(){
     	joystick = new Joystick(0);
     	shoot = new JoystickButton(joystick, 1);
     	shoot.whileHeld(new ManualShoot());
+    	reverse = new JoystickButton(joystick, 12);
+    	reverse.whenPressed(new ReverseCommand());
     }
     // Button button = new JoystickButton(stick, buttonNumber);
     

@@ -3,7 +3,11 @@ package org.usfirst.frc3219.Robot_2016;
 import org.usfirst.frc3219.Robot_2016.subsystems.Camera;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Victor;
@@ -42,8 +46,12 @@ public class RobotMap {
 	public static Victor driveMultiToolArmMotor;
 	public static DigitalInput multiToolLimitSwitchHigh;
 	public static DigitalInput multiToolLimitSwitchLow;
+	public static Encoder driveEncoderLeft;
+	public static Encoder driveEncoderRight;
+	public static Encoder sensorsArmEncoder;
 	
 	public static Camera camera;
+	public static Counter normalCounter;
 	
 	public static void init(){
 		driveRightDriveA  = new CANTalon(4);
@@ -65,6 +73,19 @@ public class RobotMap {
 		driveMultiToolArmMotor = new Victor(3);
 		multiToolLimitSwitchHigh = new DigitalInput(6);
 		multiToolLimitSwitchLow = new DigitalInput(7);
+		
+		driveEncoderLeft = new Encoder(0, 1, false, EncodingType.k4X);
+		driveEncoderLeft.setDistancePerPulse(1.0);
+		driveEncoderLeft.setPIDSourceType(PIDSourceType.kRate);
+		driveEncoderRight = new Encoder(2, 3, false, EncodingType.k4X);
+		driveEncoderRight.setDistancePerPulse(1.0);
+		driveEncoderRight.setPIDSourceType(PIDSourceType.kRate);
+		sensorsArmEncoder = new Encoder(4, 5, false, EncodingType.k4X);
+		sensorsArmEncoder.setDistancePerPulse(0.72434);
+		sensorsArmEncoder.setPIDSourceType(PIDSourceType.kRate);
+		
+		normalCounter = new Counter(8);
+		
 	}
 
 	

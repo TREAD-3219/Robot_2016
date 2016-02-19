@@ -7,9 +7,13 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
+import org.usfirst.frc3219.Robot_2016.commands.WatchSensors;
+import org.usfirst.frc3219.Robot_2016.subsystems.Camera;
+import org.usfirst.frc3219.Robot_2016.subsystems.Climber;
 import org.usfirst.frc3219.Robot_2016.subsystems.Drive;
 import org.usfirst.frc3219.Robot_2016.subsystems.FeedMech;
 import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
+import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
 import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -25,7 +29,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	
 	public static Drive drive;
+	public static Sensors sensors;
+	public static Climber climber;
 	public static Shooter shooter;
+	public static Camera camera;
 	public static OI oi;
 	public static FeedMech feedMech;
 	public static MultiTool multiTool;
@@ -40,8 +47,11 @@ public class Robot extends IterativeRobot {
     	RobotMap.init();
     	drive = new Drive();
     	shooter = new Shooter();
+    	sensors = new Sensors();
     	feedMech = new FeedMech();
     	multiTool = new MultiTool();
+    	climber = new Climber();
+    	camera = new Camera();
 		oi = new OI();
         chooser = new SendableChooser();
 //        chooser.addObject("My Auto", new MyAutoCommand());
@@ -56,7 +66,7 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
      */
     public void disabledInit(){
-
+    	Scheduler.getInstance().add(new WatchSensors());
     }
 	
 	public void disabledPeriodic() {

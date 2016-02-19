@@ -1,5 +1,7 @@
 package org.usfirst.frc3219.Robot_2016;
 
+import org.usfirst.frc3219.Robot_2016.subsystems.Camera;
+
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -31,6 +33,8 @@ public class RobotMap {
 	public static CANTalon driveBottomShooter;
 	public static Victor shooterFeeder;
 	public static DigitalInput feederLimitSwitch;
+	
+	public static Camera camera;
 	
 	public static void init(){
 		driveRightDriveA  = new CANTalon(4);

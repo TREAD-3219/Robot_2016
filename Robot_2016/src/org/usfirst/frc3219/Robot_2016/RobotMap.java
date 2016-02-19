@@ -5,6 +5,7 @@ import org.usfirst.frc3219.Robot_2016.subsystems.Camera;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Victor;
 
 /**
@@ -34,6 +35,9 @@ public class RobotMap {
 	public static Victor shooterFeeder;
 	public static DigitalInput feederLimitSwitch;
 	
+	public static Servo pwmServo_4;
+	public static Servo pwmServo_5;
+	
 	public static Camera camera;
 	
 	public static void init(){
@@ -48,6 +52,9 @@ public class RobotMap {
 		
 		shooterFeeder = new Victor(0);
 		feederLimitSwitch = new DigitalInput(9);
+		
+		pwmServo_4 = new Servo(4);
+		pwmServo_5 = new Servo(5);
 	}
 
 	

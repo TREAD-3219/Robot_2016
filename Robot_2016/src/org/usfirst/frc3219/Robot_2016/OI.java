@@ -2,6 +2,8 @@ package org.usfirst.frc3219.Robot_2016;
 
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
+import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyStartPressed;
+import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyYPressed;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -17,15 +19,32 @@ public class OI {
     // You create one by telling it which joystick it's on and which button
     // number it is.
     public Joystick joystick;
+    public Joystick gamecontroller;
     public JoystickButton shoot;
     public JoystickButton reverse;
+    public Boolean safetyYPressed_value;
+    public Boolean safetyStartPressed_value;
+    public Button buttonY;
+    public Button buttonStart;
     
     public OI(){
     	joystick = new Joystick(0);
+    	gamecontroller = new Joystick(1);
     	shoot = new JoystickButton(joystick, 1);
     	shoot.whileHeld(new ManualShoot());
     	reverse = new JoystickButton(joystick, 12);
     	reverse.whenPressed(new ReverseCommand());
+    	
+    	buttonY = new JoystickButton(gamecontroller, 4);
+    	buttonStart = new JoystickButton(gamecontroller, 8);
+    	
+    	//start button
+    	buttonStart.whileHeld(new ServoController_SafetyStartPressed());
+    	buttonY.whileHeld(new ServoController_SafetyYPressed());
+
+    	
+    	
+    	
     }
     // Button button = new JoystickButton(stick, buttonNumber);
     

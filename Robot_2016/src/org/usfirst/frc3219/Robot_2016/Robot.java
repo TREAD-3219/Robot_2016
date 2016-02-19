@@ -53,7 +53,7 @@ public class Robot extends IterativeRobot {
         drive = new Drive();
         shooter = new Shooter();
         feedMech = new FeedMech();
-        multiTool = new MultiTool();
+        multiTool = new MultiTool(0, 0, 0);
         climber = new Climber();
         sensors = new Sensors();
 

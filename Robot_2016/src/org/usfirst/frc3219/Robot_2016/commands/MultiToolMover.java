@@ -4,10 +4,11 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MultiToolMover extends Command {
 	Joystick joystick;
-	double velocity = 0.0;
+	double speed = 0.0;
 
 	public MultiToolMover() {
 		requires(Robot.drive);
@@ -21,8 +22,27 @@ public class MultiToolMover extends Command {
 
 	@Override
 	protected void execute() {
-		velocity = joystick.getY();
-		Robot.multiTool.driveArmUpDown(velocity);
+
+		speed = joystick.getY();
+		Robot.multiTool.driveArmUpDown(speed);
+		if (Robot.multiTool.selectedTool == 0) {
+			SmartDashboard.putString("Selected Tool", "0");
+			if (joystick.getTrigger()) {
+				//AutoCommand for obstacle
+			}
+			
+		} else if (Robot.multiTool.selectedTool == 1) {
+			SmartDashboard.putString("Selected Tool", "1");
+			
+		} else if (Robot.multiTool.selectedTool == 2) {
+			SmartDashboard.putString("Selected Tool", "2");
+			
+		} else if (Robot.multiTool.selectedTool == 3) {
+			SmartDashboard.putString("Selected Tool", "3");
+			
+		} else if (Robot.multiTool.selectedTool == 4) {
+			SmartDashboard.putString("Selected Tool", "4");
+		}
 	}
 
 	@Override
@@ -34,25 +54,11 @@ public class MultiToolMover extends Command {
 	@Override
 	protected boolean isFinished() {
 		boolean finished = false;
-
 		double encoder = Robot.multiTool.multiToolEncoder.getDistance();
-		if (Robot.multiTool.selectedTool == 0) {
-			if (encoder <= 1 || encoder >= 75) {
-				finished = true;
-			}
-		} else if (Robot.multiTool.selectedTool == 1) { //THESE STILL NEED TO BE FILLED IN
 			if (encoder <= 1 || encoder >= 75) { //THESE VALUES STILL NEED TO BE SET CORRECTLY
 				finished = true;
 			}
-		} else if (Robot.multiTool.selectedTool == 2) {
-			if (encoder <= 1 || encoder >= 75) {
-				finished = true;
-			}
-		} else if (Robot.multiTool.selectedTool == 3) {
-			if (encoder <= 1 || encoder >= 75) {
-				finished = true;
-			}
-		}
+		
 		return finished;
 	}
 

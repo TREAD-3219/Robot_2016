@@ -50,13 +50,11 @@ public class Shooter extends Subsystem {
 	}
 
 	public void init() {
-		RobotMap.driveDriveMotors.setSafetyEnabled(false);
-		RobotMap.driveDriveMotors.setSensitivity(0.5);
-		RobotMap.driveDriveMotors.setMaxOutput(1.0);
 		shooterTopMotor.setSafetyEnabled(false);
 		shooterBottomMotor.setSafetyEnabled(false);
 		shooterTopMotor.enableBrakeMode(false);
 		shooterBottomMotor.enableBrakeMode(false);
+		shooterBottomMotor.setInverted(false);
 
 		// set up counter mode
 //		RobotMap.normalCounter.setUpDownCounterMode();
@@ -72,12 +70,12 @@ public class Shooter extends Subsystem {
 //		RobotMap.normalCounter.setDistancePerPulse(12);
 		
 		SmartDashboard.putNumber(TOPSHOOTER, 1.0);
-		SmartDashboard.putNumber(BOTTOMSHOOTER, -1.0);
+		SmartDashboard.putNumber(BOTTOMSHOOTER, 1.0);
 	}
 
 	public void spinUp(double TopPower, double BottomPower) {
-		this.shooterTopMotor.set(TopPower);
-		this.shooterBottomMotor.set(BottomPower);
+		this.shooterTopMotor.set(1);
+		this.shooterBottomMotor.set(-1.0);
 	}
 
 	public void spinDown() {

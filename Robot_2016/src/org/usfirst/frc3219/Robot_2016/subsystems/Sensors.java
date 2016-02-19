@@ -38,7 +38,7 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	I2C lidar1 = new I2C(I2C.Port.kMXP, LIDAR_1_ADDR);
-	public static AHRS navx = new AHRS(Port.kMXP);
+	public AHRS navx = new AHRS(Port.kMXP);
 	AnalogInput ultrasonic1 = RobotMap.sensorsUltraSonic1;
 
 	Encoder rightEncoder = RobotMap.driveEncoderRight;
@@ -125,13 +125,13 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 		return RobotMap.normalCounter.get();
 	}
 
-	
 	public double aveDistEncoders(){
 		return(RobotMap.driveEncoderLeft.getDistance() + RobotMap.driveEncoderRight.getDistance()) / 2;
 	}
 
 	public int leftEncoderRaw(){
 		return leftEncoder.getRaw() / leftEncoder.getEncodingScale();
+
 	}
 	
 	public int rightEncoderRaw(){

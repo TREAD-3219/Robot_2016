@@ -74,8 +74,8 @@ public class Shooter extends Subsystem {
 	}
 
 	public void spinUp(double TopPower, double BottomPower) {
-		this.shooterTopMotor.set(1);
-		this.shooterBottomMotor.set(-1.0);
+		this.shooterTopMotor.set(TopPower);
+		this.shooterBottomMotor.set(BottomPower*-1);
 	}
 
 	public void spinDown() {

@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
 import org.usfirst.frc3219.Robot_2016.subsystems.Drive;
+import org.usfirst.frc3219.Robot_2016.subsystems.FeedMech;
+import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,7 +24,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	
 	public static Drive drive;
+	public static Shooter shooter;
 	public static OI oi;
+	public static FeedMech feedMech;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -34,10 +38,14 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	RobotMap.init();
     	drive = new Drive();
+    	shooter = new Shooter();
+    	feedMech = new FeedMech();
 		oi = new OI();
         chooser = new SendableChooser();
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
+        SmartDashboard.putNumber(Shooter.TOPSHOOTER, 0.7);
+        SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, 1.0);
     }
 	
 	/**

@@ -1,7 +1,9 @@
 package org.usfirst.frc3219.Robot_2016;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Victor;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -27,6 +29,8 @@ public class RobotMap {
 	
 	public static CANTalon driveTopShooter;
 	public static CANTalon driveBottomShooter;
+	public static Victor shooterFeeder;
+	public static DigitalInput feederLimitSwitch;
 	
 	public static void init(){
 		driveRightDriveA  = new CANTalon(4);
@@ -37,6 +41,9 @@ public class RobotMap {
 		
 		driveTopShooter = new CANTalon(6);
 		driveBottomShooter = new CANTalon(1);
+		
+		shooterFeeder = new Victor(0);
+		feederLimitSwitch = new DigitalInput(9);
 	}
 
 	

@@ -11,7 +11,6 @@
 package org.usfirst.frc3219.Robot_2016;
 
 import org.usfirst.frc3219.Robot_2016.subsystems.Camera;
-import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -19,14 +18,12 @@ import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.PIDSourceType;
-import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -35,9 +32,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * floating around.
  */
 public class RobotMap {
-	// drive
-	public static Jaguar driveRightDrive;
-	public static Jaguar driveLeftDrive;
+	public static CANTalon driveRightDriveA;
+	public static CANTalon driveRightDriveB;
+	public static CANTalon driveLeftDriveA;
+	public static CANTalon driveLeftDriveB;
+
 	public static RobotDrive driveDriveMotors;
 	// Encoders
 	public static Encoder driveEncoderLeft;
@@ -46,17 +45,21 @@ public class RobotMap {
 	public static Victor driveRollerMotorController;
 	public static Victor driveMultiToolArmMotor;
 	public static Encoder multiToolEncoder;
-	public static DigitalInput multiToolLimitSwitch;
+	public static DigitalInput multiToolLimitSwitchHigh;
+	public static DigitalInput multiToolLimitSwitchLow;
 	// Shooter
-	public static CANTalon driveRightDriveShooter;
-	public static CANTalon driveLeftDriveShooter;
+	public static CANTalon driveTopShooter;
+	public static CANTalon driveBottomShooter;
 	public static Victor shooterFeeder;
 	public static DigitalInput feederLimitSwitch;
 	// climber
+	public static Encoder sensorsArmEncoder;
+
 	public static DigitalInput climberLimitSwitch_1;
 	public static SpeedController climberSpeed_Controller_12;
 	public static DigitalInput climberLimit_Switch_2;
-	public static PWM pwmServo_4;// For ServoController
+	public static Servo pwmServo_4;// For ServoController
+	public static Servo pwmServo_5;
 	// misc
 	public static Camera camera;
 	public static Counter normalCounter;
@@ -67,40 +70,47 @@ public class RobotMap {
 
 	public static void init() {
 		try {
-			// Drive
-			driveRightDrive = new Jaguar(1);
-			driveLeftDrive = new Jaguar(0);
-			driveDriveMotors = new RobotDrive(driveLeftDrive, driveRightDrive);
+			//Drive
+			driveRightDriveA = new CANTalon(1);
+			driveRightDriveB = new CANTalon(2);
+			driveLeftDriveA = new CANTalon(3);
+			driveLeftDriveB = new CANTalon(4);
+			driveDriveMotors = new RobotDrive(driveLeftDriveA,  driveLeftDriveB, driveRightDriveA, driveRightDriveB);
 			driveDriveMotors.setSafetyEnabled(true);
 			driveDriveMotors.setExpiration(0.1);
 			driveDriveMotors.setSensitivity(0.5);
 			driveDriveMotors.setMaxOutput(1.0);
 			// Encoders
-			driveEncoderLeft = new Encoder(1, 2, false, EncodingType.k4X);
+			driveEncoderLeft = new Encoder(0, 1, false, EncodingType.k4X);
 			driveEncoderLeft.setDistancePerPulse(1.0);
 			driveEncoderLeft.setPIDSourceType(PIDSourceType.kRate);
-			driveEncoderRight = new Encoder(3, 4, false, EncodingType.k4X);
+			driveEncoderRight = new Encoder(2, 3, false, EncodingType.k4X);
 			driveEncoderRight.setDistancePerPulse(1.0);
 			driveEncoderRight.setPIDSourceType(PIDSourceType.kRate);
-			// MultiTool
+			sensorsArmEncoder = new Encoder (4, 5, false, EncodingType.k4X);
+			LiveWindow.addSensor("Sensors", "ArmEncoder", sensorsArmEncoder);
+			sensorsArmEncoder.setDistancePerPulse(0.72434);
+			sensorsArmEncoder.setPIDSourceType(PIDSourceType.kRate);
+			//MultiTool
 			driveRollerMotorController = new Victor(2);
 			driveMultiToolArmMotor = new Victor(3);
-			multiToolEncoder = new Encoder(5, 6, false, EncodingType.k4X);
-			multiToolLimitSwitch = new DigitalInput(6);
+			multiToolLimitSwitchHigh = new DigitalInput(6);
+			multiToolLimitSwitchLow = new DigitalInput(7);
 			//Shooter
-			driveRightDriveShooter = new CANTalon(4);
-			driveLeftDriveShooter = new CANTalon(5);
+			driveTopShooter = new CANTalon(5);
+			driveBottomShooter = new CANTalon(6);
 			//Feed Mech
 			shooterFeeder = new Victor(8); //incorrect port
-			feederLimitSwitch = new DigitalInput(5); //incorrect port
+			feederLimitSwitch = new DigitalInput(9); //incorrect port
 			//Counter
-			normalCounter = new Counter(5);
-			lineSeekerInput = new DigitalInput(9);
+			normalCounter = new Counter(8);
+			lineSeekerInput = new DigitalInput(11);
 			sensorsUltraSonic1 = new AnalogInput(0);
-			// quick release / climber
-			climberLimitSwitch_1 = new DigitalInput(0);
-			climberLimit_Switch_2 = new DigitalInput(8);
-			pwmServo_4 = new PWM(4);
+
+
+
+			pwmServo_4 = new Servo(4);
+			pwmServo_5 = new Servo(5);
 
 		} catch (Exception e) {
 			System.out.println("ERROR ON THE RobotMapInit: " + e.getMessage());

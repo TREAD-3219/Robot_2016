@@ -1,5 +1,6 @@
 package org.usfirst.frc3219.Robot_2016;
 
+import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
 import org.usfirst.frc3219.Robot_2016.commands.PickupBall;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
@@ -40,11 +41,15 @@ public class OI {
     	reverse.whenPressed(new ReverseCommand());
     	intake = new JoystickButton(gameController, 3);
     	JoystickButton reverseIntake = new JoystickButton(gameController, 2);
+    	JoystickButton autoShoot = new JoystickButton(gameController, 6);
+    	
     	
     	buttonY = new JoystickButton(gameController, 4);
     	buttonStart = new JoystickButton(gameController, 8);
     	intake.whileHeld(new PickupBall());
     	reverseIntake.whileHeld(new PickupBall(-1));
+    	autoShoot.whileHeld(new AutoShoot());
+    	
     	
     	//start button
     	buttonStart.whileHeld(new ServoController_SafetyStartPressed());

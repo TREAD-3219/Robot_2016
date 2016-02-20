@@ -17,7 +17,7 @@ public class FeedShooter extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.feedMech.spinFeeder();
+		Robot.feedMech.spinFeeder(1);
 		this.setTimeout(time);
 	}
 

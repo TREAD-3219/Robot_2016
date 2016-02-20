@@ -16,6 +16,7 @@ import org.usfirst.frc3219.Robot_2016.subsystems.Climber;
 import org.usfirst.frc3219.Robot_2016.subsystems.Drive;
 import org.usfirst.frc3219.Robot_2016.subsystems.FeedMech;
 import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
+import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
 import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
 import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
@@ -39,6 +40,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static FeedMech feedMech;
 	public static MultiTool multiTool;
+	public static Navigation navigation;
     Command autonomousCommand;
     SendableChooser chooser;
 
@@ -54,6 +56,7 @@ public class Robot extends IterativeRobot {
     	feedMech = new FeedMech();
     	multiTool = new MultiTool();
     	climber = new Climber();
+    	navigation = new Navigation();
     	camera = new Camera();
 		oi = new OI();
         chooser = new SendableChooser();

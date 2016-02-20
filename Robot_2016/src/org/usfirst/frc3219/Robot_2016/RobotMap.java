@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Servo;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
+
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -37,14 +38,14 @@ public class RobotMap {
 	
 	public static CANTalon driveTopShooter;
 	public static CANTalon driveBottomShooter;
-	public static Talon shooterFeeder;
 	public static DigitalInput feederLimitSwitch;
 	
 	public static Servo pwmServo_4;
 	public static Servo pwmServo_5;
 	
-	public static Talon driveRollerMotorController;
-	public static Talon driveMultiToolArmMotor;
+	public static CANTalon driveRollerMotorController;
+	public static CANTalon driveMultiToolArmMotor;
+	public static CANTalon shooterFeeder;
 	public static DigitalInput multiToolLimitSwitchHigh;
 	public static DigitalInput multiToolLimitSwitchLow;
 	
@@ -56,6 +57,7 @@ public class RobotMap {
 	public static Counter normalCounter;
 	
     public static NetworkTable roboRealmTable;
+
 	
 	public static void init(){
 		driveRightDriveA  = new CANTalon(4);
@@ -67,14 +69,14 @@ public class RobotMap {
 		driveTopShooter = new CANTalon(6);
 		driveBottomShooter = new CANTalon(1);
 		
-		shooterFeeder = new Talon(0);
+		shooterFeeder = new CANTalon(0);
 		feederLimitSwitch = new DigitalInput(9);
 		
 		pwmServo_4 = new Servo(4);
 		pwmServo_5 = new Servo(5);
 		
-		driveRollerMotorController = new Talon(1);
-		driveMultiToolArmMotor = new Talon(2);
+		driveRollerMotorController = new CANTalon(1);
+		driveMultiToolArmMotor = new CANTalon(2);
 		multiToolLimitSwitchHigh = new DigitalInput(6);
 		multiToolLimitSwitchLow = new DigitalInput(7);
 		
@@ -90,7 +92,8 @@ public class RobotMap {
 		
 		normalCounter = new Counter(8);
 		
-       	roboRealmTable = NetworkTable.getTable("SmartDashboard");
+
+		roboRealmTable = NetworkTable.getTable("SmartDashboard");
 		camera = new Camera();
 	}
 }

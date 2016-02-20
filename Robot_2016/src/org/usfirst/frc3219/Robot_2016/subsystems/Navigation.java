@@ -15,9 +15,9 @@ public class Navigation extends Subsystem {
 	private static double deadRecTotalForward;
 	private double deadRecLidar1Prediction;
 	private double deadRecLidar2Prediction;
-	private Point lidarLocation = new Point(0, 0);
-	private Point ultraSonicLocation = new Point(0, 0);
-	private Point trustedPosition = new Point(0, 0);
+//	private Point lidarLocation = new Point(0, 0);
+//	private Point ultraSonicLocation = new Point(0, 0);
+//	private Point trustedPosition = new Point(0, 0);
 	private double trustedAngle;
 	public static boolean inOuterWorks = false;
 

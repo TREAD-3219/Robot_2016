@@ -14,7 +14,7 @@ public class WatchSensors extends Command {
 		requires(Robot.sensors);
 	}
 
-	public static void showDataFromSensor() {
+	public void showDataFromSensor() {
 		SmartDashboard.putNumber(Sensors.LIDAR_TAG, sensors.readLidar1());
 		SmartDashboard.putNumber(Sensors.SHOOTER_RPM_TAG, sensors.readShooterCounter());
 		//SmartDashboard.putBoolean(Sensors.LINE_SEEKER_TAG, Robot.sensors.readLineSeeker());
@@ -32,7 +32,7 @@ public class WatchSensors extends Command {
 
 	@Override
 	protected void execute() {
-		showDataFromSensor();
+		this.showDataFromSensor();
 	}
 
 	@Override

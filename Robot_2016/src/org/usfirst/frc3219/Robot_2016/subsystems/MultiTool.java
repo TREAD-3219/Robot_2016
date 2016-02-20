@@ -27,6 +27,7 @@ public class MultiTool extends PIDSubsystem {
 	Talon driveArmMotor = RobotMap.driveMultiToolArmMotor;
 	DigitalInput limitSwitchHigh = RobotMap.multiToolLimitSwitchHigh;
 	DigitalInput limitSwitchLow = RobotMap.multiToolLimitSwitchLow;
+	public static final String ARM_ENCODER_TAG = "Arm Encoder";
 
 	public static final String PORTCULLIS_START_TAG = "PORTCULLIS_START";
 	public static final String DRAWBRIDGE_START_TAG = "DRAWBRIDGE_START";

@@ -79,10 +79,10 @@ public class RobotMap {
 		multiToolLimitSwitchLow = new DigitalInput(7);
 		
 		driveEncoderLeft = new Encoder(0, 1, false, EncodingType.k4X);
-		driveEncoderLeft.setDistancePerPulse(1.0);
+		driveEncoderLeft.setDistancePerPulse(.067638888);
 		driveEncoderLeft.setPIDSourceType(PIDSourceType.kRate);
 		driveEncoderRight = new Encoder(2, 3, false, EncodingType.k4X);
-		driveEncoderRight.setDistancePerPulse(1.0);
+		driveEncoderRight.setDistancePerPulse(.067638888);
 		driveEncoderRight.setPIDSourceType(PIDSourceType.kRate);
 		sensorsArmEncoder = new Encoder(4, 5, false, EncodingType.k4X);
 		sensorsArmEncoder.setDistancePerPulse(0.72434);

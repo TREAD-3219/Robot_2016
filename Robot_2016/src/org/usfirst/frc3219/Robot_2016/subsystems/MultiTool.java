@@ -106,8 +106,7 @@ public class MultiTool extends PIDSubsystem {
 	// Math.sqrt(625 - Math.sin(sensors.armEncoderRaw())/25)
 	@Override
 	protected double returnPIDInput() {
-		//return Robot.sensors.armEncoderAngle();
-		return 0.0;
+		return Robot.sensors.armEncoderAngle();
 	}
 
 	@Override

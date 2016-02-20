@@ -12,7 +12,7 @@ public class MultiToolMover extends Command {
 	double speed = 0.0;
 
 	public MultiToolMover() {
-		requires(Robot.drive);
+		requires(Robot.multiTool);
 	}
 
 	@Override
@@ -59,11 +59,11 @@ public class MultiToolMover extends Command {
 			//if (encoder <= 1 || encoder >= 75) { //THESE VALUES STILL NEED TO BE SET CORRECTLY
 			//	finished = true;
 			//}
-		if(MultiTool.readUpperMultiToolLimitSwitch() && speed > .1){
+		/*if(MultiTool.readUpperMultiToolLimitSwitch() && speed > .1){
 			finished = true;
 		} else if(MultiTool.readLowerMultiToolLimitSwitch() && speed < -.1){
 			finished = true;
-		} 
+		} */
 			return finished;
 		
 	}

@@ -69,8 +69,8 @@ public class RobotMap {
 		pwmServo_4 = new Servo(4);
 		pwmServo_5 = new Servo(5);
 		
-		driveRollerMotorController = new Victor(2);
-		driveMultiToolArmMotor = new Victor(3);
+		driveRollerMotorController = new Victor(1);
+		driveMultiToolArmMotor = new Victor(2);
 		multiToolLimitSwitchHigh = new DigitalInput(6);
 		multiToolLimitSwitchLow = new DigitalInput(7);
 		

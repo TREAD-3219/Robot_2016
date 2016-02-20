@@ -58,7 +58,7 @@ public class ServoController extends Command {
 
 	@Override
 	protected void end() {
-		this.servo4.setPosition(ZERO_POSITION);
+		this.servo4.setPosition(OPEN_POSITION);
 		this.servo5.setPosition(ZERO_POSITION);
 	}
 
@@ -82,7 +82,7 @@ public class ServoController extends Command {
 				driveSpeed = SmartDashboard.getNumber("drive value");
 				stopWait = SmartDashboard.getNumber("wait before stoping");
 				// releasing servo quick release
-				servo4.setAngle(OPEN_POSITION);
+				servo4.setAngle(ZERO_POSITION);
 				servo5.setAngle(OPEN_POSITION);
 
 //				System.out.print("The quick release has been triggered.");

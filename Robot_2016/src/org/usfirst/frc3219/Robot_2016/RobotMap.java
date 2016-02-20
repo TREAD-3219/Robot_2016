@@ -44,9 +44,9 @@ public class RobotMap {
 	public static Servo pwmServo_4;
 	public static Servo pwmServo_5;
 	
-	public static CANTalon driveRollerMotorController;
-	public static CANTalon driveMultiToolArmMotor;
-	public static CANTalon shooterFeeder;
+	public static Talon driveRollerMotorController;
+	public static Talon driveMultiToolArmMotor;
+	public static Talon shooterFeeder;
 	public static DigitalInput multiToolLimitSwitchHigh;
 	public static DigitalInput multiToolLimitSwitchLow;
 	
@@ -69,14 +69,14 @@ public class RobotMap {
 		driveTopShooter = new CANTalon(6);
 		driveBottomShooter = new CANTalon(1);
 		
-		shooterFeeder = new CANTalon(0);
+		shooterFeeder = new Talon(0);
 		feederLimitSwitch = new DigitalInput(9);
 		
 		pwmServo_4 = new Servo(4);
 		pwmServo_5 = new Servo(5);
 		
-		driveRollerMotorController = new CANTalon(1);
-		driveMultiToolArmMotor = new CANTalon(2);
+		driveRollerMotorController = new Talon(1);
+		driveMultiToolArmMotor = new Talon(2);
 		multiToolLimitSwitchHigh = new DigitalInput(6);
 		multiToolLimitSwitchLow = new DigitalInput(7);
 		

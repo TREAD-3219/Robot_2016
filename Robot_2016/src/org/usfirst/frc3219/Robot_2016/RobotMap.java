@@ -5,6 +5,7 @@ import org.usfirst.frc3219.Robot_2016.subsystems.Camera;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
@@ -53,6 +54,8 @@ public class RobotMap {
 	public static Camera camera;
 	public static Counter normalCounter;
 	
+    public static NetworkTable roboRealmTable;
+	
 	public static void init(){
 		driveRightDriveA  = new CANTalon(4);
 		driveRightDriveB  = new CANTalon(5);
@@ -86,7 +89,7 @@ public class RobotMap {
 		
 		normalCounter = new Counter(8);
 		
+       	roboRealmTable = NetworkTable.getTable("SmartDashboard");
+		camera = new Camera();
 	}
-
-	
 }

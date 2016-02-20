@@ -6,6 +6,7 @@ import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class JoystickDrive extends Command {
 
@@ -36,6 +37,8 @@ public class JoystickDrive extends Command {
 			//Navigation stuffs
 			double newLeftDist = RobotMap.driveEncoderLeft.getDistance() - lastLeftEncoder;
 			double newRightDist = RobotMap.driveEncoderRight.getDistance() - lastRightEncoder;
+			SmartDashboard.putNumber("Raw Left Encoder", RobotMap.driveEncoderLeft.getDistance());
+			SmartDashboard.putNumber("Raw Right Encoder", RobotMap.driveEncoderRight.getDistance());
 			double avgDist = (newLeftDist + newRightDist) / 2;
 			Navigation.deadRecMoved(avgDist);
 			double degrees = 2 * (newLeftDist - newRightDist);

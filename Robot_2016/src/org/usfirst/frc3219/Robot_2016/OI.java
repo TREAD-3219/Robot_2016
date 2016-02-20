@@ -2,12 +2,14 @@ package org.usfirst.frc3219.Robot_2016;
 
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
+import org.usfirst.frc3219.Robot_2016.commands.ServoController;
 import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyStartPressed;
 import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyYPressed;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -22,8 +24,8 @@ public class OI {
     public Joystick gameController;
     public JoystickButton shoot;
     public JoystickButton reverse;
-    public Boolean safetyYPressed_value;
-    public Boolean safetyStartPressed_value;
+    public Boolean safetyYPressed_value = false;
+    public Boolean safetyStartPressed_value = false;
     public Button buttonY;
     public Button buttonStart;
     

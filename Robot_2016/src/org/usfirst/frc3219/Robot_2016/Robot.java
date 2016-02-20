@@ -6,7 +6,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+import org.usfirst.frc3219.Robot_2016.commands.EnableClimberButtons;
 import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
+import org.usfirst.frc3219.Robot_2016.commands.ServoController;
 import org.usfirst.frc3219.Robot_2016.commands.WatchSensors;
 import org.usfirst.frc3219.Robot_2016.subsystems.Camera;
 import org.usfirst.frc3219.Robot_2016.subsystems.Climber;
@@ -113,7 +115,10 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        Scheduler.getInstance().add(new ServoController());
+        Scheduler.getInstance().add(new EnableClimberButtons());
         Scheduler.getInstance().add(new JoystickDrive());
+        Scheduler.getInstance().add(new WatchSensors());
     }
 
     /**

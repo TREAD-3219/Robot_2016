@@ -19,7 +19,7 @@ public class OI {
     // You create one by telling it which joystick it's on and which button
     // number it is.
     public Joystick joystick;
-    public Joystick gamecontroller;
+    public Joystick gameController;
     public JoystickButton shoot;
     public JoystickButton reverse;
     public Boolean safetyYPressed_value;
@@ -29,14 +29,14 @@ public class OI {
     
     public OI(){
     	joystick = new Joystick(0);
-    	gamecontroller = new Joystick(1);
+    	gameController = new Joystick(1);
     	shoot = new JoystickButton(joystick, 1);
     	shoot.whileHeld(new ManualShoot());
     	reverse = new JoystickButton(joystick, 12);
     	reverse.whenPressed(new ReverseCommand());
     	
-    	buttonY = new JoystickButton(gamecontroller, 4);
-    	buttonStart = new JoystickButton(gamecontroller, 8);
+    	buttonY = new JoystickButton(gameController, 4);
+    	buttonStart = new JoystickButton(gameController, 8);
     	
     	//start button
     	buttonStart.whileHeld(new ServoController_SafetyStartPressed());

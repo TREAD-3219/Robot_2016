@@ -99,7 +99,12 @@ public class MultiTool extends PIDSubsystem {
 	public void driveArmUpDown(double speed) {
 		driveArmMotor.set(speed);
 	}
-
+	
+	public void driveArmHold(){
+		double currentAngle = Robot.sensors.armEncoderAngle();
+		this.setSetpoint(currentAngle);
+	}
+	
 	public void initDefaultCommand() {// assuming radius is 26
 	}
 

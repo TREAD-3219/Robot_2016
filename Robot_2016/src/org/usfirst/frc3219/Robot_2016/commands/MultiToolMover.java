@@ -31,6 +31,7 @@ public class MultiToolMover extends Command {
 				Robot.multiTool.driveArmUpDown(speed);
 			} else {
 				Robot.multiTool.stopMotors();
+				Robot.multiTool.driveArmHold();
 			}
 			
 		}

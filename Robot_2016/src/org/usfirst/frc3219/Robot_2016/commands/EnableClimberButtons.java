@@ -29,7 +29,7 @@ public class EnableClimberButtons extends Command {
 	@Override
 	protected void initialize() {
 		// 1:55
-		this.setTimeout(60 + 55); // wait to trigger isFinished() to start end()
+		this.setTimeout(1); // wait to trigger isFinished() to start end()
 		SafetyClimberEnable = false;
 	}
 

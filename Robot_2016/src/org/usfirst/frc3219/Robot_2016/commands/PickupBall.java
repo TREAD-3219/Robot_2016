@@ -10,15 +10,15 @@ public class PickupBall extends CommandGroup {
 	public PickupBall() {
 		requires(Robot.multiTool);
 		requires(Robot.feedMech);
-		createPickupCommands();
 		this.direction = 1;
+		createPickupCommands();
 	}
 	
 	public PickupBall(int direction) {
 		requires(Robot.multiTool);
 		requires(Robot.feedMech);
-		createPickupCommands();
 		this.direction = direction;
+		createPickupCommands();
 	}
 	
 	public void createPickupCommands() {

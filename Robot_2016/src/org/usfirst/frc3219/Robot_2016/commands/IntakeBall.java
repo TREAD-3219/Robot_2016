@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeBall extends Command { // Starts feeder motor
 	// stops either when button b is released, or limit switch is hit
-	boolean pressed = false;
+	boolean pressed;
 	int direction;
 	public IntakeBall() {
 		requires(Robot.feedMech);
@@ -21,7 +21,8 @@ public class IntakeBall extends Command { // Starts feeder motor
 	@Override
 	protected void initialize() {
 		Robot.feedMech.spinFeeder(direction);
-
+		this.setTimeout(5);
+		pressed = false;
 	}
 
 	@Override
@@ -37,7 +38,7 @@ public class IntakeBall extends Command { // Starts feeder motor
 		if (pressed) {
 			finished = !Robot.feedMech.getLimitSwitch();
 		}
-		return finished;
+		return finished || this.isTimedOut();
 	}
 
 	@Override

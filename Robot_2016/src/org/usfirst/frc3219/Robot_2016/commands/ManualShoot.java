@@ -20,7 +20,6 @@ public class ManualShoot extends Command { //This class spins shooter when the t
 		topPower = SmartDashboard.getNumber(TOP_WHEEL_SPEED, 0.7);
 		bottomPower = SmartDashboard.getNumber(BOTTOM_WHEEL_SPEED, 1.0);
 		Robot.shooter.spinUp(topPower, bottomPower);
-		Robot.feedMech.spinFeeder(1);
 	}
 
 	@Override

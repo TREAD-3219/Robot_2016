@@ -6,23 +6,38 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeBall extends Command { // Starts feeder motor
 	// stops either when button b is released, or limit switch is hit
+	boolean pressed = false;
+	int direction;
 	public IntakeBall() {
 		requires(Robot.feedMech);
+		this.direction = direction;
+	}
+
+	public IntakeBall(int direction) {
+		requires(Robot.feedMech);
+		this.direction = direction;
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.feedMech.spinFeeder();
+		Robot.feedMech.spinFeeder(direction);
 
 	}
 
 	@Override
 	protected void execute() {
+		if (!pressed) {
+			pressed = Robot.feedMech.getLimitSwitch();
+		}
 	}
 
-	@Override
+	@Override  
 	protected boolean isFinished() {
-		return Robot.feedMech.getLimitSwitch();
+		boolean finished = false;
+		if (pressed) {
+			finished = !Robot.feedMech.getLimitSwitch();
+		}
+		return finished;
 	}
 
 	@Override

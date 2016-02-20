@@ -1,13 +1,16 @@
 package org.usfirst.frc3219.Robot_2016;
 
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
+import org.usfirst.frc3219.Robot_2016.commands.PickupBall;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
+import org.usfirst.frc3219.Robot_2016.commands.ServoController;
 import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyStartPressed;
 import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyYPressed;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,10 +23,11 @@ public class OI {
     // number it is.
     public Joystick joystick;
     public Joystick gameController;
+    public JoystickButton intake;
     public JoystickButton shoot;
     public JoystickButton reverse;
-    public Boolean safetyYPressed_value;
-    public Boolean safetyStartPressed_value;
+    public Boolean safetyYPressed_value = false;
+    public Boolean safetyStartPressed_value = false;
     public Button buttonY;
     public Button buttonStart;
     
@@ -34,9 +38,13 @@ public class OI {
     	shoot.whileHeld(new ManualShoot());
     	reverse = new JoystickButton(joystick, 12);
     	reverse.whenPressed(new ReverseCommand());
+    	intake = new JoystickButton(gameController, 3);
+    	JoystickButton reverseIntake = new JoystickButton(gameController, 2);
     	
     	buttonY = new JoystickButton(gameController, 4);
     	buttonStart = new JoystickButton(gameController, 8);
+    	intake.whileHeld(new PickupBall());
+    	reverseIntake.whileHeld(new PickupBall(-1));
     	
     	//start button
     	buttonStart.whileHeld(new ServoController_SafetyStartPressed());

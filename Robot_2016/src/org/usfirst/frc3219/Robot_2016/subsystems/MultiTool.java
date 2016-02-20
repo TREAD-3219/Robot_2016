@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 public class MultiTool extends PIDSubsystem {
 
-	static final double P = 0.1;
+	static final double P = 0.01;
 	static final double I = 0.001;
 	static final double D = 0.0;
 

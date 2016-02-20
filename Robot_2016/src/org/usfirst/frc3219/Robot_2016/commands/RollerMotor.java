@@ -9,20 +9,32 @@ import edu.wpi.first.wpilibj.command.Command;
 public class RollerMotor extends Command{// Starts roller motor
 	// stops either when button b is released, or feed mech limit switch is hit
 	//public Joystick rollerSpeedSlider = Robot.oi.joystick; 
+	boolean pressed = false;
+	int direction;
 	public RollerMotor() {
 		requires(Robot.drive);
+		this.direction = 1;
 	}
+	
+	public RollerMotor(int direction) {
+		requires(Robot.drive);
+		this.direction = direction;
+	}
+	
 
 	@Override
 	protected void initialize() {
-		Robot.multiTool.driveRoller(10.0);
+		Robot.multiTool.driveRoller(-.5 * direction);
 	}
 
 	@Override
 	protected void execute() {
-		Robot.multiTool.driveRoller(3.0); // as of 1/30/2016, 12:10 AM the
+		Robot.multiTool.driveRoller(-.6 * direction); // as of 1/30/2016, 12:10 AM the
 											// roller motor is broken and needs
 											// to be replaced.
+		if (!pressed) {
+			pressed = Robot.feedMech.getLimitSwitch();
+		}
 
 	}
 
@@ -33,7 +45,11 @@ public class RollerMotor extends Command{// Starts roller motor
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.feedMech.getLimitSwitch();
+		boolean finished = false;
+		if (pressed) {
+			finished = !Robot.feedMech.getLimitSwitch();
+		}
+		return finished;
 	}
 
 	@Override

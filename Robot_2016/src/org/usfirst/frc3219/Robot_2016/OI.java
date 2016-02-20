@@ -39,10 +39,12 @@ public class OI {
     	reverse = new JoystickButton(joystick, 12);
     	reverse.whenPressed(new ReverseCommand());
     	intake = new JoystickButton(gameController, 3);
+    	JoystickButton reverseIntake = new JoystickButton(gameController, 2);
     	
     	buttonY = new JoystickButton(gameController, 4);
     	buttonStart = new JoystickButton(gameController, 8);
     	intake.whileHeld(new PickupBall());
+    	reverseIntake.whileHeld(new PickupBall(-1));
     	
     	//start button
     	buttonStart.whileHeld(new ServoController_SafetyStartPressed());

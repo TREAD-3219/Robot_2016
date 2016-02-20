@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Servo;
 
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ServoController extends Command {
@@ -20,6 +21,8 @@ public class ServoController extends Command {
 
 	Servo servo4;
 	Servo servo5;
+	
+	boolean finished = false;
 
 	// SmartDashboard Numbers
 	double liftWait;
@@ -58,8 +61,8 @@ public class ServoController extends Command {
 
 	@Override
 	protected void end() {
-		this.servo4.setPosition(ZERO_POSITION);
-		this.servo5.setPosition(ZERO_POSITION);
+		//this.servo4.setPosition(OPEN_POSITION);
+		//this.servo5.setPosition(ZERO_POSITION);
 	}
 
 	@Override
@@ -67,10 +70,14 @@ public class ServoController extends Command {
 
 		SmartDashboard.getBoolean(QUICK_RELEASE_OVERRIDE);
 
-		if (quickReleaseOverride == true) {
+		
+		
+		if (quickReleaseOverride) {
 			EnableClimberButtons.SafetyClimberEnable = true;
 
-		} else {
+		} else { 
+			
+			
 			if (Robot.oi.safetyStartPressed_value && Robot.oi.safetyYPressed_value
 					&& EnableClimberButtons.SafetyClimberEnable) {
 				// value setting
@@ -78,15 +85,14 @@ public class ServoController extends Command {
 				driveSpeed = SmartDashboard.getNumber("drive value");
 				stopWait = SmartDashboard.getNumber("wait before stoping");
 				// releasing servo quick release
-				servo4.setAngle(OPEN_POSITION);
-				servo5.setAngle(OPEN_POSITION);
-
-				System.out.print("The quick release has been triggered.");
-				// climb
-				this.setTimeout(liftWait);
-				Robot.drive.driveValues(driveSpeed, 0);
-				this.setTimeout(stopWait);
-				Robot.drive.driveValues(0, 0);
+				Scheduler.getInstance().add(new AutoClimb());
+				finished = true;
+//				System.out.print("The quick release has been triggered.");
+//				// climb
+//				this.setTimeout(liftWait);
+//				Robot.drive.driveValues(driveSpeed, 0);
+//				this.setTimeout(stopWait);
+//				Robot.drive.driveValues(0, 0);
 
 			}
 
@@ -106,13 +112,13 @@ public class ServoController extends Command {
 
 		quickReleaseOverride = SmartDashboard.getBoolean(QUICK_RELEASE_OVERRIDE);
 		// SmartDashboard.putNumber("PwmServo1", PwmServo4Value);
-		servo4.setPosition(OPEN_POSITION);
-		servo5.setPosition(OPEN_POSITION);
+		servo4.setPosition(ZERO_POSITION);
+		servo5.setPosition(ZERO_POSITION);
 		System.out.print("Servo angle Set to through the use of \"initialize\" to " + PwmServo4Value);
 
-		SmartDashboard.putNumber("wait before lifting", 1);
-		SmartDashboard.putNumber("drive value", 0.5);
-		SmartDashboard.putNumber("wait before stopping", 2);
+		//SmartDashboard.putNumber("wait before lifting", 1);
+		//SmartDashboard.putNumber("drive value", 0.5);
+		//SmartDashboard.putNumber("wait before stopping", 2);
 
 
 	}
@@ -124,7 +130,7 @@ public class ServoController extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return this.isTimedOut();
+		return finished;
 	}
 
 }

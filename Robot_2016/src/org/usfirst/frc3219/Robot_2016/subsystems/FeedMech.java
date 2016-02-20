@@ -14,7 +14,7 @@ package org.usfirst.frc3219.Robot_2016.subsystems;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class FeedMech extends Subsystem { //This class is for Putting the ball into the shooter
 
-	private Victor feederMotor = RobotMap.shooterFeeder;
+	private Talon feederMotor = RobotMap.shooterFeeder;
 	private DigitalInput feederLimitSwitch = RobotMap.feederLimitSwitch;
 
     // Put methods for controlling this subsystem
@@ -32,9 +32,9 @@ public class FeedMech extends Subsystem { //This class is for Putting the ball i
 		return feederLimitSwitch.get();
 	}
 	
-	public void spinFeeder() {
+	public void spinFeeder(int direction) {
 		feederMotor.setInverted(true);
-		feederMotor.set(0.3);
+		feederMotor.set(0.3 * direction);
 	}
 	public void stopFeeder() {
 		feederMotor.set(0.0);

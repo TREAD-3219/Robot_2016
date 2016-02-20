@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MultiToolMover extends Command {
-	Joystick joystick;
+	Joystick gameController;
 	double speed = 0.0;
 
 	public MultiToolMover() {
@@ -17,33 +17,26 @@ public class MultiToolMover extends Command {
 
 	@Override
 	protected void initialize() {
-		joystick = Robot.oi.gameController;
-
+		gameController = Robot.oi.gameController;
+		speed = gameController.getY();
 	}
 
 	@Override
 	protected void execute() {
 
-		speed = joystick.getY();
+		speed = gameController.getY() * 0.5;
 		Robot.multiTool.driveArmUpDown(speed);
-		/*if (Robot.multiTool.selectedTool == 0) {
-			SmartDashboard.putString("Selected Tool", "0");
-			if (joystick.getTrigger()) {
-				//AutoCommand for obstacle
+		if(speed > 0.1){
+			if((speed < 0.0 && !MultiTool.readLowerMultiToolLimitSwitch()) || (speed > 0.0 && !MultiTool.readUpperMultiToolLimitSwitch())){
+				Robot.multiTool.driveArmUpDown(speed);
+			} else {
+				Robot.multiTool.stopMotors();
 			}
 			
-		} else if (Robot.multiTool.selectedTool == 1) {
-			SmartDashboard.putString("Selected Tool", "1");
-			
-		} else if (Robot.multiTool.selectedTool == 2) {
-			SmartDashboard.putString("Selected Tool", "2");
-			
-		} else if (Robot.multiTool.selectedTool == 3) {
-			SmartDashboard.putString("Selected Tool", "3");
-			
-		} else if (Robot.multiTool.selectedTool == 4) {
-			SmartDashboard.putString("Selected Tool", "4");
-		}*/
+		}
+		
+		
+
 	}
 
 	@Override
@@ -54,22 +47,12 @@ public class MultiToolMover extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		boolean finished = false;
-		//double encoder = Robot.multiTool.multiToolEncoder.getDistance();
-			//if (encoder <= 1 || encoder >= 75) { //THESE VALUES STILL NEED TO BE SET CORRECTLY
-			//	finished = true;
-			//}
-		/*if(MultiTool.readUpperMultiToolLimitSwitch() && speed > .1){
-			finished = true;
-		} else if(MultiTool.readLowerMultiToolLimitSwitch() && speed < -.1){
-			finished = true;
-		} */
-			return finished;
-		
+		return false;
+
 	}
 
 	@Override
 	protected void end() {
-		Robot.multiTool.driveArmUpDown(0.0); //stop motors
+		Robot.multiTool.driveArmUpDown(0.0); // stop motors
 	}
 }

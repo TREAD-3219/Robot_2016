@@ -1,7 +1,11 @@
 package org.usfirst.frc3219.Robot_2016;
 
+<<<<<<< HEAD
 import org.usfirst.frc3219.Robot_2016.commands.Interrupt;
 import org.usfirst.frc3219.Robot_2016.commands.ManualFeed;
+=======
+import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
+>>>>>>> origin/Fresh-Start
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
 import org.usfirst.frc3219.Robot_2016.commands.PickupBall;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
@@ -41,6 +45,7 @@ public class OI {
     	reverse = new JoystickButton(joystick, 12);
     	reverse.whenPressed(new ReverseCommand());
     	intake = new JoystickButton(gameController, 3);
+<<<<<<< HEAD
     	//JoystickButton reverseIntake = new JoystickButton(gameController, 2);
     	JoystickButton manualFeed = new JoystickButton(gameController, 5);
     	manualFeed.whileHeld(new ManualFeed());
@@ -50,6 +55,18 @@ public class OI {
     	intake.whenPressed(new PickupBall());
     	//intake.whenReleased(new Interrupt());
     	//reverseIntake.whileHeld(new PickupBall(-1));
+=======
+    	JoystickButton reverseIntake = new JoystickButton(gameController, 2);
+    	JoystickButton autoShoot = new JoystickButton(gameController, 6);
+    	
+    	
+    	buttonY = new JoystickButton(gameController, 4);
+    	buttonStart = new JoystickButton(gameController, 8);
+    	intake.whileHeld(new PickupBall());
+    	reverseIntake.whileHeld(new PickupBall(-1));
+    	autoShoot.whileHeld(new AutoShoot());
+    	
+>>>>>>> origin/Fresh-Start
     	
     	//start button
     	buttonStart.whileHeld(new ServoController_SafetyStartPressed());

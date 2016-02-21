@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoDrive extends Command {
 	double speed;
-	double time = 10;
+	double time = 2;
 	double distance;
 	double encoderDist;
 	public AutoDrive(double speed, double distance) {

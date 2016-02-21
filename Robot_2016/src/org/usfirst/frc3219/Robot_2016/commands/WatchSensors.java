@@ -24,6 +24,9 @@ public class WatchSensors extends Command {
 		SmartDashboard.putNumber("Angle", sensors.getAngle());
 		//SmartDashboard.putString("Location", Navigation.getDeadRecArea());
 		SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
+		SmartDashboard.putNumber("DeadRecX", Robot.navigation.getDeadRecX());
+		SmartDashboard.putNumber("DeadRevY", Robot.navigation.getDeadRecX());
+		SmartDashboard.putNumber("DeadRecAngle", Robot.navigation.getDeadRecAngle());
 	}
 
 	@Override

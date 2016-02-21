@@ -12,6 +12,7 @@ import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyYPressed;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc3219.autonomousLibrary.AutoCenterToGoal;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -42,6 +43,8 @@ public class OI {
     	reverse.whenPressed(new ReverseCommand());
     	intake = new JoystickButton(gameController, 3);
     	autoShoot = new JoystickButton(gameController, 6);
+    	JoystickButton centerToGoal = new JoystickButton(gameController, 1);
+    	centerToGoal.whenPressed(new AutoCenterToGoal());
 
     	//JoystickButton reverseIntake = new JoystickButton(gameController, 2);
     	JoystickButton manualFeed = new JoystickButton(gameController, 5);

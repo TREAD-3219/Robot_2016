@@ -1,6 +1,8 @@
 package org.usfirst.frc3219.Robot_2016;
 
 import org.usfirst.frc3219.Robot_2016.subsystems.Camera;
+import org.usfirst.frc3219.Robot_2016.subsystems.Drive;
+import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Counter;
@@ -22,15 +24,6 @@ import edu.wpi.first.wpilibj.Victor;
  * floating around.
  */
 public class RobotMap {
-    // For example to map the left and right motors, you could define the
-    // following variables to use with your drivetrain subsystem.
-    // public static int leftMotor = 1;
-    // public static int rightMotor = 2;
-    
-    // If you are using multiple modules, make sure to define both the port
-    // number and the module. For example you with a rangefinder:
-    // public static int rangefinderPort = 1;
-    // public static int rangefinderModule = 1;
 	public static CANTalon driveRightDriveA;
 	public static CANTalon driveLeftDriveA;
 	public static CANTalon driveRightDriveB;
@@ -46,16 +39,18 @@ public class RobotMap {
 	
 	public static Talon driveRollerMotorController;
 	public static Talon driveMultiToolArmMotor;
-	public static Talon shooterFeeder;
+	public static Talon shooterFeederMotor;
+	
 	public static DigitalInput multiToolLimitSwitchHigh;
 	public static DigitalInput multiToolLimitSwitchLow;
 	
 	public static Encoder driveEncoderLeft;
 	public static Encoder driveEncoderRight;
-	public static Encoder sensorsArmEncoder;
+	
+	public static Encoder sensorsArmPositionEncoder;
 	
 	public static Camera camera;
-	public static Counter normalCounter;
+	public static Counter shooterTachCounter;
 	
     public static NetworkTable roboRealmTable;
 
@@ -70,7 +65,7 @@ public class RobotMap {
 		driveTopShooter = new CANTalon(6);
 		driveBottomShooter = new CANTalon(1);
 		
-		shooterFeeder = new Talon(0);
+		shooterFeederMotor = new Talon(0);
 		feederLimitSwitch = new DigitalInput(9);
 		
 		pwmServo_4 = new Servo(4);
@@ -82,18 +77,17 @@ public class RobotMap {
 		multiToolLimitSwitchLow = new DigitalInput(7);
 		
 		driveEncoderLeft = new Encoder(0, 1, false, EncodingType.k4X);
-		driveEncoderLeft.setDistancePerPulse(1.0);
+		driveEncoderLeft.setDistancePerPulse(Drive.WHEEL_DISTANCE_PER_PULSE);
 		driveEncoderLeft.setPIDSourceType(PIDSourceType.kRate);
 		driveEncoderRight = new Encoder(2, 3, false, EncodingType.k4X);
-		driveEncoderRight.setDistancePerPulse(1.0);
+		driveEncoderRight.setDistancePerPulse(Drive.WHEEL_DISTANCE_PER_PULSE);
 		driveEncoderRight.setPIDSourceType(PIDSourceType.kRate);
-		sensorsArmEncoder = new Encoder(4, 5, false, EncodingType.k4X);
-		sensorsArmEncoder.setDistancePerPulse(0.72434);
-		sensorsArmEncoder.setPIDSourceType(PIDSourceType.kRate);
+		sensorsArmPositionEncoder = new Encoder(4, 5, false, EncodingType.k4X);
+		sensorsArmPositionEncoder.setDistancePerPulse(MultiTool.ARM_ENCODER_DEGREES_PER_PULSE);
+		sensorsArmPositionEncoder.setPIDSourceType(PIDSourceType.kRate);
 		
-		normalCounter = new Counter(8);
+		shooterTachCounter = new Counter(8);
 		
-
 		roboRealmTable = NetworkTable.getTable("SmartDashboard");
 		camera = new Camera();
 	}

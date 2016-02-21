@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drive extends Subsystem {
 	private static final double MAX_MOTOR_RPM = 4000;
-	private static final double WHEEL_DIAMETER = 4.0;
+	private static final double WHEEL_DIAMETER = 7.75;
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
 	private static final double GEAR_RATIO = 8.45;
 	private static final double MAX_WHEEL_RPM = MAX_MOTOR_RPM / GEAR_RATIO;
@@ -22,6 +22,7 @@ public class Drive extends Subsystem {
 	private static final double ROTATION_CIRCLE = Math.PI * WHEEL_BASE;
 	private static final double MAX_TURN_RATE = MAX_SPEED_IPS / ROTATION_CIRCLE;
 	public static final double MAX_TURN_RATE_DPS = MAX_TURN_RATE * 360.0;
+	public static final double WHEEL_DISTANCE_PER_PULSE = WHEEL_CIRCUMFERENCE / Sensors.WHEEL_ENCODER_PULSE_PER_REVOLUTION;
 
 	CANTalon rightDriveFront = RobotMap.driveRightDriveB;
 	CANTalon rightDriveRear = RobotMap.driveRightDriveA;
@@ -67,6 +68,7 @@ public class Drive extends Subsystem {
 		RobotMap.driveRightDriveA.enableBrakeMode(true);
 		RobotMap.driveRightDriveB.enableBrakeMode(true);
     }
+    
     public void setBrakesOff() {
 		RobotMap.driveLeftDriveA.enableBrakeMode(false);
 		RobotMap.driveLeftDriveB.enableBrakeMode(false);

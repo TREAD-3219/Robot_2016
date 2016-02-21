@@ -35,6 +35,7 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	public static final String SHOOTER_RPM_TAG = "Shooter RPM";
 	public static final String ULTRASONIC_TAG = "Ultra1";
 	public static final String ROTATION_COUNTER_TAG = "RotationCounter";
+	public static final double WHEEL_ENCODER_PULSE_PER_REVOLUTION = 360.0;
 
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	I2C lidar1 = new I2C(I2C.Port.kMXP, LIDAR_1_ADDR);
@@ -42,7 +43,7 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 
 	Encoder rightEncoder = RobotMap.driveEncoderRight;
 	Encoder leftEncoder = RobotMap.driveEncoderLeft;
-	Encoder armEncoder = RobotMap.sensorsArmEncoder;
+	Encoder armEncoder = RobotMap.sensorsArmPositionEncoder;
 
 	EncoderData rightData = new EncoderData(rightEncoder);
 	EncoderData leftData = new EncoderData(leftEncoder);
@@ -98,17 +99,17 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	}
 
 	public double readShooterCounter1() {
-		return RobotMap.normalCounter.getPeriod();
+		return RobotMap.shooterTachCounter.getPeriod();
 	}
 
 	public void getCounterValues() {
-		int count = RobotMap.normalCounter.get();
+		int count = RobotMap.shooterTachCounter.get();
 		SmartDashboard.putNumber(TACH_RAW, count);
-		double distance = RobotMap.normalCounter.getDistance();
-		double period = RobotMap.normalCounter.getPeriod();
-		double rate = RobotMap.normalCounter.getRate();
-		boolean direction = RobotMap.normalCounter.getDirection();
-		boolean stopped = RobotMap.normalCounter.getStopped();
+		double distance = RobotMap.shooterTachCounter.getDistance();
+		double period = RobotMap.shooterTachCounter.getPeriod();
+		double rate = RobotMap.shooterTachCounter.getRate();
+		boolean direction = RobotMap.shooterTachCounter.getDirection();
+		boolean stopped = RobotMap.shooterTachCounter.getStopped();
 	}
 
 	/*public boolean readLineSeeker() {
@@ -116,7 +117,7 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	}*/
 
 	public int readShooterCounter() {
-		return RobotMap.normalCounter.get();
+		return RobotMap.shooterTachCounter.get();
 	}
 
 	public double aveDistEncoders(){

@@ -39,8 +39,10 @@ public class OI {
     	gameController = new Joystick(1);
     	shoot = new JoystickButton(joystick, 1);
     	shoot.whileHeld(new ManualShoot());
+    	
     	reverse = new JoystickButton(joystick, 12);
     	reverse.whenPressed(new ReverseCommand());
+    	
     	intake = new JoystickButton(gameController, 3);
     	autoShoot = new JoystickButton(gameController, 6);
     	JoystickButton centerToGoal = new JoystickButton(gameController, 1);

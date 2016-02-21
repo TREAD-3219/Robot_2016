@@ -57,17 +57,17 @@ public class Shooter extends Subsystem {
 		shooterBottomMotor.setInverted(false);
 
 		// set up counter mode
-		RobotMap.normalCounter.setUpDownCounterMode();
+		RobotMap.shooterTachCounter.setUpDownCounterMode();
 
 		// Reset
-		RobotMap.normalCounter.reset();
+		RobotMap.shooterTachCounter.reset();
 
 		// Counter Setting
-		RobotMap.normalCounter.setMaxPeriod(0.1);
-		RobotMap.normalCounter.setUpdateWhenEmpty(true);
-		RobotMap.normalCounter.setReverseDirection(false);
-		RobotMap.normalCounter.setSamplesToAverage(10);
-		RobotMap.normalCounter.setDistancePerPulse(12);
+		RobotMap.shooterTachCounter.setMaxPeriod(0.1);
+		RobotMap.shooterTachCounter.setUpdateWhenEmpty(true);
+		RobotMap.shooterTachCounter.setReverseDirection(false);
+		RobotMap.shooterTachCounter.setSamplesToAverage(10);
+		RobotMap.shooterTachCounter.setDistancePerPulse(12);
 		
 		SmartDashboard.putNumber(TOPSHOOTER, 1.0);
 		SmartDashboard.putNumber(BOTTOMSHOOTER, 1.0);

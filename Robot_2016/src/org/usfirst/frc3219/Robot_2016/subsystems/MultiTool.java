@@ -53,11 +53,15 @@ public class MultiTool extends PIDSubsystem {
 	private static final double ENCODER_MIN = 0;
 	private static final double ENCODER_MAX = 120;
 	public static final double RANGE = ENCODER_MAX - ENCODER_MIN;
+    private static final double ENCODER_PULSE_PER_REVOLUTION = 7;
+    private static final double ARM_GEAR_RATIO = 71;
+    private static final double ARM_PULSE_PER_REVOLUTION = ENCODER_PULSE_PER_REVOLUTION * ARM_GEAR_RATIO;
+	public static final double ARM_ENCODER_DEGREES_PER_PULSE = 360.0 / ARM_PULSE_PER_REVOLUTION;
 
 	public MultiTool() {
 		super(P, I, D);
 		this.setInputRange(ENCODER_MIN, ENCODER_MAX);
-		this.setOutputRange(0.0, 1.0);
+		this.setOutputRange(-1.0, 1.0);
 	}
 
 	public void armSetPoint(String position) {
@@ -114,10 +118,8 @@ public class MultiTool extends PIDSubsystem {
 		this.enable();
 	}
 
-	public void initDefaultCommand() {// assuming radius is 26
+	public void initDefaultCommand() {
 	}
-
-	// Math.sqrt(625 - Math.sin(sensors.armEncoderRaw())/25)
 
 	@Override
 	protected double returnPIDInput() {
@@ -127,7 +129,8 @@ public class MultiTool extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double arg0) {
-		if (arg0 > 0.0 && this.readUpperMultiToolLimitSwitch() || arg0 < 0.0 && this.readLowerMultiToolLimitSwitch()) {
+		if (arg0 > 0.0 && this.readUpperMultiToolLimitSwitch()
+				|| arg0 < 0.0 && this.readLowerMultiToolLimitSwitch()) {
 			driveArmMotor.pidWrite(0.0);
 		} else {
 			driveArmMotor.pidWrite(arg0);

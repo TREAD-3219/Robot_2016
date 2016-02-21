@@ -33,6 +33,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 	
+	// subsystems
 	public static Drive drive;
 	public static Sensors sensors;
 	public static Climber climber;
@@ -42,9 +43,10 @@ public class Robot extends IterativeRobot {
 	public static FeedMech feedMech;
 	public static MultiTool multiTool;
 	public static Navigation navigation;
-    Command autonomousCommand;
-    SendableChooser chooser;
-
+	
+	
+    Command autonomousCommand = null;
+ 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -60,9 +62,7 @@ public class Robot extends IterativeRobot {
     	navigation = new Navigation();
     	camera = new Camera();
 		oi = new OI();
-        chooser = new SendableChooser();
-//        chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto mode", chooser);
+
         SmartDashboard.putNumber(Shooter.TOPSHOOTER, 0.7);
         SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, 1.0);
     }
@@ -73,6 +73,7 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
      */
     public void disabledInit(){
+    	// start the WatchSensors command
     	Scheduler.getInstance().add(new WatchSensors());
     }
 	
@@ -90,21 +91,12 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
-        
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
-    	
-    	// schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
+        autonomousCommand = null;  // assign the real starting autonomous command here.
+   
+        // schedule the autonomous command (example)
+        if (autonomousCommand != null) {
+        	autonomousCommand.start();
+        }
     }
 
     /**
@@ -134,7 +126,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
     }
-    
+
     /**
      * This function is called periodically during test mode
      */

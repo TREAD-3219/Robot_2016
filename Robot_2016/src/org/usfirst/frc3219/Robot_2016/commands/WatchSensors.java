@@ -7,7 +7,7 @@ import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class WatchSensors extends Command {
+public class WatchSensors extends NeverFinishCommand {
 	private static Sensors sensors = Robot.sensors;
 
 	public WatchSensors() {
@@ -47,10 +47,4 @@ public class WatchSensors extends Command {
 	protected void interrupted() {
 		end();
 	}
-
-	@Override
-	protected boolean isFinished() {
-		return false;
-	}
-
 }

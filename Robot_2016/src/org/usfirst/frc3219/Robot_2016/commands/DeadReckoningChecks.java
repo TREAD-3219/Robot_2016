@@ -9,7 +9,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class DeadReckoningChecks extends Command {
+public class DeadReckoningChecks extends NeverFinishCommand {
 
 	private static double deadRecX = Navigation.getDeadRecX();
 	private static double deadRecY = Navigation.getDeadRecY();
@@ -17,12 +17,15 @@ public class DeadReckoningChecks extends Command {
 
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
-
+		computeCurrentPosition();
 	}
 
 	@Override
 	protected void execute() {
+		computeCurrentPosition();
+	}
+
+	void computeCurrentPosition() {
 		double angleIsOffBy = Robot.sensors.getAngle() - Navigation.getDeadRecAngle();
 		double pitch = Robot.sensors.navx.getPitch();
 		// Angle checks
@@ -48,25 +51,14 @@ public class DeadReckoningChecks extends Command {
 		SmartDashboard.putNumber("Dead Rec Y", Navigation.getDeadRecY());
 		SmartDashboard.putNumber("Dead Rec Angle", Navigation.getDeadRecAngle());
 		SmartDashboard.putString("Dead Rec Area", Navigation.getDeadRecArea());
-
-	}
-
-	@Override
-	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

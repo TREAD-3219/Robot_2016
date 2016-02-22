@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class JoystickDrive extends Command {
+public class JoystickDrive extends NeverFinishCommand {
 
 	Joystick driveStick = null;
 	double lastLeftEncoder;
@@ -39,6 +39,11 @@ public class JoystickDrive extends Command {
 			double newRightDist = RobotMap.driveEncoderRight.getDistance() - lastRightEncoder;
 			SmartDashboard.putNumber("Raw Left Encoder", RobotMap.driveEncoderLeft.getDistance());
 			SmartDashboard.putNumber("Raw Right Encoder", RobotMap.driveEncoderRight.getDistance());
+			
+			// move this to Navigation
+			// something like dedRecMoved(leftDist, rightDist)
+			// or just dedRecUpdate(), and have Navigation read encoders.
+			
 			double avgDist = (newLeftDist + newRightDist) / 2;
 			Navigation.deadRecMoved(avgDist);
 			double degrees = 2 * (newLeftDist - newRightDist);
@@ -46,6 +51,7 @@ public class JoystickDrive extends Command {
 			lastLeftEncoder = RobotMap.driveEncoderLeft.getDistance();
 			lastRightEncoder = RobotMap.driveEncoderRight.getDistance();
 			//end Navigation stuffs
+		
 			Robot.drive.driveValues(correctFwd, correctTurn); 
 //			//Show the throttle values on the dashboard
 //			//-----------------------------------------------------------
@@ -60,19 +66,11 @@ public class JoystickDrive extends Command {
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
+		end();
 	}
 
 	@Override
 	protected void end() {
 		Robot.drive.driveValues(0.0, 0.0); // stops the motors
-
 	}
 }

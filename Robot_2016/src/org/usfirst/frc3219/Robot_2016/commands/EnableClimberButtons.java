@@ -6,12 +6,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class EnableClimberButtons extends Command {
-	public static boolean SafetyClimberEnable = false;
+	private static final double TESTING_TIMEOUT = 0.5;
+	private static final double CLIMBER_TIMEOUT = 135.0 - 20.0; // teleop time - high time.
+	public static boolean safetyClimberEnable = false;
 
 	@Override
 	protected void end() {
 
-		SafetyClimberEnable = true;
+		safetyClimberEnable = true;
 		System.out.print("The climber can now be used!");
 		// Scheduler.getInstance().add(); // TODO add the command
 		/*
@@ -29,8 +31,8 @@ public class EnableClimberButtons extends Command {
 	@Override
 	protected void initialize() {
 		// 1:55
-		this.setTimeout(1); // wait to trigger isFinished() to start end()
-		SafetyClimberEnable = false;
+		this.setTimeout(TESTING_TIMEOUT); // wait to trigger isFinished() to start end()
+		safetyClimberEnable = false;
 	}
 
 	@Override
@@ -40,8 +42,6 @@ public class EnableClimberButtons extends Command {
 
 	@Override
 	protected boolean isFinished() {
-
 		return this.isTimedOut();
 	}
-
 }

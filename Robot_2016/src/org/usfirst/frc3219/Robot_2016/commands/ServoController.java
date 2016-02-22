@@ -3,15 +3,12 @@ package org.usfirst.frc3219.Robot_2016.commands;
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
-
 import edu.wpi.first.wpilibj.Servo;
-
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ServoController extends Command {
-
 
 	private static final String QUICK_RELEASE_OVERRIDE = "quick release override";
 
@@ -51,10 +48,9 @@ public class ServoController extends Command {
 		SmartDashboard.putNumber("PwmServo1", PwmServo4Value);
 		SmartDashboard.putNumber("wait before lifting", 1);
 		SmartDashboard.putNumber("drive value", 0.5);
-		SmartDashboard.putNumber("wait before stoping", 2);
+		SmartDashboard.putNumber("wait before stopping", 2);
 
 	}
-
 
 	@Override
 	protected void end() {
@@ -64,35 +60,33 @@ public class ServoController extends Command {
 
 	@Override
 	protected void execute() {
-
 		SmartDashboard.getBoolean(QUICK_RELEASE_OVERRIDE);
 
-		
-		
 		if (quickReleaseOverride) {
-			EnableClimberButtons.SafetyClimberEnable = true;
+			EnableClimberButtons.safetyClimberEnable = true;
+		}
+		;
 
-		} else { 
-			
-			
-			if (Robot.oi.safetyStartPressed_value && Robot.oi.safetyYPressed_value
-					&& EnableClimberButtons.SafetyClimberEnable) {
-				// value setting
-				liftWait = SmartDashboard.getNumber("wait before lifting");
-				driveSpeed = SmartDashboard.getNumber("drive value");
-				stopWait = SmartDashboard.getNumber("wait before stoping");
-				// releasing servo quick release
-				servo4.setAngle(ZERO_POSITION);
-				servo5.setAngle(OPEN_POSITION);
+		if (Robot.oi.safetyStartPressed_value && Robot.oi.safetyYPressed_value
+				&& EnableClimberButtons.safetyClimberEnable) {
+			// value setting
+			liftWait = SmartDashboard.getNumber("wait before lifting");
+			driveSpeed = SmartDashboard.getNumber("drive value");
+			stopWait = SmartDashboard.getNumber("wait before stoping");
+			// releasing servo quick release
+			servo4.setAngle(ZERO_POSITION);
+			servo5.setAngle(OPEN_POSITION);
 
-//				System.out.print("The quick release has been triggered.");
-//				// climb
-//				this.setTimeout(liftWait);
-//				Robot.drive.driveValues(driveSpeed, 0);
-//				this.setTimeout(stopWait);
-//				Robot.drive.driveValues(0, 0);
-
-			}
+			// --
+			// -- you know you can't do the following, right?
+			// -- If you want that, either split it into multiple
+			// -- separate commands, 
+			// System.out.print("The quick release has been triggered.");
+			// // climb
+			// this.setTimeout(liftWait);
+			// Robot.drive.driveValues(driveSpeed, 0);
+			// this.setTimeout(stopWait);
+			// Robot.drive.driveValues(0, 0);
 
 		}
 
@@ -101,6 +95,7 @@ public class ServoController extends Command {
 		 * intended use of Servo two is for some other thing that is important
 		 * that Z talked about
 		 */
+		// Servo 2 is also pin pulling - other side of robot.
 	}
 
 	@Override
@@ -114,10 +109,9 @@ public class ServoController extends Command {
 		servo5.setPosition(ZERO_POSITION);
 		System.out.print("Servo angle Set to through the use of \"initialize\" to " + PwmServo4Value);
 
-		//SmartDashboard.putNumber("wait before lifting", 1);
-		//SmartDashboard.putNumber("drive value", 0.5);
-		//SmartDashboard.putNumber("wait before stopping", 2);
-
+		// SmartDashboard.putNumber("wait before lifting", 1);
+		// SmartDashboard.putNumber("drive value", 0.5);
+		// SmartDashboard.putNumber("wait before stopping", 2);
 
 	}
 

@@ -33,8 +33,6 @@ public class OI {
     public Button buttonY;
     public Button buttonStart;
     public JoystickButton autoShoot;
-    public JoystickButton centerToGoal;
-	public JoystickButton manualFeed;
     
     public OI(){
     	joystick = new Joystick(0);
@@ -45,11 +43,11 @@ public class OI {
     	reverse.whenPressed(new ReverseCommand());
     	intake = new JoystickButton(gameController, 3);
     	autoShoot = new JoystickButton(gameController, 6);
-    	centerToGoal = new JoystickButton(gameController, 1);
+    	JoystickButton centerToGoal = new JoystickButton(gameController, 1);
     	centerToGoal.whenPressed(new AutoCenterToGoal());
 
     	//JoystickButton reverseIntake = new JoystickButton(gameController, 2);
-    	manualFeed = new JoystickButton(gameController, 5);
+    	JoystickButton manualFeed = new JoystickButton(gameController, 5);
     	manualFeed.whileHeld(new ManualFeed());
     	
     	buttonY = new JoystickButton(gameController, 4);

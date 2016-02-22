@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc3219.Robot_2016.commands.DeadReckoningChecks;
+import org.usfirst.frc3219.Robot_2016.commands.DedReckoningChecks;
 import org.usfirst.frc3219.Robot_2016.commands.EnableClimberButtons;
 import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
 import org.usfirst.frc3219.Robot_2016.commands.MultiToolMover;
@@ -73,8 +73,6 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
      */
     public void disabledInit(){
-    	// start the WatchSensors command
-    	Scheduler.getInstance().add(new WatchSensors());
     }
 	
 	public void disabledPeriodic() {
@@ -91,6 +89,8 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
+    	Robot.climber.resetClimber(); // ensure servo's in correct position
+    	
         autonomousCommand = null;  // assign the real starting autonomous command here.
    
         // schedule the autonomous command (example)
@@ -112,13 +112,11 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        Scheduler.getInstance().add(new DeadReckoningChecks());
         Scheduler.getInstance().add(new MultiToolMover());
         Scheduler.getInstance().add(new ServoController());
         Scheduler.getInstance().add(new EnableClimberButtons());
         Scheduler.getInstance().add(new JoystickDrive());
-        Scheduler.getInstance().add(new WatchSensors());
-    }
+     }
 
     /**
      * This function is called periodically during operator control

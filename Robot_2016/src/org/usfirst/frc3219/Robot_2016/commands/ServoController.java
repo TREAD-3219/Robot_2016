@@ -60,12 +60,12 @@ public class ServoController extends Command {
 
 	@Override
 	protected void execute() {
-		SmartDashboard.getBoolean(QUICK_RELEASE_OVERRIDE);
+		SmartDashboard.getBoolean(QUICK_RELEASE_OVERRIDE, false);
 
 		if (quickReleaseOverride) {
 			EnableClimberButtons.safetyClimberEnable = true;
+			System.out.println("The quick release has been triggered.");
 		}
-		;
 
 		if (Robot.oi.safetyStartPressed_value && Robot.oi.safetyYPressed_value
 				&& EnableClimberButtons.safetyClimberEnable) {
@@ -80,8 +80,12 @@ public class ServoController extends Command {
 			// --
 			// -- you know you can't do the following, right?
 			// -- If you want that, either split it into multiple
-			// -- separate commands, 
-			// System.out.print("The quick release has been triggered.");
+			// -- separate commands, or make this into a state machine
+			// -- with separate states for start, releasing servo's
+			// -- pause for hook engagement, lifting, lifted, abort.
+			// -- As a series of commands, this command would simply
+			// -- initiate a CommandGroup with the rest of the sequence.
+			
 			// // climb
 			// this.setTimeout(liftWait);
 			// Robot.drive.driveValues(driveSpeed, 0);

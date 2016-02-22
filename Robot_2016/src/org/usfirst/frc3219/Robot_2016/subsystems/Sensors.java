@@ -1,6 +1,8 @@
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
+import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
+import org.usfirst.frc3219.Robot_2016.commands.WatchSensors;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -35,6 +37,8 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	public static final String SHOOTER_RPM_TAG = "Shooter RPM";
 	public static final String ULTRASONIC_TAG = "Ultra1";
 	public static final String ROTATION_COUNTER_TAG = "RotationCounter";
+	public static final String LEFT_ENCODER_TAG = "Left Encoder";
+	public static final String RIGHT_ENCODER_TAG = "Right Encoder";
 	public static final double WHEEL_ENCODER_PULSE_PER_REVOLUTION = 360.0;
 
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
@@ -50,7 +54,6 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	EncoderData armData = new EncoderData(armEncoder);
 
 	double lastLidar1Read = 0.0;
-
 
 	public void sensorReset(){
 		leftEncoder.reset();
@@ -199,9 +202,7 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-
-
+		setDefaultCommand(new WatchSensors());
 	}
 
 	@Override

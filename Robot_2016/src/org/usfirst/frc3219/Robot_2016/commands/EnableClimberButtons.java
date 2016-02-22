@@ -8,6 +8,17 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 public class EnableClimberButtons extends Command {
 	private static final double TESTING_TIMEOUT = 0.5;
 	private static final double CLIMBER_TIMEOUT = 135.0 - 20.0; // teleop time - high time.
+	
+	// I don't really like the use of a public variable for this
+	// public variables are generally bad design...  In this case,
+	// there is only one place that SETs the variable, so it's
+	// not terrible.  A better design would be to just DO whatever
+	// this triggers in the end() method here.  Such as - 
+	// Robot.oi.enableClimbRelease(); which does a Robot.oi.whenPressed(...)
+	// There would also have to be a separate button that calls enableClimbRelease
+	// which is the same button that does the equivalent of the SmartDashboard
+	// enableClimberOverride - a button or something checked in teleopPeriodic.
+	
 	public static boolean safetyClimberEnable = false;
 
 	@Override

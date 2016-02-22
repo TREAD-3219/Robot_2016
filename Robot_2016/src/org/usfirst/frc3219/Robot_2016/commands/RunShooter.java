@@ -23,8 +23,8 @@ public class RunShooter extends Command { //This command is to be used in Comman
 
 	@Override
 	protected void initialize() {
-		topPower = SmartDashboard.getNumber(Shooter.TOPSHOOTER, 0.0);
-		bottomPower = SmartDashboard.getNumber(Shooter.BOTTOMSHOOTER, 0.0);
+		topPower = SmartDashboard.getNumber(Shooter.TOPSHOOTER, 1.0);
+		bottomPower = SmartDashboard.getNumber(Shooter.BOTTOMSHOOTER, 1.0);
 		Robot.shooter.spinUp(topPower, bottomPower);
 		this.setTimeout(totalTime);
 	}
@@ -47,7 +47,5 @@ public class RunShooter extends Command { //This command is to be used in Comman
 	@Override
 	protected void end() {
 		Robot.shooter.spinDown();
-
 	}
-
 }

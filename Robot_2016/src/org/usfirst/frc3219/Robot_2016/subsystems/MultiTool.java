@@ -21,7 +21,7 @@ public class MultiTool extends PIDSubsystem {
 
 	static final double P = 0.01;
 	static final double I = 0.001;
-	static final double D = 0.0;
+	static final double D = -0.01;
 
 	Talon driveRollerMotor = RobotMap.driveRollerMotorController;
 	Talon driveArmMotor = RobotMap.driveMultiToolArmMotor;

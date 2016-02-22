@@ -5,7 +5,8 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc3219.autonomousLibrary.AutoCenterToGoal;
 
-public class AutoShoot extends CommandGroup { //This is for the full feed and shooting mechanisms
+public class AutoShoot extends CommandGroup {
+	//This is for the full feed and shooting mechanisms
 	
 	public AutoShoot() {
 		requires(Robot.feedMech);
@@ -19,5 +20,4 @@ public class AutoShoot extends CommandGroup { //This is for the full feed and sh
 		this.addSequential(new FeedShooter(.3));
 		this.addSequential(new StopShooter());
 	}
-	
 }

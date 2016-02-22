@@ -4,13 +4,17 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+//which command will we use?  This one or FeedShooter?
+//get rid of the one we are NOT using
+
 public class IntakeBall extends Command { // Starts feeder motor
 	// stops either when button b is released, or limit switch is hit
 	boolean pressed;
-	int direction;
+	double direction;
+	
 	public IntakeBall() {
 		requires(Robot.feedMech);
-		this.direction = direction;
+		this.direction = 1.0;
 	}
 
 	public IntakeBall(int direction) {
@@ -44,13 +48,11 @@ public class IntakeBall extends Command { // Starts feeder motor
 	@Override
 	protected void end() {
 		Robot.feedMech.stopFeeder();
-
 	}
 
 	@Override
 	protected void interrupted() {
 		end();
-
 	}
 
 }

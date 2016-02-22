@@ -58,22 +58,22 @@ public class Navigation extends Subsystem {
 		return distance;
 	}
 
-	public Point getDeadRecPoint() {
+	public Point getDedRecPoint() {
 		Point estimateLoc = new Point(0, 0);
 		estimateLoc.x = (int) (dedRecX - (dedRecY % 1));
 		estimateLoc.y = (int) (dedRecY - (dedRecY % 1));
 		return estimateLoc;
 	}
 
-	public double getDeadRecAngle() {
+	public double getDedRecAngle() {
 		return dedRecAngle;
 	}
 
-	public double getDeadRecX() {
+	public double getDedRecX() {
 		return dedRecX;
 	}
 
-	public double getDeadRecY() {
+	public double getDedRecY() {
 		return dedRecY;
 	}
 
@@ -153,36 +153,36 @@ public class Navigation extends Subsystem {
 		return distanceFromWall;
 	}
 
-	public boolean checkDeadRecAngle() {
+	public boolean checkDedRecAngle() {
 		boolean goodEnough = false;
 		int probabilityOfCorrectCount = 0;
-		if (Math.abs(dedRecAngle/* - compass */) <= 5.0) { // compass will be
-															// added from
-															// Robot.sensors
+		 // compass will be added from Robot.sensors
+		if (Math.abs(dedRecAngle - Robot.sensors.navx.getFusedHeading()) <= 5.0) {
 			probabilityOfCorrectCount++;
 		}
+		
+		// what is this supposed to test?
 		if (Math.abs(dedRecAngle/* - findEncoderAngle() */) <= 5.0) {
 			probabilityOfCorrectCount++;
 		}
+		
+		// seems clear goodEnough will always be false... 
 		if (probabilityOfCorrectCount >= 3) {
 			goodEnough = true;
 		}
+		
 		return goodEnough;
 	}
 
-	public boolean checkDeadRecLoc() {
+	public boolean checkDedRecLoc() {
 		boolean goodEnough = false;
-		int probabilityOfCorrectCount = 0;
 		if (Math.abs(dedRecY - findLidarPositionY()) <= 5.0) {
-			probabilityOfCorrectCount++;
 		}
 
 		if (Math.abs(dedRecX - findLidarPositionX()) <= 5.0) {
-			probabilityOfCorrectCount++;
 		}
 
 		if (Math.abs(dedRecTotalForward /* - findEncoderForwardDist() */) <= 5.0) {
-			probabilityOfCorrectCount++;
 		}
 		return goodEnough;
 	}
@@ -213,5 +213,4 @@ public class Navigation extends Subsystem {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

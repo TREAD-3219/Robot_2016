@@ -18,7 +18,7 @@ public class DedReckoningChecks extends NeverFinishCommand {
 	}
 
 	void computeCurrentPosition() {
-		double angleIsOffBy = Robot.sensors.getAngle() - Robot.navigation.getDeadRecAngle();
+		double angleIsOffBy = Robot.sensors.getAngle() - Robot.navigation.getDedRecAngle();
 		// Angle checks
 		if (Math.abs(angleIsOffBy) >= 1.0) {
 			Robot.navigation.dedRecTurned(angleIsOffBy);
@@ -36,9 +36,9 @@ public class DedReckoningChecks extends NeverFinishCommand {
 			}
 		}
 		
-		SmartDashboard.putNumber("Dead Rec X", Robot.navigation.getDeadRecX());
-		SmartDashboard.putNumber("Dead Rec Y", Robot.navigation.getDeadRecY());
-		SmartDashboard.putNumber("Dead Rec Angle", Robot.navigation.getDeadRecAngle());
+		SmartDashboard.putNumber("Dead Rec X", Robot.navigation.getDedRecX());
+		SmartDashboard.putNumber("Dead Rec Y", Robot.navigation.getDedRecY());
+		SmartDashboard.putNumber("Dead Rec Angle", Robot.navigation.getDedRecAngle());
 		SmartDashboard.putString("Dead Rec Area", Robot.navigation.getDedRecArea());
 	}
 

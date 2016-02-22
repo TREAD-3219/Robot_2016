@@ -29,7 +29,7 @@ public class MultiToolMover extends NeverFinishCommand {
 		// consider a better scaling algorithm here... cubic?
 		// also, perhaps asymmetric?  i.e., bigger up than down.
 		speed = gameController.getY() * 0.5;
-		Robot.multiTool.driveArmUpDown(speed);
+
 		if(speed > 0.1){
 			if((speed < 0.0 && !Robot.multiTool.readLowerMultiToolLimitSwitch()) 
 					|| (speed > 0.0 && !Robot.multiTool.readUpperMultiToolLimitSwitch())){

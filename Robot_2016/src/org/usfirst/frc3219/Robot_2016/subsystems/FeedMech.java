@@ -34,7 +34,7 @@ public class FeedMech extends Subsystem { //This class is for Putting the ball i
 		return feederLimitSwitch.get();
 	}
 	
-	public void spinFeeder(int direction) {
+	public void spinFeeder(double direction) {
 		feederMotor.setInverted(true);
 		feederMotor.set(0.3 * direction);
 	}

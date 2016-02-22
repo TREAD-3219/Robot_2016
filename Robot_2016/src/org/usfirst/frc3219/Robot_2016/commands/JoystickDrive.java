@@ -29,11 +29,11 @@ public class JoystickDrive extends Command {
 	protected void execute() {
 //		if (driveStick != null) {
 		double rawFwd = driveStick.getY(); // give an extra name to the "Y" value of the joyStick
-		double rawTurn = driveStick.getX(); // Give and extra name to the "X" value of the joyStick
+		double rawTurn = driveStick.getX() * -1.0; // Give and extra name to the "X" value of the joyStick
 			double speedScale = driveStick.getThrottle();  // get the value from the throttle of the joystick
 			double correctSpeedScale = (speedScale  -1)/-2; // Make the plus on the throttle actually make the value higher instead of lower. Labeling on the joystick now makes sense.
 			double correctFwd = rawFwd * correctSpeedScale; // Make the motors go in the correct direction instead of going backwards, and use the scale of the throttle
-			double correctTurn = (rawTurn * correctSpeedScale) * -1; // keep the turning direction of the motors, and make the turn use the scale of the throttle
+			double correctTurn = rawTurn * correctSpeedScale; // keep the turning direction of the motors, and make the turn use the scale of the throttle
 			//Navigation stuffs
 			double newLeftDist = RobotMap.driveEncoderLeft.getDistance() - lastLeftEncoder;
 			double newRightDist = RobotMap.driveEncoderRight.getDistance() - lastRightEncoder;

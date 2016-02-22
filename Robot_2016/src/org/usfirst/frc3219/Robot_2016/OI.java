@@ -1,17 +1,18 @@
 package org.usfirst.frc3219.Robot_2016;
 
+
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
+import org.usfirst.frc3219.Robot_2016.commands.ManualFeed;
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
 import org.usfirst.frc3219.Robot_2016.commands.PickupBall;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
-import org.usfirst.frc3219.Robot_2016.commands.ServoController;
 import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyStartPressed;
 import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyYPressed;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Scheduler;
+import frc3219.autonomousLibrary.AutoCenterToGoal;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -31,6 +32,7 @@ public class OI {
     public Boolean safetyStartPressed_value = false;
     public Button buttonY;
     public Button buttonStart;
+    public JoystickButton autoShoot;
     
     public OI(){
     	joystick = new Joystick(0);
@@ -40,16 +42,20 @@ public class OI {
     	reverse = new JoystickButton(joystick, 12);
     	reverse.whenPressed(new ReverseCommand());
     	intake = new JoystickButton(gameController, 3);
-    	JoystickButton reverseIntake = new JoystickButton(gameController, 2);
-    	JoystickButton autoShoot = new JoystickButton(gameController, 6);
-    	
+    	autoShoot = new JoystickButton(gameController, 6);
+    	JoystickButton centerToGoal = new JoystickButton(gameController, 1);
+    	centerToGoal.whenPressed(new AutoCenterToGoal());
+
+    	//JoystickButton reverseIntake = new JoystickButton(gameController, 2);
+    	JoystickButton manualFeed = new JoystickButton(gameController, 5);
+    	manualFeed.whileHeld(new ManualFeed());
     	
     	buttonY = new JoystickButton(gameController, 4);
     	buttonStart = new JoystickButton(gameController, 8);
-    	intake.whileHeld(new PickupBall());
-    	reverseIntake.whileHeld(new PickupBall(-1));
+    	intake.whenPressed(new PickupBall());
     	autoShoot.whileHeld(new AutoShoot());
-    	
+    	//intake.whenReleased(new Interrupt());
+    	//reverseIntake.whileHeld(new PickupBall(-1));
     	
     	//start button
     	buttonStart.whileHeld(new ServoController_SafetyStartPressed());

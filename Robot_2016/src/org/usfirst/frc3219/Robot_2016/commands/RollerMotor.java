@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class RollerMotor extends Command{// Starts roller motor
 	// stops either when button b is released, or feed mech limit switch is hit
 	//public Joystick rollerSpeedSlider = Robot.oi.joystick; 
-	boolean pressed = false;
+	boolean pressed;
 	int direction;
 	public RollerMotor() {
 		requires(Robot.drive);
@@ -24,12 +24,14 @@ public class RollerMotor extends Command{// Starts roller motor
 
 	@Override
 	protected void initialize() {
-		Robot.multiTool.driveRoller(-.5 * direction);
+		Robot.multiTool.driveRoller(-1.0 * direction);
+		this.setTimeout(5);
+		pressed = false;
 	}
 
 	@Override
 	protected void execute() {
-		Robot.multiTool.driveRoller(-.6 * direction); // as of 1/30/2016, 12:10 AM the
+		Robot.multiTool.driveRoller(-1.0 * direction); // as of 1/30/2016, 12:10 AM the
 											// roller motor is broken and needs
 											// to be replaced.
 		if (!pressed) {
@@ -49,7 +51,7 @@ public class RollerMotor extends Command{// Starts roller motor
 		if (pressed) {
 			finished = !Robot.feedMech.getLimitSwitch();
 		}
-		return finished;
+		return finished || this.isTimedOut();
 	}
 
 	@Override

@@ -33,6 +33,7 @@ public class OI {
     public Button buttonY;
     public Button buttonStart;
     public JoystickButton autoShoot;
+    public JoystickButton spitOut;
     
     public OI(){
     	joystick = new Joystick(0);
@@ -45,6 +46,8 @@ public class OI {
     	autoShoot = new JoystickButton(gameController, 6);
     	JoystickButton centerToGoal = new JoystickButton(gameController, 1);
     	centerToGoal.whenPressed(new AutoCenterToGoal());
+    	spitOut = new JoystickButton(gameController, 2);
+    	spitOut .whileHeld(new PickupBall(-1));
 
     	//JoystickButton reverseIntake = new JoystickButton(gameController, 2);
     	JoystickButton manualFeed = new JoystickButton(gameController, 5);
@@ -55,7 +58,6 @@ public class OI {
     	intake.whenPressed(new PickupBall());
     	autoShoot.whileHeld(new AutoShoot());
     	//intake.whenReleased(new Interrupt());
-    	//reverseIntake.whileHeld(new PickupBall(-1));
     	
     	//start button
     	buttonStart.whileHeld(new ServoController_SafetyStartPressed());

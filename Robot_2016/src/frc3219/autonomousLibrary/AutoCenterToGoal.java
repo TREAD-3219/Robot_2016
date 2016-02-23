@@ -5,6 +5,7 @@ import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.subsystems.Camera;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoCenterToGoal extends Command {
 	private static final int CENTER = 320;
@@ -21,6 +22,8 @@ public class AutoCenterToGoal extends Command {
 	@Override
 	// Ends stops the turn.
 	protected void end() {
+		System.out.println("finished");
+		SmartDashboard.putBoolean("IsCentered", true);
 		Robot.drive.driveValues(0, 0);
 		state = 0; // So it works the second time!!!
 	}
@@ -32,6 +35,7 @@ public class AutoCenterToGoal extends Command {
 
 	@Override
 	protected void initialize() {
+		SmartDashboard.putBoolean("IsCentered", false);
 		System.out.println("enter autoCenter");
 		this.setTimeout(5.0); // Timer for the program.
 		autoCenter();
@@ -39,13 +43,12 @@ public class AutoCenterToGoal extends Command {
 
 	@Override
 	protected void interrupted() {
-		end();
+		this.end();
 	}
 
 	@Override
 	protected boolean isFinished() {
 		if (this.state == 1 || this.isTimedOut()) {
-			System.out.println("finished");
 			return true;
 		} else {
 			return false;

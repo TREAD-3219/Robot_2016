@@ -29,6 +29,7 @@ public class WatchSensors extends NeverFinishCommand {
 		SmartDashboard.putNumber("DedRecAngle", Robot.navigation.getDedRecAngle());
 		SmartDashboard.putNumber(Sensors.LEFT_ENCODER_TAG, RobotMap.driveEncoderLeft.getDistance());
 		SmartDashboard.putNumber(Sensors.RIGHT_ENCODER_TAG, RobotMap.driveEncoderRight.getDistance());
+		SmartDashboard.putBoolean("IsCentered", false);
 	}
 
 	@Override

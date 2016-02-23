@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShootBoulder extends Command {
-	private static final double BOULDER_SHOT_TIME = 1.0;
+	private static final double BOULDER_SHOT_TIME = .3;
 	private static final double SHOOTER_SPINUP_TIME = 0.7;
 
 	enum ShootStates {
@@ -38,17 +38,22 @@ public class ShootBoulder extends Command {
 		Robot.shooter.spinUp(topPower, bottomPower);
 		Robot.feedMech.spinFeeder(1, feederSpeed);
 		double deltaTime = Timer.getFPGATimestamp() - startTime;
+		SmartDashboard.putNumber("FPGA TIMESTAMP", Timer.getFPGATimestamp());
+		
 		switch (states) {
 		case spinup:
-			if (Robot.shooter.atSpeed() && Centered) {
+			if (Robot.shooter.atSpeed() && SmartDashboard.getBoolean("IsCentered")) {
 				states = ShootStates.feed;
+				feederSpeed = .3;
+				startTime = Timer.getFPGATimestamp();
 			}
 			if (deltaTime > SHOOTER_SPINUP_TIME) {
 				states = ShootStates.feed;
+				feederSpeed = .3;
+				startTime = Timer.getFPGATimestamp();
 			}
 			break;
 		case feed:
-			feederSpeed = .3;
 			if (deltaTime > BOULDER_SHOT_TIME) {
 				states = ShootStates.stop;
 			}
@@ -61,8 +66,7 @@ public class ShootBoulder extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
+		return finished;
 	}
 
 	@Override
@@ -74,7 +78,7 @@ public class ShootBoulder extends Command {
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
+		end();
 
 	}
 

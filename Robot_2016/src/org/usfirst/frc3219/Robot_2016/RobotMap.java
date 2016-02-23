@@ -73,8 +73,8 @@ public class RobotMap {
 		shooterFeeder = new Talon(0);
 		feederLimitSwitch = new DigitalInput(9);
 		
-		pwmServo_4 = new Servo(4);
-		pwmServo_5 = new Servo(5);
+		pwmServo_4 = new Servo(3);
+		pwmServo_5 = new Servo(4);
 		
 		driveRollerMotorController = new Talon(1);
 		driveMultiToolArmMotor = new Talon(2);

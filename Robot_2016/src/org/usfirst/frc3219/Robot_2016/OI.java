@@ -56,7 +56,7 @@ public class OI {
     	
     	//start button
     	buttonStart.whileHeld(new ServoControllerSafetyPressed());
-    	buttonY.whileHeld(new ServoControllerSafetyPressed());
+    	//buttonY.whileHeld(new ServoControllerSafetyPressed());
 
     	
     	

@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ServoControllerSafetyPressed extends Command {
-
+	boolean finished = false;
 	// PRESSED PRESSED PRESSED PRESSED
 	// START START START START START
 	private static final String QUICK_RELEASE_OVERRIDE = "quick release override";
@@ -23,8 +23,14 @@ public class ServoControllerSafetyPressed extends Command {
 	protected void execute() {
 		if (EnableClimberButtons.SafetyClimberEnable || SmartDashboard.getBoolean(QUICK_RELEASE_OVERRIDE)) {
 			if (Robot.oi.buttonStart.get() && Robot.oi.buttonY.get()) {
+				SmartDashboard.putBoolean("Climber enabling", true);
 				Scheduler.getInstance().add(new AutoClimb());
+				finished = true;
+			} else {
+				SmartDashboard.putBoolean("Climber enabling", false);
 			}
+		} else {
+			SmartDashboard.putBoolean("Climber enabling", false);
 		}
 	}
 
@@ -39,6 +45,6 @@ public class ServoControllerSafetyPressed extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return finished;
 	}
 }

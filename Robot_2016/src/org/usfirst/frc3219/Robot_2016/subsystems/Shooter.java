@@ -86,4 +86,10 @@ public class Shooter extends Subsystem {
 	public void initDefaultCommand() {
 
 	}
+
+	public boolean atSpeed() {
+		// TODO Auto-generated method stub
+		return false;
+		
+	}
 }

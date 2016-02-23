@@ -15,7 +15,7 @@ public class AutoShoot extends CommandGroup { //This is for the full feed and sh
 	
 	public void createShooterCommands() {
 		this.addSequential(new RunShooter(.7));
-		this.addParallel(new AutoCenterToGoal());
+		this.addSequential(new AutoCenterToGoal()); // Was add parallel
 		this.addSequential(new FeedShooter(.3));
 		this.addSequential(new StopShooter());
 	}

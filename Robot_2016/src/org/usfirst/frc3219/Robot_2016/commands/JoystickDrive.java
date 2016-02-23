@@ -45,9 +45,6 @@ public class JoystickDrive extends NeverFinishCommand {
 		// Navigation stuffs
 		double newLeftDist = RobotMap.driveEncoderLeft.getDistance() - lastLeftEncoder;
 		double newRightDist = RobotMap.driveEncoderRight.getDistance() - lastRightEncoder;
-		SmartDashboard.putNumber(Sensors.LEFT_ENCODER_TAG, RobotMap.driveEncoderLeft.getDistance());
-		SmartDashboard.putNumber(Sensors.RIGHT_ENCODER_TAG, RobotMap.driveEncoderRight.getDistance());
-
 		// move this to Navigation
 		// into dedRecMoved(leftDist, rightDist)
 		// or just dedRecUpdate(), and have Navigation read encoders.
@@ -55,25 +52,7 @@ public class JoystickDrive extends NeverFinishCommand {
 		double avgDist = (newLeftDist + newRightDist) / 2;
 		Robot.navigation.dedRecMoved(avgDist);
 
-		double degrees = 2 * (newLeftDist - newRightDist); // hunh? is this
-															// right?
-		// don't you need sines and stuff to convert triangle side lengths into
-		// angles?
-		Robot.navigation.dedRecTurned(degrees);
-		lastLeftEncoder = RobotMap.driveEncoderLeft.getDistance();
-		lastRightEncoder = RobotMap.driveEncoderRight.getDistance();
-		// end Navigation stuffs
-
 		Robot.drive.driveValues(correctFwd, correctTurn);
-
-		// //Show the throttle values on the dashboard
-		// //-----------------------------------------------------------
-		// SmartDashboard.putNumber("Forward", rawFwd * speedScale);// |
-		// SmartDashboard.putNumber("Turn", rawTurn * speedScale);// |
-		// SmartDashboard.putNumber("Speed Scale", speedScale);// |
-		// //-----------------------------------------------------------
-		// }
-
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class FeedShooter extends Command {
 		requires(Robot.shooter);
 	}
 	public FeedShooter(double seconds) {
-		requires(Robot.shooter);
+		requires(Robot.feedMech);
 		time = seconds;
 	}
 

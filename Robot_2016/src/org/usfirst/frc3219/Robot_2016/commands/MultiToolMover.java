@@ -26,7 +26,7 @@ public class MultiToolMover extends Command {
 	protected void execute() {
 		SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
 
-		speed = gameController.getY() * 0.5;
+		speed = gameController.getY();
 		Robot.multiTool.driveArmUpDown(speed);
 		if(speed > 0.1){
 			if((speed < 0.0 && !Robot.multiTool.readLowerMultiToolLimitSwitch()) 

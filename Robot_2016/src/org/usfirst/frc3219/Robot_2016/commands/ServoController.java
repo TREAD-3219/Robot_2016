@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Servo;
 
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ServoController extends Command {
@@ -20,6 +21,8 @@ public class ServoController extends Command {
 
 	Servo servo4;
 	Servo servo5;
+	
+	boolean finished = false;
 
 	// SmartDashboard Numbers
 	double liftWait;
@@ -58,8 +61,8 @@ public class ServoController extends Command {
 
 	@Override
 	protected void end() {
-		this.servo4.setPosition(OPEN_POSITION);
-		this.servo5.setPosition(ZERO_POSITION);
+		//this.servo4.setPosition(OPEN_POSITION);
+		//this.servo5.setPosition(ZERO_POSITION);
 	}
 
 	@Override
@@ -82,9 +85,8 @@ public class ServoController extends Command {
 				driveSpeed = SmartDashboard.getNumber("drive value");
 				stopWait = SmartDashboard.getNumber("wait before stoping");
 				// releasing servo quick release
-				servo4.setAngle(ZERO_POSITION);
-				servo5.setAngle(OPEN_POSITION);
-
+				Scheduler.getInstance().add(new AutoClimb());
+				finished = true;
 //				System.out.print("The quick release has been triggered.");
 //				// climb
 //				this.setTimeout(liftWait);
@@ -128,7 +130,7 @@ public class ServoController extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return finished;
 	}
 
 }

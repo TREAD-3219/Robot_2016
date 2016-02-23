@@ -79,11 +79,17 @@ public class Shooter extends Subsystem {
 	}
 
 	public void spinDown() {
-		this.shooterBottomMotor.set(0.0);
 		this.shooterTopMotor.set(0.0);
+		this.shooterBottomMotor.set(0.0);
 	}
 
 	public void initDefaultCommand() {
 
+	}
+
+	public boolean atSpeed() {
+		// TODO Auto-generated method stub
+		return false;
+		
 	}
 }

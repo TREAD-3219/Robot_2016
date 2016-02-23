@@ -52,6 +52,8 @@ public class RobotMap {
 	public static Counter shooterCounter;
 
 	public static NetworkTable roboRealmTable;
+	// For commands and RPM.
+	public static double time;
 
 	public static void init() {
 		driveRightDriveA = new CANTalon(4);
@@ -85,7 +87,7 @@ public class RobotMap {
 		sensorsArmPositionEncoder.setPIDSourceType(PIDSourceType.kRate);
 
 		shooterCounter = new Counter(8);
-		shooterCounter.setDistancePerPulse(0.33);
+		shooterCounter.setDistancePerPulse(1);
 
 		roboRealmTable = NetworkTable.getTable("SmartDashboard");
 		camera = new Camera();

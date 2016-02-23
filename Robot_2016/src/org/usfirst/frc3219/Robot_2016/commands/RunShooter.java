@@ -1,6 +1,7 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -23,6 +24,7 @@ public class RunShooter extends Command { //This command is to be used in Comman
 
 	@Override
 	protected void initialize() {
+		RobotMap.shooterCounter.reset();
 		topPower = SmartDashboard.getNumber(Shooter.TOPSHOOTER, 1.0);
 		bottomPower = SmartDashboard.getNumber(Shooter.BOTTOMSHOOTER, 1.0);
 		Robot.shooter.spinUp(topPower, bottomPower);
@@ -32,6 +34,7 @@ public class RunShooter extends Command { //This command is to be used in Comman
 	@Override
 	protected void execute() {
 		Robot.shooter.spinUp(topPower, bottomPower);
+		RobotMap.time = this.timeSinceInitialized();
 	}
 
 	@Override

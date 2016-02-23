@@ -16,7 +16,7 @@ public class WatchSensors extends NeverFinishCommand {
 
 	public void showDataFromSensor() {
 		SmartDashboard.putNumber(Sensors.LIDAR_TAG, sensors.readLidar1());
-		SmartDashboard.putNumber(Sensors.SHOOTER_RPM_TAG, Math.round(sensors.readShooterCounter()));
+		SmartDashboard.putNumber(Sensors.SHOOTER_RPM_TAG, ((sensors.readShooterCounter() / 3) * 60) / RobotMap.time);
 		//SmartDashboard.putBoolean(Sensors.LINE_SEEKER_TAG, Robot.sensors.readLineSeeker());
 		SmartDashboard.putNumber(Sensors.ROTATION_COUNTER_TAG, sensors.readShooterCounter1());
 		double compassAngle = sensors.getAngle();

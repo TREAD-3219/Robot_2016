@@ -28,9 +28,9 @@ public class JoystickDrive extends NeverFinishCommand {
 	protected void execute() {
 		// give an extra name to the "Y" value of the joyStick
 		double rawFwd = driveStick.getY();
-		// Give and extra name to the "X" value of the joyStick
+		// Give an extra name to the "X" value of the joyStick
 		double rawTurn = driveStick.getX();
-		// get the value from the throttle of the joystick
+		// get the value from the throttle of the joyStick
 		double speedScale = driveStick.getThrottle();
 		// Make the plus on the throttle actually make the value higher instead
 		// of lower. Labeling on the joystick now makes sense.

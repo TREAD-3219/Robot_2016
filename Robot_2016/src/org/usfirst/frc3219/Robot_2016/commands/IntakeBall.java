@@ -4,8 +4,6 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-//which command will we use?  This one or FeedShooter?
-//get rid of the one we are NOT using
 
 public class IntakeBall extends Command { // Starts feeder motor
 	// stops either when button b is released, or limit switch is hit

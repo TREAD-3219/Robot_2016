@@ -4,7 +4,7 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-// Document what this class is for!
+// Hoover said for Overriding
 public class Interrupt extends Command {
 	
 	public Interrupt() {

@@ -4,10 +4,8 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-// which command will we use?  This one or IntakeBall?
-// get rid of the one we are NOT using
 public class FeedShooter extends Command {
-	// need to feed shooter and check if limit switch is activated
+	// for moving the ball from the feeder to the shooter
 	double time;
 	public FeedShooter() {
 		requires(Robot.shooter);
@@ -34,8 +32,7 @@ public class FeedShooter extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		// return if timed out or if limit switch is clicked
-		return this.isTimedOut(); // how about that limit switch?
+		return this.isTimedOut(); 
 	}
 
 	@Override

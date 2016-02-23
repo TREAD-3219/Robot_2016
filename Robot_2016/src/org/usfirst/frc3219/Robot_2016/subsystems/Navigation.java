@@ -3,9 +3,11 @@ package org.usfirst.frc3219.Robot_2016.subsystems;
 import java.awt.Point;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.commands.DedReckoningChecks;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Navigation extends Subsystem {
 	Sensors sensors;
@@ -24,6 +26,9 @@ public class Navigation extends Subsystem {
 	private double trustedAngle;
 	
 	private boolean inOuterWorks = false;
+	
+	double lastLeftEncoder;
+	double lastRightEncoder;
 
 	public Navigation() {
 		 sensors = new Sensors();
@@ -190,6 +195,8 @@ public class Navigation extends Subsystem {
 	public void ultraSonicTriangulation() {
 
 	}
+	
+
 
 	@Override
 	protected void initDefaultCommand() {

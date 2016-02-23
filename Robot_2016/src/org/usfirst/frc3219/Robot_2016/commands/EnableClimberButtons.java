@@ -1,24 +1,24 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.RobotMap;
 
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class EnableClimberButtons extends Command {
 	public static boolean SafetyClimberEnable = false;
-
+	
+	private static final String QUICK_RELEASE_OVERRIDE = "quick release override";
+	Servo servo4;
+	Servo servo5;
 	@Override
 	protected void end() {
 
 		SafetyClimberEnable = true;
 		System.out.print("The climber can now be used!");
-		// Scheduler.getInstance().add(); // TODO add the command
-		/*
-		 * Command climbCommand = new ServoController();
-		 * Robot.oi.buttonStart.whenPressed(climbCommand);
-		 * Robot.oi.buttonY.whenPressed(climbCommand);
-		 */
 	}
 
 	@Override
@@ -31,6 +31,11 @@ public class EnableClimberButtons extends Command {
 		// 1:55
 		this.setTimeout(1); // wait to trigger isFinished() to start end()
 		SafetyClimberEnable = false;
+		SmartDashboard.putBoolean(QUICK_RELEASE_OVERRIDE, false);
+		servo4 = RobotMap.pwmServo_4;
+		servo5 = RobotMap.pwmServo_5;
+		servo4.setAngle(180.0f);
+		servo5.setAngle(0.0f);
 	}
 
 	@Override

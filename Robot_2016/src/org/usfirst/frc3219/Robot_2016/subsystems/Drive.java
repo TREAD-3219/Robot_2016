@@ -1,6 +1,7 @@
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
 import org.usfirst.frc3219.Robot_2016.RobotMap;
+import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -76,5 +77,6 @@ public class Drive extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
+		setDefaultCommand(new JoystickDrive());
 	}
 }

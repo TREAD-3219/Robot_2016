@@ -1,7 +1,6 @@
 package frc3219.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
-import org.usfirst.frc3219.Robot_2016.commands.AutoStraightCommand;
 
 public class EngageDrawbridge extends AutoStraightCommand {
 	double initAccelX;
@@ -10,7 +9,7 @@ public class EngageDrawbridge extends AutoStraightCommand {
 	
 	@Override
 	protected void end() {
-		Robot.drive.setBreaksOn();
+		Robot.drive.setBrakesOn();
 	}
 
 	@Override

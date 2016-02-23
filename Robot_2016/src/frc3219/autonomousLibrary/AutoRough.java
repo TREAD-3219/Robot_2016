@@ -1,7 +1,6 @@
 package frc3219.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
-import org.usfirst.frc3219.Robot_2016.commands.AutoStraightCommand;
 
 public class AutoRough extends AutoStraightCommand {
 	double aveDistI = 0.0;

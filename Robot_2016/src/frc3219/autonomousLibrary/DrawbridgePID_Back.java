@@ -1,7 +1,6 @@
 package frc3219.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
-import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
@@ -51,7 +50,7 @@ public class DrawbridgePID_Back extends PIDCommand {
 
 	@Override
 	protected void end() {
-		Robot.drive.setBreaksOn();
+		Robot.drive.setBrakesOn();
 		this.getPIDController().disable();
 	}
 

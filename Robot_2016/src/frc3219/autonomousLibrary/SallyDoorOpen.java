@@ -1,10 +1,8 @@
 package frc3219.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
-import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class SallyDoorOpen extends Command{
 	double avDistI = 0.0;
@@ -16,7 +14,7 @@ public class SallyDoorOpen extends Command{
 	
 	@Override
 	protected void end() {
-		Robot.drive.setBreaksOn();
+		Robot.drive.setBrakesOn();
 		Robot.drive.driveValues(0, 0);
 	}
 

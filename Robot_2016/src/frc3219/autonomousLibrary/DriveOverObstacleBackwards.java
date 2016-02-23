@@ -13,7 +13,7 @@ public class DriveOverObstacleBackwards extends AutoStraightCommand {
 
 	@Override
 	protected void end() {
-		Robot.drive.setBreaksOn();
+		Robot.drive.setBrakesOn();
 
 	}
 

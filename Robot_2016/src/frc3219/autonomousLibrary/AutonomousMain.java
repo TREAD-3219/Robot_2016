@@ -10,7 +10,7 @@ public class AutonomousMain extends CommandGroup {
 	// Break Defense methods.
 	public AutonomousMain() {
 		
-	Robot.drive.setBreaksOff();
+	Robot.drive.setBrakesOff();
 
 	//this.addSequential(new AutoDrive(100.0, SmartDashboard.getNumber("AUTO_SPEED_ENGAGE_RAMP", 0.0))); // From edge of starting line to edge of front defense.
 	this.addSequential(new EngageRamp());
@@ -20,7 +20,7 @@ public class AutonomousMain extends CommandGroup {
 	//this.addSequential(new OnRamp());
 	//this.addSequential(new AutoStraighten()); NEEDS TESTING, DOES NOT WORK YET
 	
-	Robot.drive.setBreaksOn();
+	Robot.drive.setBrakesOn();
 	
 	// FOR DRAWBRIDGE:
 	// First EngageDrawbridgeRamp --> parallel(EngageDrawBridge/dropArms) --> parallel(DrawbridgeExecuteArms/DrawbridgePID_Back) --> DriveOverDrawbridge --> ??.

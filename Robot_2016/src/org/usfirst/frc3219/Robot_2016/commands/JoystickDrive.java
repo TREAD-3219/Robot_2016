@@ -19,7 +19,7 @@ public class JoystickDrive extends NeverFinishCommand {
 
 	@Override
 	protected void initialize() {
-		driveStick = Robot.oi.joystick; // Renames the joystick to
+		driveStick = Robot.oi.joystick; // Renames the joystick to driveStick
 		lastLeftEncoder = RobotMap.driveEncoderLeft.getDistance();
 		lastRightEncoder = RobotMap.driveEncoderRight.getDistance();
 	}

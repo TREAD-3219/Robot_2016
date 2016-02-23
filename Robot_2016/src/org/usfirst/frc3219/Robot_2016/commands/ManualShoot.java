@@ -38,7 +38,6 @@ public class ManualShoot extends Command { // This class spins shooter when the
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

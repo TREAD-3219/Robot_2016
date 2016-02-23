@@ -5,7 +5,6 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
-// Does this need to work with IntakeBall or FeedShooter?
 public class RollerMotor extends Command{// Starts roller motor
 	// stops either when button b is released, or feed mech limit switch is hit
 	//public Joystick rollerSpeedSlider = Robot.oi.joystick; 

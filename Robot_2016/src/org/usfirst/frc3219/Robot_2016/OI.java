@@ -66,21 +66,21 @@ public class OI {
     	buttonY.whileHeld(new ServoController_SafetyYPressed());
     	//Smart Dashboard Auto Choosers
     	//This MAY be very broken.
-    	SendableChooser autoStartPosition = new SendableChooser();
-        autoStartPosition.addDefault(AUTO_START_POSITION, "Position A");
-        autoStartPosition.addObject(AUTO_START_POSITION, "Position B");
-        autoStartPosition.addObject(AUTO_START_POSITION, "Position C");
-        autoStartPosition.addObject(AUTO_START_POSITION, "Position D");
+    	SendableChooser autoStartPosition = new SendableChooser();//
+        autoStartPosition.addDefault(AUTO_START_POSITION, "Position A");//
+        autoStartPosition.addObject(AUTO_START_POSITION, "Position B");//
+        autoStartPosition.addObject(AUTO_START_POSITION, "Position C");//
+        autoStartPosition.addObject(AUTO_START_POSITION, "Position D");//
          
-        SendableChooser autoDefenseChooser = new SendableChooser();
-         autoDefenseChooser.addDefault(AUTO_DEFENSE_CHOOSER, "RoughTerrain");
-         autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Rock Wall");
-         autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Portcullis");
-         autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Moat");
-         autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Ramparts");
-         autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Sally Port");
-         autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Drawbridge");
-         autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Chival de Frise");
+        SendableChooser autoDefenseChooser = new SendableChooser();//
+         autoDefenseChooser.addDefault(AUTO_DEFENSE_CHOOSER, "RoughTerrain");//
+         autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Rock Wall");//
+         autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Portcullis");//
+         autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Moat");//
+         autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Ramparts");//
+         autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Sally Port");//
+         autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Drawbridge");//
+         autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Chival de Frise");//
         
     	
     	

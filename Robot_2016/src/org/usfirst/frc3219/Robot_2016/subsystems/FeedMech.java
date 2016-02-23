@@ -26,7 +26,7 @@ public class FeedMech extends Subsystem { //This class is for Putting the ball i
 
 	private Talon feederMotor = RobotMap.shooterFeederMotor;
 	private DigitalInput feederLimitSwitch = RobotMap.feederLimitSwitch;
-	private Counter tach = RobotMap.shooterTachCounter;
+	private Counter tach = RobotMap.shooterCounter;
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

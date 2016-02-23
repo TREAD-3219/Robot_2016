@@ -1,6 +1,7 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc3219.autonomousLibrary.AutoCenterToGoal;
@@ -15,6 +16,7 @@ public class AutoShoot extends CommandGroup {
 	}
 	
 	public void createShooterCommands() {
+		RobotMap.shooterCounter.reset();
 		this.addSequential(new RunShooter(.7));
 		this.addParallel(new AutoCenterToGoal());
 		this.addSequential(new FeedShooter(.3));

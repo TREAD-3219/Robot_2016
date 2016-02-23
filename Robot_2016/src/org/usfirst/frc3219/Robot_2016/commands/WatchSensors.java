@@ -16,7 +16,7 @@ public class WatchSensors extends NeverFinishCommand {
 
 	public void showDataFromSensor() {
 		SmartDashboard.putNumber(Sensors.LIDAR_TAG, sensors.readLidar1());
-		SmartDashboard.putNumber(Sensors.SHOOTER_RPM_TAG, sensors.readShooterCounter());
+		SmartDashboard.putNumber(Sensors.SHOOTER_RPM_TAG, Math.round(sensors.readShooterCounter()));
 		//SmartDashboard.putBoolean(Sensors.LINE_SEEKER_TAG, Robot.sensors.readLineSeeker());
 		SmartDashboard.putNumber(Sensors.ROTATION_COUNTER_TAG, sensors.readShooterCounter1());
 		double compassAngle = sensors.getAngle();
@@ -24,9 +24,9 @@ public class WatchSensors extends NeverFinishCommand {
 		SmartDashboard.putNumber("Angle", sensors.getAngle());
 		//SmartDashboard.putString("Location", Navigation.getDeadRecArea());
 		SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
-		SmartDashboard.putNumber("DeadRecX", Robot.navigation.getDedRecX());
-		SmartDashboard.putNumber("DeadRevY", Robot.navigation.getDedRecX());
-		SmartDashboard.putNumber("DeadRecAngle", Robot.navigation.getDedRecAngle());
+		SmartDashboard.putNumber("DedRecX", Robot.navigation.getDedRecX());
+		SmartDashboard.putNumber("DedRevY", Robot.navigation.getDedRecX());
+		SmartDashboard.putNumber("DedRecAngle", Robot.navigation.getDedRecAngle());
 	}
 
 	@Override

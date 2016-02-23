@@ -102,17 +102,17 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	}
 
 	public double readShooterCounter1() {
-		return RobotMap.shooterTachCounter.getPeriod();
+		return RobotMap.shooterCounter.getPeriod();
 	}
 
 	public void getCounterValues() {
-		int count = RobotMap.shooterTachCounter.get();
+		int count = RobotMap.shooterCounter.get();
 		SmartDashboard.putNumber(TACH_RAW, count);
-		double distance = RobotMap.shooterTachCounter.getDistance();
-		double period = RobotMap.shooterTachCounter.getPeriod();
-		double rate = RobotMap.shooterTachCounter.getRate();
-		boolean direction = RobotMap.shooterTachCounter.getDirection();
-		boolean stopped = RobotMap.shooterTachCounter.getStopped();
+		double distance = RobotMap.shooterCounter.getDistance();
+		double period = RobotMap.shooterCounter.getPeriod();
+		double rate = RobotMap.shooterCounter.getRate();
+		boolean direction = RobotMap.shooterCounter.getDirection();
+		boolean stopped = RobotMap.shooterCounter.getStopped();
 	}
 
 	/*public boolean readLineSeeker() {
@@ -120,7 +120,7 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	}*/
 
 	public int readShooterCounter() {
-		return RobotMap.shooterTachCounter.get();
+		return RobotMap.shooterCounter.get();
 	}
 
 	public double aveDistEncoders(){

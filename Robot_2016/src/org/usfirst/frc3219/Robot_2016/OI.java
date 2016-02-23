@@ -12,6 +12,8 @@ import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyYPressed;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc3219.autonomousLibrary.AutoCenterToGoal;
 
 /**
@@ -19,7 +21,8 @@ import frc3219.autonomousLibrary.AutoCenterToGoal;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    //// CREATING BUTTONS
+    private static final String AUTO_START_POSITION = "Auto Start Position";
+	//// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
     // number it is.
@@ -57,10 +60,35 @@ public class OI {
     	//intake.whenReleased(new Interrupt());
     	//reverseIntake.whileHeld(new PickupBall(-1));
     	
-    	//start button
+    	//buttons
     	buttonStart.whileHeld(new ServoController_SafetyStartPressed());
     	buttonY.whileHeld(new ServoController_SafetyYPressed());
-
+    	//Smart Dashboard Auto Choosers
+    	//This MAY be very broken.
+    	SendableChooser autoStartPosition = new SendableChooser();
+        autoStartPosition.addDefault(AUTO_START_POSITION, "Position A");
+        SmartDashboard.putData(AUTO_START_POSITION, "Position A");
+        SmartDashboard.putData(AUTO_START_POSITION, "Position B");
+        SmartDashboard.putData(AUTO_START_POSITION, "Position C");
+        SmartDashboard.putData(AUTO_START_POSITION, "Position D");
+         
+        SendableChooser autoDefenseChooser = new SendableChooser();
+         autoDefenseChooser.addDefault("Rough Terrain", new RoughTerrain());
+         SmartDashboard.putData("Rough Terrain", autoStartPosition);
+         autoDefenseChooser.addObject("Rock Wall", new RockWall());
+         SmartDashboard.putData("Rock Wall", autoStartPosition);
+         autoDefenseChooser.addObject("Portcullis", new Portcullis());
+         SmartDashboard.putData("Portcullis", autoStartPosition);
+         autoDefenseChooser.addObject("Moat", new Moat());
+         SmartDashboard.putData("Moat", autoStartPosition);
+         autoDefenseChooser.addObject("Ramparts", new Ramparts());
+         SmartDashboard.putData("Ramparts", autoStartPosition);
+         autoDefenseChooser.addObject("Sally Port", new SallyPort());
+         SmartDashboard.putData("Sally Port", autoStartPosition);
+         autoDefenseChooser.addObject("Drawbridge", new Drawbridge());
+         SmartDashboard.putData("Drawbridge", autoStartPosition);
+         autoDefenseChooser.addObject("Chival de Frise", new ChivalDeFrise());
+         SmartDashboard.putData("Chival de Frise", autoStartPosition);
     	
     	
     	

@@ -9,24 +9,33 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class JoystickDrive extends Command {
+	static double reverse = -1.0;
 
 	Joystick driveStick = null;
 	double lastLeftEncoder;
 	double lastRightEncoder;
+
+	public static void reverse() {
+		reverse *= -1.0;
+	}
+
 	public JoystickDrive() {
 		requires(Robot.drive);
 	}
 
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
-		driveStick = Robot.oi.joystick; // Renames the joystick to 
+		driveStick = Robot.oi.joystick; // Renames the joystick to
 		lastLeftEncoder = RobotMap.driveEncoderLeft.getDistance();
 		lastRightEncoder = RobotMap.driveEncoderRight.getDistance();
+		// NOTE: do NOT change reverse in initialize!
+		// we want it to remain in the same setting even if
+		// JoystickDrive is interrupted and then restarts
 	}
 
 	@Override
 	protected void execute() {
+
 //		if (driveStick != null) {
 		double rawFwd = driveStick.getY(); // give an extra name to the "Y" value of the joyStick
 		double rawTurn = driveStick.getX() * -1.0; // Give and extra name to the "X" value of the joyStick
@@ -55,24 +64,23 @@ public class JoystickDrive extends Command {
 //			//-----------------------------------------------------------
 //		}
 
+		// end Navigation stuffs
 
+		Robot.drive.driveValues(correctFwd, correctTurn);
 	}
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
-
+		end();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	protected void end() {
 		Robot.drive.driveValues(0.0, 0.0); // stops the motors
-
 	}
 }

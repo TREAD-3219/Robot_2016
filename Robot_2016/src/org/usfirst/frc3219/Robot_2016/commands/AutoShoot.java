@@ -8,8 +8,7 @@ import frc3219.autonomousLibrary.AutoCenterToGoal;
 public class AutoShoot extends CommandGroup { //This is for the full feed and shooting mechanisms
 	
 	public AutoShoot() {
-		requires(Robot.feedMech);
-		requires(Robot.shooter);
+		// a CommandGroup automatically merges the requires of the added Commands
 		createShooterCommands();
 	}
 	

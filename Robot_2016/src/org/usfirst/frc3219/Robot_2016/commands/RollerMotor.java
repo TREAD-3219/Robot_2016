@@ -10,13 +10,14 @@ public class RollerMotor extends Command{// Starts roller motor
 	//public Joystick rollerSpeedSlider = Robot.oi.joystick; 
 	boolean pressed;
 	int direction;
+	
 	public RollerMotor() {
 		requires(Robot.multiTool);
 		this.direction = 1;
 	}
 	
 	public RollerMotor(int direction) {
-		requires(Robot.drive);
+		requires(Robot.multiTool);
 		this.direction = direction;
 	}
 	

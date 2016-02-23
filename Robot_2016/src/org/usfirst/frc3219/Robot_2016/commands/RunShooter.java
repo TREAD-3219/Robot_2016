@@ -11,6 +11,7 @@ public class RunShooter extends Command { //This command is to be used in Comman
 	double topPower;
 	double bottomPower;
 	double totalTime;
+	
 	public RunShooter() {
 		requires(Robot.shooter);
 		totalTime = 1.0;

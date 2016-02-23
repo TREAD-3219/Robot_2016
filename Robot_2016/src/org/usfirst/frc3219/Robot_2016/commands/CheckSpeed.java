@@ -1,5 +1,6 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
+import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
 
@@ -12,36 +13,30 @@ public class CheckSpeed extends Command {
 	@Override
 	protected void initialize() {
 		lastTime = System.currentTimeMillis();
-		lastDistance = (RobotMap.driveEncoderLeft.getDistance() + RobotMap.driveEncoderRight.getDistance()) / 2;
+		lastDistance = Robot.sensors.getAvgEncoderDist();
 	}
 
 	@Override
 	protected void execute() {
-		double newDistance = (RobotMap.driveEncoderLeft.getDistance() + RobotMap.driveEncoderRight.getDistance()) / 2;
+		double newDistance = Robot.sensors.getAvgEncoderDist();
 		double newTime = System.currentTimeMillis();
 		double speed = (newDistance - lastDistance) / (newTime - lastTime);
 		Navigation.setSpeed(speed);
 		lastTime = System.currentTimeMillis();
-		lastDistance = (RobotMap.driveEncoderLeft.getDistance() + RobotMap.driveEncoderRight.getDistance()) / 2;
-
+		lastDistance = newDistance;
 	}
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

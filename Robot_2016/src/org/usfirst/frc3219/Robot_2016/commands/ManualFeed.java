@@ -18,8 +18,6 @@ public class ManualFeed extends Command {
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -37,7 +35,6 @@ public class ManualFeed extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return this.isTimedOut();
 	}
 

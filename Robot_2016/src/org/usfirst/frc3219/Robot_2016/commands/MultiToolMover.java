@@ -19,7 +19,7 @@ public class MultiToolMover extends Command {
 	protected void initialize() {
 		gameController = Robot.oi.gameController;
 		speed = gameController.getY();
-		Robot.multiTool.armSetPoint(MultiTool.STOW_TAG);
+		// Robot.multiTool.armSetPoint(MultiTool.STOW_TAG);
 	}
 
 	@Override
@@ -27,7 +27,6 @@ public class MultiToolMover extends Command {
 		SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
 
 		speed = gameController.getY();
-		Robot.multiTool.driveArmUpDown(speed);
 		if(speed > 0.1){
 			if((speed < 0.0 && !Robot.multiTool.readLowerMultiToolLimitSwitch()) 
 					|| (speed > 0.0 && !Robot.multiTool.readUpperMultiToolLimitSwitch())){
@@ -36,23 +35,17 @@ public class MultiToolMover extends Command {
 				Robot.multiTool.stopMotors();
 				Robot.multiTool.driveArmHold();
 			}
-			
 		}
-		
-		
-
 	}
 
 	@Override
 	protected void interrupted() {
 		end();
-
 	}
 
 	@Override
 	protected boolean isFinished() {
 		return false;
-
 	}
 
 	@Override

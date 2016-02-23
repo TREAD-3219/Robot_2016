@@ -10,6 +10,7 @@ public class AutoDrive extends Command {
 	double time = 10;
 	double distance;
 	double encoderDist;
+	
 	public AutoDrive(double speed, double distance) {
 		this.speed = speed;
 		this.distance = distance;
@@ -18,9 +19,9 @@ public class AutoDrive extends Command {
 	protected void initialize() {
 		this.setTimeout(time);
 		Robot.drive.driveValues(speed, 0);
-		encoderDist = (RobotMap.driveEncoderLeft.getDistance() + RobotMap.driveEncoderRight.getDistance()) / 2;
-		
+		encoderDist = Robot.sensors.getAvgEncoderDist();
 	}
+	
 	@Override
 	protected void end() {
 		Robot.drive.driveValues(0, 0);
@@ -28,9 +29,15 @@ public class AutoDrive extends Command {
 	}
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
-		
+		// if speed were to represent a distance/time and not a
+		// power input, you could check if the robot was actually
+		// going that speed and increase or decrease power here
+		// as appropriate.  low speeds would be much more
+		// controllable.
+		// I'd also derive this from AutoStraight, so the direction
+		// could be corrected as well.
 	}
+	
 	@Override
 	protected void interrupted() {
 		end();
@@ -38,8 +45,7 @@ public class AutoDrive extends Command {
 	}
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return this.isTimedOut() || (RobotMap.driveEncoderLeft.getDistance() + RobotMap.driveEncoderRight.getDistance()) / 2 >= distance;
-		
+		double avgDistance = Robot.sensors.getAvgEncoderDist();
+		return this.isTimedOut() || avgDistance >= distance;
 	}
 }

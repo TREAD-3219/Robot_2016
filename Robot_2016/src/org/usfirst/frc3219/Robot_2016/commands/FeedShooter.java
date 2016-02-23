@@ -8,8 +8,9 @@ public class FeedShooter extends Command {
 	// need to feed shooter and check if limit switch is activated
 	double time;
 	public FeedShooter() {
-		requires(Robot.shooter);
+		requires(Robot.feedMech);
 	}
+	
 	public FeedShooter(double seconds) {
 		requires(Robot.feedMech);
 		time = seconds;

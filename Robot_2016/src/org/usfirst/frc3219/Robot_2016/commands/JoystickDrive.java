@@ -13,13 +13,13 @@ public class JoystickDrive extends Command {
 	Joystick driveStick = null;
 	double lastLeftEncoder;
 	double lastRightEncoder;
+
 	public JoystickDrive() {
 		requires(Robot.drive);
 	}
 
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
 		driveStick = Robot.oi.joystick; // Renames the joystick to 
 		lastLeftEncoder = RobotMap.driveEncoderLeft.getDistance();
 		lastRightEncoder = RobotMap.driveEncoderRight.getDistance();
@@ -60,19 +60,15 @@ public class JoystickDrive extends Command {
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	protected void end() {
 		Robot.drive.driveValues(0.0, 0.0); // stops the motors
-
 	}
 }

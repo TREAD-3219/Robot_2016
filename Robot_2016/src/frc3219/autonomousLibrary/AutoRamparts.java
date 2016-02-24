@@ -13,14 +13,14 @@ public class AutoRamparts extends AutoStraightCommand {
 
 	@Override
 	protected void execute() {
-		gyroStraight(0.5);
+		gyroStraight(1.0);
 		
 	}
 
 	@Override
 	protected void initialize() {
 		aveDistI = Robot.sensors.getAvgEncoderDist();
-		gyroStraight(0.5);
+		gyroStraight(1.0);
 		
 		
 	}

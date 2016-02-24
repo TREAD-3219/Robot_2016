@@ -13,8 +13,8 @@ public class EngageRamp extends AutoStraightCommand {
 
 	@Override
 	protected void execute() {
-		gyroStraight(0.6);
-		if (whichArmPreset.equalsIgnoreCase("Rough Terrain")) {
+		gyroStraight(0.8);
+/*		if (whichArmPreset.equalsIgnoreCase("Rough Terrain")) {
 			Robot.multiTool.armSetPoint("STOW");
 		} else if (whichArmPreset.equalsIgnoreCase("Rock Wall")) {
 			Robot.multiTool.armSetPoint("STOW");
@@ -30,14 +30,15 @@ public class EngageRamp extends AutoStraightCommand {
 			Robot.multiTool.armSetPoint("DRAWBRIDGE_START");
 		} else if (whichArmPreset.equalsIgnoreCase("Chival de Frise")) {
 			Robot.multiTool.armSetPoint("CHIVAL_DE_FRISE_START");
-		}
+		}*/
 	}
 
 	@Override
 	protected void initialize() {
 		//Robot.multiTool.getPIDController().enable();
-		gyroStraight(0.6);
-		whichArmPreset = (String) Robot.oi.autoDefenseChooser.getSelected();
+		Robot.sensors.navx.reset();
+		gyroStraight(0.8);
+/*		whichArmPreset = (String) Robot.oi.autoDefenseChooser.getSelected();
 		if (whichArmPreset.equalsIgnoreCase("Rough Terrain")) {
 			Robot.multiTool.armSetPoint("STOW");
 		} else if (whichArmPreset.equalsIgnoreCase("Rock Wall")) {
@@ -54,7 +55,7 @@ public class EngageRamp extends AutoStraightCommand {
 			Robot.multiTool.armSetPoint("DRAWBRIDGE_START");
 		} else if (whichArmPreset.equalsIgnoreCase("Chival de Frise")) {
 			Robot.multiTool.armSetPoint("CHIVAL_DE_FRISE_START");
-		}
+		}*/
 	}
 
 	@Override

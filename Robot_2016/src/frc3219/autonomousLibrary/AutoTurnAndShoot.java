@@ -11,13 +11,15 @@ public class AutoTurnAndShoot extends AutoStraightCommand {
 
 	@Override
 	protected void end() {
+		Robot.drive.setBrakesOn();
 		Robot.drive.driveValues(0.0, 0.0);
 	}
 
 	@Override
 	protected void execute() {
 		currentEncoderDist = Robot.sensors.aveDistEncoders() - initEncoderDist;
-		if (whichPosition.equalsIgnoreCase("position a")) { // 36 degrees
+		setGyroStraight(0.45, 20);
+/*		if (whichPosition.equalsIgnoreCase("position a")) { // 36 degrees
 			setGyroStraight(0.45, 36.0);
 		} else if (whichPosition.equalsIgnoreCase("position b")) {
 			setGyroStraight(0.45, 20);
@@ -25,7 +27,7 @@ public class AutoTurnAndShoot extends AutoStraightCommand {
 			setGyroStraight(0.45, 355);
 		} else if (whichPosition.equalsIgnoreCase("position d")) {
 			setGyroStraight(0.45, 300);
-		}
+		}*/
 	}
 
 	@Override

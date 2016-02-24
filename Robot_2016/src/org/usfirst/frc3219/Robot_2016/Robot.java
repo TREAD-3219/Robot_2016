@@ -22,6 +22,7 @@ import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc3219.autonomousCommandGroupLibrary.Ramparts;
 import frc3219.autonomousCommandGroupLibrary.RoughTerrain;
 
 /**
@@ -91,7 +92,7 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
         //autonomousCommand = (Command) chooser.getSelected();
-    	autonomousCommand = new RoughTerrain();
+    	autonomousCommand = new Ramparts();
         
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {

@@ -10,7 +10,8 @@ public class IntakeBall extends Command { // Starts feeder motor
 	int direction;
 	public IntakeBall() {
 		requires(Robot.feedMech);
-		this.direction = direction;
+		requires(Robot.multiTool);
+		this.direction = 1;
 	}
 
 	public IntakeBall(int direction) {
@@ -21,12 +22,15 @@ public class IntakeBall extends Command { // Starts feeder motor
 	@Override
 	protected void initialize() {
 		Robot.feedMech.spinFeeder(direction, .3);
+		Robot.multiTool.driveRoller(-1.0 * direction);
 		this.setTimeout(5);
 		pressed = false;
 	}
 
 	@Override
 	protected void execute() {
+		Robot.multiTool.driveRoller(-1.0 * direction);
+		Robot.feedMech.spinFeeder(direction, .3);
 		if (!pressed) {
 			pressed = Robot.feedMech.getLimitSwitch();
 		}
@@ -44,7 +48,7 @@ public class IntakeBall extends Command { // Starts feeder motor
 	@Override
 	protected void end() {
 		Robot.feedMech.stopFeeder();
-
+		Robot.multiTool.driveRoller(0.0);
 	}
 
 	@Override

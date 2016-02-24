@@ -13,13 +13,13 @@ public class AutoRough extends AutoStraightCommand {
 
 	@Override
 	protected void execute() {
-		gyroStraight(0.5);
+		gyroStraight(0.85);
 	}
 
 	@Override
 	protected void initialize() {
 		aveDistI = Robot.sensors.getAvgEncoderDist();
-		gyroStraight(0.5);
+		gyroStraight(0.85);
 
 	}
 

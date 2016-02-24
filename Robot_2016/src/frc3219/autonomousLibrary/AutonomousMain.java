@@ -14,7 +14,7 @@ public class AutonomousMain extends CommandGroup {
 
 	//this.addSequential(new AutoDrive(100.0, SmartDashboard.getNumber("AUTO_SPEED_ENGAGE_RAMP", 0.0))); // From edge of starting line to edge of front defense.
 	this.addSequential(new EngageRamp());
-	this.addSequential(new AutoRamparts());
+	this.addSequential(new AutoRWall());
 	//this.addSequential(new AutoDrive(3, 0.5));
 	
 	//this.addSequential(new OnRamp());

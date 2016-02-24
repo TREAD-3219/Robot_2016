@@ -2,9 +2,9 @@ package org.usfirst.frc3219.Robot_2016;
 
 
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
+import org.usfirst.frc3219.Robot_2016.commands.IntakeBall;
 import org.usfirst.frc3219.Robot_2016.commands.ManualFeed;
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
-import org.usfirst.frc3219.Robot_2016.commands.PickupBall;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
 import org.usfirst.frc3219.Robot_2016.commands.ServoControllerSafetyPressed;
 
@@ -51,7 +51,7 @@ public class OI {
     	JoystickButton centerToGoal = new JoystickButton(gameController, 1);
     	centerToGoal.whenPressed(new AutoCenterToGoal());
     	spitOut = new JoystickButton(gameController, 2);
-    	spitOut .whileHeld(new PickupBall(-1));
+    	spitOut .whileHeld(new IntakeBall(-1));
 
     	//JoystickButton reverseIntake = new JoystickButton(gameController, 2);
     	JoystickButton manualFeed = new JoystickButton(gameController, 5);
@@ -59,7 +59,7 @@ public class OI {
     	
     	buttonY = new JoystickButton(gameController, 4);
     	buttonStart = new JoystickButton(gameController, 8);
-    	intake.whenPressed(new PickupBall());
+    	intake.whenPressed(new IntakeBall());
     	autoShoot.whileHeld(new AutoShoot());
     	//intake.whenReleased(new Interrupt());
     	

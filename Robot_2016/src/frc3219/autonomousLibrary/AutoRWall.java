@@ -13,17 +13,14 @@ public class AutoRWall extends AutoStraightCommand {
 
 	@Override
 	protected void execute() {
-		if (Robot.sensors.navx.getRawGyroY() > 15.0) {
-			setGyroStraight(-0.9, 180);
-		} else {
-			setGyroStraight(-0.5, 180);
-		}
+		gyroStraight(0.5);
 	}
+
 
 	@Override
 	protected void initialize() {
 		aveDistI = Robot.sensors.getAvgEncoderDist();
-		gyroStraight(-0.5);
+		gyroStraight(0.5);
 	}
 
 	@Override

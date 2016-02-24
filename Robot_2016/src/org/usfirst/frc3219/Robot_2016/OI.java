@@ -11,6 +11,7 @@ import org.usfirst.frc3219.Robot_2016.commands.ServoControllerSafetyPressed;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc3219.autonomousLibrary.AutoCenterToGoal;
 
 /**
@@ -31,6 +32,8 @@ public class OI {
     public Button buttonStart;
     public JoystickButton autoShoot;
     public JoystickButton spitOut;
+    public SendableChooser autoDefenseChooser;
+    public SendableChooser autoStartPosition;
     
     public OI(){
     	joystick = new Joystick(0);

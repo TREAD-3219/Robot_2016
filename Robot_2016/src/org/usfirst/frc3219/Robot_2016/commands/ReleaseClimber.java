@@ -11,7 +11,8 @@ public class ReleaseClimber extends Command {
 	
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
+		servo4.setAngle(180.0f);
+		servo5.setAngle(0.0f);
 		
 	}
 

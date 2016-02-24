@@ -6,8 +6,7 @@ import org.usfirst.frc3219.Robot_2016.commands.ManualFeed;
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
 import org.usfirst.frc3219.Robot_2016.commands.PickupBall;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
-import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyStartPressed;
-import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyYPressed;
+import org.usfirst.frc3219.Robot_2016.commands.ServoControllerSafetyPressed;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -28,8 +27,6 @@ public class OI {
     public JoystickButton intake;
     public JoystickButton shoot;
     public JoystickButton reverse;
-    public Boolean safetyYPressed_value = false;
-    public Boolean safetyStartPressed_value = false;
     public Button buttonY;
     public Button buttonStart;
     public JoystickButton autoShoot;
@@ -60,8 +57,8 @@ public class OI {
     	//intake.whenReleased(new Interrupt());
     	
     	//start button
-    	buttonStart.whileHeld(new ServoController_SafetyStartPressed());
-    	buttonY.whileHeld(new ServoController_SafetyYPressed());
+    	buttonStart.whileHeld(new ServoControllerSafetyPressed());
+    	//buttonY.whileHeld(new ServoControllerSafetyPressed());
 
     	
     	

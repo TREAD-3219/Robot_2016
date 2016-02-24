@@ -30,10 +30,8 @@ public class Drive extends Subsystem {
 	CANTalon leftDriveRear = RobotMap.driveLeftDriveA;
 	RobotDrive driveMotors = RobotMap.driveDriveMotors;
 
-	float reverse = -1.0f;
-	
 	public void driveValues(double forward, double turnRate){
-		driveMotors.arcadeDrive(forward*reverse, turnRate);
+		driveMotors.arcadeDrive(forward, turnRate);
 	}
 
 	public void setSafety(boolean safely) {
@@ -51,10 +49,6 @@ public class Drive extends Subsystem {
 		double power = powerFromSpeed(forwardSpeed);
 		double turns = turnRate / MAX_TURN_RATE_DPS;
 		driveMotors.drive(power, turns);
-	}
-	
-	public void reverse(){	
-		this.reverse *= -1.0f;
 	}
 	
     public double speedFromPower(double power) {

@@ -55,13 +55,35 @@ public class AutoCenterToGoal extends Command {
 		}
 	}
 
-	public double turnRateForAutoCenterToGoal() { // Gets turnRate for
+	public double turnRateAutoCenter() { // Gets turnRate for
 		// AutoCenterToGoal. Is
 		// supposed to slow the
 		// robot down when
 		// approaching the dead zone
 		// near CENTER.
+		
 		double X = camera.getCOG_X();
+		//Make 0 the origin.
+		X -= 320;
+		double rate;
+		
+		if(X > 0) {
+			rate = 3.5 * Math.pow((-X*0.003), 3) - 0.4;
+		} else {
+			rate = 3.5 * Math.pow((-X*0.003), 3) + 0.4;
+		}
+		
+		if(rate > 0.75) {
+			rate = 0.75;
+		} else if(rate < -0.75) {
+			rate = -0.75;
+		}
+		
+		return rate;
+
+		// Old code, currently works so DO NOT DELETE
+		
+		/*double X = camera.getCOG_X();
 		if (X <= OUTER_LIMIT_LEFT) { // Lower limits:
 			return 0.45;
 		} else if (X >= OUTER_LIMIT_RIGHT) {
@@ -72,7 +94,7 @@ public class AutoCenterToGoal extends Command {
 			return -0.35;
 		} else {
 			return 0;
-		}
+		}*/
 	}
 
 	public void autoCenter() {
@@ -81,10 +103,8 @@ public class AutoCenterToGoal extends Command {
 			return;
 		}
 		double x = camera.getCOG_X();
-		if (x <= CENTER - LIMIT_AREA) {
-			Robot.drive.driveValues(0, this.turnRateForAutoCenterToGoal());
-		} else if (x >= CENTER + LIMIT_AREA) {
-			Robot.drive.driveValues(0, this.turnRateForAutoCenterToGoal());
+		if (x <= CENTER - LIMIT_AREA || x >= CENTER + LIMIT_AREA) {
+			Robot.drive.driveValues(0, this.turnRateAutoCenter());
 		} else {
 			Robot.drive.driveValues(0, 0);
 			state = 1; // Correction complete.

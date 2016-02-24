@@ -3,7 +3,7 @@ package frc3219.autonomousLibrary;
 import org.usfirst.frc3219.Robot_2016.Robot;
 
 public class DriveOverObstacle extends AutoStraightCommand {
-	
+
 	double initEncoder;
 	public static final double MIN_ENCODER_DISTANCE = 60;
 
@@ -15,7 +15,13 @@ public class DriveOverObstacle extends AutoStraightCommand {
 
 	@Override
 	protected void execute() {
-		gyroStraight(0.5);
+
+		double tip = Robot.sensors.navx.getPitch();
+		if (tip >= 30) {
+			Robot.drive.driveValues(1.0, 0.0);
+		} else {
+			gyroStraight(0.5);
+		}
 
 	}
 
@@ -35,7 +41,7 @@ public class DriveOverObstacle extends AutoStraightCommand {
 	@Override
 	protected boolean isFinished() {
 		double encoderDiff = Robot.sensors.getAvgEncoderDist() - initEncoder;
-		if(Robot.sensors.getTip() < 5 && encoderDiff >= MIN_ENCODER_DISTANCE) {
+		if (Robot.sensors.getTip() < 5 && encoderDiff >= MIN_ENCODER_DISTANCE) {
 			return true;
 		}
 		return false;

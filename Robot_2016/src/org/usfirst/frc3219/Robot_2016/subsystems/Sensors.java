@@ -47,7 +47,7 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 
 	Encoder rightEncoder = RobotMap.driveEncoderRight;
 	Encoder leftEncoder = RobotMap.driveEncoderLeft;
-	Encoder armEncoder = RobotMap.sensorsArmPositionEncoder;
+	Encoder armEncoder = RobotMap.sensorsArmEncoder;
 
 	EncoderData rightData = new EncoderData(rightEncoder);
 	EncoderData leftData = new EncoderData(leftEncoder);

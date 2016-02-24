@@ -4,10 +4,11 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoDrive extends Command {
 	double speed;
-	double time = 10;
+	double time = 2;
 	double distance;
 	double encoderDist;
 	public AutoDrive(double speed, double distance) {
@@ -28,7 +29,7 @@ public class AutoDrive extends Command {
 	}
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
+		Robot.drive.driveValues(speed, 0); // hau fst th robt gos
 		
 	}
 	@Override
@@ -38,8 +39,14 @@ public class AutoDrive extends Command {
 	}
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return this.isTimedOut() || (RobotMap.driveEncoderLeft.getDistance() + RobotMap.driveEncoderRight.getDistance()) / 2 >= distance;
-		
+		boolean encoderHit = false;//((RobotMap.driveEncoderLeft.getDistance() + RobotMap.driveEncoderRight.getDistance()) / 2) - encoderDist >= distance;
+		if (this.isTimedOut()) {
+			SmartDashboard.putString("Wheel stopped because", "Timed out");
+		} else if (encoderHit) {
+			SmartDashboard.putString("Wheel stopped because", "Encoders Hit");
+		} else {
+			SmartDashboard.putString("Wheel stopped because", "null");
+		}
+		return this.isTimedOut() || encoderHit;
 	}
 }

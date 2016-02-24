@@ -35,7 +35,7 @@ public class EngageRamp extends AutoStraightCommand {
 
 	@Override
 	protected void initialize() {
-		Robot.multiTool.getPIDController().enable();
+		//Robot.multiTool.getPIDController().enable();
 		gyroStraight(0.6);
 		whichArmPreset = (String) Robot.oi.autoDefenseChooser.getSelected();
 		if (whichArmPreset.equalsIgnoreCase("Rough Terrain")) {

@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc3219.autonomousLibrary.AutoCenterToGoal;
 
 /**
@@ -23,6 +24,9 @@ public class OI {
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
     // number it is.
+	private static final String AUTO_START_POSITION = "Auto Start Position";
+	private static final String AUTO_DEFENSE_CHOOSER = "autoDefenseChooser";
+	
     public Joystick joystick;
     public Joystick gameController;
     public JoystickButton intake;
@@ -70,7 +74,7 @@ public class OI {
 		autoStartPosition.addObject(AUTO_START_POSITION, "Position D");//
 
 		autoDefenseChooser = new SendableChooser();//
-		autoDefenseChooser.addDefault(AUTO_DEFENSE_CHOOSER, "RoughTerrain");//
+		autoDefenseChooser.addDefault(AUTO_DEFENSE_CHOOSER, "Rough Terrain");//
 		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Rock Wall");//
 		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Portcullis");//
 		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Moat");//
@@ -78,6 +82,7 @@ public class OI {
 		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Sally Port");//
 		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Drawbridge");//
 		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Chival de Frise");//
+		SmartDashboard.putData("defense chooser", autoDefenseChooser);
     	
     	
     	

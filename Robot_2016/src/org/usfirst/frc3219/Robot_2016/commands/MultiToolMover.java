@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class MultiToolMover extends Command {
+public class MultiToolMover extends NeverFinishCommand {
 	Joystick gameController;
 	double speed = 0.0;
 
@@ -26,8 +26,12 @@ public class MultiToolMover extends Command {
 	protected void execute() {
 		SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
 
-		speed = gameController.getY();
-		Robot.multiTool.driveArmUpDown(speed);
+
+		// consider a better scaling algorithm here... cubic?
+		// also, perhaps asymmetric?  i.e., bigger up than down.
+		speed = gameController.getY() * 0.5;
+
+
 		if(speed > 0.1){
 			if((speed < 0.0 && !Robot.multiTool.readLowerMultiToolLimitSwitch()) 
 					|| (speed > 0.0 && !Robot.multiTool.readUpperMultiToolLimitSwitch())){
@@ -36,23 +40,12 @@ public class MultiToolMover extends Command {
 				Robot.multiTool.stopMotors();
 				Robot.multiTool.driveArmHold();
 			}
-			
 		}
-		
-		
-
 	}
 
 	@Override
 	protected void interrupted() {
 		end();
-
-	}
-
-	@Override
-	protected boolean isFinished() {
-		return false;
-
 	}
 
 	@Override

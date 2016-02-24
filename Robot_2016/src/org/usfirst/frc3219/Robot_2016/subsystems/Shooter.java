@@ -57,17 +57,17 @@ public class Shooter extends Subsystem {
 		shooterBottomMotor.setInverted(false);
 
 		// set up counter mode
-		RobotMap.normalCounter.setUpDownCounterMode();
+		RobotMap.shooterCounter.setUpDownCounterMode();
 
 		// Reset
-		RobotMap.normalCounter.reset();
+		RobotMap.shooterCounter.reset();
 
 		// Counter Setting
-		RobotMap.normalCounter.setMaxPeriod(0.1);
-		RobotMap.normalCounter.setUpdateWhenEmpty(true);
-		RobotMap.normalCounter.setReverseDirection(false);
-		RobotMap.normalCounter.setSamplesToAverage(10);
-		RobotMap.normalCounter.setDistancePerPulse(12);
+		RobotMap.shooterCounter.setMaxPeriod(0.1);
+		RobotMap.shooterCounter.setUpdateWhenEmpty(true);
+		RobotMap.shooterCounter.setReverseDirection(false);
+		RobotMap.shooterCounter.setSamplesToAverage(10);
+		RobotMap.shooterCounter.setDistancePerPulse(12);
 		
 		SmartDashboard.putNumber(TOPSHOOTER, 1.0);
 		SmartDashboard.putNumber(BOTTOMSHOOTER, 1.0);
@@ -84,7 +84,6 @@ public class Shooter extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-
 	}
 
 	public boolean atSpeed() {

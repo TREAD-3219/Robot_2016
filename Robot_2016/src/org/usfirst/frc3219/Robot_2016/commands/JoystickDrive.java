@@ -2,16 +2,25 @@ package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
+import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
 import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+
 public class JoystickDrive extends NeverFinishCommand {
+
+	static double reverse = -1.0;
+
 
 	Joystick driveStick = null;
 	double lastLeftEncoder;
 	double lastRightEncoder;
+
+	public static void reverse() {
+		reverse *= -1.0;
+	}
 
 	public JoystickDrive() {
 		requires(Robot.drive);
@@ -19,13 +28,19 @@ public class JoystickDrive extends NeverFinishCommand {
 
 	@Override
 	protected void initialize() {
+
 		driveStick = Robot.oi.joystick; // Renames the joystick to driveStick
+
 		lastLeftEncoder = RobotMap.driveEncoderLeft.getDistance();
 		lastRightEncoder = RobotMap.driveEncoderRight.getDistance();
+		// NOTE: do NOT change reverse in initialize!
+		// we want it to remain in the same setting even if
+		// JoystickDrive is interrupted and then restarts
 	}
 
 	@Override
 	protected void execute() {
+
 		// give an extra name to the "Y" value of the joyStick
 		double rawFwd = driveStick.getY();
 		// Give an extra name to the "X" value of the joyStick
@@ -58,7 +73,11 @@ public class JoystickDrive extends NeverFinishCommand {
 	@Override
 	protected void interrupted() {
 		end();
+
 	}
+
+
+	
 
 	@Override
 	protected void end() {

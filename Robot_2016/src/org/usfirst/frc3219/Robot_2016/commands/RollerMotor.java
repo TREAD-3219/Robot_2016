@@ -2,7 +2,6 @@ package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class RollerMotor extends Command{// Starts roller motor
@@ -12,9 +11,10 @@ public class RollerMotor extends Command{// Starts roller motor
 	double direction;
 	
 	public RollerMotor() {
-		requires(Robot.drive);
-		this.direction = 1.0;
-		this.pressed = false;
+
+		requires(Robot.multiTool);
+		this.direction = 1;
+
 	}
 	
 	public RollerMotor(double direction) {

@@ -104,8 +104,10 @@ public class MultiTool extends PIDSubsystem {
 	}
 
 	public void driveArmUpDown(double speed) {
+
 		//double direction = Math.signum(speed);
 		//this.setSetpointRelative(direction);
+
 		driveArmMotor.set(speed);
 	}
 

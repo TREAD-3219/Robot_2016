@@ -4,36 +4,36 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ManualFeed extends Command {
-	
-	public ManualFeed() {
-		requires(Robot.feedMech);
-	}
+public class SetMultiToolPoint extends Command {
 
 	@Override
 	protected void end() {
-		Robot.feedMech.stopFeeder();
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	protected void execute() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	protected void initialize() {
-
-		Robot.feedMech.spinFeeder(1, .3);
-		this.setTimeout(5);
-
+		Robot.multiTool.armSetPoint("PORTCULLIS_START");
+		this.setTimeout(2);
+		
 	}
 
 	@Override
 	protected void interrupted() {
-		end();
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	protected boolean isFinished() {
+		// TODO Auto-generated method stub
 		return this.isTimedOut();
 	}
 

@@ -1,6 +1,7 @@
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
 import org.usfirst.frc3219.Robot_2016.RobotMap;
+import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -34,6 +35,7 @@ public class Drive extends Subsystem {
 	
 	public void driveValues(double forward, double turnRate){
 		driveMotors.arcadeDrive(forward*reverse, turnRate*reverse);
+
 	}
 
 	public void setSafety(boolean safely) {
@@ -51,10 +53,6 @@ public class Drive extends Subsystem {
 		double power = powerFromSpeed(forwardSpeed);
 		double turns = turnRate / MAX_TURN_RATE_DPS;
 		driveMotors.drive(power, turns);
-	}
-	
-	public void reverse(){	
-		this.reverse *= -1.0f;
 	}
 	
     public double speedFromPower(double power) {
@@ -78,5 +76,6 @@ public class Drive extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
+		setDefaultCommand(new JoystickDrive());
 	}
 }

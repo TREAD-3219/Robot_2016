@@ -23,6 +23,8 @@ public class WatchSensors extends NeverFinishCommand {
 		SmartDashboard.putNumber(Sensors.COMPASS_TAG, compassAngle);
 		SmartDashboard.putNumber("Angle", sensors.getAngle());
 		//SmartDashboard.putString("Location", Navigation.getDeadRecArea());
+		SmartDashboard.putNumber("Left Encoder Raw", RobotMap.driveEncoderLeft.getDistance());
+		SmartDashboard.putNumber("Right Encoder Raw", RobotMap.driveEncoderRight.getDistance());
 		SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
 		SmartDashboard.putNumber("DedRecX", Robot.navigation.getDedRecX());
 		SmartDashboard.putNumber("DedRevY", Robot.navigation.getDedRecX());

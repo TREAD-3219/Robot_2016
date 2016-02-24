@@ -6,8 +6,7 @@ import org.usfirst.frc3219.Robot_2016.commands.ManualFeed;
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
 import org.usfirst.frc3219.Robot_2016.commands.PickupBall;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
-import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyStartPressed;
-import org.usfirst.frc3219.Robot_2016.commands.ServoController_SafetyYPressed;
+import org.usfirst.frc3219.Robot_2016.commands.ServoControllerSafetyPressed;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -28,11 +27,10 @@ public class OI {
     public JoystickButton intake;
     public JoystickButton shoot;
     public JoystickButton reverse;
-    public Boolean safetyYPressed_value = false;
-    public Boolean safetyStartPressed_value = false;
     public Button buttonY;
     public Button buttonStart;
     public JoystickButton autoShoot;
+    public JoystickButton spitOut;
     
     public OI(){
     	joystick = new Joystick(0);
@@ -47,6 +45,8 @@ public class OI {
     	autoShoot = new JoystickButton(gameController, 6);
     	JoystickButton centerToGoal = new JoystickButton(gameController, 1);
     	centerToGoal.whenPressed(new AutoCenterToGoal());
+    	spitOut = new JoystickButton(gameController, 2);
+    	spitOut .whileHeld(new PickupBall(-1));
 
     	//JoystickButton reverseIntake = new JoystickButton(gameController, 2);
     	JoystickButton manualFeed = new JoystickButton(gameController, 5);
@@ -57,11 +57,10 @@ public class OI {
     	intake.whenPressed(new PickupBall());
     	autoShoot.whileHeld(new AutoShoot());
     	//intake.whenReleased(new Interrupt());
-    	//reverseIntake.whileHeld(new PickupBall(-1));
     	
     	//start button
-    	buttonStart.whileHeld(new ServoController_SafetyStartPressed());
-    	buttonY.whileHeld(new ServoController_SafetyYPressed());
+    	buttonStart.whileHeld(new ServoControllerSafetyPressed());
+    	//buttonY.whileHeld(new ServoControllerSafetyPressed());
 
     	
     	

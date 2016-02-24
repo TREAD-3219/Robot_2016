@@ -25,6 +25,7 @@ public class AutoCenterToGoal extends Command {
 		System.out.println("finished");
 		SmartDashboard.putBoolean("IsCentered", true);
 		Robot.drive.driveValues(0, 0);
+		SmartDashboard.putBoolean("IsCentered", true);
 		state = 0; // So it works the second time!!!
 	}
 
@@ -39,6 +40,7 @@ public class AutoCenterToGoal extends Command {
 		System.out.println("enter autoCenter");
 		this.setTimeout(5.0); // Timer for the program.
 		autoCenter();
+		SmartDashboard.putBoolean("IsCentered", false);
 	}
 
 	@Override

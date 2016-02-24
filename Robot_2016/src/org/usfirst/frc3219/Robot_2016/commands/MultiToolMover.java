@@ -26,9 +26,11 @@ public class MultiToolMover extends NeverFinishCommand {
 	protected void execute() {
 		SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
 
+
 		// consider a better scaling algorithm here... cubic?
 		// also, perhaps asymmetric?  i.e., bigger up than down.
 		speed = gameController.getY() * 0.5;
+
 
 		if(speed > 0.1){
 			if((speed < 0.0 && !Robot.multiTool.readLowerMultiToolLimitSwitch()) 

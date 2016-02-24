@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
-
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -46,20 +45,24 @@ public class RobotMap {
 	public static Encoder driveEncoderLeft;
 	public static Encoder driveEncoderRight;
 
-	public static Encoder sensorsArmPositionEncoder;
+	public static Encoder sensorsArmEncoder;
 
 	public static Camera camera;
+
 	public static Counter shooterCounter;
 
-	public static NetworkTable roboRealmTable;
 	// For commands and RPM.
 	public static double time;
 
-	public static void init() {
-		driveRightDriveA = new CANTalon(4);
-		driveRightDriveB = new CANTalon(5);
-		driveLeftDriveA = new CANTalon(2);
-		driveLeftDriveB = new CANTalon(3);
+	public static Counter normalCounter;
+	
+    public static NetworkTable roboRealmTable;
+	
+	public static void init(){
+		driveRightDriveA  = new CANTalon(4);
+		driveRightDriveB  = new CANTalon(5);
+		driveLeftDriveA  = new CANTalon(2);
+		driveLeftDriveB  = new CANTalon(3);
 		driveDriveMotors = new RobotDrive(driveLeftDriveA, driveLeftDriveB, driveRightDriveA, driveRightDriveB);
 
 		driveTopShooter = new CANTalon(6);
@@ -68,28 +71,33 @@ public class RobotMap {
 		shooterFeederMotor = new Talon(0);
 		feederLimitSwitch = new DigitalInput(9);
 
-		pwmServo_4 = new Servo(4);
+		pwmServo_4 = new Servo(4);// these might be wrong 2/23/16 after merge
 		pwmServo_5 = new Servo(5);
 
 		driveRollerMotorController = new Talon(1);
 		driveMultiToolArmMotor = new Talon(2);
 		multiToolLimitSwitchHigh = new DigitalInput(6);
 		multiToolLimitSwitchLow = new DigitalInput(7);
-
-		driveEncoderLeft = new Encoder(0, 1, false, EncodingType.k4X);
-		driveEncoderLeft.setDistancePerPulse(Drive.WHEEL_DISTANCE_PER_PULSE);
-		driveEncoderLeft.setPIDSourceType(PIDSourceType.kRate);
-		driveEncoderRight = new Encoder(2, 3, false, EncodingType.k4X);
-		driveEncoderRight.setDistancePerPulse(Drive.WHEEL_DISTANCE_PER_PULSE);
-		driveEncoderRight.setPIDSourceType(PIDSourceType.kRate);
-		sensorsArmPositionEncoder = new Encoder(4, 5, false, EncodingType.k4X);
-		sensorsArmPositionEncoder.setDistancePerPulse(MultiTool.ARM_ENCODER_DEGREES_PER_PULSE);
-		sensorsArmPositionEncoder.setPIDSourceType(PIDSourceType.kRate);
-
+		
 		shooterCounter = new Counter(8);
 		shooterCounter.setDistancePerPulse(1);
 
 		roboRealmTable = NetworkTable.getTable("SmartDashboard");
+		
+		driveEncoderLeft = new Encoder(0, 1, false, EncodingType.k4X);
+		driveEncoderLeft.setDistancePerPulse(.067638888);
+		driveEncoderLeft.setPIDSourceType(PIDSourceType.kRate);
+		driveEncoderRight = new Encoder(2, 3, false, EncodingType.k4X);
+		driveEncoderRight.setDistancePerPulse(.067638888);
+		driveEncoderRight.setPIDSourceType(PIDSourceType.kRate);
+		sensorsArmEncoder = new Encoder(4, 5, false, EncodingType.k4X);
+		sensorsArmEncoder.setDistancePerPulse(0.72434);
+		sensorsArmEncoder.setPIDSourceType(PIDSourceType.kRate);
+		
+		normalCounter = new Counter(8);
+		
+       	roboRealmTable = NetworkTable.getTable("SmartDashboard");
+
 		camera = new Camera();
 	}
 }

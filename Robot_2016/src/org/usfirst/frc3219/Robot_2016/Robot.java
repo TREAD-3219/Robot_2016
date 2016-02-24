@@ -6,11 +6,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc3219.Robot_2016.commands.DeadReckoningChecks;
+import org.usfirst.frc3219.Robot_2016.commands.DedReckoningChecks;
 import org.usfirst.frc3219.Robot_2016.commands.EnableClimberButtons;
 import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
 import org.usfirst.frc3219.Robot_2016.commands.MultiToolMover;
-import org.usfirst.frc3219.Robot_2016.commands.ServoController;
 import org.usfirst.frc3219.Robot_2016.commands.WatchSensors;
 import org.usfirst.frc3219.Robot_2016.subsystems.Camera;
 import org.usfirst.frc3219.Robot_2016.subsystems.Climber;
@@ -33,6 +32,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 	
+	// subsystems
 	public static Drive drive;
 	public static Sensors sensors;
 	public static Climber climber;
@@ -42,9 +42,10 @@ public class Robot extends IterativeRobot {
 	public static FeedMech feedMech;
 	public static MultiTool multiTool;
 	public static Navigation navigation;
-    Command autonomousCommand;
-    SendableChooser chooser;
-
+	
+	
+    Command autonomousCommand = null;
+ 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -60,9 +61,7 @@ public class Robot extends IterativeRobot {
     	navigation = new Navigation();
     	camera = new Camera();
 		oi = new OI();
-        chooser = new SendableChooser();
-//        chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto mode", chooser);
+
         SmartDashboard.putNumber(Shooter.TOPSHOOTER, 0.7);
         SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, 1.0);
     }
@@ -73,7 +72,6 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
      */
     public void disabledInit(){
-    	Scheduler.getInstance().add(new WatchSensors());
     }
 	
 	public void disabledPeriodic() {
@@ -90,21 +88,14 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
-        
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
+    	Robot.climber.resetClimber(); // ensure servo's in correct position
     	
-    	// schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
+        autonomousCommand = null;  // assign the real starting autonomous command here.
+   
+        // schedule the autonomous command (example)
+        if (autonomousCommand != null) {
+        	autonomousCommand.start();
+        }
     }
 
     /**
@@ -120,13 +111,10 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        Scheduler.getInstance().add(new DeadReckoningChecks());
         Scheduler.getInstance().add(new MultiToolMover());
-        Scheduler.getInstance().add(new ServoController());
         Scheduler.getInstance().add(new EnableClimberButtons());
         Scheduler.getInstance().add(new JoystickDrive());
-        Scheduler.getInstance().add(new WatchSensors());
-    }
+     }
 
     /**
      * This function is called periodically during operator control
@@ -134,7 +122,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
     }
-    
+
     /**
      * This function is called periodically during test mode
      */

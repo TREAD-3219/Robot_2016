@@ -25,7 +25,7 @@ public class AutoRotate extends AutoStraightCommand {
 
 	@Override
 	protected void initialize() {
-		whichPosition = (String) Robot.oi.AutoDefenseChooser.getSelected();
+		whichPosition = (String) Robot.oi.autoDefenseChooser.getSelected();
 		if (whichPosition.equalsIgnoreCase("position a")) {
 			setGyroStraight(0.0, 216.0);
 		} else if (whichPosition.equalsIgnoreCase("position b")) {

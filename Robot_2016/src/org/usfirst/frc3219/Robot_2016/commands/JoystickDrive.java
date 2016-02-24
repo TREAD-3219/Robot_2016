@@ -3,26 +3,39 @@ package org.usfirst.frc3219.Robot_2016.commands;
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
+import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class JoystickDrive extends Command {
+
+public class JoystickDrive extends NeverFinishCommand {
+
+	static double reverse = -1.0;
+
 
 	Joystick driveStick = null;
 	double lastLeftEncoder;
 	double lastRightEncoder;
+
+	public static void reverse() {
+		reverse *= -1.0;
+	}
+
 	public JoystickDrive() {
 		requires(Robot.drive);
 	}
 
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
-		driveStick = Robot.oi.joystick; // Renames the joystick to 
+
+		driveStick = Robot.oi.joystick; // Renames the joystick to driveStick
+
 		lastLeftEncoder = RobotMap.driveEncoderLeft.getDistance();
 		lastRightEncoder = RobotMap.driveEncoderRight.getDistance();
+		// NOTE: do NOT change reverse in initialize!
+		// we want it to remain in the same setting even if
+		// JoystickDrive is interrupted and then restarts
 	}
 
 	@Override
@@ -40,9 +53,9 @@ public class JoystickDrive extends Command {
 			SmartDashboard.putNumber("Raw Left Encoder", RobotMap.driveEncoderLeft.getDistance());
 			SmartDashboard.putNumber("Raw Right Encoder", RobotMap.driveEncoderRight.getDistance());
 			double avgDist = (newLeftDist + newRightDist) / 2;
-			Navigation.deadRecMoved(avgDist);
+			Robot.navigation.dedRecMoved(avgDist);
 			double degrees = 2 * (newLeftDist - newRightDist);
-			Navigation.deadRecTurned(degrees);
+			Robot.navigation.dedRecTurned(degrees);
 			lastLeftEncoder = RobotMap.driveEncoderLeft.getDistance();
 			lastRightEncoder = RobotMap.driveEncoderRight.getDistance();
 			//end Navigation stuffs
@@ -56,23 +69,23 @@ public class JoystickDrive extends Command {
 //		}
 
 
+		avgDist = (newLeftDist + newRightDist) / 2;
+		Robot.navigation.dedRecMoved(avgDist);
+
+		Robot.drive.driveValues(correctFwd, correctTurn);
 	}
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
+		end();
 
 	}
 
-	@Override
-	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
+	
 
 	@Override
 	protected void end() {
 		Robot.drive.driveValues(0.0, 0.0); // stops the motors
-
 	}
 }

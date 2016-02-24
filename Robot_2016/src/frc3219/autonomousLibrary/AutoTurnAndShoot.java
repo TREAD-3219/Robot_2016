@@ -32,7 +32,7 @@ public class AutoTurnAndShoot extends AutoStraightCommand {
 	protected void initialize() {
 		this.setTimeout(2.5);
 		initEncoderDist = Robot.sensors.aveDistEncoders();
-		whichPosition = (String) Robot.oi.AutoDefenseChooser.getSelected();
+		whichPosition = (String) Robot.oi.autoDefenseChooser.getSelected();
 		if (whichPosition.equalsIgnoreCase("position a")) {
 			setGyroStraight(0.45, 36.0);
 		} else if (whichPosition.equalsIgnoreCase("position b")) {

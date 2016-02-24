@@ -10,14 +10,38 @@
 
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
+import org.usfirst.frc3219.Robot_2016.RobotMap;
+
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
 public class Climber extends Subsystem {
+	private static final double LEFT_RELEASE = 1.0;
+	private static final double RIGHT_RELEASE = -1.0;
+	private static final double LEFT_RESET = -1.0;
+	private static final double RIGHT_RESET = 1.0;
+	
+	Servo leftServo;
+	Servo rightServo;
+	
+	public Climber() {
+		leftServo = RobotMap.pwmServo_4;
+		rightServo = RobotMap.pwmServo_5;
+	}
+	
+	public void releaseClimber() {
+		leftServo.setPosition(LEFT_RELEASE);
+		rightServo.setPosition(RIGHT_RELEASE);
+	}
 
-
+	public void resetClimber() {
+		leftServo.setPosition(LEFT_RESET);
+		rightServo.setPosition(RIGHT_RESET);
+	}
+	
 	public void initDefaultCommand() {
 
 	}

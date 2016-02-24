@@ -1,6 +1,7 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
 
@@ -23,6 +24,8 @@ public class WatchSensors extends Command {
 		SmartDashboard.putNumber(Sensors.COMPASS_TAG, compassAngle);
 		SmartDashboard.putNumber("Angle", sensors.getAngle());
 		//SmartDashboard.putString("Location", Navigation.getDeadRecArea());
+		SmartDashboard.putNumber("Left Encoder Raw", RobotMap.driveEncoderLeft.getDistance());
+		SmartDashboard.putNumber("Right Encoder Raw", RobotMap.driveEncoderRight.getDistance());
 		SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
 		SmartDashboard.putNumber("DeadRecX", Robot.navigation.getDeadRecX());
 		SmartDashboard.putNumber("DeadRevY", Robot.navigation.getDeadRecX());

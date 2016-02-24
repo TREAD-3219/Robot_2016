@@ -13,7 +13,8 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
-
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.Talon;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -58,7 +59,6 @@ public class RobotMap {
 	public static Counter normalCounter;
 	
     public static NetworkTable roboRealmTable;
-
 	
 	public static void init(){
 		driveRightDriveA  = new CANTalon(4);
@@ -93,8 +93,7 @@ public class RobotMap {
 		
 		normalCounter = new Counter(8);
 		
-
-		roboRealmTable = NetworkTable.getTable("SmartDashboard");
+       	roboRealmTable = NetworkTable.getTable("SmartDashboard");
 		camera = new Camera();
 	}
 }

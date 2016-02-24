@@ -11,13 +11,13 @@ public class FeedShooter extends Command {
 		requires(Robot.shooter);
 	}
 	public FeedShooter(double seconds) {
-		requires(Robot.shooter);
+		requires(Robot.feedMech);
 		time = seconds;
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.feedMech.spinFeeder(1);
+		Robot.feedMech.spinFeeder(1, .3);
 		this.setTimeout(time);
 	}
 

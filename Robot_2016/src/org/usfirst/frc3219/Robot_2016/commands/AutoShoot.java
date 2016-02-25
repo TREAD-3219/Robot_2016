@@ -8,15 +8,12 @@ import frc3219.autonomousLibrary.AutoCenterToGoal;
 public class AutoShoot extends CommandGroup { //This is for the full feed and shooting mechanisms
 	
 	public AutoShoot() {
-		// a CommandGroup automatically merges the requires of the added Commands
 		createShooterCommands();
 	}
 	
 	public void createShooterCommands() {
-		this.addSequential(new RunShooter(.7));
-		this.addSequential(new AutoCenterToGoal()); // Was add parallel
-		this.addSequential(new FeedShooter(.3));
-		this.addSequential(new StopShooter());
+		this.addSequential(new ShootBoulder());
+		this.addParallel(new AutoCenterToGoal());
 	}
 	
 }

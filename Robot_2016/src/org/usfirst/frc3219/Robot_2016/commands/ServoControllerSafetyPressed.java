@@ -8,35 +8,34 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class EnableClimberButtons extends Command {
-	public static boolean SafetyClimberEnable = false;
-	
+public class ServoControllerSafetyPressed extends Command {
+	boolean finished = false;
+	// PRESSED PRESSED PRESSED PRESSED
+	// START START START START START
 	private static final String QUICK_RELEASE_OVERRIDE = "quick release override";
-	Servo servo4;
-	Servo servo5;
+	
 	@Override
 	protected void end() {
 
-		SafetyClimberEnable = true;
-		System.out.print("The climber can now be used!");
 	}
 
 	@Override
 	protected void execute() {
-
+		if (EnableClimberButtons.SafetyClimberEnable || SmartDashboard.getBoolean(QUICK_RELEASE_OVERRIDE)) {
+			if (Robot.oi.buttonStart.get() && Robot.oi.buttonY.get()) {
+				SmartDashboard.putBoolean("Climber enabling", true);
+				Scheduler.getInstance().add(new AutoClimb());
+				finished = true;
+			} else {
+				SmartDashboard.putBoolean("Climber enabling", false);
+			}
+		} else {
+			SmartDashboard.putBoolean("Climber enabling", false);
+		}
 	}
 
 	@Override
 	protected void initialize() {
-		// 1:55
-		this.setTimeout(1); // wait to trigger isFinished() to start end()
-		SafetyClimberEnable = false;
-		SmartDashboard.putBoolean(QUICK_RELEASE_OVERRIDE, false);
-		servo4 = RobotMap.pwmServo_4;
-		servo5 = RobotMap.pwmServo_5;
-		servo4.setAngle(180.0f);
-		servo5.setAngle(0.0f);
-		SmartDashboard.putBoolean("Climber enabling", false);
 	}
 
 	@Override
@@ -46,8 +45,6 @@ public class EnableClimberButtons extends Command {
 
 	@Override
 	protected boolean isFinished() {
-
-		return this.isTimedOut();
+		return finished;
 	}
-
 }

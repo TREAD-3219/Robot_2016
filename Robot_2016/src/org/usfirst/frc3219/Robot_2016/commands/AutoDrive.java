@@ -4,10 +4,11 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoDrive extends Command {
 	double speed;
-	double time = 10;
+	double time = 2;
 	double distance;
 	double encoderDist;
 	
@@ -36,6 +37,7 @@ public class AutoDrive extends Command {
 		// controllable.
 		// I'd also derive this from AutoStraight, so the direction
 		// could be corrected as well.
+		Robot.drive.driveValues(speed, 0); // hau fst th robt gos
 	}
 	
 	@Override
@@ -46,6 +48,14 @@ public class AutoDrive extends Command {
 	@Override
 	protected boolean isFinished() {
 		double avgDistance = Robot.sensors.getAvgEncoderDist();
-		return this.isTimedOut() || avgDistance >= distance;
+		boolean encoderHit = avgDistance >= distance;
+		if (this.isTimedOut()) {
+			SmartDashboard.putString("Wheel stopped because", "Timed out");
+		} else if (encoderHit) {
+			SmartDashboard.putString("Wheel stopped because", "Encoders Hit");
+		} else {
+			SmartDashboard.putString("Wheel stopped because", "null");
+		}
+		return this.isTimedOut() || encoderHit;
 	}
 }

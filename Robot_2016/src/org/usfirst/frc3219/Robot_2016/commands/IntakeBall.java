@@ -20,7 +20,7 @@ public class IntakeBall extends Command { // Starts feeder motor
 
 	@Override
 	protected void initialize() {
-		Robot.feedMech.spinFeeder(direction);
+		Robot.feedMech.spinFeeder(direction, .3);
 		this.setTimeout(5);
 		pressed = false;
 	}

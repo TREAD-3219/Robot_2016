@@ -1,14 +1,12 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
-import org.usfirst.frc3219.Robot_2016.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ReverseCommand extends Command{
 
 	@Override
 	protected void initialize() {
-		Robot.drive.reverse();
+		JoystickDrive.reverse();
 	}
 
 	@Override

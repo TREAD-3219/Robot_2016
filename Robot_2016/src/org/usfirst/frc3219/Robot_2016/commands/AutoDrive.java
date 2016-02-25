@@ -49,6 +49,7 @@ public class AutoDrive extends Command {
 	protected boolean isFinished() {
 		double avgDistance = Robot.sensors.getAvgEncoderDist();
 		boolean encoderHit = avgDistance >= distance;
+
 		if (this.isTimedOut()) {
 			SmartDashboard.putString("Wheel stopped because", "Timed out");
 		} else if (encoderHit) {

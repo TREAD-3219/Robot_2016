@@ -3,13 +3,16 @@ package org.usfirst.frc3219.Robot_2016.commands;
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
+import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class JoystickDrive extends Command {
+
+public class JoystickDrive extends NeverFinishCommand {
+
 	static double reverse = -1.0;
+
 
 	Joystick driveStick = null;
 	double lastLeftEncoder;
@@ -25,7 +28,9 @@ public class JoystickDrive extends Command {
 
 	@Override
 	protected void initialize() {
-		driveStick = Robot.oi.joystick; // Renames the joystick to
+
+		driveStick = Robot.oi.joystick; // Renames the joystick to driveStick
+
 		lastLeftEncoder = RobotMap.driveEncoderLeft.getDistance();
 		lastRightEncoder = RobotMap.driveEncoderRight.getDistance();
 		// NOTE: do NOT change reverse in initialize!
@@ -49,9 +54,9 @@ public class JoystickDrive extends Command {
 			SmartDashboard.putNumber("Raw Left Encoder", RobotMap.driveEncoderLeft.getDistance());
 			SmartDashboard.putNumber("Raw Right Encoder", RobotMap.driveEncoderRight.getDistance());
 			double avgDist = (newLeftDist + newRightDist) / 2;
-			Navigation.deadRecMoved(avgDist);
+			Robot.navigation.dedRecMoved(avgDist);
 			double degrees = 2 * (newLeftDist - newRightDist);
-			Navigation.deadRecTurned(degrees);
+			Robot.navigation.dedRecTurned(degrees);
 			lastLeftEncoder = RobotMap.driveEncoderLeft.getDistance();
 			lastRightEncoder = RobotMap.driveEncoderRight.getDistance();
 			//end Navigation stuffs
@@ -72,12 +77,11 @@ public class JoystickDrive extends Command {
 	@Override
 	protected void interrupted() {
 		end();
+
 	}
 
-	@Override
-	protected boolean isFinished() {
-		return false;
-	}
+
+	
 
 	@Override
 	protected void end() {

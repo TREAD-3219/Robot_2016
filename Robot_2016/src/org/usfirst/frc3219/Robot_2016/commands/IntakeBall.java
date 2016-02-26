@@ -4,10 +4,12 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+
 public class IntakeBall extends Command { // Starts feeder motor
 	// stops either when button b is released, or limit switch is hit
 	boolean pressed;
 	int direction;
+	
 	public IntakeBall() {
 		requires(Robot.feedMech);
 		requires(Robot.multiTool);
@@ -54,7 +56,6 @@ public class IntakeBall extends Command { // Starts feeder motor
 	@Override
 	protected void interrupted() {
 		end();
-
 	}
 
 }

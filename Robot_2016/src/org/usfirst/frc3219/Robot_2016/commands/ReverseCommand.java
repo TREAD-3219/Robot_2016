@@ -2,6 +2,10 @@ package org.usfirst.frc3219.Robot_2016.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/* This class is used to reverse the "front" of the robot.
+ * when executed, the Drive will go in the opposite directions
+ */
+
 public class ReverseCommand extends Command{
 
 	@Override
@@ -11,7 +15,6 @@ public class ReverseCommand extends Command{
 
 	@Override
 	protected void execute() {
-
 	}
 
 	
@@ -27,6 +30,5 @@ public class ReverseCommand extends Command{
 
 	@Override
 	protected void end() {
-		
 	}
 }

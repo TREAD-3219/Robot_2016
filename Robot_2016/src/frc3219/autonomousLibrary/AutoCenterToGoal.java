@@ -56,8 +56,8 @@ public class AutoCenterToGoal extends Command {
 			return false;
 		}
 	}
+	
 	public double turnRateAutoCenter() { // Gets turnRate for
-
 		// AutoCenterToGoal. Is
 		// supposed to slow the
 		// robot down when

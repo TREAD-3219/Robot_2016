@@ -21,7 +21,7 @@ public class ServoControllerSafetyPressed extends Command {
 
 	@Override
 	protected void execute() {
-		if (EnableClimberButtons.SafetyClimberEnable || SmartDashboard.getBoolean(QUICK_RELEASE_OVERRIDE)) {
+		if (EnableClimberButtons.safetyClimberEnable || SmartDashboard.getBoolean(QUICK_RELEASE_OVERRIDE)) {
 			if (Robot.oi.buttonStart.get() && Robot.oi.buttonY.get()) {
 				SmartDashboard.putBoolean("Climber enabling", true);
 				Scheduler.getInstance().add(new AutoClimb());

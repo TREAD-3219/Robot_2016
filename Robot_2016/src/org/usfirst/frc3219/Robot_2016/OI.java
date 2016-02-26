@@ -2,15 +2,17 @@ package org.usfirst.frc3219.Robot_2016;
 
 
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
+import org.usfirst.frc3219.Robot_2016.commands.IntakeBall;
 import org.usfirst.frc3219.Robot_2016.commands.ManualFeed;
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
-import org.usfirst.frc3219.Robot_2016.commands.PickupBall;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
 import org.usfirst.frc3219.Robot_2016.commands.ServoControllerSafetyPressed;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc3219.autonomousLibrary.AutoCenterToGoal;
 
 /**
@@ -22,6 +24,9 @@ public class OI {
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
     // number it is.
+	private static final String AUTO_START_POSITION = "Auto Start Position";
+	private static final String AUTO_DEFENSE_CHOOSER = "autoDefenseChooser";
+	
     public Joystick joystick;
     public Joystick gameController;
     public JoystickButton intake;
@@ -31,6 +36,8 @@ public class OI {
     public Button buttonStart;
     public JoystickButton autoShoot;
     public JoystickButton spitOut;
+    public SendableChooser autoDefenseChooser;
+    public SendableChooser autoStartPosition;
     
     public OI(){
     	joystick = new Joystick(0);
@@ -46,7 +53,7 @@ public class OI {
     	JoystickButton centerToGoal = new JoystickButton(gameController, 1);
     	centerToGoal.whenPressed(new AutoCenterToGoal());
     	spitOut = new JoystickButton(gameController, 2);
-    	spitOut .whileHeld(new PickupBall(-1));
+    	spitOut .whileHeld(new IntakeBall(-1));
 
     	//JoystickButton reverseIntake = new JoystickButton(gameController, 2);
     	JoystickButton manualFeed = new JoystickButton(gameController, 5);
@@ -54,14 +61,30 @@ public class OI {
     	
     	buttonY = new JoystickButton(gameController, 4);
     	buttonStart = new JoystickButton(gameController, 8);
-    	intake.whenPressed(new PickupBall());
+    	intake.whenPressed(new IntakeBall());
     	autoShoot.whileHeld(new AutoShoot());
     	//intake.whenReleased(new Interrupt());
     	
     	//start button
     	buttonStart.whileHeld(new ServoControllerSafetyPressed());
     	//buttonY.whileHeld(new ServoControllerSafetyPressed());
+    	
+    	autoStartPosition = new SendableChooser();//
+		autoStartPosition.addDefault(AUTO_START_POSITION, "Position A");//
+		autoStartPosition.addObject(AUTO_START_POSITION, "Position B");//
+		autoStartPosition.addObject(AUTO_START_POSITION, "Position C");//
+		autoStartPosition.addObject(AUTO_START_POSITION, "Position D");//
 
+		autoDefenseChooser = new SendableChooser();//
+		autoDefenseChooser.addDefault(AUTO_DEFENSE_CHOOSER, "Rough Terrain");//
+		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Rock Wall");//
+		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Portcullis");//
+		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Moat");//
+		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Ramparts");//
+		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Sally Port");//
+		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Drawbridge");//
+		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Chival de Frise");//
+		SmartDashboard.putData("defense chooser", autoDefenseChooser);
     	
     	
     	

@@ -38,7 +38,7 @@ public class AutoCenterToGoal extends Command {
 	protected void initialize() {
 		SmartDashboard.putBoolean("IsCentered", false);
 		System.out.println("enter autoCenter");
-		this.setTimeout(5.0); // Timer for the program.
+		this.setTimeout(15.0); // Timer for the program.
 		autoCenter();
 		SmartDashboard.putBoolean("IsCentered", false);
 	}
@@ -56,7 +56,7 @@ public class AutoCenterToGoal extends Command {
 			return false;
 		}
 	}
-
+	
 	public double turnRateAutoCenter() { // Gets turnRate for
 		// AutoCenterToGoal. Is
 		// supposed to slow the
@@ -94,7 +94,7 @@ public class AutoCenterToGoal extends Command {
 			return 0.35;
 		} else if (X <= OUTER_LIMIT_RIGHT && X > CENTER + LIMIT_AREA) {
 			return -0.35;
-		} else {
+		} else
 			return 0;
 		}*/
 	}
@@ -111,5 +111,4 @@ public class AutoCenterToGoal extends Command {
 			Robot.drive.driveValues(0, 0);
 			state = 1; // Correction complete.
 		}
-	}
-}
+	}}

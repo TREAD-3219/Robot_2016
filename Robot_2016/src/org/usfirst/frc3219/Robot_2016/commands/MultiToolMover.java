@@ -19,7 +19,8 @@ public class MultiToolMover extends NeverFinishCommand {
 	protected void initialize() {
 		gameController = Robot.oi.gameController;
 		speed = gameController.getY();
-		Robot.multiTool.armSetPoint(MultiTool.STOW_TAG);
+		//Robot.multiTool.armSetPoint(MultiTool.STOW_TAG);
+		Robot.multiTool.disable();
 	}
 
 	@Override

@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class EnableClimberButtons extends Command {
 
+	private static final float RIGHT_SERVO_CLOSED = 0.0f;
+	private static final float LEFT_SERVO_CLOSED = 180.0f;
 	private static final double TESTING_TIMEOUT = 0.5;
 	private static final double CLIMBER_TIMEOUT = 135.0 - 20.0; // teleop time - high time.
 	
@@ -49,8 +51,8 @@ public class EnableClimberButtons extends Command {
 		SmartDashboard.putBoolean(QUICK_RELEASE_OVERRIDE, false);
 		servo4 = RobotMap.pwmServo_4;
 		servo5 = RobotMap.pwmServo_5;
-		servo4.setAngle(180.0f);
-		servo5.setAngle(0.0f);
+		servo4.setAngle(LEFT_SERVO_CLOSED);
+		servo5.setAngle(RIGHT_SERVO_CLOSED);
 		SmartDashboard.putBoolean("Climber enabling", false);
 
 	}

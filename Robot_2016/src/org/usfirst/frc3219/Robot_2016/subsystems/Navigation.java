@@ -158,46 +158,6 @@ public class Navigation extends Subsystem {
 		return distanceFromWall;
 	}
 
-	public boolean checkDedRecAngle() {
-		boolean goodEnough = false;
-		int probabilityOfCorrectCount = 0;
-		 // compass will be added from Robot.sensors
-		if (Math.abs(dedRecAngle - Robot.sensors.navx.getFusedHeading()) <= 5.0) {
-			probabilityOfCorrectCount++;
-		}
-		
-		// what is this supposed to test?
-		if (Math.abs(dedRecAngle/* - findEncoderAngle() */) <= 5.0) {
-			probabilityOfCorrectCount++;
-		}
-		
-		// seems clear goodEnough will always be false... 
-		if (probabilityOfCorrectCount >= 3) {
-			goodEnough = true;
-		}
-		
-		return goodEnough;
-	}
-
-	public boolean checkDedRecLoc() {
-		boolean goodEnough = false;
-		if (Math.abs(dedRecY - findLidarPositionY()) <= 5.0) {
-		}
-
-		if (Math.abs(dedRecX - findLidarPositionX()) <= 5.0) {
-		}
-
-		if (Math.abs(dedRecTotalForward /* - findEncoderForwardDist() */) <= 5.0) {
-		}
-		return goodEnough;
-	}
-
-	public void ultraSonicTriangulation() {
-
-	}
-	
-
-
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new DedReckoningChecks());
@@ -210,14 +170,5 @@ public class Navigation extends Subsystem {
 		} else {
 			inOuterWorks = false;
 		}
-	}
-
-	public void move(double avgDist) {
-		
-	}
-
-	public void turn(double degrees) {
-		// TODO Auto-generated method stub
-		
 	}
 }

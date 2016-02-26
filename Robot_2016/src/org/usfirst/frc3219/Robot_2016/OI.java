@@ -44,10 +44,8 @@ public class OI {
     	gameController = new Joystick(1);
     	shoot = new JoystickButton(joystick, 1);
     	shoot.whileHeld(new ManualShoot());
-    	
     	reverse = new JoystickButton(joystick, 12);
     	reverse.whenPressed(new ReverseCommand());
-    	
     	intake = new JoystickButton(gameController, 3);
     	autoShoot = new JoystickButton(gameController, 6);
     	JoystickButton centerToGoal = new JoystickButton(gameController, 1);
@@ -69,11 +67,12 @@ public class OI {
     	buttonStart.whileHeld(new ServoControllerSafetyPressed());
     	//buttonY.whileHeld(new ServoControllerSafetyPressed());
     	
-    	autoStartPosition = new SendableChooser();//
+    		autoStartPosition = new SendableChooser();//
 		autoStartPosition.addDefault(AUTO_START_POSITION, "Position A");//
 		autoStartPosition.addObject(AUTO_START_POSITION, "Position B");//
 		autoStartPosition.addObject(AUTO_START_POSITION, "Position C");//
 		autoStartPosition.addObject(AUTO_START_POSITION, "Position D");//
+		SmartDashboard.putData("Start Chooser", autoStartPosition);
 
 		autoDefenseChooser = new SendableChooser();//
 		autoDefenseChooser.addDefault(AUTO_DEFENSE_CHOOSER, "Rough Terrain");//
@@ -84,7 +83,7 @@ public class OI {
 		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Sally Port");//
 		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Drawbridge");//
 		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Chival de Frise");//
-		SmartDashboard.putData("defense chooser", autoDefenseChooser);
+		SmartDashboard.putData("Defense Chooser", autoDefenseChooser);
     	
     	
     	

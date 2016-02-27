@@ -40,6 +40,9 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	public static final String LEFT_ENCODER_TAG = "Left Encoder";
 	public static final String RIGHT_ENCODER_TAG = "Right Encoder";
 	public static final double WHEEL_ENCODER_PULSE_PER_REVOLUTION = 360.0;
+	
+	// For autonomous sensor use:
+	public static final double HIT_RAMP_JERK_LIMIT = 5.0;
 
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	I2C lidar1 = new I2C(I2C.Port.kMXP, LIDAR_1_ADDR);

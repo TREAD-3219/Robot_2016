@@ -1,11 +1,12 @@
 package frc3219.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.subsystems.Drive;
 
 public class EngageDrawbridge extends AutoStraightCommand {
 	double initAccelX;
 	double initAccelY;
-	public static final double JERK_THRESHOLD = 0.5; // Not calibrated.
+	private static final double JERK_THRESHOLD = 0.5; // Not calibrated.
 	
 	@Override
 	protected void end() {
@@ -14,13 +15,13 @@ public class EngageDrawbridge extends AutoStraightCommand {
 
 	@Override
 	protected void execute() {
-		gyroStraight(0.45);
+		gyroStraight(Drive.LOW_SPEED);
 
 	}
 
 	@Override
 	protected void initialize() {
-		gyroStraight(0.45);
+		gyroStraight(Drive.LOW_SPEED);
 
 	}
 

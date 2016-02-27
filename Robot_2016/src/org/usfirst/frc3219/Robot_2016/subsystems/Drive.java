@@ -24,6 +24,12 @@ public class Drive extends Subsystem {
 	private static final double MAX_TURN_RATE = MAX_SPEED_IPS / ROTATION_CIRCLE;
 	public static final double MAX_TURN_RATE_DPS = MAX_TURN_RATE * 360.0;
 	public static final double WHEEL_DISTANCE_PER_PULSE = WHEEL_CIRCUMFERENCE / Sensors.WHEEL_ENCODER_PULSE_PER_REVOLUTION;
+	
+	// Drive Speeds:
+	public static final double MAX_SPEED = 1.0;
+	public static final double HIGH_SPEED = 0.8;
+	public static final double MEDIUM_SPEED = 0.65;
+	public static final double LOW_SPEED = 0.5;
 
 	CANTalon rightDriveFront = RobotMap.driveRightDriveB;
 	CANTalon rightDriveRear = RobotMap.driveRightDriveA;

@@ -1,6 +1,9 @@
 package frc3219.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.subsystems.Drive;
+import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
+import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
 
 public class EngageDrawbridgeRamp extends AutoStraightCommand {
 
@@ -11,15 +14,15 @@ public class EngageDrawbridgeRamp extends AutoStraightCommand {
 
 	@Override
 	protected void execute() {
-		gyroStraight(0.6);
-		if(!(Robot.sensors.armEncoderDistance() < 1)) {
-			Robot.multiTool.driveArmUpDown(0.2); // Arbitrary guess!
+		gyroStraight(Drive.MEDIUM_SPEED);
+		if(!(Robot.sensors.armEncoderDistance() < MultiTool.LOW_ARM_ANGLE_LIMIT)) {
+			Robot.multiTool.driveArmUpDown(MultiTool.LOW_SPEED_DOWN); // Arbitrary guess!
 		}
 	}
 
 	@Override
 	protected void initialize() {
-		gyroStraight(0.6);
+		gyroStraight(Drive.MEDIUM_SPEED);
 	}
 
 	@Override
@@ -29,7 +32,7 @@ public class EngageDrawbridgeRamp extends AutoStraightCommand {
 
 	@Override
 	protected boolean isFinished() {
-		if(Robot.sensors.getTip() >= 5.0) {
+		if(Robot.sensors.getTip() >= Sensors.HIT_RAMP_JERK_LIMIT) {
 			return true;
 		} else
 		return false;

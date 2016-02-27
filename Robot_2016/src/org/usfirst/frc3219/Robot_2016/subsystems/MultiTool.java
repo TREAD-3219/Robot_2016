@@ -46,6 +46,11 @@ public class MultiTool extends PIDSubsystem {
 	public static final double ROLLER_PICKUP = 104.0;
 	public static final double CHEVAL_DE_FRISE_START = 86.0;
 	// -----------
+	public static final double LOW_ARM_ANGLE_LIMIT = 1.0;
+	// -----------
+	public static final double LOW_SPEED_DOWN = 0.2;
+	public static final double LOW_SPEED_UP = -0.2;
+	// -----------
 
 	public static final double PORTCULLIS_END = 33.0;
 	public static final double DRAWBRIDGE_END = 109.0;

@@ -5,7 +5,11 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 
-public class IntakeBall extends Command { // Starts feeder motor
+public class IntakeBall extends Command {
+	private static final int TIMEOUT = 5;
+// Starts feeder motor
+	private static final double ROLLER_SPEED = -1.0;
+	private static final double FEEDER_SPEED = .3;
 	// stops either when button b is released, or limit switch is hit
 	boolean pressed;
 	int direction;
@@ -23,16 +27,16 @@ public class IntakeBall extends Command { // Starts feeder motor
 
 	@Override
 	protected void initialize() {
-		Robot.feedMech.spinFeeder(direction, .3);
-		Robot.multiTool.driveRoller(-1.0 * direction);
-		this.setTimeout(5);
+		Robot.feedMech.spinFeeder(direction, FEEDER_SPEED);
+		Robot.multiTool.driveRoller(ROLLER_SPEED * direction);
+		this.setTimeout(TIMEOUT);
 		pressed = false;
 	}
 
 	@Override
 	protected void execute() {
-		Robot.multiTool.driveRoller(-1.0 * direction);
-		Robot.feedMech.spinFeeder(direction, .3);
+		Robot.multiTool.driveRoller(ROLLER_SPEED * direction);
+		Robot.feedMech.spinFeeder(direction, FEEDER_SPEED);
 		if (!pressed) {
 			pressed = Robot.feedMech.getLimitSwitch();
 		}

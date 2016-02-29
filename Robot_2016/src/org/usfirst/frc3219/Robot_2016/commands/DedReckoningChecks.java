@@ -7,6 +7,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // A class for Deductive Reckoning navigation
 public class DedReckoningChecks extends NeverFinishCommand {
 
+	private static final String DEAD_REC_AREA = "Dead Rec Area";
+	private static final String DEAD_REC_ANGLE = "Dead Rec Angle";
+	private static final String DEAD_REC_Y = "Dead Rec Y";
+	private static final String DEAD_REC_X = "Dead Rec X";
+
 	@Override
 	protected void initialize() {
 		computeCurrentPosition();
@@ -36,10 +41,10 @@ public class DedReckoningChecks extends NeverFinishCommand {
 			}
 		}
 		
-		SmartDashboard.putNumber("Dead Rec X", Robot.navigation.getDedRecX());
-		SmartDashboard.putNumber("Dead Rec Y", Robot.navigation.getDedRecY());
-		SmartDashboard.putNumber("Dead Rec Angle", Robot.navigation.getDedRecAngle());
-		SmartDashboard.putString("Dead Rec Area", Robot.navigation.getDedRecArea());
+		SmartDashboard.putNumber(DEAD_REC_X, Robot.navigation.getDedRecX());
+		SmartDashboard.putNumber(DEAD_REC_Y, Robot.navigation.getDedRecY());
+		SmartDashboard.putNumber(DEAD_REC_ANGLE, Robot.navigation.getDedRecAngle());
+		SmartDashboard.putString(DEAD_REC_AREA, Robot.navigation.getDedRecArea());
 	}
 
 	@Override

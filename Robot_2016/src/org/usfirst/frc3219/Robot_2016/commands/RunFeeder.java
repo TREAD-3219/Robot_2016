@@ -6,9 +6,11 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class RunFeeder extends Command { //Spins shooter while X is pressed
 
+	private static final double FEEDER_SPEED = .3;
+
 	@Override
 	protected void initialize() {
-		Robot.feedMech.spinFeeder(1, .3);
+		Robot.feedMech.spinFeeder(1, FEEDER_SPEED);
 		
 	}
 

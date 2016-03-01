@@ -24,6 +24,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Shooter extends Subsystem {
 
+	public static final double BOTTOM_SHOOTER_SPEED = 1.0;
+	public static final double TOP_SHOOTER_SPEED = 0.7;
+	private static final double SHOOTER_STOP_SPEED = 0.0;
+	private static final int COUNTER_SAMPLES_TO_AVERAGE = 10;
+	private static final double COUNTER_MAX_PERIOD = 0.1;
+	private static final int COUNTER_DISTANCE_PER_PULSE = 12;
 	public static final String TOPSHOOTER = "ShooterTop";
 	public static final String BOTTOMSHOOTER = "ShooterBottom";
 
@@ -63,24 +69,24 @@ public class Shooter extends Subsystem {
 		RobotMap.shooterCounter.reset();
 
 		// Counter Setting
-		RobotMap.shooterCounter.setMaxPeriod(0.1);
+		RobotMap.shooterCounter.setMaxPeriod(COUNTER_MAX_PERIOD);
 		RobotMap.shooterCounter.setUpdateWhenEmpty(true);
 		RobotMap.shooterCounter.setReverseDirection(false);
-		RobotMap.shooterCounter.setSamplesToAverage(10);
-		RobotMap.shooterCounter.setDistancePerPulse(12);
+		RobotMap.shooterCounter.setSamplesToAverage(COUNTER_SAMPLES_TO_AVERAGE);
+		RobotMap.shooterCounter.setDistancePerPulse(COUNTER_DISTANCE_PER_PULSE);
 		
-		SmartDashboard.putNumber(TOPSHOOTER, 1.0);
-		SmartDashboard.putNumber(BOTTOMSHOOTER, 1.0);
+		SmartDashboard.putNumber(TOPSHOOTER, TOP_SHOOTER_SPEED);
+		SmartDashboard.putNumber(BOTTOMSHOOTER, BOTTOM_SHOOTER_SPEED);
 	}
 
 	public void spinUp(double TopPower, double BottomPower) {
 		this.shooterTopMotor.set(TopPower);
-		this.shooterBottomMotor.set(BottomPower*-1);
+		this.shooterBottomMotor.set(BottomPower * -1);
 	}
 
 	public void spinDown() {
-		this.shooterTopMotor.set(0.0);
-		this.shooterBottomMotor.set(0.0);
+		this.shooterTopMotor.set(SHOOTER_STOP_SPEED);
+		this.shooterBottomMotor.set(SHOOTER_STOP_SPEED);
 	}
 
 	public void initDefaultCommand() {

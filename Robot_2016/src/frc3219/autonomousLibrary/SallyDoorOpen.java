@@ -11,6 +11,8 @@ public class SallyDoorOpen extends Command{
 	//rand will touch the sallyport
 	//sallyport command 1
 	//lift arms up a little after this
+	private static final double SALLYBACKSPEED = -0.45;
+	private static final double SALLYTURNSPEED = -0.49;
 	
 	@Override
 	protected void end() {
@@ -20,13 +22,13 @@ public class SallyDoorOpen extends Command{
 
 	@Override
 	protected void execute() {
-		Robot.drive.driveValues(-0.45, -0.49);
+		Robot.drive.driveValues(SALLYBACKSPEED, SALLYTURNSPEED);
 	}
 
 	@Override
 	protected void initialize() {
 		avDistI = Robot.sensors.aveDistEncoders();
-		Robot.drive.driveValues(-0.45, -0.49);
+		Robot.drive.driveValues(SALLYBACKSPEED, SALLYTURNSPEED);
 	}
 
 	@Override

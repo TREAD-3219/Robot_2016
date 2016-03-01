@@ -37,7 +37,7 @@ public class StopShooter extends Command { //used in command groups
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
+		end();
 		
 	}
 

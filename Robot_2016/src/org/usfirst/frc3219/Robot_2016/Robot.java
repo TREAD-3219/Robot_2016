@@ -64,8 +64,8 @@ public class Robot extends IterativeRobot {
     	camera = new Camera();
 		oi = new OI();
 
-        SmartDashboard.putNumber(Shooter.TOPSHOOTER, 0.7);
-        SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, 1.0);
+        SmartDashboard.putNumber(Shooter.TOPSHOOTER, Shooter.TOP_SHOOTER_SPEED);
+        SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, Shooter.BOTTOM_SHOOTER_SPEED);
     }
 	
 	/**

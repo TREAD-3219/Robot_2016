@@ -7,9 +7,12 @@ import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.commands.DedReckoningChecks;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Navigation extends Subsystem {
+	public static final String DED_REC_AREA = "Dead Rec Area";
+	public static final String DED_REC_ANGLE = "Dead Rec Angle";
+	public static final String DED_REC_Y = "Dead Rec Y";
+	public static final String DED_REC_X = "Dead Rec X";
 	Sensors sensors;
 	public double dedRecX;
 	public double dedRecY;

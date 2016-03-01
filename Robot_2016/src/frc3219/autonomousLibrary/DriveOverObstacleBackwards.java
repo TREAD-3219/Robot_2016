@@ -10,6 +10,7 @@ public class DriveOverObstacleBackwards extends AutoStraightCommand {
 
 	double initEncoder;
 	public static final double MIN_ENCODER_DISTANCE = 60;
+	private static final double ROBOT_BACK_SPEED = -0.5;
 
 	@Override
 	protected void end() {
@@ -19,14 +20,14 @@ public class DriveOverObstacleBackwards extends AutoStraightCommand {
 
 	@Override
 	protected void execute() {
-		gyroStraight(-0.5);
+		gyroStraight(ROBOT_BACK_SPEED);
 
 	}
 
 	@Override
 	protected void initialize() {
 		initEncoder = Robot.sensors.getAvgEncoderDist();
-		gyroStraight(-0.5);
+		gyroStraight(ROBOT_BACK_SPEED);
 
 	}
 

@@ -10,15 +10,16 @@ public class AutoPortcullisAlign extends AutoStraightCommand {
 	double initAccelX;
 	double initAccelY;
 	public static final double JERK_THRESHOLD = 0.5;
+	public static final double ALIGNSPEED = 0.4;
 	
     // Called just before this Command runs the first time
     protected void initialize() {
-    	gyroStraight(0.4);
+    	gyroStraight(ALIGNSPEED);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	gyroStraight(0.4);
+    	gyroStraight(ALIGNSPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()

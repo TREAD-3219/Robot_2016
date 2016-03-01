@@ -5,6 +5,7 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 public class EngageRamp extends AutoStraightCommand {
 
 	String whichArmPreset;
+	private static final double RAMP_SPEED = 0.8;
 
 	@Override
 	protected void end() {
@@ -13,7 +14,7 @@ public class EngageRamp extends AutoStraightCommand {
 
 	@Override
 	protected void execute() {
-		gyroStraight(0.8);
+		gyroStraight(RAMP_SPEED);
 /*		if (whichArmPreset.equalsIgnoreCase("Rough Terrain")) {
 			Robot.multiTool.armSetPoint("STOW");
 		} else if (whichArmPreset.equalsIgnoreCase("Rock Wall")) {
@@ -37,7 +38,7 @@ public class EngageRamp extends AutoStraightCommand {
 	protected void initialize() {
 		//Robot.multiTool.getPIDController().enable();
 		Robot.sensors.navx.reset();
-		gyroStraight(0.8);
+		gyroStraight(RAMP_SPEED);
 /*		whichArmPreset = (String) Robot.oi.autoDefenseChooser.getSelected();
 		if (whichArmPreset.equalsIgnoreCase("Rough Terrain")) {
 			Robot.multiTool.armSetPoint("STOW");

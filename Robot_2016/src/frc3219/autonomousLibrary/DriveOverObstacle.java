@@ -6,6 +6,7 @@ public class DriveOverObstacle extends AutoStraightCommand {
 
 	double initEncoder;
 	public static final double MIN_ENCODER_DISTANCE = 60;
+	private static final double ROBOT_SPEED = 0.5;
 
 	@Override
 	protected void end() {
@@ -20,7 +21,7 @@ public class DriveOverObstacle extends AutoStraightCommand {
 		if (tip >= 30) {
 			Robot.drive.driveValues(1.0, 0.0);
 		} else {
-			gyroStraight(0.5);
+			gyroStraight(ROBOT_SPEED);
 		}
 
 	}
@@ -28,7 +29,7 @@ public class DriveOverObstacle extends AutoStraightCommand {
 	@Override
 	protected void initialize() {
 		initEncoder = Robot.sensors.getAvgEncoderDist();
-		gyroStraight(0.5);
+		gyroStraight(ROBOT_SPEED);
 
 	}
 

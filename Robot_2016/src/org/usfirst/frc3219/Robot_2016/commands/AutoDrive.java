@@ -40,13 +40,6 @@ public class AutoDrive extends Command {
 	@Override
 	protected boolean isFinished() {
 		boolean encoderHit = false;//((RobotMap.driveEncoderLeft.getDistance() + RobotMap.driveEncoderRight.getDistance()) / 2) - encoderDist >= distance;
-		if (this.isTimedOut()) {
-			SmartDashboard.putString("Wheel stopped because", "Timed out");
-		} else if (encoderHit) {
-			SmartDashboard.putString("Wheel stopped because", "Encoders Hit");
-		} else {
-			SmartDashboard.putString("Wheel stopped because", "null");
-		}
 		return this.isTimedOut() || encoderHit;
 	}
 }

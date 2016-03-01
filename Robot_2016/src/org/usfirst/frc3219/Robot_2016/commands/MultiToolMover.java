@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MultiToolMover extends NeverFinishCommand {
+	private static final double ARM_STOP_SPEED = 0.0;
 	Joystick gameController;
 	double speed = 0.0;
 
@@ -25,8 +26,6 @@ public class MultiToolMover extends NeverFinishCommand {
 
 	@Override
 	protected void execute() {
-		SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
-
 
 		// consider a better scaling algorithm here... cubic?
 		// also, perhaps asymmetric?  i.e., bigger up than down.
@@ -51,6 +50,6 @@ public class MultiToolMover extends NeverFinishCommand {
 
 	@Override
 	protected void end() {
-		Robot.multiTool.driveArmUpDown(0.0); // stop motors
+		Robot.multiTool.driveArmUpDown(ARM_STOP_SPEED); // stop motors
 	}
 }

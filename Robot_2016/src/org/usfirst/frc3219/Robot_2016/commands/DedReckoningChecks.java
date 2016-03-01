@@ -1,16 +1,12 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 // A class for Deductive Reckoning navigation
 public class DedReckoningChecks extends NeverFinishCommand {
-
-	private static final String DEAD_REC_AREA = "Dead Rec Area";
-	private static final String DEAD_REC_ANGLE = "Dead Rec Angle";
-	private static final String DEAD_REC_Y = "Dead Rec Y";
-	private static final String DEAD_REC_X = "Dead Rec X";
 
 	@Override
 	protected void initialize() {
@@ -41,10 +37,10 @@ public class DedReckoningChecks extends NeverFinishCommand {
 			}
 		}
 		
-		SmartDashboard.putNumber(DEAD_REC_X, Robot.navigation.getDedRecX());
-		SmartDashboard.putNumber(DEAD_REC_Y, Robot.navigation.getDedRecY());
-		SmartDashboard.putNumber(DEAD_REC_ANGLE, Robot.navigation.getDedRecAngle());
-		SmartDashboard.putString(DEAD_REC_AREA, Robot.navigation.getDedRecArea());
+		SmartDashboard.putNumber(Navigation.DED_REC_X, Robot.navigation.getDedRecX());
+		SmartDashboard.putNumber(Navigation.DED_REC_Y, Robot.navigation.getDedRecY());
+		SmartDashboard.putNumber(Navigation.DED_REC_ANGLE, Robot.navigation.getDedRecAngle());
+		SmartDashboard.putString(Navigation.DED_REC_AREA, Robot.navigation.getDedRecArea());
 	}
 
 	@Override

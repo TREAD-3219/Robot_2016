@@ -23,14 +23,11 @@ public class ServoControllerSafetyPressed extends Command {
 	protected void execute() {
 		if (EnableClimberButtons.safetyClimberEnable || SmartDashboard.getBoolean(QUICK_RELEASE_OVERRIDE)) {
 			if (Robot.oi.buttonStart.get() && Robot.oi.buttonY.get()) {
-				SmartDashboard.putBoolean("Climber enabling", true);
 				Scheduler.getInstance().add(new AutoClimb());
 				finished = true;
 			} else {
-				SmartDashboard.putBoolean("Climber enabling", false);
 			}
 		} else {
-			SmartDashboard.putBoolean("Climber enabling", false);
 		}
 	}
 

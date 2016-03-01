@@ -53,7 +53,6 @@ public class EnableClimberButtons extends Command {
 		servo5 = RobotMap.pwmServo_5;
 		servo4.setAngle(LEFT_SERVO_CLOSED);
 		servo5.setAngle(RIGHT_SERVO_CLOSED);
-		SmartDashboard.putBoolean("Climber enabling", false);
 
 	}
 

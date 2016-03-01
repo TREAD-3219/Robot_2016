@@ -55,7 +55,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	RobotMap.init();
     	drive = new Drive();
-    	shooter = new Shooter();
+    	//shooter = new Shooter();
     	sensors = new Sensors();
     	feedMech = new FeedMech();
     	multiTool = new MultiTool();

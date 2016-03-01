@@ -28,8 +28,8 @@ public class RobotMap {
 	public static CANTalon driveLeftDriveB;
 	public static RobotDrive driveDriveMotors;
 
-	public static CANTalon driveTopShooter;
-	public static CANTalon driveBottomShooter;
+	//public static CANTalon driveTopShooter;
+	//public static CANTalon driveBottomShooter;
 	public static DigitalInput feederLimitSwitch;
 
 	public static Servo pwmServo_4;
@@ -59,16 +59,16 @@ public class RobotMap {
     public static NetworkTable roboRealmTable;
 	
 	public static void init(){
-		driveRightDriveA  = new CANTalon(4);
-		driveRightDriveB  = new CANTalon(5);
+		driveRightDriveA  = new CANTalon(1);
+		//driveRightDriveB  = new CANTalon(5);
 		driveLeftDriveA  = new CANTalon(2);
-		driveLeftDriveB  = new CANTalon(3);
+		//driveLeftDriveB  = new CANTalon(3);
 		driveDriveMotors = new RobotDrive(driveLeftDriveA, driveLeftDriveB, driveRightDriveA, driveRightDriveB);
 
-		driveTopShooter = new CANTalon(6);
-		driveBottomShooter = new CANTalon(1);
+		//driveTopShooter = new CANTalon(6);
+		//driveBottomShooter = new CANTalon(1);
 
-		shooterFeederMotor = new Talon(0);
+		//shooterFeederMotor = new Talon(0);
 		feederLimitSwitch = new DigitalInput(9);
 
 		pwmServo_4 = new Servo(4);// these might be wrong 2/23/16 after merge

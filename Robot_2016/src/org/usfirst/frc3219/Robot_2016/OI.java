@@ -20,7 +20,20 @@ import frc3219.autonomousLibrary.AutoCenterToGoal;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    //// CREATING BUTTONS
+    public static final String DEFENSE_CHOOSER = "Defense Chooser";
+	public static final String CHIVAL_DE_FRISE = "Chival de Frise";
+	public static final String DRAWBRIDGE = "Drawbridge";
+	public static final String SALLY_PORT = "Sally Port";
+	public static final String RAMPARTS = "Ramparts";
+	public static final String MOAT = "Moat";
+	public static final String PORTCULLIS = "Portcullis";
+	public static final String ROCK_WALL = "Rock Wall";
+	public static final String ROUGH_TERRAIN = "Rough Terrain";
+	public static final String POSITION_D = "Position D";
+	public static final String POSITION_C = "Position C";
+	public static final String POSITION_B = "Position B";
+	public static final String POSITION_A = "Position A";
+	//// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
     // number it is.
@@ -70,21 +83,22 @@ public class OI {
     	//buttonY.whileHeld(new ServoControllerSafetyPressed());
     	
     	autoStartPosition = new SendableChooser();//
-		autoStartPosition.addDefault(AUTO_START_POSITION, "Position A");//
-		autoStartPosition.addObject(AUTO_START_POSITION, "Position B");//
-		autoStartPosition.addObject(AUTO_START_POSITION, "Position C");//
-		autoStartPosition.addObject(AUTO_START_POSITION, "Position D");//
+		autoStartPosition.addDefault(AUTO_START_POSITION, POSITION_A);//
+		autoStartPosition.addObject(AUTO_START_POSITION, POSITION_B);//
+		autoStartPosition.addObject(AUTO_START_POSITION, POSITION_C);//
+		autoStartPosition.addObject(AUTO_START_POSITION, POSITION_D);//
+		SmartDashboard.putData(AUTO_START_POSITION, autoStartPosition);
 
 		autoDefenseChooser = new SendableChooser();//
-		autoDefenseChooser.addDefault(AUTO_DEFENSE_CHOOSER, "Rough Terrain");//
-		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Rock Wall");//
-		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Portcullis");//
-		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Moat");//
-		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Ramparts");//
-		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Sally Port");//
-		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Drawbridge");//
-		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, "Chival de Frise");//
-		SmartDashboard.putData("defense chooser", autoDefenseChooser);
+		autoDefenseChooser.addDefault(AUTO_DEFENSE_CHOOSER, ROUGH_TERRAIN);//
+		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, ROCK_WALL);//
+		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, PORTCULLIS);//
+		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, MOAT);//
+		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, RAMPARTS);//
+		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, SALLY_PORT);//
+		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, DRAWBRIDGE);//
+		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, CHIVAL_DE_FRISE);//
+		SmartDashboard.putData(DEFENSE_CHOOSER, autoDefenseChooser);
     	
     	
     	

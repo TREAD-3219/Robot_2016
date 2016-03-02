@@ -3,6 +3,7 @@ package org.usfirst.frc3219.Robot_2016.commands;
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
+import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
 import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -21,14 +22,12 @@ public class WatchSensors extends NeverFinishCommand {
 		SmartDashboard.putNumber(Sensors.ROTATION_COUNTER_TAG, sensors.readShooterCounter1());
 		double compassAngle = sensors.getAngle();
 		SmartDashboard.putNumber(Sensors.COMPASS_TAG, compassAngle);
-		SmartDashboard.putNumber("Angle", sensors.getAngle());
-		//SmartDashboard.putString("Location", Navigation.getDeadRecArea());
-		SmartDashboard.putNumber("Left Encoder Raw", RobotMap.driveEncoderLeft.getDistance());
-		SmartDashboard.putNumber("Right Encoder Raw", RobotMap.driveEncoderRight.getDistance());
+		SmartDashboard.putNumber(Sensors.ANGLE, sensors.getAngle());
 		SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
-		SmartDashboard.putNumber("DedRecX", Robot.navigation.getDedRecX());
-		SmartDashboard.putNumber("DedRevY", Robot.navigation.getDedRecX());
-		SmartDashboard.putNumber("DedRecAngle", Robot.navigation.getDedRecAngle());
+		SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
+		SmartDashboard.putNumber(Navigation.DED_REC_X, Robot.navigation.getDedRecX());
+		SmartDashboard.putNumber(Navigation.DED_REC_Y, Robot.navigation.getDedRecX());
+		SmartDashboard.putNumber(Navigation.DED_REC_ANGLE, Robot.navigation.getDedRecAngle());
 		SmartDashboard.putNumber(Sensors.LEFT_ENCODER_TAG, RobotMap.driveEncoderLeft.getDistance());
 		SmartDashboard.putNumber(Sensors.RIGHT_ENCODER_TAG, RobotMap.driveEncoderRight.getDistance());
 		SmartDashboard.putBoolean("IsCentered", false);

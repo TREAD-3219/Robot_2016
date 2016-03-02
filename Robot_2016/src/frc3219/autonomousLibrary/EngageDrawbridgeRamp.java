@@ -4,14 +4,15 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 public class EngageDrawbridgeRamp extends AutoStraightCommand {
 
-
+	private static final double RAMP_SPEED = 0.6;
+	
 	@Override
 	protected void end() {
 	}
 
 	@Override
 	protected void execute() {
-		gyroStraight(0.6);
+		gyroStraight(RAMP_SPEED);
 		if(!(Robot.sensors.armEncoderDistance() < 1)) {
 			Robot.multiTool.driveArmUpDown(0.2); // Arbitrary guess!
 		}
@@ -19,7 +20,7 @@ public class EngageDrawbridgeRamp extends AutoStraightCommand {
 
 	@Override
 	protected void initialize() {
-		gyroStraight(0.6);
+		gyroStraight(RAMP_SPEED);
 	}
 
 	@Override

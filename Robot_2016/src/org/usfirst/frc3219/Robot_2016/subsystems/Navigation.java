@@ -7,9 +7,12 @@ import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.commands.DedReckoningChecks;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Navigation extends Subsystem {
+	public static final String DED_REC_AREA = "Dead Rec Area";
+	public static final String DED_REC_ANGLE = "Dead Rec Angle";
+	public static final String DED_REC_Y = "Dead Rec Y";
+	public static final String DED_REC_X = "Dead Rec X";
 	Sensors sensors;
 	public double dedRecX;
 	public double dedRecY;
@@ -158,46 +161,6 @@ public class Navigation extends Subsystem {
 		return distanceFromWall;
 	}
 
-	public boolean checkDedRecAngle() {
-		boolean goodEnough = false;
-		int probabilityOfCorrectCount = 0;
-		 // compass will be added from Robot.sensors
-		if (Math.abs(dedRecAngle - Robot.sensors.navx.getFusedHeading()) <= 5.0) {
-			probabilityOfCorrectCount++;
-		}
-		
-		// what is this supposed to test?
-		if (Math.abs(dedRecAngle/* - findEncoderAngle() */) <= 5.0) {
-			probabilityOfCorrectCount++;
-		}
-		
-		// seems clear goodEnough will always be false... 
-		if (probabilityOfCorrectCount >= 3) {
-			goodEnough = true;
-		}
-		
-		return goodEnough;
-	}
-
-	public boolean checkDedRecLoc() {
-		boolean goodEnough = false;
-		if (Math.abs(dedRecY - findLidarPositionY()) <= 5.0) {
-		}
-
-		if (Math.abs(dedRecX - findLidarPositionX()) <= 5.0) {
-		}
-
-		if (Math.abs(dedRecTotalForward /* - findEncoderForwardDist() */) <= 5.0) {
-		}
-		return goodEnough;
-	}
-
-	public void ultraSonicTriangulation() {
-
-	}
-	
-
-
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new DedReckoningChecks());
@@ -210,14 +173,5 @@ public class Navigation extends Subsystem {
 		} else {
 			inOuterWorks = false;
 		}
-	}
-
-	public void move(double avgDist) {
-		
-	}
-
-	public void turn(double degrees) {
-		// TODO Auto-generated method stub
-		
 	}
 }

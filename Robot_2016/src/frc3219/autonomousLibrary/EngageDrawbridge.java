@@ -6,6 +6,7 @@ public class EngageDrawbridge extends AutoStraightCommand {
 	double initAccelX;
 	double initAccelY;
 	public static final double JERK_THRESHOLD = 0.5; // Not calibrated.
+	private static final double DRAWBRIDGE_SPEED = 0.45;
 	
 	@Override
 	protected void end() {
@@ -14,13 +15,13 @@ public class EngageDrawbridge extends AutoStraightCommand {
 
 	@Override
 	protected void execute() {
-		gyroStraight(0.45);
+		gyroStraight(DRAWBRIDGE_SPEED);
 
 	}
 
 	@Override
 	protected void initialize() {
-		gyroStraight(0.45);
+		gyroStraight(DRAWBRIDGE_SPEED);
 
 	}
 

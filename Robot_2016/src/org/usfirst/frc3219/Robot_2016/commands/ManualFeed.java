@@ -6,6 +6,9 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ManualFeed extends Command {
 	
+	private static final int TIMEOUT = 5;
+	private static final double FEEDER_SPEED = .3;
+
 	public ManualFeed() {
 		requires(Robot.feedMech);
 	}
@@ -22,8 +25,8 @@ public class ManualFeed extends Command {
 	@Override
 	protected void initialize() {
 
-		Robot.feedMech.spinFeeder(1, .3);
-		this.setTimeout(5);
+		Robot.feedMech.spinFeeder(1, FEEDER_SPEED);
+		this.setTimeout(TIMEOUT);
 
 	}
 

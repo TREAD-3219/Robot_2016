@@ -39,6 +39,7 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	public static final String ROTATION_COUNTER_TAG = "RotationCounter";
 	public static final String LEFT_ENCODER_TAG = "Left Encoder";
 	public static final String RIGHT_ENCODER_TAG = "Right Encoder";
+	public static final String ANGLE = "Angle";
 	public static final double WHEEL_ENCODER_PULSE_PER_REVOLUTION = 360.0;
 
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
@@ -68,7 +69,6 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 
 	private void startLidarMeasurement() {
 		boolean res = lidar1.write(READ_CONTROL_REGISTER, START_MEASUREMENT);
-		SmartDashboard.putBoolean("Start Lidar", res);
 	}
 
 	public double readLidar1() {
@@ -107,7 +107,7 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 
 	public void getCounterValues() {
 		int count = RobotMap.shooterCounter.get();
-		SmartDashboard.putNumber(TACH_RAW, count);
+		//SmartDashboard.putNumber(TACH_RAW, count);
 		double distance = RobotMap.shooterCounter.getDistance();
 		double period = RobotMap.shooterCounter.getPeriod();
 		double rate = RobotMap.shooterCounter.getRate();

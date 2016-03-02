@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class FeedMech extends Subsystem { //This class is for Putting the ball into the shooter
 
+	private static final double FEEDER_STOP_SPEED = 0.0;
 	private Talon feederMotor = RobotMap.shooterFeederMotor;
 	private DigitalInput feederLimitSwitch = RobotMap.feederLimitSwitch;
 	private Counter tach = RobotMap.shooterCounter;
@@ -43,7 +44,7 @@ public class FeedMech extends Subsystem { //This class is for Putting the ball i
 		feederMotor.set(speed * direction);
 	}
 	public void stopFeeder() {
-		feederMotor.set(0.0);
+		feederMotor.set(FEEDER_STOP_SPEED);
 	}
 
     public void initDefaultCommand() {

@@ -51,8 +51,6 @@ public class JoystickDrive extends NeverFinishCommand {
 			//Navigation stuffs
 			double newLeftDist = RobotMap.driveEncoderLeft.getDistance() - lastLeftEncoder;
 			double newRightDist = RobotMap.driveEncoderRight.getDistance() - lastRightEncoder;
-			SmartDashboard.putNumber("Raw Left Encoder", RobotMap.driveEncoderLeft.getDistance());
-			SmartDashboard.putNumber("Raw Right Encoder", RobotMap.driveEncoderRight.getDistance());
 			double avgDist = (newLeftDist + newRightDist) / 2;
 			Robot.navigation.dedRecMoved(avgDist);
 			double degrees = 2 * (newLeftDist - newRightDist);

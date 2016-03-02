@@ -1,6 +1,7 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -36,10 +37,10 @@ public class DedReckoningChecks extends NeverFinishCommand {
 			}
 		}
 		
-		SmartDashboard.putNumber("Dead Rec X", Robot.navigation.getDedRecX());
-		SmartDashboard.putNumber("Dead Rec Y", Robot.navigation.getDedRecY());
-		SmartDashboard.putNumber("Dead Rec Angle", Robot.navigation.getDedRecAngle());
-		SmartDashboard.putString("Dead Rec Area", Robot.navigation.getDedRecArea());
+		SmartDashboard.putNumber(Navigation.DED_REC_X, Robot.navigation.getDedRecX());
+		SmartDashboard.putNumber(Navigation.DED_REC_Y, Robot.navigation.getDedRecY());
+		SmartDashboard.putNumber(Navigation.DED_REC_ANGLE, Robot.navigation.getDedRecAngle());
+		SmartDashboard.putString(Navigation.DED_REC_AREA, Robot.navigation.getDedRecArea());
 	}
 
 	@Override

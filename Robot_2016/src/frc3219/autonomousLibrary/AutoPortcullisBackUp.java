@@ -8,14 +8,16 @@ import org.usfirst.frc3219.Robot_2016.RobotMap;
  */
 public class AutoPortcullisBackUp extends AutoStraightCommand {
 
+	public static final double BACKUPSPEED = -0.2;
+	
     // Called just before this Command runs the first time
     protected void initialize() {
-    	gyroStraight(-0.2);
+    	gyroStraight(BACKUPSPEED);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	gyroStraight(-0.2);
+    	gyroStraight(BACKUPSPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()

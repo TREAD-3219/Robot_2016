@@ -5,6 +5,8 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DrawbridgeExecuteArms extends Command {
+	
+	private static final double ARM_SPEED = -0.1;
 
 	@Override
 	protected void end() {
@@ -14,13 +16,13 @@ public class DrawbridgeExecuteArms extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.multiTool.driveArmUpDown(-0.1);
+		Robot.multiTool.driveArmUpDown(ARM_SPEED);
 
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.multiTool.driveArmUpDown(-0.1);
+		Robot.multiTool.driveArmUpDown(ARM_SPEED);
 
 	}
 

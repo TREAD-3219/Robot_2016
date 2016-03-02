@@ -10,7 +10,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class AutoCenterToGoal extends Command {
 	public static final String IS_CENTERED = "IsCentered";
 	public static final String CENTER_POINT = "Center Point";
-	
+
+	private static final double TIMEOUT = 5.0;
+	private static final double MINIMUM_SPEED = 0.4;
+	private static final double UP_SCALER = 3.5;
+	private static final double DOWN_SCALER = 0.003;
+	private static final double MAX_SPEED = 0.75;
+
 	private static final int CENTER = 320;
 	private static final int LIMIT_AREA = 10;
 	private static final int OUTER_LIMIT_LEFT = 150;
@@ -47,7 +53,7 @@ public class AutoCenterToGoal extends Command {
 		state = 0;
 		SmartDashboard.putBoolean(IS_CENTERED, false);
 		System.out.println("enter autoCenter");
-		this.setTimeout(15.0); // Timer for the program.
+		this.setTimeout(TIMEOUT); // Timer for the program.
 		autoCenter();
 		centerPoint = (int) SmartDashboard.getNumber(CENTER_POINT, CENTER);
 		limitLeft = centerPoint + LIMIT_LEFT_ADJUST;
@@ -76,16 +82,16 @@ public class AutoCenterToGoal extends Command {
 		cogX -= centerPoint;
 		double rate;
 		
-		if(cogX > 0) {
-			rate = 3.5 * Math.pow((-cogX*0.003), 3) - 0.4;
+		if(X > 0) {
+			rate = UP_SCALER * Math.pow((-X*DOWN_SCALER), 3) - MINIMUM_SPEED;
 		} else {
-			rate = 3.5 * Math.pow((-cogX*0.003), 3) + 0.4;
+			rate = UP_SCALER * Math.pow((-X*DOWN_SCALER), 3) + MINIMUM_SPEED;
 		}
 		
-		if(rate > 0.75) {
-			rate = 0.75;
-		} else if(rate < -0.75) {
-			rate = -0.75;
+		if(rate > MAX_SPEED) {
+			rate = MAX_SPEED;
+		} else if(rate < -MAX_SPEED) {
+			rate = -MAX_SPEED;
 		}
 		
 		return rate;

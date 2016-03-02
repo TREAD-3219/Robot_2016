@@ -31,11 +31,10 @@ public class AutoCenterToGoal extends Command {
 	@Override
 	// Ends stops the turn.
 	protected void end() {
-		System.out.println("finished");
+		System.out.println("finished AutoCenterToGoal");
 		SmartDashboard.putBoolean(IS_CENTERED, true);
 		Robot.drive.driveValues(0, 0);
-		SmartDashboard.putBoolean(IS_CENTERED, true);
-		state = 0; // So it works the second time!!!
+		state = 0;
 	}
 
 	@Override
@@ -45,6 +44,7 @@ public class AutoCenterToGoal extends Command {
 
 	@Override
 	protected void initialize() {
+		state = 0;
 		SmartDashboard.putBoolean(IS_CENTERED, false);
 		System.out.println("enter autoCenter");
 		this.setTimeout(15.0); // Timer for the program.
@@ -65,10 +65,8 @@ public class AutoCenterToGoal extends Command {
 	}
 	
 	public double turnRateAutoCenter() { // Gets turnRate for
-		// AutoCenterToGoal. Is
-		// supposed to slow the
-		// robot down when
-		// approaching the dead zone
+		// AutoCenterToGoal. Is supposed to slow the
+		// robot down when approaching the dead zone
 		// near CENTER.
 		
 		double cogX = camera.getCOG_X();

@@ -20,6 +20,7 @@ import org.usfirst.frc3219.Robot_2106.autonomousLibrary.AutoCenterToGoal;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -87,11 +88,18 @@ public class OI {
 		buttonY = new JoystickButton(gameController, 4);
 		buttonStart = new JoystickButton(gameController, 8);
 		intake.whenPressed(new IntakeBall());
-		autoShoot.whileHeld(new AutoShoot());
 		// intake.whenReleased(new Interrupt());
+		
+		// should shoot be a whileHeld?
+		autoShoot.whileHeld(new AutoShoot());
+		
+		// where are the manual shoot controls?
+		// we need those too for when the autoShoot fails.
+		
 		// start button
-		buttonStart.whileHeld(new ServoControllerSafetyPressed());
-		// buttonY.whileHeld(new ServoControllerSafetyPressed());
+		Command servoSafety = new ServoControllerSafetyPressed();
+		buttonStart.whileHeld(servoSafety);
+		// buttonY.whileHeld(servoSafety); // test enabling this if there is time.
 
 		// pick an appropriate button - gameController?
 		resetArm = new JoystickButton(joystick, 8);
@@ -114,27 +122,5 @@ public class OI {
 		autoDefenseChooser.addObject(DRAWBRIDGE, new Drawbridge());
 		autoDefenseChooser.addObject(CHEVAL_DE_FRISE, new ChevalDeFrise());
 		SmartDashboard.putData(DEFENSE_CHOOSER, autoDefenseChooser);
-
 	}
-	// Button button = new JoystickButton(stick, buttonNumber);
-
-	// There are a few additional built in buttons you can use. Additionally,
-	// by subclassing Button you can create custom triggers and bind those to
-	// commands the same as any other Button.
-
-	//// TRIGGERING COMMANDS WITH BUTTONS
-	// Once you have a button, it's trivial to bind it to a button in one of
-	// three ways:
-
-	// Start the command when the button is pressed and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new ExampleCommand());
-
-	// Run the command while the button is being held down and interrupt it once
-	// the button is released.
-	// button.whileHeld(new ExampleCommand());
-
-	// Start the command when the button is released and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
 }

@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc3219.autonomousLibrary.AutoPortcullisAlign;
 import frc3219.autonomousLibrary.AutoPortcullisBackUp;
 import frc3219.autonomousLibrary.AutoPortcullisRaise;
+import frc3219.autonomousLibrary.AutoRotate;
 import frc3219.autonomousLibrary.AutoShoot;
 import frc3219.autonomousLibrary.AutoTurnAndShoot;
 import frc3219.autonomousLibrary.DriveOverObstacle;
@@ -20,6 +21,7 @@ public class Portcullis extends CommandGroup {
     	this.addSequential(new AutoPortcullisRaise());
     	this.addParallel(new AutoPortcullisBackUp());
     	this.addSequential(new DriveOverObstacle());
+    	this.addSequential(new AutoRotate());
     	this.addSequential(new AutoTurnAndShoot());
     	this.addSequential(new AutoShoot());
     }

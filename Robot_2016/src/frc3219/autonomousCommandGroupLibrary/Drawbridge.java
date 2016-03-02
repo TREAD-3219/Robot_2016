@@ -1,6 +1,7 @@
 package frc3219.autonomousCommandGroupLibrary;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc3219.autonomousLibrary.AutoRotate;
 import frc3219.autonomousLibrary.AutoShoot;
 import frc3219.autonomousLibrary.AutoTurnAndShoot;
 import frc3219.autonomousLibrary.DrawbridgeExecuteArms;
@@ -22,6 +23,7 @@ public class Drawbridge extends CommandGroup {
     	this.addSequential(new DrawbridgeExecuteArms());
     	this.addParallel(new DrawbridgePID_Back());
     	this.addSequential(new DriveOverObstacle());
+    	this.addSequential(new AutoRotate());
         this.addSequential(new AutoTurnAndShoot());
     	this.addSequential(new AutoShoot());
     }

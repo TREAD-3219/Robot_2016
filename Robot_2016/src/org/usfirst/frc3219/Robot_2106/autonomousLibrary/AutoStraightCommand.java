@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc3219.Robot_2016.Robot;
 
 public abstract class AutoStraightCommand extends Command {
+	
 	public void gyroStraight(double speed) {
 		double angle = Robot.sensors.navx.getAngle();
 		if(angle > 1 && angle < 180) {
@@ -14,6 +15,7 @@ public abstract class AutoStraightCommand extends Command {
 			Robot.drive.driveValues(speed, 0.0);
 		}
 	}
+	
 	public void setGyroStraight(double speed, double angle) {
 		// SETUP
 		double robotAngle = Robot.sensors.navx.getAngle();

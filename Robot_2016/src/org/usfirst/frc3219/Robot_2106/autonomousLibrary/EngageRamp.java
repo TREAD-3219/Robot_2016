@@ -10,64 +10,32 @@ public class EngageRamp extends AutoStraightCommand {
 
 	@Override
 	protected void end() {
-		Robot.multiTool.getPIDController().disable();
 	}
 
 	@Override
 	protected void execute() {
-		gyroStraight(RAMP_SPEED);
-		switch (Robot.defense) {
-		case ChevalDeFrise:
-			Robot.multiTool.armSetPoint(MultiTool.CHEVAL_DE_FRISE_START);
-			break;
-		case Drawbridge:
-			Robot.multiTool.armSetPoint(MultiTool.DRAWBRIDGE_START);
-			
-		default:
-			break;
-		}
-/*		if (whichArmPreset.equalsIgnoreCase("Rough Terrain")) {
-			Robot.multiTool.armSetPoint("STOW");
-		} else if (whichArmPreset.equalsIgnoreCase("Rock Wall")) {
-			Robot.multiTool.armSetPoint("STOW");
-		} else if (whichArmPreset.equalsIgnoreCase("Portcullis")) {
-			Robot.multiTool.armSetPoint("PORTCULLIS_START");
-		} else if (whichArmPreset.equalsIgnoreCase("Moat")) {
-			Robot.multiTool.armSetPoint("STOW");
-		} else if (whichArmPreset.equalsIgnoreCase("Ramparts")) {
-			Robot.multiTool.armSetPoint("STOW");
-		} else if (whichArmPreset.equalsIgnoreCase("Sally Port")) {
-			Robot.multiTool.armSetPoint("STOW");
-		} else if (whichArmPreset.equalsIgnoreCase("Drawbridge")) {
-			Robot.multiTool.armSetPoint("DRAWBRIDGE_START");
-		} else if (whichArmPreset.equalsIgnoreCase("Chival de Frise")) {
-			Robot.multiTool.armSetPoint("CHIVAL_DE_FRISE_START");
-		}*/
+		super.gyroStraight(RAMP_SPEED);
 	}
 
 	@Override
 	protected void initialize() {
-		//Robot.multiTool.getPIDController().enable();
 		Robot.sensors.navx.reset();
-		gyroStraight(RAMP_SPEED);
-/*		whichArmPreset = (String) Robot.oi.autoDefenseChooser.getSelected();
-		if (whichArmPreset.equalsIgnoreCase("Rough Terrain")) {
-			Robot.multiTool.armSetPoint("STOW");
-		} else if (whichArmPreset.equalsIgnoreCase("Rock Wall")) {
-			Robot.multiTool.armSetPoint("STOW");
-		} else if (whichArmPreset.equalsIgnoreCase("Portcullis")) {
-			Robot.multiTool.armSetPoint("PORTCULLIS_START");
-		} else if (whichArmPreset.equalsIgnoreCase("Moat")) {
-			Robot.multiTool.armSetPoint("STOW");
-		} else if (whichArmPreset.equalsIgnoreCase("Ramparts")) {
-			Robot.multiTool.armSetPoint("STOW");
-		} else if (whichArmPreset.equalsIgnoreCase("Sally Port")) {
-			Robot.multiTool.armSetPoint("STOW");
-		} else if (whichArmPreset.equalsIgnoreCase("Drawbridge")) {
-			Robot.multiTool.armSetPoint("DRAWBRIDGE_START");
-		} else if (whichArmPreset.equalsIgnoreCase("Chival de Frise")) {
-			Robot.multiTool.armSetPoint("CHIVAL_DE_FRISE_START");
-		}*/
+		Robot.drive.setBrakesOff();
+		super.gyroStraight(RAMP_SPEED);
+		
+		switch (Robot.defense) {
+		case ChevalDeFrise:
+			Robot.multiTool.armSetPoint(MultiTool.CHEVAL_DE_FRISE_START);
+			break;
+			
+		case Drawbridge:
+			Robot.multiTool.armSetPoint(MultiTool.DRAWBRIDGE_START);
+			break;
+			
+		default:
+			Robot.multiTool.armSetPoint(MultiTool.STOW);
+			break;
+		}
 	}
 
 	@Override
@@ -77,9 +45,6 @@ public class EngageRamp extends AutoStraightCommand {
 
 	@Override
 	protected boolean isFinished() {
-		if (Robot.sensors.getTip() >= 5.0) {
-			return true;
-		} else
-			return false;
+		return Robot.sensors.getTip() >= 5.0;
 	}
 }

@@ -1,6 +1,8 @@
 package org.usfirst.frc3219.Robot_2106.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.Robot.Position;
+
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class AutoTurnAndShoot extends AutoStraightCommand {
@@ -19,30 +21,29 @@ public class AutoTurnAndShoot extends AutoStraightCommand {
 	protected void execute() {
 		currentEncoderDist = Robot.sensors.aveDistEncoders() - initEncoderDist;
 		setGyroStraight(0.45, 20);
-/*		if (whichPosition.equalsIgnoreCase("position a")) { // 36 degrees
-			setGyroStraight(0.45, 36.0);
-		} else if (whichPosition.equalsIgnoreCase("position b")) {
-			setGyroStraight(0.45, 20);
-		} else if (whichPosition.equalsIgnoreCase("position c")) {
-			setGyroStraight(0.45, 355);
-		} else if (whichPosition.equalsIgnoreCase("position d")) {
-			setGyroStraight(0.45, 300);
-		}*/
 	}
 
 	@Override
 	protected void initialize() {
 		this.setTimeout(2.5);
 		initEncoderDist = Robot.sensors.aveDistEncoders();
-		whichPosition = (String) Robot.oi.autoDefenseChooser.getSelected();
-		if (whichPosition.equalsIgnoreCase("position a")) {
+		switch (Robot.position) {
+		case A:
 			setGyroStraight(0.45, 36.0);
-		} else if (whichPosition.equalsIgnoreCase("position b")) {
+			break;
+		case B:
 			setGyroStraight(0.45, 20);
-		} else if (whichPosition.equalsIgnoreCase("position c")) {
+			break;
+		case C:
 			setGyroStraight(0.45, 355);
-		} else if (whichPosition.equalsIgnoreCase("position d")) {
+			break;
+		case D:
 			setGyroStraight(0.45, 300);
+			break;
+			
+			default:
+				System.out.println("Unknown Position in AutoTurnAndShoot: " + Robot.position.name());
+				break;
 		}
 	}
 

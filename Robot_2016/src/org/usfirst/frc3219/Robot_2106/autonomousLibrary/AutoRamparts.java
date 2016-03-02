@@ -9,7 +9,7 @@ public class AutoRamparts extends AutoStraightCommand {
 	
 	@Override
 	protected void end() {
-		}
+	}
 
 	@Override
 	protected void execute() {
@@ -21,14 +21,12 @@ public class AutoRamparts extends AutoStraightCommand {
 	protected void initialize() {
 		aveDistI = Robot.sensors.getAvgEncoderDist();
 		gyroStraight(1.0);
-		
-		
+		Robot.drive.setBrakesOff();
 	}
 
 	@Override
 	protected void interrupted() {
 		this.end();
-		
 	}
 
 	@Override

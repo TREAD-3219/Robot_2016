@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc3219.Robot_2016.Robot.Defense;
 import org.usfirst.frc3219.Robot_2016.Robot.Position;
-import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.ChivalDeFrise;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.ChevalDeFrise;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Drawbridge;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Moat;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Portcullis;
@@ -72,6 +72,7 @@ public class Robot extends IterativeRobot {
 	public static FeedMech feedMech;
 	public static MultiTool multiTool;
 	public static Navigation navigation;
+	
 	public static Defense defense;
 	public static Position position;
 	
@@ -128,7 +129,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
      	Robot.climber.resetClimber(); // ensure servo's in correct position
     	
-     	String defenseName = (String) Robot.oi.autoDefenseChooser.getSelected();
+     	autonomousCommand = (Command) Robot.oi.autoDefenseChooser.getSelected();
      	String positionName = (String) Robot.oi.autoStartPosition.getSelected();
      	
      	if (positionName.equals(OI.POSITION_A)) {
@@ -143,37 +144,7 @@ public class Robot extends IterativeRobot {
      		position = Position.Unknown;
      		System.out.println("Unknown Position!! " + positionName);
      	}
-     	
-        autonomousCommand = null;
-        if (defenseName.equals(OI.CHIVAL_DE_FRISE)) {
-        	autonomousCommand = new ChivalDeFrise();
-        	defense = Defense.ChevalDeFrise;
-        } else if (defenseName.equals(OI.DRAWBRIDGE)) {
-        	autonomousCommand = new Drawbridge();
-        	defense = Defense.Drawbridge;
-        } else if (defenseName.equals(OI.MOAT)) {
-        	autonomousCommand = new Moat();
-        	defense = Defense.Moat;
-        } else if (defenseName.equals(OI.PORTCULLIS)) {
-        	autonomousCommand = new Portcullis();
-        	defense = Defense.Portcullis;
-        } else if (defenseName.equals(OI.RAMPARTS)) {
-        	autonomousCommand = new Ramparts();
-        	defense = Defense.Ramparts;
-        } else if (defenseName.equals(OI.ROCK_WALL)) {
-        	autonomousCommand = new RockWall();
-        	defense = Defense.RockWall;
-        } else if (defenseName.equals(OI.ROUGH_TERRAIN)) {
-        	autonomousCommand = new RoughTerrain();
-        	defense = Defense.RoughTerrain;
-        } else if (defenseName.equals(OI.SALLY_PORT)) {
-        	autonomousCommand = new SallyPort();
-        	defense = Defense.SallyPort;
-        } else {
-        	defense = Defense.Unknown;
-        	System.out.println("Unknown Defense!! " + defenseName);
-        }
-   
+    
          if (autonomousCommand != null) {
         	autonomousCommand.start();
         }

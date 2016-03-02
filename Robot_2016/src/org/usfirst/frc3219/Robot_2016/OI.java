@@ -1,5 +1,13 @@
 package org.usfirst.frc3219.Robot_2016;
 
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.ChevalDeFrise;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Drawbridge;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Moat;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Portcullis;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Ramparts;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RockWall;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RoughTerrain;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.SallyPort;
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
 import org.usfirst.frc3219.Robot_2016.commands.IntakeBall;
 import org.usfirst.frc3219.Robot_2016.commands.ManualFeed;
@@ -28,7 +36,7 @@ public class OI {
 	private static final String AUTO_START_POSITION = "Auto Start Position";
 	private static final String AUTO_DEFENSE_CHOOSER = "autoDefenseChooser";
     public static final String DEFENSE_CHOOSER = "Defense Chooser";
-	public static final String CHIVAL_DE_FRISE = "Chival de Frise";
+	public static final String CHEVAL_DE_FRISE = "Cheval de Frise";
 	public static final String DRAWBRIDGE = "Drawbridge";
 	public static final String SALLY_PORT = "Sally Port";
 	public static final String RAMPARTS = "Ramparts";
@@ -36,6 +44,7 @@ public class OI {
 	public static final String PORTCULLIS = "Portcullis";
 	public static final String ROCK_WALL = "Rock Wall";
 	public static final String ROUGH_TERRAIN = "Rough Terrain";
+	
 	public static final String POSITION_D = "Position D";
 	public static final String POSITION_C = "Position C";
 	public static final String POSITION_B = "Position B";
@@ -96,14 +105,14 @@ public class OI {
 		SmartDashboard.putData(AUTO_START_POSITION, autoStartPosition);
 
 		autoDefenseChooser = new SendableChooser();
-		autoDefenseChooser.addDefault(ROUGH_TERRAIN, ROUGH_TERRAIN);
-		autoDefenseChooser.addObject(ROCK_WALL, ROCK_WALL);
-		autoDefenseChooser.addObject(PORTCULLIS, PORTCULLIS);
-		autoDefenseChooser.addObject(MOAT, MOAT);
-		autoDefenseChooser.addObject(RAMPARTS, RAMPARTS);
-		autoDefenseChooser.addObject(SALLY_PORT, SALLY_PORT);
-		autoDefenseChooser.addObject(DRAWBRIDGE, DRAWBRIDGE);
-		autoDefenseChooser.addObject(CHIVAL_DE_FRISE, CHIVAL_DE_FRISE);
+		autoDefenseChooser.addDefault(ROUGH_TERRAIN, new RoughTerrain());
+		autoDefenseChooser.addObject(ROCK_WALL, new RockWall());
+		autoDefenseChooser.addObject(PORTCULLIS, new Portcullis());
+		autoDefenseChooser.addObject(MOAT, new Moat());
+		autoDefenseChooser.addObject(RAMPARTS, new Ramparts());
+		autoDefenseChooser.addObject(SALLY_PORT, new SallyPort());
+		autoDefenseChooser.addObject(DRAWBRIDGE, new Drawbridge());
+		autoDefenseChooser.addObject(CHEVAL_DE_FRISE, new ChevalDeFrise());
 		SmartDashboard.putData(DEFENSE_CHOOSER, autoDefenseChooser);
 
 	}

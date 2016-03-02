@@ -1,5 +1,6 @@
 package org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary;
 
+import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2106.autonomousLibrary.AutoPortcullisAlign;
 import org.usfirst.frc3219.Robot_2106.autonomousLibrary.AutoPortcullisBackUp;
 import org.usfirst.frc3219.Robot_2106.autonomousLibrary.AutoPortcullisRaise;
@@ -25,6 +26,13 @@ public class Portcullis extends CommandGroup {
     	this.addSequential(new AutoRotate());
     	this.addSequential(new AutoTurnAndShoot());
     	this.addSequential(new AutoShoot());
+    }
+
+    
+    @Override
+    protected void initialize() {
+    	Robot.defense = Robot.Defense.Portcullis;
+    	super.initialize();
     }
 }
 

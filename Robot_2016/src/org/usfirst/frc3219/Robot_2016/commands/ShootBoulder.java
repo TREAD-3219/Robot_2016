@@ -11,8 +11,7 @@ public class ShootBoulder extends Command {
 	private static final double FEEDER_RUN_SPEED = .3;
 	private static final double FEEDER_STOP_SPEED = 0.0;
 	private static final double BOULDER_SHOT_TIME = .3;
-	private static final double SHOOTER_SPINUP_TIME = 0.7;
-	private static final double FEEDER_SPINUP_TIMEOUT = 2.5;
+	private static final double SHOOTER_SPINUP_TIME = 0.7; // long enough?
 
 	enum ShootStates {
 		start, spinup, feed, stop;
@@ -42,19 +41,14 @@ public class ShootBoulder extends Command {
 	@Override
 	protected void execute() {
 		Robot.shooter.spinUp(topPower, bottomPower);
-		Robot.feedMech.spinFeeder(1, feederSpeed);
+		Robot.feedMech.spinFeeder(feederSpeed);
 		double deltaTime = Timer.getFPGATimestamp() - startTime;
 		
 		switch (states) {
 		case spinup:
 			if ((Robot.shooter.atSpeed()
 					&& SmartDashboard.getBoolean("IsCentered"))
-					|| deltaTime > FEEDER_SPINUP_TIMEOUT) {
-				states = ShootStates.feed;
-				feederSpeed = FEEDER_RUN_SPEED;
-				startTime = Timer.getFPGATimestamp();
-			}
-			if (deltaTime > SHOOTER_SPINUP_TIME) {
+					|| deltaTime > SHOOTER_SPINUP_TIME) {
 				states = ShootStates.feed;
 				feederSpeed = FEEDER_RUN_SPEED;
 				startTime = Timer.getFPGATimestamp();

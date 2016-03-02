@@ -24,7 +24,7 @@ public class ManualFeed extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.feedMech.spinFeeder(1, FEEDER_SPEED);
+		Robot.feedMech.spinFeeder(FEEDER_SPEED);
 		this.setTimeout(TIMEOUT);
 	}
 

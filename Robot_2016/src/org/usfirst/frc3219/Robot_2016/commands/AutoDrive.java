@@ -7,18 +7,20 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoDrive extends Command {
-	double speed;
+	double motorPower;
 	double time = 2;
 	double distance;
 	double encoderDist;
-	public AutoDrive(double speed, double distance) {
-		this.speed = speed;
+	
+	public AutoDrive(double motorPower, double distance) {
+		this.motorPower = motorPower;
 		this.distance = distance;
 	}
+	
 	@Override
 	protected void initialize() {
 		this.setTimeout(time);
-		Robot.drive.driveValues(speed, 0);
+		Robot.drive.driveValues(motorPower, 0);
 		encoderDist = (RobotMap.driveEncoderLeft.getDistance() + RobotMap.driveEncoderRight.getDistance()) / 2;
 		
 	}
@@ -29,7 +31,7 @@ public class AutoDrive extends Command {
 	}
 	@Override
 	protected void execute() {
-		Robot.drive.driveValues(speed, 0); // hau fst th robt gos
+		Robot.drive.driveValues(motorPower, 0); // hau fst th robt gos
 		
 	}
 	@Override

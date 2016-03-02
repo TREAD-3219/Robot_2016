@@ -11,7 +11,7 @@ public class AutoClimb extends CommandGroup {
 		
 	}
 	public void createAutoClimbCommands() {
-		//this.addSequential(new SetMultiToolPoint());
+		//this.addSequential(new SetMultiToolPoint(PORTCULLIS_START_TAG));
 		this.addSequential(new ReleaseClimber());
 		//this.addSequential(new AutoDrive(1, 24));
 		

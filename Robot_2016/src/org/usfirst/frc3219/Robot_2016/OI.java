@@ -26,7 +26,6 @@ public class OI {
 	// number it is.
 	private static final String AUTO_START_POSITION = "Auto Start Position";
 	private static final String AUTO_DEFENSE_CHOOSER = "autoDefenseChooser";
-	
     public static final String DEFENSE_CHOOSER = "Defense Chooser";
 	public static final String CHIVAL_DE_FRISE = "Chival de Frise";
 	public static final String DRAWBRIDGE = "Drawbridge";
@@ -79,7 +78,6 @@ public class OI {
 		intake.whenPressed(new IntakeBall());
 		autoShoot.whileHeld(new AutoShoot());
 		// intake.whenReleased(new Interrupt());
-
 		// start button
 		buttonStart.whileHeld(new ServoControllerSafetyPressed());
 		// buttonY.whileHeld(new ServoControllerSafetyPressed());

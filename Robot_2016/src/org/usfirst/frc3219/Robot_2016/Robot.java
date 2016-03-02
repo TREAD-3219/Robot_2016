@@ -76,7 +76,8 @@ public class Robot extends IterativeRobot {
 	public static Defense defense;
 	public static Position position;
 	
-	Command sensorsCommand;
+	WatchSensors sensorsCommand;
+	DedReckoningChecks dedReckonCommand;
 	
     Command autonomousCommand = null;
  
@@ -100,6 +101,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, Shooter.BOTTOM_SHOOTER_SPEED);
         
         sensorsCommand = new WatchSensors();
+        dedReckonCommand = new DedReckoningChecks();
     }
 	
 	/**
@@ -110,6 +112,10 @@ public class Robot extends IterativeRobot {
     public void disabledInit(){
     	if (sensorsCommand != null) {
     		sensorsCommand.start();
+    	}
+    	
+    	if (dedReckonCommand != null) {
+    		dedReckonCommand.start();
     	}
     }
 	

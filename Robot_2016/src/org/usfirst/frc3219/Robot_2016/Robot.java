@@ -8,6 +8,14 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc3219.Robot_2016.Robot.Defense;
 import org.usfirst.frc3219.Robot_2016.Robot.Position;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.ChivalDeFrise;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Drawbridge;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Moat;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Portcullis;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Ramparts;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RockWall;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RoughTerrain;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.SallyPort;
 import org.usfirst.frc3219.Robot_2016.commands.DedReckoningChecks;
 import org.usfirst.frc3219.Robot_2016.commands.EnableClimberButtons;
 import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
@@ -24,14 +32,6 @@ import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc3219.autonomousCommandGroupLibrary.ChivalDeFrise;
-import frc3219.autonomousCommandGroupLibrary.Drawbridge;
-import frc3219.autonomousCommandGroupLibrary.Moat;
-import frc3219.autonomousCommandGroupLibrary.Portcullis;
-import frc3219.autonomousCommandGroupLibrary.Ramparts;
-import frc3219.autonomousCommandGroupLibrary.RockWall;
-import frc3219.autonomousCommandGroupLibrary.RoughTerrain;
-import frc3219.autonomousCommandGroupLibrary.SallyPort;
 
 /**
  * The VM is configured to automatically run this class, and to call the

@@ -1,9 +1,9 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2106.autonomousLibrary.AutoCenterToGoal;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc3219.autonomousLibrary.AutoCenterToGoal;
 
 // Counter does not work for this command, only for ManualShoot and RunShooter.
 public class AutoShoot extends CommandGroup {

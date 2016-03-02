@@ -13,8 +13,11 @@ to test them.  There aren't buttons with the manual controls attached -
 those should be done and tested - they were done in the past but
 taken out?
 
+What can be put off until Thursday night for testing?
+Friday morning?
+
 Does ANYONE have any un-integrated changes?  on which branch?
-prioritize those changes - you only have 3 hours to test.
+prioritize those changes - you only have 3 hours to test (max).
 
 Does the robot move forward after the turn-to-goal during auto
 to get within shooting range? (about 10-12 feet)
@@ -24,4 +27,5 @@ how far can the shooter throw? test!
 The PID setup for the arm will need tweaking - be sure we have
 dashboard variables for modifying them during testing.
 
-
+The team needs to go over the functions of the robot, and review
+the implementation to make sure everything is implemented.

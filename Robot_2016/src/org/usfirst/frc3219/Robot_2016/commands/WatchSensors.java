@@ -12,6 +12,8 @@ public class WatchSensors extends NeverFinishCommand {
 	private static Sensors sensors = Robot.sensors;
 
 	public WatchSensors() {
+		this.setRunWhenDisabled(true);
+		this.setInterruptible(false);
 		requires(Robot.sensors);
 	}
 

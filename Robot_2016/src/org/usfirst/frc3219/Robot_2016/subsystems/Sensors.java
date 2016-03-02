@@ -3,10 +3,10 @@ package org.usfirst.frc3219.Robot_2016.subsystems;
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.commands.WatchSensors;
+import org.usfirst.frc3219.Robot_2016.utility.Utility;
 
 import com.kauailabs.navx.frc.AHRS;
 
-import Robot_2016.utility.Utility;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;

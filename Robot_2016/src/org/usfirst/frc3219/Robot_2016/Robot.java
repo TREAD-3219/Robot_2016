@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+import org.usfirst.frc3219.Robot_2016.Robot.Defense;
+import org.usfirst.frc3219.Robot_2016.Robot.Position;
 import org.usfirst.frc3219.Robot_2016.commands.DedReckoningChecks;
 import org.usfirst.frc3219.Robot_2016.commands.EnableClimberButtons;
 import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
@@ -22,8 +24,14 @@ import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc3219.autonomousCommandGroupLibrary.ChivalDeFrise;
+import frc3219.autonomousCommandGroupLibrary.Drawbridge;
+import frc3219.autonomousCommandGroupLibrary.Moat;
+import frc3219.autonomousCommandGroupLibrary.Portcullis;
 import frc3219.autonomousCommandGroupLibrary.Ramparts;
+import frc3219.autonomousCommandGroupLibrary.RockWall;
 import frc3219.autonomousCommandGroupLibrary.RoughTerrain;
+import frc3219.autonomousCommandGroupLibrary.SallyPort;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,6 +42,26 @@ import frc3219.autonomousCommandGroupLibrary.RoughTerrain;
  */
 public class Robot extends IterativeRobot {
 	
+	public enum Position {
+		Unknown,
+		A,
+		B,
+		C,
+		D
+	}
+
+	public enum Defense {
+		Unknown,
+		ChevalDeFrise,
+		Drawbridge,
+		Moat,
+		Portcullis,
+		Ramparts,
+		RockWall,
+		RoughTerrain,
+		SallyPort
+	}
+
 	// subsystems
 	public static Drive drive;
 	public static Sensors sensors;
@@ -44,7 +72,10 @@ public class Robot extends IterativeRobot {
 	public static FeedMech feedMech;
 	public static MultiTool multiTool;
 	public static Navigation navigation;
+	public static Defense defense;
+	public static Position position;
 	
+	Command sensorsCommand;
 	
     Command autonomousCommand = null;
  
@@ -66,6 +97,8 @@ public class Robot extends IterativeRobot {
 
         SmartDashboard.putNumber(Shooter.TOPSHOOTER, Shooter.TOP_SHOOTER_SPEED);
         SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, Shooter.BOTTOM_SHOOTER_SPEED);
+        
+        sensorsCommand = new WatchSensors();
     }
 	
 	/**
@@ -74,6 +107,9 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
      */
     public void disabledInit(){
+    	if (sensorsCommand != null) {
+    		sensorsCommand.start();
+    	}
     }
 	
 	public void disabledPeriodic() {
@@ -90,25 +126,55 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-        //autonomousCommand = (Command) chooser.getSelected();
-    	autonomousCommand = new Ramparts();
-        
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
-    	Robot.climber.resetClimber(); // ensure servo's in correct position
+     	Robot.climber.resetClimber(); // ensure servo's in correct position
     	
-        autonomousCommand = null;  // assign the real starting autonomous command here.
+     	String defenseName = (String) Robot.oi.autoDefenseChooser.getSelected();
+     	String positionName = (String) Robot.oi.autoStartPosition.getSelected();
+     	
+     	if (positionName.equals(OI.POSITION_A)) {
+     		position = Position.A;
+     	} else if (positionName.equals(OI.POSITION_B)) {
+     		position = Position.B;
+     	} else if (positionName.equals(OI.POSITION_C)) {
+     		position = Position.C;
+     	} else if (positionName.equals(OI.POSITION_D)) {
+     		position = Position.D;
+     	} else {
+     		position = Position.Unknown;
+     		System.out.println("Unknown Position!! " + positionName);
+     	}
+     	
+        autonomousCommand = null;
+        if (defenseName.equals(OI.CHIVAL_DE_FRISE)) {
+        	autonomousCommand = new ChivalDeFrise();
+        	defense = Defense.ChevalDeFrise;
+        } else if (defenseName.equals(OI.DRAWBRIDGE)) {
+        	autonomousCommand = new Drawbridge();
+        	defense = Defense.Drawbridge;
+        } else if (defenseName.equals(OI.MOAT)) {
+        	autonomousCommand = new Moat();
+        	defense = Defense.Moat;
+        } else if (defenseName.equals(OI.PORTCULLIS)) {
+        	autonomousCommand = new Portcullis();
+        	defense = Defense.Portcullis;
+        } else if (defenseName.equals(OI.RAMPARTS)) {
+        	autonomousCommand = new Ramparts();
+        	defense = Defense.Ramparts;
+        } else if (defenseName.equals(OI.ROCK_WALL)) {
+        	autonomousCommand = new RockWall();
+        	defense = Defense.RockWall;
+        } else if (defenseName.equals(OI.ROUGH_TERRAIN)) {
+        	autonomousCommand = new RoughTerrain();
+        	defense = Defense.RoughTerrain;
+        } else if (defenseName.equals(OI.SALLY_PORT)) {
+        	autonomousCommand = new SallyPort();
+        	defense = Defense.SallyPort;
+        } else {
+        	defense = Defense.Unknown;
+        	System.out.println("Unknown Defense!! " + defenseName);
+        }
    
-        // schedule the autonomous command (example)
-        if (autonomousCommand != null) {
+         if (autonomousCommand != null) {
         	autonomousCommand.start();
         }
     }

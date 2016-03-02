@@ -29,27 +29,22 @@ public class MultiTool extends PIDSubsystem {
 	DigitalInput limitSwitchLow = RobotMap.multiToolLimitSwitchLow;
 	public static final String ARM_ENCODER_TAG = "Arm Encoder";
 
-	public static final String PORTCULLIS_START_TAG = "PORTCULLIS_START";
-	public static final String DRAWBRIDGE_START_TAG = "DRAWBRIDGE_START";
-	public static final String STOW_TAG = "STOW";
-	public static final String ROLLER_PICKUP_TAG = "ROLLER_PICKUP";
-	public static final String CHEVAL_DE_FRISE_START_TAG = "CHIVAL_DE_FRISE_START";
-	public static final String PORTCULLIS_END_TAG = "PORTCULLIS_END";
-	public static final String DRAWBRIDGE_END_TAG = "DRAWBRIDGE_END";
-	public static final String CHIVAL_DE_FRISE_END_TAG = "CHIVAL_DE_FRISE_END";
 	public static int selectedTool = 0;
 
 	// -----------
 	public static final double STOW = 3.0; // close to zero degrees, but not too close.
-	public static final double DRAWBRIDGE_START = 29.0;
-	public static final double PORTCULLIS_START = 115.0;
-	public static final double ROLLER_PICKUP = 104.0;
 	public static final double CHEVAL_DE_FRISE_START = 86.0;
+	public static final double CHIVAL_DE_FRISE_END = 106.0;
+	public static final double DRAWBRIDGE_START = 29.0;
+	public static final double DRAWBRIDGE_END = 109.0;
+	public static final double PORTCULLIS_START = 115.0;
+	public static final double PORTCULLIS_END = 33.0;
+	public static final double ROLLER_PICKUP = 104.0;
+	public static final double SHOOT_POSITION = 85.0;
+	public static final double NEUTRAL_POSITION = SHOOT_POSITION;
 	// -----------
 
-	public static final double PORTCULLIS_END = 33.0;
-	public static final double DRAWBRIDGE_END = 109.0;
-	public static final double CHIVAL_DE_FRISE_END = 106.0;
+	
 	private static final double ENCODER_MIN = 0;
 	private static final double ENCODER_MAX = 120;
 	public static final double RANGE = ENCODER_MAX - ENCODER_MIN;
@@ -65,26 +60,8 @@ public class MultiTool extends PIDSubsystem {
 		this.setPercentTolerance(5);
 	}
 
-	public void armSetPoint(String position) {
-		if (position.equalsIgnoreCase(STOW_TAG)) {
-			this.setSetpoint(STOW);
-		} else if (position.equals(DRAWBRIDGE_START_TAG)) {
-			this.setSetpoint(DRAWBRIDGE_START);
-		} else if (position.equalsIgnoreCase(PORTCULLIS_START_TAG)) {
-			this.setSetpoint(PORTCULLIS_START);
-		} else if (position.equalsIgnoreCase(ROLLER_PICKUP_TAG)) {
-			this.setSetpoint(ROLLER_PICKUP);
-		} else if (position.equalsIgnoreCase(CHEVAL_DE_FRISE_START_TAG)) {
-			this.setSetpoint(CHEVAL_DE_FRISE_START);
-		} else if (position.equalsIgnoreCase(CHIVAL_DE_FRISE_END_TAG)) {
-			this.setSetpoint(CHIVAL_DE_FRISE_END);
-		} else if (position.equalsIgnoreCase(PORTCULLIS_END_TAG)) {
-			this.setSetpoint(PORTCULLIS_END);
-		} else if (position.equalsIgnoreCase(DRAWBRIDGE_END_TAG)) {
-			this.setSetpoint(DRAWBRIDGE_END);
-		} else {
-			System.out.println("Error: Bad armSetPoint String parameter.");
-		}
+	public void armSetPoint(double position) {
+		this.setSetpoint(position);
 	}
 
 	public Boolean readUpperMultiToolLimitSwitch() {

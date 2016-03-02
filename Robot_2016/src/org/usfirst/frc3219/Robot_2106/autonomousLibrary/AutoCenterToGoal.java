@@ -8,24 +8,33 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoCenterToGoal extends Command {
+	public static final String IS_CENTERED = "IsCentered";
+	public static final String CENTER_POINT = "Center Point";
+	
 	private static final int CENTER = 320;
 	private static final int LIMIT_AREA = 10;
 	private static final int OUTER_LIMIT_LEFT = 150;
 	private static final int OUTER_LIMIT_RIGHT = 490;
+	private static final int LIMIT_LEFT_ADJUST = OUTER_LIMIT_LEFT - CENTER;
+	private static final int LIMIT_RIGHT_ADJUST = OUTER_LIMIT_RIGHT - CENTER;
 	Camera camera = RobotMap.camera;
 	private int state = 0;
+	private int centerPoint = CENTER;
+	private int limitLeft = OUTER_LIMIT_LEFT;
+	private int limitRight = OUTER_LIMIT_RIGHT;
 
 	public AutoCenterToGoal() {
 		requires(Robot.drive);
+		SmartDashboard.putNumber(CENTER_POINT, CENTER);
 	}
 
 	@Override
 	// Ends stops the turn.
 	protected void end() {
 		System.out.println("finished");
-		SmartDashboard.putBoolean("IsCentered", true);
+		SmartDashboard.putBoolean(IS_CENTERED, true);
 		Robot.drive.driveValues(0, 0);
-		SmartDashboard.putBoolean("IsCentered", true);
+		SmartDashboard.putBoolean(IS_CENTERED, true);
 		state = 0; // So it works the second time!!!
 	}
 
@@ -36,11 +45,13 @@ public class AutoCenterToGoal extends Command {
 
 	@Override
 	protected void initialize() {
-		SmartDashboard.putBoolean("IsCentered", false);
+		SmartDashboard.putBoolean(IS_CENTERED, false);
 		System.out.println("enter autoCenter");
 		this.setTimeout(15.0); // Timer for the program.
 		autoCenter();
-		SmartDashboard.putBoolean("IsCentered", false);
+		centerPoint = (int) SmartDashboard.getNumber(CENTER_POINT, CENTER);
+		limitLeft = centerPoint + LIMIT_LEFT_ADJUST;
+		limitRight = centerPoint + LIMIT_RIGHT_ADJUST;
 	}
 
 	@Override
@@ -50,11 +61,7 @@ public class AutoCenterToGoal extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		if (this.state == 1 || this.isTimedOut()) {
-			return true;
-		} else {
-			return false;
-		}
+		return this.state == 1 || this.isTimedOut();
 	}
 	
 	public double turnRateAutoCenter() { // Gets turnRate for
@@ -64,15 +71,15 @@ public class AutoCenterToGoal extends Command {
 		// approaching the dead zone
 		// near CENTER.
 		
-		double X = camera.getCOG_X();
+		double cogX = camera.getCOG_X();
 		//Make 0 the origin.
-		X -= 320;
+		cogX -= centerPoint;
 		double rate;
 		
-		if(X > 0) {
-			rate = 3.5 * Math.pow((-X*0.003), 3) - 0.4;
+		if(cogX > 0) {
+			rate = 3.5 * Math.pow((-cogX*0.003), 3) - 0.4;
 		} else {
-			rate = 3.5 * Math.pow((-X*0.003), 3) + 0.4;
+			rate = 3.5 * Math.pow((-cogX*0.003), 3) + 0.4;
 		}
 		
 		if(rate > 0.75) {
@@ -104,8 +111,9 @@ public class AutoCenterToGoal extends Command {
 			state = 1;
 			return;
 		}
-		double x = camera.getCOG_X();
-		if (x <= CENTER - LIMIT_AREA || x >= CENTER + LIMIT_AREA) {
+		
+		double cogX = camera.getCOG_X();
+		if (cogX <= centerPoint - LIMIT_AREA || cogX >= centerPoint + LIMIT_AREA) {
 			Robot.drive.driveValues(0, this.turnRateAutoCenter());
 		} else {
 			Robot.drive.driveValues(0, 0);

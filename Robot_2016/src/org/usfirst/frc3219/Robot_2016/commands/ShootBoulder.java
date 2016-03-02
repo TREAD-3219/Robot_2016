@@ -62,6 +62,11 @@ public class ShootBoulder extends Command {
 		case stop:
 			feederSpeed = FEEDER_STOP_SPEED;
 			finished = true;
+			
+		default:
+			System.out.println("ShootBoulder unknown state: " + states.name());
+			finished = true;
+			break;
 		}
 	}
 

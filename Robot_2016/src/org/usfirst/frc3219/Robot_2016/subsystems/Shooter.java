@@ -27,11 +27,12 @@ public class Shooter extends Subsystem {
 	public static final double BOTTOM_SHOOTER_SPEED = 1.0;
 	public static final double TOP_SHOOTER_SPEED = 0.7;
 	private static final double SHOOTER_STOP_SPEED = 0.0;
-	private static final int COUNTER_SAMPLES_TO_AVERAGE = 10;
+	private static final int COUNTER_SAMPLES_TO_AVERAGE = 3;
 	private static final double COUNTER_MAX_PERIOD = 0.1;
-	private static final int COUNTER_DISTANCE_PER_PULSE = 12;
+	private static final int COUNTER_DISTANCE_PER_PULSE = 1;
 	public static final String TOPSHOOTER = "ShooterTop";
 	public static final String BOTTOMSHOOTER = "ShooterBottom";
+	private static final double SHOOTER_RPS_MINIMUM = 10; // 600 RPM - adjust this!
 
 	CANTalon shooterTopMotor = RobotMap.driveTopShooter;
 	CANTalon shooterBottomMotor = RobotMap.driveBottomShooter;
@@ -60,6 +61,7 @@ public class Shooter extends Subsystem {
 		shooterBottomMotor.setSafetyEnabled(false);
 		shooterTopMotor.enableBrakeMode(false);
 		shooterBottomMotor.enableBrakeMode(false);
+		shooterTopMotor.setInverted(false);
 		shooterBottomMotor.setInverted(false);
 
 		// set up counter mode
@@ -93,8 +95,6 @@ public class Shooter extends Subsystem {
 	}
 
 	public boolean atSpeed() {
-		// TODO Auto-generated method stub
-		return false;
-		
+		return RobotMap.shooterCounter.getRate() > SHOOTER_RPS_MINIMUM;
 	}
 }

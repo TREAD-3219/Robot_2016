@@ -4,6 +4,7 @@ import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
 import org.usfirst.frc3219.Robot_2016.commands.IntakeBall;
 import org.usfirst.frc3219.Robot_2016.commands.ManualFeed;
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
+import org.usfirst.frc3219.Robot_2016.commands.ResetArm;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
 import org.usfirst.frc3219.Robot_2016.commands.ServoControllerSafetyPressed;
 import org.usfirst.frc3219.Robot_2106.autonomousLibrary.AutoCenterToGoal;
@@ -50,6 +51,7 @@ public class OI {
 	public Button buttonStart;
 	public JoystickButton autoShoot;
 	public JoystickButton spitOut;
+	public JoystickButton resetArm;
 	public SendableChooser autoDefenseChooser;
 	public SendableChooser autoStartPosition;
 
@@ -82,6 +84,10 @@ public class OI {
 		buttonStart.whileHeld(new ServoControllerSafetyPressed());
 		// buttonY.whileHeld(new ServoControllerSafetyPressed());
 
+		// pick an appropriate button - gameController?
+		resetArm = new JoystickButton(joystick, 8);
+		resetArm.whenPressed(new ResetArm());
+		
     	autoStartPosition = new SendableChooser();
 		autoStartPosition.addDefault(POSITION_A, POSITION_A);
 		autoStartPosition.addObject(POSITION_B, POSITION_B);

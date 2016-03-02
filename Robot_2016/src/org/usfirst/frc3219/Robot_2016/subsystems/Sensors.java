@@ -40,6 +40,7 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	public static final String LEFT_ENCODER_TAG = "Left Encoder";
 	public static final String RIGHT_ENCODER_TAG = "Right Encoder";
 	public static final String ANGLE = "Angle";
+	public static final String SHOOTER_SPEED = "Shooter Speed";
 	public static final double WHEEL_ENCODER_PULSE_PER_REVOLUTION = 360.0;
 
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
@@ -101,23 +102,9 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 		return this.navx.getAngle();
 	}
 
-	public double readShooterCounter1() {
-		return RobotMap.shooterCounter.getPeriod();
+	public double getShooterSpeed() {
+		return RobotMap.shooterCounter.getRate();
 	}
-
-	public void getCounterValues() {
-		int count = RobotMap.shooterCounter.get();
-		//SmartDashboard.putNumber(TACH_RAW, count);
-		double distance = RobotMap.shooterCounter.getDistance();
-		double period = RobotMap.shooterCounter.getPeriod();
-		double rate = RobotMap.shooterCounter.getRate();
-		boolean direction = RobotMap.shooterCounter.getDirection();
-		boolean stopped = RobotMap.shooterCounter.getStopped();
-	}
-
-	/*public boolean readLineSeeker() {
-		return RobotMap.lineSeekerInput.get();
-	}*/
 
 	public int readShooterCounter() {
 		return RobotMap.shooterCounter.get();

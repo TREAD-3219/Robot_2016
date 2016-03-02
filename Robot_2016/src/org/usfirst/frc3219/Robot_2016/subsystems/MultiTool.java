@@ -52,6 +52,7 @@ public class MultiTool extends PIDSubsystem {
     private static final double ARM_GEAR_RATIO = 71;
     private static final double ARM_PULSE_PER_REVOLUTION = ENCODER_PULSE_PER_REVOLUTION * ARM_GEAR_RATIO;
 	public static final double ARM_ENCODER_DEGREES_PER_PULSE = 360.0 / ARM_PULSE_PER_REVOLUTION;
+	public static final double UP = 0.5;
 
 	public MultiTool() {
 		super(P, I, D);
@@ -59,16 +60,16 @@ public class MultiTool extends PIDSubsystem {
 		this.setOutputRange(-1.0, 1.0);
 		this.setPercentTolerance(5);
 	}
-
+	
 	public void armSetPoint(double position) {
 		this.setSetpoint(position);
 	}
 
-	public Boolean readUpperMultiToolLimitSwitch() {
+	public Boolean getUpperLimitSwitch() {
 		return !limitSwitchHigh.get();
 	}
 
-	public Boolean readLowerMultiToolLimitSwitch() {
+	public Boolean getLowerLimitSwitch() {
 		return !limitSwitchLow.get();
 	}
 
@@ -82,10 +83,6 @@ public class MultiTool extends PIDSubsystem {
 	}
 
 	public void driveArmUpDown(double speed) {
-
-		//double direction = Math.signum(speed);
-		//this.setSetpointRelative(direction);
-
 		driveArmMotor.set(speed);
 	}
 
@@ -93,6 +90,14 @@ public class MultiTool extends PIDSubsystem {
 		double currentAngle = Robot.sensors.armEncoderAngle();
 		this.setSetpoint(currentAngle);
 		this.enable();
+	}
+
+	public double armEncoderSpeed() {
+		return Robot.sensors.armEncoderSpeed();
+	}
+
+	public void resetEncoders() {
+		Robot.sensors.armEncoder.reset();
 	}
 
 	public void initDefaultCommand() {
@@ -106,8 +111,8 @@ public class MultiTool extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double arg0) {
-		if (arg0 > 0.0 && this.readUpperMultiToolLimitSwitch()
-				|| arg0 < 0.0 && this.readLowerMultiToolLimitSwitch()) {
+		if (arg0 > 0.0 && this.getUpperLimitSwitch()
+				|| arg0 < 0.0 && this.getLowerLimitSwitch()) {
 			driveArmMotor.pidWrite(0.0);
 		} else {
 			driveArmMotor.pidWrite(arg0);

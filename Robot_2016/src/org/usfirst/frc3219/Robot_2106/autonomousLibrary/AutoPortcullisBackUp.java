@@ -22,11 +22,7 @@ public class AutoPortcullisBackUp extends AutoStraightCommand {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(Robot.multiTool.readUpperMultiToolLimitSwitch() || (Robot.sensors.aveDistEncoders() > 32)){
-    		return true;
-    	} else{
-    		return false;
-    	}
+    	return Robot.multiTool.getUpperLimitSwitch() || (Robot.sensors.aveDistEncoders() > 32);
     }
 
     // Called once after isFinished returns true

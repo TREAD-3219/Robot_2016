@@ -4,65 +4,39 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AutoChivalDeFrise extends Command {
-	double invert;
+public class AutoChivalDeFrise extends AutoStraightCommand {
+	double aveDistI = 0.0;
+	double aveDistF = 0.0;
+	private static final double MIN_ENCODER_DISTANCE = 60; // NOT CALIBRATED
 
 	@Override
 	protected void end() {
-
 	}
 
 	@Override
 	protected void execute() {
-
+		gyroStraight(0.85);
 	}
 
 	@Override
 	protected void initialize() {
-		invert = 1;
-		System.out.print("init.ChevelDeFrise");
-		// TODO set up all of these values to be okay.
-		Robot.drive.driveValues(0.2 * invert, 0);// move forward a little
-		this.setTimeout(0.2);// wait
-		Robot.drive.driveValues(0, 0);// stop
-		Robot.multiTool.driveArmUpDown(0.5 * invert);// move the arm down a little FINAL
-		this.setTimeout(0.2);// wait
-		Robot.multiTool.driveArmUpDown(0);// stop
-		this.setTimeout(0.2);//wait
-		Robot.drive.driveValues(0.6, 0); // move across the ramp
-		Robot.multiTool.driveArmUpDown(-0.3 * invert);// raise le arm
-		this.setTimeout(0);// wait
-		Robot.drive.driveValues(0, 0);//stop
-		Robot.multiTool.driveArmUpDown(0);//stop
+		aveDistI = Robot.sensors.getAvgEncoderDist();
+		gyroStraight(0.85);
 
-		// positive makes the arm lower, and vice versa.
-
-		// Robot.multiTool.driveArmUpDown(-0.5 * invert); **Might need to use a
-		// little bit of reverse, or stop early
-		// Robot.drive.driveValues(forward, turnRate);
-		/*
-		 *drive a little bit more forward
-		 *bring down arm onto p
-		 *move forward
-		 *bring up arm a small amount
-		 *move forward a little more
-		 *bring arm up all the way
-		 *shift center of balance forward so far that you tilt forward "slowly" (subjective)
-		 *once the plate hits the ground, move forward
-		 *sense when you get level
-		 *le done
-		 *nice meme
-		 */
 	}
 
 	@Override
 	protected void interrupted() {
+		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	protected boolean isFinished() {
+		aveDistF = Robot.sensors.getAvgEncoderDist();
+		if(Robot.sensors.getTip() <= 5 && aveDistF - aveDistI >= MIN_ENCODER_DISTANCE) {
+			return true;
+		} else
 		return false;
 	}
-
 }

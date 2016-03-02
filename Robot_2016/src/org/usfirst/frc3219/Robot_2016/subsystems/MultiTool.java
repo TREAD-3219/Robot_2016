@@ -62,6 +62,7 @@ public class MultiTool extends PIDSubsystem {
 		super(P, I, D);
 		this.setInputRange(ENCODER_MIN, ENCODER_MAX);
 		this.setOutputRange(-1.0, 1.0);
+		this.setPercentTolerance(5);
 	}
 
 	public void armSetPoint(String position) {

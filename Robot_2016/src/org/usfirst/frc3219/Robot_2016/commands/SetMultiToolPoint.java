@@ -5,6 +5,11 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class SetMultiToolPoint extends Command {
+	String POSITION;
+	
+	public SetMultiToolPoint(String PositionChoice) {
+		POSITION = PositionChoice;
+	}
 
 	@Override
 	protected void end() {
@@ -20,7 +25,7 @@ public class SetMultiToolPoint extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.multiTool.armSetPoint("PORTCULLIS_START");
+		Robot.multiTool.armSetPoint(POSITION);
 		this.setTimeout(2);
 		
 	}
@@ -33,7 +38,6 @@ public class SetMultiToolPoint extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return this.isTimedOut();
 	}
 

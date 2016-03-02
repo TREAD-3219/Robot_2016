@@ -84,22 +84,23 @@ public class OI {
 		buttonStart.whileHeld(new ServoControllerSafetyPressed());
 		// buttonY.whileHeld(new ServoControllerSafetyPressed());
 
-		autoStartPosition = new SendableChooser();//
-		autoStartPosition.addDefault(POSITION_A, POSITION_A);//
-		autoStartPosition.addObject(POSITION_B, POSITION_B);//
-		autoStartPosition.addObject(POSITION_C, POSITION_C);//
-		autoStartPosition.addObject(POSITION_D, POSITION_D);//
+    	autoStartPosition = new SendableChooser();
+		autoStartPosition.addDefault(POSITION_A, POSITION_A);
+		autoStartPosition.addObject(POSITION_B, POSITION_B);
+		autoStartPosition.addObject(POSITION_C, POSITION_C);
+		autoStartPosition.addObject(POSITION_D, POSITION_D);
+		SmartDashboard.putData(AUTO_START_POSITION, autoStartPosition);
 
-		autoDefenseChooser = new SendableChooser();//
-		autoDefenseChooser.addDefault(ROUGH_TERRAIN, ROUGH_TERRAIN);//
-		autoDefenseChooser.addObject(ROCK_WALL, ROCK_WALL);//
-		autoDefenseChooser.addObject(PORTCULLIS, PORTCULLIS);//
-		autoDefenseChooser.addObject(MOAT, MOAT);//
-		autoDefenseChooser.addObject(RAMPARTS, RAMPARTS);//
-		autoDefenseChooser.addObject(SALLY_PORT, SALLY_PORT);//
-		autoDefenseChooser.addObject(DRAWBRIDGE, DRAWBRIDGE);//
-		autoDefenseChooser.addObject(CHIVAL_DE_FRISE, CHIVAL_DE_FRISE);//
-		SmartDashboard.putData("defense chooser", autoDefenseChooser);
+		autoDefenseChooser = new SendableChooser();
+		autoDefenseChooser.addDefault(ROUGH_TERRAIN, ROUGH_TERRAIN);
+		autoDefenseChooser.addObject(ROCK_WALL, ROCK_WALL);
+		autoDefenseChooser.addObject(PORTCULLIS, PORTCULLIS);
+		autoDefenseChooser.addObject(MOAT, MOAT);
+		autoDefenseChooser.addObject(RAMPARTS, RAMPARTS);
+		autoDefenseChooser.addObject(SALLY_PORT, SALLY_PORT);
+		autoDefenseChooser.addObject(DRAWBRIDGE, DRAWBRIDGE);
+		autoDefenseChooser.addObject(CHIVAL_DE_FRISE, CHIVAL_DE_FRISE);
+		SmartDashboard.putData(DEFENSE_CHOOSER, autoDefenseChooser);
 
 	}
 	// Button button = new JoystickButton(stick, buttonNumber);

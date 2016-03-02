@@ -1,11 +1,8 @@
 package org.usfirst.frc3219.Robot_2106.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
-import org.usfirst.frc3219.Robot_2016.Robot.Position;
 
-import edu.wpi.first.wpilibj.command.Scheduler;
-
-public class AutoTurnAndShoot extends AutoStraightCommand {
+public class AutoTurnTowardsGoal extends AutoStraightCommand {
 
 	String whichPosition;
 	double initEncoderDist;

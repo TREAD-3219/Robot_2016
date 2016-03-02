@@ -19,6 +19,7 @@ public class DriveOverObstacle extends AutoStraightCommand {
 
 		double tip = Robot.sensors.navx.getPitch();
 		if (tip >= 30) {
+			// should this be gyroStraight(1.0)?
 			Robot.drive.driveValues(1.0, 0.0);
 		} else {
 			gyroStraight(ROBOT_SPEED);

@@ -25,6 +25,10 @@ public class ShootBoulder extends Command {
 	double startTime;
 	boolean finished;
 
+	public ShootBoulder() {
+		requires(Robot.shooter);
+	}
+	
 	@Override
 	protected void initialize() {
 		topPower = SmartDashboard.getNumber(Shooter.TOPSHOOTER, 0.0);

@@ -61,6 +61,8 @@ public class AutoCenterToGoal extends Command {
 
 	@Override
 	protected boolean isFinished() {
+		// this should also check the drive stick to see if the driver
+		// is attempting to regain control.
 		return this.state == 1 || this.isTimedOut();
 	}
 	

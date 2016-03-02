@@ -1,6 +1,7 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -11,7 +12,7 @@ public class AutoClimb extends CommandGroup {
 		
 	}
 	public void createAutoClimbCommands() {
-		//this.addSequential(new SetMultiToolPoint(PORTCULLIS_START_TAG));
+		this.addSequential(new SetMultiToolPoint(MultiTool.SHOOT_POSITION));
 		this.addSequential(new ReleaseClimber());
 		//this.addSequential(new AutoDrive(1, 24));
 		

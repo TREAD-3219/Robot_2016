@@ -148,7 +148,7 @@ public class Robot extends IterativeRobot {
      		position = Position.D;
      	} else {
      		position = Position.Unknown;
-     		System.out.println("Unknown Position!! " + positionName);
+     		System.out.println("autonomousInit: Unknown Position!! " + positionName);
      	}
     
          if (autonomousCommand != null) {

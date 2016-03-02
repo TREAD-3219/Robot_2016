@@ -78,6 +78,12 @@ public class OI {
 		autoShoot = new JoystickButton(gameController, 6);
 		JoystickButton centerToGoal = new JoystickButton(gameController, 1);
 		centerToGoal.whenPressed(new AutoCenterToGoal());
+		// should shoot be a whileHeld?
+		autoShoot.whileHeld(new AutoShoot());
+		// where are the manual shoot controls?
+		// we need those too for when the autoShoot fails.
+		
+		
 		spitOut = new JoystickButton(gameController, 2);
 		spitOut.whileHeld(new IntakeBall(-1));
 
@@ -89,13 +95,7 @@ public class OI {
 		buttonStart = new JoystickButton(gameController, 8);
 		intake.whenPressed(new IntakeBall());
 		// intake.whenReleased(new Interrupt());
-		
-		// should shoot be a whileHeld?
-		autoShoot.whileHeld(new AutoShoot());
-		
-		// where are the manual shoot controls?
-		// we need those too for when the autoShoot fails.
-		
+				
 		// start button
 		Command servoSafety = new ServoControllerSafetyPressed();
 		buttonStart.whileHeld(servoSafety);

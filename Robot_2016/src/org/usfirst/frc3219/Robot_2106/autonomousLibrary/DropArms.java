@@ -13,14 +13,11 @@ public class DropArms extends Command {
 
 	@Override
 	protected void end() {
-		Robot.multiTool.getPIDController().disable();
-		Robot.multiTool.driveArmUpDown(0.0);
-
+		Robot.multiTool.armSetPoint(MultiTool.DRAWBRIDGE_END);
 	}
 
 	@Override
 	protected void execute() {
-
 	}
 
 	@Override
@@ -30,7 +27,6 @@ public class DropArms extends Command {
 		Robot.multiTool.getPIDController().enable();
 		Robot.multiTool.getPIDController().setPID(P, I, D);
 		Robot.multiTool.setPercentTolerance(5);
-
 	}
 
 	@Override
@@ -41,10 +37,6 @@ public class DropArms extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		if (this.isTimedOut() || Robot.multiTool.getPIDController().onTarget()) {
-			return true;
-		} else {
-			return false;
-		}
+		return this.isTimedOut() || Robot.multiTool.getPIDController().onTarget();
 	}
 }

@@ -52,10 +52,7 @@ public class SallyTwist extends Command {
 
 	@Override
 	protected void end() {
-		RobotMap.driveLeftDriveA.enableBrakeMode(true);
-		RobotMap.driveLeftDriveB.enableBrakeMode(true);
-		RobotMap.driveRightDriveA.enableBrakeMode(true);
-		RobotMap.driveRightDriveB.enableBrakeMode(true);
+		Robot.drive.setBrakesOn();
 		Robot.drive.driveValues(0.0, 0.0);
 	}
 }

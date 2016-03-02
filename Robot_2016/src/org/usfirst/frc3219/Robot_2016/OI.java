@@ -33,6 +33,9 @@ public class OI {
 	public static final String POSITION_C = "Position C";
 	public static final String POSITION_B = "Position B";
 	public static final String POSITION_A = "Position A";
+	
+
+	
 	//// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
@@ -55,8 +58,8 @@ public class OI {
     public OI(){
     	joystick = new Joystick(0);
     	gameController = new Joystick(1);
-    	shoot = new JoystickButton(joystick, 1);
-    	shoot.whileHeld(new ManualShoot());
+    	//shoot = new JoystickButton(joystick, 1);
+    	//shoot.whileHeld(new ManualShoot());
     	
     	reverse = new JoystickButton(joystick, 12);
     	reverse.whenPressed(new ReverseCommand());
@@ -83,21 +86,21 @@ public class OI {
     	//buttonY.whileHeld(new ServoControllerSafetyPressed());
     	
     	autoStartPosition = new SendableChooser();//
-		autoStartPosition.addDefault(AUTO_START_POSITION, POSITION_A);//
-		autoStartPosition.addObject(AUTO_START_POSITION, POSITION_B);//
-		autoStartPosition.addObject(AUTO_START_POSITION, POSITION_C);//
-		autoStartPosition.addObject(AUTO_START_POSITION, POSITION_D);//
+		autoStartPosition.addDefault(POSITION_A, POSITION_A);//
+		autoStartPosition.addObject(POSITION_B, POSITION_B);//
+		autoStartPosition.addObject(POSITION_C, POSITION_C);//
+		autoStartPosition.addObject(POSITION_D, POSITION_D);//
 		SmartDashboard.putData(AUTO_START_POSITION, autoStartPosition);
 
 		autoDefenseChooser = new SendableChooser();//
-		autoDefenseChooser.addDefault(AUTO_DEFENSE_CHOOSER, ROUGH_TERRAIN);//
-		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, ROCK_WALL);//
-		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, PORTCULLIS);//
-		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, MOAT);//
-		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, RAMPARTS);//
-		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, SALLY_PORT);//
-		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, DRAWBRIDGE);//
-		autoDefenseChooser.addObject(AUTO_DEFENSE_CHOOSER, CHIVAL_DE_FRISE);//
+		autoDefenseChooser.addDefault(ROUGH_TERRAIN, ROUGH_TERRAIN);//
+		autoDefenseChooser.addObject(ROCK_WALL, ROCK_WALL);//
+		autoDefenseChooser.addObject(PORTCULLIS, PORTCULLIS);//
+		autoDefenseChooser.addObject(MOAT, MOAT);//
+		autoDefenseChooser.addObject(RAMPARTS, RAMPARTS);//
+		autoDefenseChooser.addObject(SALLY_PORT, SALLY_PORT);//
+		autoDefenseChooser.addObject(DRAWBRIDGE, DRAWBRIDGE);//
+		autoDefenseChooser.addObject(CHIVAL_DE_FRISE, CHIVAL_DE_FRISE);//
 		SmartDashboard.putData(DEFENSE_CHOOSER, autoDefenseChooser);
     	
     	

@@ -6,6 +6,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 // A class for Deductive Reckoning navigation
 public class DedReckoningChecks extends NeverFinishCommand {
+	public DedReckoningChecks() {
+		requires(Robot.navigation);
+	}
 
 	@Override
 	protected void initialize() {

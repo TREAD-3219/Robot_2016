@@ -63,7 +63,7 @@ public class RobotMap {
 		//driveRightDriveB  = new CANTalon(5);
 		driveLeftDriveA  = new CANTalon(2);
 		//driveLeftDriveB  = new CANTalon(3);
-		driveDriveMotors = new RobotDrive(driveLeftDriveA, driveLeftDriveB, driveRightDriveA, driveRightDriveB);
+		driveDriveMotors = new RobotDrive(driveLeftDriveA, driveRightDriveA);
 
 		//driveTopShooter = new CANTalon(6);
 		//driveBottomShooter = new CANTalon(1);
@@ -94,7 +94,7 @@ public class RobotMap {
 		sensorsArmEncoder.setDistancePerPulse(0.72434);
 		sensorsArmEncoder.setPIDSourceType(PIDSourceType.kRate);
 		
-		normalCounter = new Counter(8);
+		//normalCounter = new Counter(8);
 		
        	roboRealmTable = NetworkTable.getTable("SmartDashboard");
 

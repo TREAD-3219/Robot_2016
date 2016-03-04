@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Climber extends Subsystem {
+
 	private static final double LEFT_RELEASE = 1.0;
 	private static final double RIGHT_RELEASE = -1.0;
 	private static final double LEFT_RESET = 0;

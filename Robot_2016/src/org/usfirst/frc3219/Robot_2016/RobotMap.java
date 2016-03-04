@@ -72,7 +72,7 @@ public class RobotMap {
 		feederLimitSwitch = new DigitalInput(9);
 
 		pwmServo_4 = new Servo(4);// these might be wrong 2/23/16 after merge
-		pwmServo_5 = new Servo(5);
+		pwmServo_5 = new Servo(3);
 
 		driveRollerMotorController = new Talon(1);
 		driveMultiToolArmMotor = new Talon(2);

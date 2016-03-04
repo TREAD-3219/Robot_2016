@@ -3,6 +3,7 @@ package org.usfirst.frc3219.Robot_2016;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.ChevalDeFrise;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Drawbridge;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Moat;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.NoDefense;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Portcullis;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Ramparts;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RockWall;
@@ -45,6 +46,7 @@ public class OI {
 	public static final String PORTCULLIS = "Portcullis";
 	public static final String ROCK_WALL = "Rock Wall";
 	public static final String ROUGH_TERRAIN = "Rough Terrain";
+	public static final String NO_DEFENSE = "No Defense";
 	
 	public static final String POSITION_D = "Position D";
 	public static final String POSITION_C = "Position C";
@@ -121,6 +123,7 @@ public class OI {
 		autoDefenseChooser.addObject(SALLY_PORT, new SallyPort());
 		autoDefenseChooser.addObject(DRAWBRIDGE, new Drawbridge());
 		autoDefenseChooser.addObject(CHEVAL_DE_FRISE, new ChevalDeFrise());
+		autoDefenseChooser.addObject(NO_DEFENSE, new NoDefense());
 		SmartDashboard.putData(DEFENSE_CHOOSER, autoDefenseChooser);
 	}
 }

@@ -31,7 +31,7 @@ public class Drive extends Subsystem {
 	CANTalon leftDriveRear = RobotMap.driveLeftDriveA;
 	RobotDrive driveMotors = RobotMap.driveDriveMotors;
 
-	double reverse = -1.0;
+	double reverse = 1.0;
 	
 	public void driveValues(double forward, double turnRate){
 		driveMotors.arcadeDrive(forward*reverse, turnRate*reverse);

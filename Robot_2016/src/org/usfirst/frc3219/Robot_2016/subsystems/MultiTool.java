@@ -59,6 +59,7 @@ public class MultiTool extends PIDSubsystem {
 		this.setInputRange(ENCODER_MIN, ENCODER_MAX);
 		this.setOutputRange(-1.0, 1.0);
 		this.setPercentTolerance(5);
+		this.resetEncoders();
 		this.disable();
 	}
 	

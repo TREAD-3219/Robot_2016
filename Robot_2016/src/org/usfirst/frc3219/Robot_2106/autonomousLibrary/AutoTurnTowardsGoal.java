@@ -7,6 +7,7 @@ public class AutoTurnTowardsGoal extends AutoStraightCommand {
 	String whichPosition;
 	double initEncoderDist;
 	double currentEncoderDist;
+	double angleToTurnTo = 0;
 
 	@Override
 	protected void end() {
@@ -17,7 +18,7 @@ public class AutoTurnTowardsGoal extends AutoStraightCommand {
 	@Override
 	protected void execute() {
 		currentEncoderDist = Robot.sensors.aveDistEncoders() - initEncoderDist;
-		setGyroStraight(0.45, 20);
+		setGyroStraight(0.45, angleToTurnTo);
 	}
 
 	@Override
@@ -26,22 +27,23 @@ public class AutoTurnTowardsGoal extends AutoStraightCommand {
 		initEncoderDist = Robot.sensors.aveDistEncoders();
 		switch (Robot.position) {
 		case A:
-			setGyroStraight(0.45, 36.0);
+			angleToTurnTo = 36;
 			break;
 		case B:
-			setGyroStraight(0.45, 20);
+			angleToTurnTo = 20;
 			break;
 		case C:
-			setGyroStraight(0.45, 355);
+			angleToTurnTo = 355;
 			break;
 		case D:
-			setGyroStraight(0.45, 300);
+			angleToTurnTo = 300;
 			break;
 			
 			default:
 				System.out.println("Unknown Position in AutoTurnAndShoot: " + Robot.position.name());
 				break;
 		}
+		setGyroStraight(0.45, angleToTurnTo);
 	}
 
 	@Override

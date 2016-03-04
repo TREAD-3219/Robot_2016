@@ -71,34 +71,29 @@ public class AutoCenterToGoal extends Command {
 		// is attempting to regain control.
 		return this.state == 1 || this.isTimedOut();
 	}
-	
+
 	public double turnRateAutoCenter() { // Gets turnRate for
 		// AutoCenterToGoal. Is supposed to slow the
 		// robot down when approaching the dead zone
 		// near CENTER.
-		
-		double cogX = camera.getCOG_X();
-		//Make 0 the origin.
-		cogX -= centerPoint;
-		double rate;
-		
-		if(cogX > 0) {
-			rate = UP_SCALER * Math.pow((-cogX*DOWN_SCALER), 3) - MINIMUM_SPEED;
-		} else {
-			rate = UP_SCALER * Math.pow((-cogX*DOWN_SCALER), 3) + MINIMUM_SPEED;
-		}
-		
-		if(rate > MAX_SPEED) {
-			rate = MAX_SPEED;
-		} else if(rate < -MAX_SPEED) {
-			rate = -MAX_SPEED;
-		}
-		
-		return rate;
 
-		// Old code, currently works so DO NOT DELETE
-		
-		/*double X = camera.getCOG_X();
+		// Old code, do not delete
+
+		/*
+		 * double cogX = camera.getCOG_X(); //Make 0 the origin. cogX -=
+		 * centerPoint; double rate;
+		 * 
+		 * if(cogX > 0) { rate = UP_SCALER * Math.pow((-cogX*DOWN_SCALER), 3) -
+		 * MINIMUM_SPEED; } else { rate = UP_SCALER *
+		 * Math.pow((-cogX*DOWN_SCALER), 3) + MINIMUM_SPEED; }
+		 * 
+		 * if(rate > MAX_SPEED) { rate = MAX_SPEED; } else if(rate < -MAX_SPEED)
+		 * { rate = -MAX_SPEED; }
+		 * 
+		 * return rate;
+		 */
+
+		double X = camera.getCOG_X();
 		if (X <= OUTER_LIMIT_LEFT) { // Lower limits:
 			return 0.45;
 		} else if (X >= OUTER_LIMIT_RIGHT) {
@@ -109,7 +104,6 @@ public class AutoCenterToGoal extends Command {
 			return -0.35;
 		} else
 			return 0;
-		}*/
 	}
 
 	public void autoCenter() {
@@ -117,7 +111,7 @@ public class AutoCenterToGoal extends Command {
 			state = 1;
 			return;
 		}
-		
+
 		double cogX = camera.getCOG_X();
 		if (cogX <= centerPoint - LIMIT_AREA || cogX >= centerPoint + LIMIT_AREA) {
 			Robot.drive.driveValues(0, this.turnRateAutoCenter());
@@ -125,4 +119,5 @@ public class AutoCenterToGoal extends Command {
 			Robot.drive.driveValues(0, 0);
 			state = 1; // Correction complete.
 		}
-	}}
+	}
+}

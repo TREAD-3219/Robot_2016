@@ -31,20 +31,25 @@ public class Climber extends Subsystem {
 	
 	Servo leftServo;
 	Servo rightServo;
+	Servo testServo;
 	
 	public Climber() {
 		leftServo = RobotMap.pwmServo_4;
-		rightServo = RobotMap.pwmServo_5;
+		rightServo = RobotMap.pwmServo_3;
+		testServo = RobotMap.pwmServo_Test;
+		
 	}
 	
 	public void releaseClimber() {
-		leftServo.setPosition(LEFT_RELEASE);
-		rightServo.setPosition(RIGHT_RELEASE);
+		leftServo.set(LEFT_RELEASE);
+		rightServo.set(RIGHT_RELEASE);
+		testServo.set(RIGHT_RELEASE);
 	}
 
 	public void resetClimber() {
-		leftServo.setPosition(LEFT_RESET);
-		rightServo.setPosition(RIGHT_RESET);
+		leftServo.set(LEFT_RESET);
+		rightServo.set(RIGHT_RESET);
+		testServo.set(RIGHT_RESET);
 	}
 	
 	public void initDefaultCommand() {

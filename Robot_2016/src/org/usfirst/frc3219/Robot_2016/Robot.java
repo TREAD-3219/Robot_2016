@@ -55,6 +55,7 @@ public class Robot extends IterativeRobot {
 		ChevalDeFrise,
 		Drawbridge,
 		Moat,
+		NoDefense,
 		Portcullis,
 		Ramparts,
 		RockWall,

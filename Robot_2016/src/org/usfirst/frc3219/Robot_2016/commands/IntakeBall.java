@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class IntakeBall extends Command {
 	private static final int TIMEOUT = 5;
 // Starts feeder motor
-	private static final double ROLLER_SPEED = -1.0;
+	private static final double ROLLER_SPEED = 1.0;
 	private static final double FEEDER_SPEED = .3;
 	// stops either when button b is released, or limit switch is hit
 	boolean pressed;

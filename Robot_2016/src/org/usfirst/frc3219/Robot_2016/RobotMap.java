@@ -91,7 +91,7 @@ public class RobotMap {
 		driveEncoderRight.setDistancePerPulse(0.067638888);
 		driveEncoderRight.setPIDSourceType(PIDSourceType.kRate);
 		sensorsArmEncoder = new Encoder(4, 5, false, EncodingType.k4X);
-		sensorsArmEncoder.setDistancePerPulse(0.72434);
+		sensorsArmEncoder.setDistancePerPulse(0.72434); //TODO FIX THIS VALUE
 		sensorsArmEncoder.setPIDSourceType(PIDSourceType.kRate);
 		
        	roboRealmTable = NetworkTable.getTable("SmartDashboard");

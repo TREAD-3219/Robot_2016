@@ -22,7 +22,6 @@ public class WatchSensors extends NeverFinishCommand {
 		SmartDashboard.putNumber(Sensors.SHOOTER_RPM_TAG, sensors.getShooterSpeed());
 		SmartDashboard.putNumber(Sensors.ANGLE, sensors.getAngle());
 		SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
-		SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
 		SmartDashboard.putNumber(Navigation.DED_REC_X, Robot.navigation.getDedRecX());
 		SmartDashboard.putNumber(Navigation.DED_REC_Y, Robot.navigation.getDedRecX());
 		SmartDashboard.putNumber(Navigation.DED_REC_ANGLE, Robot.navigation.getDedRecAngle());

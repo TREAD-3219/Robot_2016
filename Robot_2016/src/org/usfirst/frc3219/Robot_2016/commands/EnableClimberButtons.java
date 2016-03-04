@@ -2,6 +2,7 @@ package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
+import org.usfirst.frc3219.Robot_2016.subsystems.Climber;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Command;
@@ -9,9 +10,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class EnableClimberButtons extends Command {
-
-	private static final float RIGHT_SERVO_CLOSED = 0.0f;
-	private static final float LEFT_SERVO_CLOSED = 180.0f;
 	private static final double TESTING_TIMEOUT = 0.5;
 	private static final double CLIMBER_TIMEOUT = 135.0 - 20.0; // teleop time - high time.
 	
@@ -51,8 +49,8 @@ public class EnableClimberButtons extends Command {
 		SmartDashboard.putBoolean(QUICK_RELEASE_OVERRIDE, false);
 		servo4 = RobotMap.pwmServo_4;
 		servo5 = RobotMap.pwmServo_5;
-		servo4.setAngle(LEFT_SERVO_CLOSED);
-		servo5.setAngle(RIGHT_SERVO_CLOSED);
+		servo4.setAngle(Climber.LEFT_SERVO_CLOSED);
+		servo5.setAngle(Climber.RIGHT_SERVO_CLOSED);
 
 	}
 

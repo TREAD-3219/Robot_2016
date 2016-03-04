@@ -52,7 +52,7 @@ public class MultiTool extends PIDSubsystem {
     private static final double ARM_GEAR_RATIO = 71;
     private static final double ARM_PULSE_PER_REVOLUTION = ENCODER_PULSE_PER_REVOLUTION * ARM_GEAR_RATIO;
 	public static final double ARM_ENCODER_DEGREES_PER_PULSE = 360.0 / ARM_PULSE_PER_REVOLUTION;
-	public static final double UP = 0.5;
+	public static final double UP = -0.5; // Must be negative
 
 	public MultiTool() {
 		super(P, I, D);
@@ -80,7 +80,7 @@ public class MultiTool extends PIDSubsystem {
 	}
 
 	public void driveRoller(double speed) {
-		driveRollerMotor.set(speed);
+		driveRollerMotor.set(-speed); // Must be negative
 	}
 
 	public void driveArmUpDown(double speed) {

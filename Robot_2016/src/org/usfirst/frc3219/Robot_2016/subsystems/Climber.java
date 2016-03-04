@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Climber extends Subsystem {
 	private static final double LEFT_RELEASE = 1.0; //i believe these values are wrong, the floats seem to work
 	private static final double RIGHT_RELEASE = -1.0;
-	private static final double LEFT_RESET = -1.0;
+	private static final double LEFT_RESET = 1.0;
 	private static final double RIGHT_RESET = 1.0;
 	public static final float RIGHT_SERVO_CLOSED = 180.0f;
 	public static final float LEFT_SERVO_CLOSED = 0.0f;

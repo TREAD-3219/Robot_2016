@@ -189,7 +189,6 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new WatchSensors());
 	}
 
 	@Override

@@ -94,8 +94,6 @@ public class RobotMap {
 		sensorsArmEncoder.setDistancePerPulse(0.72434);
 		sensorsArmEncoder.setPIDSourceType(PIDSourceType.kRate);
 		
-		normalCounter = new Counter(8);
-		
        	roboRealmTable = NetworkTable.getTable("SmartDashboard");
 
 		camera = new Camera();

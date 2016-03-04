@@ -41,11 +41,6 @@ public class DedReckoningChecks extends NeverFinishCommand {
 				Robot.navigation.dedRecX = 190;
 			}
 		}
-		
-		SmartDashboard.putNumber(Navigation.DED_REC_X, Robot.navigation.getDedRecX());
-		SmartDashboard.putNumber(Navigation.DED_REC_Y, Robot.navigation.getDedRecY());
-		SmartDashboard.putNumber(Navigation.DED_REC_ANGLE, Robot.navigation.getDedRecAngle());
-		SmartDashboard.putString(Navigation.DED_REC_AREA, Robot.navigation.getDedRecArea());
 	}
 
 	@Override

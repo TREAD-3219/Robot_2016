@@ -28,6 +28,10 @@ public class WatchSensors extends NeverFinishCommand {
 		SmartDashboard.putNumber(Sensors.LEFT_ENCODER_TAG, RobotMap.driveEncoderLeft.getDistance());
 		SmartDashboard.putNumber(Sensors.RIGHT_ENCODER_TAG, RobotMap.driveEncoderRight.getDistance());
 		SmartDashboard.putBoolean("IsCentered", false);
+		SmartDashboard.putBoolean("isTipped", Robot.sensors.getTip() >= 5);
+		SmartDashboard.putNumber("isTippedDegree", Robot.sensors.getTip());
+
+
 	}
 
 	@Override

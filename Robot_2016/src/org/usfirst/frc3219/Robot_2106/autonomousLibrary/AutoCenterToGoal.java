@@ -82,10 +82,10 @@ public class AutoCenterToGoal extends Command {
 		cogX -= centerPoint;
 		double rate;
 		
-		if(X > 0) {
-			rate = UP_SCALER * Math.pow((-X*DOWN_SCALER), 3) - MINIMUM_SPEED;
+		if(cogX > 0) {
+			rate = UP_SCALER * Math.pow((-cogX*DOWN_SCALER), 3) - MINIMUM_SPEED;
 		} else {
-			rate = UP_SCALER * Math.pow((-X*DOWN_SCALER), 3) + MINIMUM_SPEED;
+			rate = UP_SCALER * Math.pow((-cogX*DOWN_SCALER), 3) + MINIMUM_SPEED;
 		}
 		
 		if(rate > MAX_SPEED) {

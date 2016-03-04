@@ -33,14 +33,17 @@ public class MultiToolMover extends NeverFinishCommand {
 		speed = gameController.getY() * 0.5;
 
 
-		if(speed > SPEED_TOLERENCE){
-			if((speed < 0.0 && !Robot.multiTool.getLowerLimitSwitch()) 
-					|| (speed > 0.0 && !Robot.multiTool.getUpperLimitSwitch())){
+		if(Math.abs(speed) > SPEED_TOLERENCE){
+			if((speed > 0.0 && !Robot.multiTool.getLowerLimitSwitch()) 
+					|| (speed < 0.0 && !Robot.multiTool.getUpperLimitSwitch())){
 				Robot.multiTool.driveArmUpDown(speed);
 			} else {
 				Robot.multiTool.stopMotors();
-				Robot.multiTool.driveArmHold();
+				//Robot.multiTool.driveArmHold();
 			}
+		} else {
+			Robot.multiTool.stopMotors();
+			//Robot.multiTool.driveArmHold();
 		}
 	}
 

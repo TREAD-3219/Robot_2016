@@ -34,6 +34,7 @@ public class RobotMap {
 
 	public static Servo pwmServo_4;
 	public static Servo pwmServo_3;
+	public static Servo pwmServo_Test;
 	public static Servo testServo;
 
 	public static Talon driveRollerMotorController;
@@ -73,7 +74,8 @@ public class RobotMap {
 		feederLimitSwitch = new DigitalInput(9);
 
 		pwmServo_4 = new Servo(4);// these might be wrong 2/23/16 after merge
-		pwmServo_5 = new Servo(3);
+		pwmServo_3 = new Servo(3);
+		pwmServo_Test = new Servo(5);
 
 		driveRollerMotorController = new Talon(1);
 		driveMultiToolArmMotor = new Talon(2);

@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MultiToolMover extends NeverFinishCommand {
+	private static final double SPEED_TOLERENCE = 0.1;
 	private static final double ARM_STOP_SPEED = 0.0;
 	Joystick gameController;
 	double speed = 0.0;
@@ -32,7 +33,7 @@ public class MultiToolMover extends NeverFinishCommand {
 		speed = gameController.getY() * 0.5;
 
 
-		if(speed > 0.1){
+		if(speed > SPEED_TOLERENCE){
 			if((speed < 0.0 && !Robot.multiTool.getLowerLimitSwitch()) 
 					|| (speed > 0.0 && !Robot.multiTool.getUpperLimitSwitch())){
 				Robot.multiTool.driveArmUpDown(speed);

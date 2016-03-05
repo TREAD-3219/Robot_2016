@@ -6,12 +6,11 @@ import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class SetMultiToolPoint extends Command {
-	private static final double POSITION_ERROR_RANGE = 5.0;
 	private static final double ARM_SPEED = .6;
 	double position;
 	
 	public SetMultiToolPoint() {
-		position = 85;
+		
 	}
 	
 	public SetMultiToolPoint(double pos) {
@@ -26,15 +25,13 @@ public class SetMultiToolPoint extends Command {
 
 	@Override
 	protected void execute() {
-		//Robot.multiTool.driveArmUpDown(ARM_SPEED);
-		Robot.multiTool.enable();
+		Robot.multiTool.driveArmUpDown(ARM_SPEED);
 	}
 
 	@Override
 	protected void initialize() {
 		this.setTimeout(TIMEOUT);
-		Robot.multiTool.enable();
-		Robot.multiTool.armSetPoint(position);
+		Robot.multiTool.driveArmUpDown(ARM_SPEED);
 	}
 
 	@Override
@@ -44,7 +41,6 @@ public class SetMultiToolPoint extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		double armAngle = Robot.sensors.armEncoderAngle();
-		return Math.abs(armAngle - position) < POSITION_ERROR_RANGE || armAngle > MultiTool.ENCODER_MAX || this.isTimedOut();
+		return Robot.sensors.armEncoderAngle() > 140 || this.isTimedOut();
 	}
 }

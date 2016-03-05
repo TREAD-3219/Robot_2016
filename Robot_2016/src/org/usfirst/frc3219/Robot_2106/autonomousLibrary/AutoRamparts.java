@@ -5,7 +5,7 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 public class AutoRamparts extends AutoStraightCommand {
 	double aveDistI = 0.0;
 	double aveDistF = 0.0;
-	private static final double MIN_ENCODER_DISTANCE = 70;
+	private static final double MIN_ENCODER_DISTANCE = 120;
 	
 	@Override
 	protected void end() {

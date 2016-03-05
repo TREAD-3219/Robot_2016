@@ -12,7 +12,7 @@ public class AutoClimb extends CommandGroup {
 		
 	}
 	public void createAutoClimbCommands() {
-		this.addSequential(new SetMultiToolPoint(MultiTool.SHOOT_POSITION));
+		//this.addSequential(new SetMultiToolPoint(MultiTool.SHOOT_POSITION));
 		this.addSequential(new ReleaseClimber());
 		//this.addSequential(new AutoDrive(1, 24));
 	}

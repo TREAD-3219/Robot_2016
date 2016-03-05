@@ -77,11 +77,14 @@ public class OI {
 		reverse.whenPressed(new ReverseCommand());
 
 		intake = new JoystickButton(gameController, 3);
+		intake.whenPressed(new IntakeBall());
+		
 		autoShoot = new JoystickButton(gameController, 6);
+		autoShoot.whileHeld(new AutoShoot());
+		
 		JoystickButton centerToGoal = new JoystickButton(gameController, 1);
 		centerToGoal.whenPressed(new AutoCenterToGoal());
 		// should shoot be a whileHeld?
-		autoShoot.whileHeld(new AutoShoot());
 		// where are the manual shoot controls?
 		// we need those too for when the autoShoot fails.
 		
@@ -95,12 +98,13 @@ public class OI {
 
 		buttonY = new JoystickButton(gameController, 4);
 		buttonStart = new JoystickButton(gameController, 8);
-		intake.whenPressed(new IntakeBall());
+		Command servoSafety = new ServoControllerSafetyPressed();
+		buttonStart.whileHeld(servoSafety);
+		
 		// intake.whenReleased(new Interrupt());
 				
 		// start button
-		Command servoSafety = new ServoControllerSafetyPressed();
-		buttonStart.whileHeld(servoSafety);
+		
 		// buttonY.whileHeld(servoSafety); // test enabling this if there is time.
 
 		// pick an appropriate button - gameController?

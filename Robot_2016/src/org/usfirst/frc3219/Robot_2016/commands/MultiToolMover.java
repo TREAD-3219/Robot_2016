@@ -15,6 +15,7 @@ public class MultiToolMover extends NeverFinishCommand {
 
 	public MultiToolMover() {
 		requires(Robot.multiTool);
+		this.setInterruptible(false);
 	}
 
 	@Override

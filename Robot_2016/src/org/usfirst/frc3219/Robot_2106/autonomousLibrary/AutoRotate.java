@@ -12,28 +12,29 @@ public class AutoRotate extends AutoStraightCommand {
 
 	@Override
 	protected void execute() {
-		if (whichPosition.equalsIgnoreCase("position a")) {
-			setGyroStraight(0.0, 216.0);
-		} else if (whichPosition.equalsIgnoreCase("position b")) {
-			setGyroStraight(0.0, 200.0);
-		} else if (whichPosition.equalsIgnoreCase("position c")) {
-			setGyroStraight(0.0, 175.0);
-		} else if (whichPosition.equalsIgnoreCase("position d")) {
-			setGyroStraight(0.0, 112.0);
-		}
+		this.setDefenseDirection();
 	}
 
 	@Override
 	protected void initialize() {
-		whichPosition = (String) Robot.oi.autoDefenseChooser.getSelected();
-		if (whichPosition.equalsIgnoreCase("position a")) {
+		this.setTimeout(2);
+		setDefenseDirection();
+	}
+
+	void setDefenseDirection() {
+		switch (Robot.position) {
+		case A: 
 			setGyroStraight(0.0, 216.0);
-		} else if (whichPosition.equalsIgnoreCase("position b")) {
+			break;
+		case B:
 			setGyroStraight(0.0, 200.0);
-		} else if (whichPosition.equalsIgnoreCase("position c")) {
+			break;
+		case C:
 			setGyroStraight(0.0, 175.0);
-		} else if (whichPosition.equalsIgnoreCase("position d")) {
+			break;
+		case D:
 			setGyroStraight(0.0, 112.0);
+			break;
 		}
 	}
 
@@ -45,23 +46,17 @@ public class AutoRotate extends AutoStraightCommand {
 	@Override
 	protected boolean isFinished() {
 		double angle = Robot.sensors.navx.getAngle();
-		if (whichPosition.equalsIgnoreCase("position a")) {
-			if (angle > 214 && angle < 218) {
-				return true;
-			}
-		} else if (whichPosition.equalsIgnoreCase("position b")) {
-			if (angle > 198 && angle < 202) {
-				return true;
-			}
-		} else if (whichPosition.equalsIgnoreCase("position c")) {
-			if (angle > 173 && angle < 177) {
-				return true;
-			}
-		} else if (whichPosition.equalsIgnoreCase("position d")) {
-			if (angle > 110 && angle < 114) {
-				return true;
-			}
+		switch (Robot.position) {
+		case A: 
+			return angle > 214 && angle < 218;
+		case B:
+			return angle > 198 && angle < 202;
+		case C:
+			return angle > 173 && angle < 177;
+		case D:
+			return angle > 110 && angle < 114;
 		}
-			return false;
+			return this.isTimedOut();
+			
 	}
 }

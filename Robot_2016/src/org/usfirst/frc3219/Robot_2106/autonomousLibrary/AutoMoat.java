@@ -17,9 +17,9 @@ public class AutoMoat extends AutoStraightCommand {
 	@Override
 	protected void execute() {
 		if (Robot.sensors.navx.getRawGyroY() > 15.0) {
-			setGyroStraight(-0.9, 180);
+			setGyroStraight(0.9, 0); // used to be 180
 		} else {
-			setGyroStraight(-0.5, 180);
+			setGyroStraight(0.6, 0);
 		}
 	}
 
@@ -28,7 +28,7 @@ public class AutoMoat extends AutoStraightCommand {
 		double encoderInitialLeft = RobotMap.driveEncoderLeft.getDistance();
 		double encoderInitialRight = RobotMap.driveEncoderRight.getDistance();
 		aveDistI = (encoderInitialRight + encoderInitialLeft) / 2;
-		setGyroStraight(-0.5, 180);
+		setGyroStraight(0.6, 0);
 	}
 
 	@Override

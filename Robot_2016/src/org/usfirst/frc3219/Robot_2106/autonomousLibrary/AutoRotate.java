@@ -3,7 +3,6 @@ package org.usfirst.frc3219.Robot_2106.autonomousLibrary;
 import org.usfirst.frc3219.Robot_2016.Robot;
 
 public class AutoRotate extends AutoStraightCommand {
-	String whichPosition;
 
 	@Override
 	protected void end() {
@@ -17,6 +16,7 @@ public class AutoRotate extends AutoStraightCommand {
 
 	@Override
 	protected void initialize() {
+		System.out.println("init");
 		this.setTimeout(2);
 		setDefenseDirection();
 	}

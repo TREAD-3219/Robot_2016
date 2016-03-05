@@ -49,7 +49,7 @@ public class MultiTool extends PIDSubsystem {
 	private static final double ENCODER_MAX = 120;
 	public static final double RANGE = ENCODER_MAX - ENCODER_MIN;
     private static final double ENCODER_PULSE_PER_REVOLUTION = 7;
-    private static final double ARM_GEAR_RATIO = 71;
+    private static final double ARM_GEAR_RATIO = 188;
     private static final double ARM_PULSE_PER_REVOLUTION = ENCODER_PULSE_PER_REVOLUTION * ARM_GEAR_RATIO;
 	public static final double ARM_ENCODER_DEGREES_PER_PULSE = 360.0 / ARM_PULSE_PER_REVOLUTION;
 	public static final double UP = -0.5; // Must be negative

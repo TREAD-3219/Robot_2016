@@ -44,7 +44,7 @@ public class EnableClimberButtons extends Command {
 	protected void initialize() {
 		// 1:55
 
-		this.setTimeout(1); // wait to trigger isFinished() to start end()
+		this.setTimeout(115); // wait to trigger isFinished() to start end()
 		safetyClimberEnable = false;
 		SmartDashboard.putBoolean(QUICK_RELEASE_OVERRIDE, false);
 		servo4 = RobotMap.pwmServo_4;

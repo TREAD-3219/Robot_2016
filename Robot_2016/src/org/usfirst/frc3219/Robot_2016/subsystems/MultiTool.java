@@ -16,12 +16,13 @@ import org.usfirst.frc3219.Robot_2016.RobotMap;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MultiTool extends PIDSubsystem {
 
-	static final double P = 0.01;
+	static final double P = 0.1;
 	static final double I = 0.001;
-	static final double D = -0.01;
+	static final double D = -0.1;
 
 	Talon driveRollerMotor = RobotMap.driveRollerMotorController;
 	Talon driveArmMotor = RobotMap.driveMultiToolArmMotor;
@@ -32,7 +33,7 @@ public class MultiTool extends PIDSubsystem {
 	public static int selectedTool = 0;
 
 	// -----------
-	public static final double STOW = 3.0; // close to zero degrees, but not too close.
+	public static final double STOW = 3.0;
 	public static final double CHEVAL_DE_FRISE_START = 86.0;
 	public static final double CHIVAL_DE_FRISE_END = 106.0;
 	public static final double DRAWBRIDGE_START = 29.0;
@@ -46,10 +47,10 @@ public class MultiTool extends PIDSubsystem {
 
 	
 	private static final double ENCODER_MIN = 0;
-	private static final double ENCODER_MAX = 120;
+	public static final double ENCODER_MAX = 120;
 	public static final double RANGE = ENCODER_MAX - ENCODER_MIN;
     private static final double ENCODER_PULSE_PER_REVOLUTION = 7;
-    private static final double ARM_GEAR_RATIO = 71;
+    private static final double ARM_GEAR_RATIO = 188;
     private static final double ARM_PULSE_PER_REVOLUTION = ENCODER_PULSE_PER_REVOLUTION * ARM_GEAR_RATIO;
 	public static final double ARM_ENCODER_DEGREES_PER_PULSE = 360.0 / ARM_PULSE_PER_REVOLUTION;
 	public static final double UP = -0.5; // Must be negative
@@ -65,6 +66,7 @@ public class MultiTool extends PIDSubsystem {
 	
 	public void armSetPoint(double position) {
 		this.setSetpoint(position);
+		this.enable();
 	}
 
 	public Boolean getUpperLimitSwitch() {
@@ -93,6 +95,11 @@ public class MultiTool extends PIDSubsystem {
 		this.setSetpoint(currentAngle);
 		this.enable();
 	}
+	
+	public void driveArmPosition(double multiToolPosition) {
+		this.setSetpoint(multiToolPosition);
+		this.enable();
+	}
 
 	public double armEncoderSpeed() {
 		return Robot.sensors.armEncoderSpeed();
@@ -113,11 +120,14 @@ public class MultiTool extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double arg0) {
-		if (arg0 > 0.0 && this.getUpperLimitSwitch()
-				|| arg0 < 0.0 && this.getLowerLimitSwitch()) {
+		SmartDashboard.putNumber("PID Output arm", arg0);
+		if (arg0 < 0.0 && this.getUpperLimitSwitch()
+				|| arg0 > 0.0 && this.getLowerLimitSwitch()) {
 			driveArmMotor.pidWrite(0.0);
+			SmartDashboard.putBoolean("PID disable", true);
 		} else {
 			driveArmMotor.pidWrite(arg0);
+			SmartDashboard.putBoolean("PID disable", false);
 		}
 	}
 }

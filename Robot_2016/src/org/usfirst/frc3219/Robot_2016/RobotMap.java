@@ -85,13 +85,13 @@ public class RobotMap {
 		roboRealmTable = NetworkTable.getTable("SmartDashboard");
 		
 		driveEncoderLeft = new Encoder(0, 1, false, EncodingType.k4X);
-		driveEncoderLeft.setDistancePerPulse(-0.067638888);
+		driveEncoderLeft.setDistancePerPulse(-Drive.WHEEL_DISTANCE_PER_PULSE);
 		driveEncoderLeft.setPIDSourceType(PIDSourceType.kRate);
 		driveEncoderRight = new Encoder(2, 3, false, EncodingType.k4X);
-		driveEncoderRight.setDistancePerPulse(0.067638888);
+		driveEncoderRight.setDistancePerPulse(Drive.WHEEL_DISTANCE_PER_PULSE);
 		driveEncoderRight.setPIDSourceType(PIDSourceType.kRate);
 		sensorsArmEncoder = new Encoder(4, 5, false, EncodingType.k4X);
-		sensorsArmEncoder.setDistancePerPulse(0.72434); //TODO FIX THIS VALUE
+		sensorsArmEncoder.setDistancePerPulse(MultiTool.ARM_ENCODER_DEGREES_PER_PULSE);
 		sensorsArmEncoder.setPIDSourceType(PIDSourceType.kRate);
 		
        	roboRealmTable = NetworkTable.getTable("SmartDashboard");

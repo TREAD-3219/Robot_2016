@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class EngageRamp extends AutoStraightCommand {
 
 	String whichArmPreset;
-	private static final double RAMP_SPEED = 0.8;
+	private static final double RAMP_SPEED = 0.9;
 	double dropTime;
 
 	@Override
@@ -20,7 +20,7 @@ public class EngageRamp extends AutoStraightCommand {
 	protected void execute() {
 		super.gyroStraight(RAMP_SPEED);
 		double deltaT = Timer.getFPGATimestamp() - this.dropTime;
-		if (deltaT > 0.6) {
+		if (deltaT > 0.65) {
 			Robot.multiTool.driveArmUpDown(0);
 			
 		}
@@ -48,7 +48,7 @@ public class EngageRamp extends AutoStraightCommand {
 			break;
 			
 		case Moat:
-			armSpeed = 0;
+			armSpeed = 0.6;
 			break;
 
 		case RockWall:
@@ -57,7 +57,7 @@ public class EngageRamp extends AutoStraightCommand {
 			
 		default:
 			//Robot.multiTool.armSetPoint(MultiTool.STOW);
-			armSpeed = 0;
+			armSpeed = 0.6;
 			break;
 		} 
 		

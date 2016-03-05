@@ -6,21 +6,16 @@ import org.usfirst.frc3219.Robot_2016.RobotMap;
 public class AutoMoat extends AutoStraightCommand {
 	double aveDistI = 0.0;
 	double aveDistF = 0.0;
-	private static final double MIN_ENCODER_DISTANCE = 130;
+	private static final double MIN_ENCODER_DISTANCE = 150;
 
 	@Override
 	protected void end() {
-		// RobotMap.driveLeftDrive.enableBrakeMode(true);
-		// RobotMap.driveRightDrive.enableBrakeMode(true);
+		Robot.drive.setBrakesOn();
 	}
 
 	@Override
 	protected void execute() {
-		if (Robot.sensors.navx.getRawGyroY() > 15.0) {
-			setGyroStraight(0.9, 0); // used to be 180
-		} else {
-			setGyroStraight(0.6, 0);
-		}
+			setGyroStraight(0.8, 0);
 	}
 
 	@Override
@@ -28,7 +23,7 @@ public class AutoMoat extends AutoStraightCommand {
 		double encoderInitialLeft = RobotMap.driveEncoderLeft.getDistance();
 		double encoderInitialRight = RobotMap.driveEncoderRight.getDistance();
 		aveDistI = (encoderInitialRight + encoderInitialLeft) / 2;
-		setGyroStraight(0.6, 0);
+		setGyroStraight(0.8, 0);
 	}
 
 	@Override

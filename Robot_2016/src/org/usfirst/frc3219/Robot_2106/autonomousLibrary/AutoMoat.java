@@ -6,7 +6,7 @@ import org.usfirst.frc3219.Robot_2016.RobotMap;
 public class AutoMoat extends AutoStraightCommand {
 	double aveDistI = 0.0;
 	double aveDistF = 0.0;
-	private static final double MIN_ENCODER_DISTANCE = 120;
+	private static final double MIN_ENCODER_DISTANCE = 90;
 
 	@Override
 	protected void end() {
@@ -41,9 +41,6 @@ public class AutoMoat extends AutoStraightCommand {
 		double encoderFinalLeft = RobotMap.driveEncoderLeft.getDistance();
 		double encoderFinalRight = RobotMap.driveEncoderRight.getDistance();
 		aveDistF = (encoderFinalRight + encoderFinalLeft) / 2;
-		if (Robot.sensors.getTip() <= 3.5 && aveDistF - aveDistI >= MIN_ENCODER_DISTANCE) {
-			return true;
-		} else
-			return false;
+		return (aveDistF - aveDistI >= MIN_ENCODER_DISTANCE);
 	}
 }

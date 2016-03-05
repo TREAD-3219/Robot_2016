@@ -36,6 +36,7 @@ public class ShootBoulder extends Command {
 		Robot.shooter.spinUp(topPower, bottomPower);
 		states = ShootStates.spinup;
 		startTime = Timer.getFPGATimestamp();
+		finished = false;
 	}
 
 	@Override

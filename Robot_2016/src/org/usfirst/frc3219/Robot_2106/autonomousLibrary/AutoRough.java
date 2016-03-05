@@ -5,7 +5,7 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 public class AutoRough extends AutoStraightCommand {
 	double aveDistI = 0.0;
 	double aveDistF = 0.0;
-	private static final double MIN_ENCODER_DISTANCE = 120; // NOT CALIBRATED
+	private static final double MIN_ENCODER_DISTANCE = 90; // NOT CALIBRATED
 	private static final double ROUGH_SPEED = 0.85;
 
 	@Override
@@ -33,9 +33,6 @@ public class AutoRough extends AutoStraightCommand {
 	@Override
 	protected boolean isFinished() {
 		aveDistF = Robot.sensors.getAvgEncoderDist();
-		if(Robot.sensors.getTip() <= 5 && aveDistF - aveDistI >= MIN_ENCODER_DISTANCE) {
-			return true;
-		} else
-		return false;
+		return (aveDistF - aveDistI >= MIN_ENCODER_DISTANCE);
 	}
 }

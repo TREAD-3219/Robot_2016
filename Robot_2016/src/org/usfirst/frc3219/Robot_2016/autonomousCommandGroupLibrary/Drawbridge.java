@@ -26,7 +26,7 @@ public class Drawbridge extends CommandGroup {
     	this.addParallel(new DrawbridgePID_Back());
     	this.addSequential(new DriveOverObstacle());
     	this.addSequential(new AutoRotate());
-        this.addSequential(new AutoTurnTowardsGoal());
+        //this.addSequential(new AutoTurnTowardsGoal());
     	this.addSequential(new AutoShoot());
     }
     

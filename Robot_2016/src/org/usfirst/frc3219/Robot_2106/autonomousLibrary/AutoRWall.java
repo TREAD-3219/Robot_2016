@@ -5,7 +5,7 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 public class AutoRWall extends AutoStraightCommand {
 	double aveDistI = 0.0;
 	
-	private static final double MIN_ENCODER_DISTANCE = 120;
+	private static final double MIN_ENCODER_DISTANCE = 90;
 	private static final double WALL_SPEED = 0.6;
 
 	@Override
@@ -32,7 +32,6 @@ public class AutoRWall extends AutoStraightCommand {
 	@Override
 	protected boolean isFinished() {
 		double aveDistF = Robot.sensors.getAvgEncoderDist();
-		return Robot.sensors.getTip() <= 5.0 &&
-				aveDistF - aveDistI >= MIN_ENCODER_DISTANCE;
+		return aveDistF - aveDistI >= MIN_ENCODER_DISTANCE;
 	}
 }

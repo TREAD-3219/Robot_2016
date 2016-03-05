@@ -17,7 +17,9 @@ public class IntakeBall extends Command {
 	
 	public IntakeBall() {
 		requires(Robot.feedMech);
-		requires(Robot.multiTool);
+		//requires(Robot.multiTool);
+		this.feederSpeed = FEEDER_SPEED;
+		this.rollerSpeed = ROLLER_SPEED;
 	}
 
 	public IntakeBall(int direction) {
@@ -29,15 +31,15 @@ public class IntakeBall extends Command {
 	@Override
 	protected void initialize() {
 		Robot.feedMech.spinFeeder(feederSpeed);
-		Robot.multiTool.driveRoller(ROLLER_SPEED);
+		Robot.multiTool.driveRoller(rollerSpeed);
 		this.setTimeout(TIMEOUT);
 		pressed = false;
 	}
 
 	@Override
 	protected void execute() {
-		Robot.multiTool.driveRoller(ROLLER_SPEED);
-		Robot.feedMech.spinFeeder(FEEDER_SPEED);
+		Robot.multiTool.driveRoller(rollerSpeed);
+		Robot.feedMech.spinFeeder(feederSpeed);
 		if (!pressed) {
 			pressed = Robot.feedMech.getLimitSwitch();
 		}

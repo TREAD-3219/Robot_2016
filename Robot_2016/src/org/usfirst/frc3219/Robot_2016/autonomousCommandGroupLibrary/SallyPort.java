@@ -22,7 +22,7 @@ public class SallyPort extends CommandGroup {
     	this.addSequential(new SallyTwist());
     	this.addSequential(new DriveOverObstacle());
     	this.addSequential(new AutoRotate());
-    	this.addSequential(new AutoTurnTowardsGoal());
+    	//this.addSequential(new AutoTurnTowardsGoal());
     	this.addSequential(new AutoShoot());
     }
 

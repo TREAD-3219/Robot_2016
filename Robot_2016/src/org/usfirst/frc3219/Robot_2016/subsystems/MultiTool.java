@@ -81,7 +81,7 @@ public class MultiTool extends PIDSubsystem {
 	}
 
 	public void driveRoller(double speed) {
-		driveRollerMotor.set(-speed); // Must be negative
+		driveRollerMotor.set(speed); // Must be negative
 	}
 
 	public void driveArmUpDown(double speed) {

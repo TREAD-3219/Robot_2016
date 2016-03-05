@@ -5,7 +5,7 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 public class DriveOverObstacle extends AutoStraightCommand {
 
 	double initEncoder;
-	public static final double MIN_ENCODER_DISTANCE = 60;
+	public static final double MIN_ENCODER_DISTANCE = 90;
 	private static final double ROBOT_SPEED = 0.5;
 
 	@Override
@@ -43,10 +43,7 @@ public class DriveOverObstacle extends AutoStraightCommand {
 	@Override
 	protected boolean isFinished() {
 		double encoderDiff = Robot.sensors.getAvgEncoderDist() - initEncoder;
-		if (Robot.sensors.getTip() < 5 && encoderDiff >= MIN_ENCODER_DISTANCE) {
-			return true;
-		}
-		return false;
+		return (encoderDiff >= MIN_ENCODER_DISTANCE);
 	}
 
 }

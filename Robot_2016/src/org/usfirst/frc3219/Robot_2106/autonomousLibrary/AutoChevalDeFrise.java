@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoChevalDeFrise extends AutoStraightCommand {
 	double aveDistI = 0.0;
 	double aveDistF = 0.0;
-	private static final double MIN_ENCODER_DISTANCE = 60; // NOT CALIBRATED
+	private static final double MIN_ENCODER_DISTANCE = 90; // NOT CALIBRATED
 
 	@Override
 	protected void end() {
@@ -34,7 +34,7 @@ public class AutoChevalDeFrise extends AutoStraightCommand {
 	@Override
 	protected boolean isFinished() {
 		aveDistF = Robot.sensors.getAvgEncoderDist();
-		if(Robot.sensors.getTip() <= 5 && aveDistF - aveDistI >= MIN_ENCODER_DISTANCE) {
+		if(aveDistF - aveDistI >= MIN_ENCODER_DISTANCE) {
 			return true;
 		} else
 		return false;

@@ -20,7 +20,7 @@ public class EngageRamp extends AutoStraightCommand {
 	protected void execute() {
 		super.gyroStraight(RAMP_SPEED);
 		double deltaT = Timer.getFPGATimestamp() - this.dropTime;
-		if (deltaT > 0.75) {
+		if (deltaT > 0.6) {
 			Robot.multiTool.driveArmUpDown(0);
 			
 		}
@@ -34,22 +34,34 @@ public class EngageRamp extends AutoStraightCommand {
 		Robot.sensors.navx.reset();
 		Robot.drive.setBrakesOff();
 		super.gyroStraight(RAMP_SPEED);
+		double armSpeed = 0;
 		
-/*		switch (Robot.defense) {
+		switch (Robot.defense) {
 		case ChevalDeFrise:
-			Robot.multiTool.armSetPoint(MultiTool.CHEVAL_DE_FRISE_START);
+			//Robot.multiTool.armSetPoint(MultiTool.CHEVAL_DE_FRISE_START);
+			armSpeed = 0;
 			break;
 			
 		case Drawbridge:
-			Robot.multiTool.armSetPoint(MultiTool.DRAWBRIDGE_START);
+			//Robot.multiTool.armSetPoint(MultiTool.DRAWBRIDGE_START);
+			armSpeed = 0;
+			break;
+			
+		case Moat:
+			armSpeed = 0;
+			break;
+
+		case RockWall:
+			armSpeed = 0.6;
 			break;
 			
 		default:
-			Robot.multiTool.armSetPoint(MultiTool.STOW);
+			//Robot.multiTool.armSetPoint(MultiTool.STOW);
+			armSpeed = 0;
 			break;
-		} */
+		} 
 		
-		Robot.multiTool.driveArmUpDown(0.6);
+		Robot.multiTool.driveArmUpDown(armSpeed);
 		
 	}
 

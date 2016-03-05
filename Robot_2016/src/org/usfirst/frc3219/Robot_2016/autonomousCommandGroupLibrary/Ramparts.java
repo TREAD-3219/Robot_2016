@@ -18,7 +18,7 @@ public class Ramparts extends CommandGroup {
     	this.addSequential(new EngageRamp());
     	this.addSequential(new AutoRamparts());
     	this.addSequential(new AutoRotate());
-    	this.addSequential(new AutoTurnTowardsGoal());
+    	//this.addSequential(new AutoTurnTowardsGoal());
     	this.addSequential(new AutoShoot());
     }
 

@@ -77,10 +77,10 @@ public class OI {
 		reverse.whenPressed(new ReverseCommand());
 
 		intake = new JoystickButton(gameController, 3);
-		intake.whenPressed(new IntakeBall());
+		intake.whileHeld(new IntakeBall());
 		
 		autoShoot = new JoystickButton(gameController, 6);
-		autoShoot.whileHeld(new AutoShoot());
+		autoShoot.whenPressed(new AutoShoot());
 		
 		JoystickButton centerToGoal = new JoystickButton(gameController, 1);
 		centerToGoal.whenPressed(new AutoCenterToGoal());

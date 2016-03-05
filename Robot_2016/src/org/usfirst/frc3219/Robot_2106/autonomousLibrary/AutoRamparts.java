@@ -5,7 +5,7 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 public class AutoRamparts extends AutoStraightCommand {
 	double aveDistI = 0.0;
 	double aveDistF = 0.0;
-	private static final double MIN_ENCODER_DISTANCE = 120;
+	private static final double MIN_ENCODER_DISTANCE = 90;
 	
 	@Override
 	protected void end() {
@@ -32,7 +32,7 @@ public class AutoRamparts extends AutoStraightCommand {
 	@Override
 	protected boolean isFinished() {
 		aveDistF = Robot.sensors.getAvgEncoderDist();
-		if (Robot.sensors.getTip() <= 5.0 && aveDistF - aveDistI >= MIN_ENCODER_DISTANCE) {
+		if (aveDistF - aveDistI >= MIN_ENCODER_DISTANCE) {
 			return true;
 		} else
 		return false;

@@ -18,7 +18,7 @@ public class Moat extends CommandGroup {
     	this.addSequential(new EngageRamp());
     	this.addSequential(new AutoMoat());
     	this.addSequential(new AutoRotate());
-    	this.addSequential(new AutoTurnTowardsGoal());
+    	//this.addSequential(new AutoTurnTowardsGoal());
     	this.addSequential(new AutoShoot());
     }
 

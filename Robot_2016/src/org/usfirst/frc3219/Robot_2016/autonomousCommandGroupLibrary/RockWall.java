@@ -18,7 +18,7 @@ public class RockWall extends CommandGroup {
     	this.addSequential(new EngageRamp());
     	this.addSequential(new AutoRWall());
     	this.addSequential(new AutoRotate());
-    	this.addSequential(new AutoTurnTowardsGoal());
+    	//this.addSequential(new AutoTurnTowardsGoal());
     	this.addSequential(new AutoShoot());
     }
     

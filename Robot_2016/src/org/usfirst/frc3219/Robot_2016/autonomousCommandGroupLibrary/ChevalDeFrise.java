@@ -20,7 +20,7 @@ public class ChevalDeFrise extends CommandGroup {
     	this.addSequential(new DropArms());
     	this.addSequential(new AutoChevalDeFrise());
     	this.addSequential(new AutoRotate());
-    	this.addSequential(new AutoTurnTowardsGoal());
+    	//this.addSequential(new AutoTurnTowardsGoal());
     	this.addSequential(new AutoShoot());
     }
     

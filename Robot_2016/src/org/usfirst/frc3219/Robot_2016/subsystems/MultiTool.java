@@ -32,7 +32,8 @@ public class MultiTool extends PIDSubsystem {
 	public static int selectedTool = 0;
 
 	// -----------
-	public static final double STOW = 3.0; // close to zero degrees, but not too close.
+	public static final double STOW = 3.0; // close to zero degrees, but not too
+											// close.
 	public static final double CHEVAL_DE_FRISE_START = 86.0;
 	public static final double CHIVAL_DE_FRISE_END = 106.0;
 	public static final double DRAWBRIDGE_START = 29.0;
@@ -44,13 +45,12 @@ public class MultiTool extends PIDSubsystem {
 	public static final double NEUTRAL_POSITION = SHOOT_POSITION;
 	// -----------
 
-	
 	private static final double ENCODER_MIN = 0;
 	private static final double ENCODER_MAX = 120;
 	public static final double RANGE = ENCODER_MAX - ENCODER_MIN;
-    private static final double ENCODER_PULSE_PER_REVOLUTION = 7;
-    private static final double ARM_GEAR_RATIO = 188;
-    private static final double ARM_PULSE_PER_REVOLUTION = ENCODER_PULSE_PER_REVOLUTION * ARM_GEAR_RATIO;
+	private static final double ENCODER_PULSE_PER_REVOLUTION = 7;
+	private static final double ARM_GEAR_RATIO = 188;
+	private static final double ARM_PULSE_PER_REVOLUTION = ENCODER_PULSE_PER_REVOLUTION * ARM_GEAR_RATIO;
 	public static final double ARM_ENCODER_DEGREES_PER_PULSE = 360.0 / ARM_PULSE_PER_REVOLUTION;
 	public static final double UP = -0.5; // Must be negative
 
@@ -62,7 +62,7 @@ public class MultiTool extends PIDSubsystem {
 		this.resetEncoders();
 		this.disable();
 	}
-	
+
 	public void armSetPoint(double position) {
 		this.setSetpoint(position);
 	}
@@ -84,8 +84,16 @@ public class MultiTool extends PIDSubsystem {
 		driveRollerMotor.set(speed); // Must be negative
 	}
 
-	public void driveArmUpDown(double speed) {
-		driveArmMotor.set(speed);
+	public void driveArmUpDown(double power) {
+		// positive power is DOWN
+		if (power > 0.0 && this.getLowerLimitSwitch() || power < 0.0 && this.getUpperLimitSwitch()) {
+			driveArmMotor.set(0.0);
+			if (this.getUpperLimitSwitch()) {
+				this.resetEncoders();
+			}
+		} else {
+			driveArmMotor.set(power);
+		}
 	}
 
 	public void driveArmHold() {
@@ -112,12 +120,12 @@ public class MultiTool extends PIDSubsystem {
 	}
 
 	@Override
-	protected void usePIDOutput(double arg0) {
-		if (arg0 > 0.0 && this.getUpperLimitSwitch()
-				|| arg0 < 0.0 && this.getLowerLimitSwitch()) {
+	protected void usePIDOutput(double power) {
+		// positive power is DOWN
+		if (power < 0.0 && this.getUpperLimitSwitch() || power > 0.0 && this.getLowerLimitSwitch()) {
 			driveArmMotor.pidWrite(0.0);
 		} else {
-			driveArmMotor.pidWrite(arg0);
+			driveArmMotor.pidWrite(power);
 		}
 	}
 }

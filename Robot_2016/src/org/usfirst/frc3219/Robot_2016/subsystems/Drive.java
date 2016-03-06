@@ -33,9 +33,8 @@ public class Drive extends Subsystem {
 
 	double reverse = 1.0;
 	
-	public void driveValues(double forward, double turnRate){
+	public void driveValues(double forward, double turnRate) {
 		driveMotors.arcadeDrive(forward*reverse, turnRate*reverse);
-
 	}
 
 	public void setSafety(boolean safely) {

@@ -70,6 +70,7 @@ public class OI {
 	public OI() {
 		joystick = new Joystick(0);
 		gameController = new Joystick(1);
+		
 		shoot = new JoystickButton(joystick, 1);
 		shoot.whileHeld(new ManualShoot());
 

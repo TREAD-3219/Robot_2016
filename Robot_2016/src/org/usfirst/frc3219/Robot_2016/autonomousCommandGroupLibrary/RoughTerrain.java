@@ -18,8 +18,7 @@ public class RoughTerrain extends CommandGroup {
     	this.addSequential(new EngageRamp());
     	this.addSequential(new AutoRough());
     	this.addSequential(new AutoRotate());
-    	//this.addSequential(new AutoTurnTowardsGoal());
-    	//this.addSequential(new AutoShoot());
+    	this.addSequential(new AutoShoot());
     }
 
     

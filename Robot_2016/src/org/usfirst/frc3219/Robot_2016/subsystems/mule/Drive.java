@@ -49,8 +49,8 @@ public class Drive extends Subsystem {
 	}
 
 	public Drive() {
-		rightDrive = RobotMap.driveRightDriveB;
-		leftDrive = RobotMap.driveLeftDriveB;
+		rightDrive = RobotMap.driveRightDriveA;
+		leftDrive = RobotMap.driveLeftDriveA;
 		driveMotors = RobotMap.driveDriveMotors;
 	}
 	

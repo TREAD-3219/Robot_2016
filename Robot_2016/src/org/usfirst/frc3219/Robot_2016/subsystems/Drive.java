@@ -1,13 +1,12 @@
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
 import org.usfirst.frc3219.Robot_2016.RobotMap;
-import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -17,7 +16,7 @@ public class Drive extends Subsystem {
 	private static final double MAX_MOTOR_RPM = 4000;
 	private static final double WHEEL_DIAMETER = 7.75;
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
-	private static final double GEAR_RATIO = 8.45;
+	private static final double GEAR_RATIO = 10.71;
 	private static final double MAX_WHEEL_RPM = MAX_MOTOR_RPM / GEAR_RATIO;
 	public static final double MAX_SPEED_IPM = WHEEL_CIRCUMFERENCE * MAX_WHEEL_RPM;
 	public static final double MAX_SPEED_IPS = MAX_SPEED_IPM / 60.0;

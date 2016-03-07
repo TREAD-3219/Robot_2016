@@ -1,21 +1,6 @@
 
 package org.usfirst.frc3219.Robot_2016;
 
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
-import org.usfirst.frc3219.Robot_2016.Robot.Defense;
-import org.usfirst.frc3219.Robot_2016.Robot.Position;
-import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.ChevalDeFrise;
-import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Drawbridge;
-import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Moat;
-import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Portcullis;
-import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Ramparts;
-import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RockWall;
-import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RoughTerrain;
-import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.SallyPort;
 import org.usfirst.frc3219.Robot_2016.commands.DedReckoningChecks;
 import org.usfirst.frc3219.Robot_2016.commands.EnableClimberButtons;
 import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
@@ -23,14 +8,17 @@ import org.usfirst.frc3219.Robot_2016.commands.MultiToolMover;
 import org.usfirst.frc3219.Robot_2016.commands.WatchSensors;
 import org.usfirst.frc3219.Robot_2016.subsystems.Camera;
 import org.usfirst.frc3219.Robot_2016.subsystems.Climber;
-import org.usfirst.frc3219.Robot_2016.subsystems.Drive;
+import org.usfirst.frc3219.Robot_2016.subsystems.mule.Drive;
 import org.usfirst.frc3219.Robot_2016.subsystems.FeedMech;
 import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
 import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
-import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
+import org.usfirst.frc3219.Robot_2016.subsystems.mule.Shooter;
 
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**

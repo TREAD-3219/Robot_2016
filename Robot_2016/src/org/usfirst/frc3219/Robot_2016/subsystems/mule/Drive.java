@@ -1,7 +1,8 @@
-package org.usfirst.frc3219.Robot_2016.subsystems;
+package org.usfirst.frc3219.Robot_2016.subsystems.mule;
 
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
+import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
@@ -15,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drive extends Subsystem {
 	private static final double MAX_MOTOR_RPM = 4000;
-	private static final double WHEEL_DIAMETER = 7.75;
+	private static final double WHEEL_DIAMETER = 4;
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
 	private static final double GEAR_RATIO = 8.45;
 	private static final double MAX_WHEEL_RPM = MAX_MOTOR_RPM / GEAR_RATIO;
@@ -29,21 +30,16 @@ public class Drive extends Subsystem {
 	public static final double WHEEL_DISTANCE_PER_PULSE = WHEEL_CIRCUMFERENCE
 			/ Sensors.WHEEL_ENCODER_PULSE_PER_REVOLUTION;
 
-	CANTalon rightDriveFront;
-	CANTalon rightDriveRear;
-	CANTalon leftDriveFront;
-	CANTalon leftDriveRear;
+	CANTalon rightDrive;
+	CANTalon leftDrive;
 	RobotDrive driveMotors;
 
 	double reverse = 1.0;
 
 	public static void setupRobotMap() {
-		RobotMap.driveRightDriveA = new CANTalon(4);
-		RobotMap.driveRightDriveB = new CANTalon(5);
+		RobotMap.driveRightDriveA = new CANTalon(1);
 		RobotMap.driveLeftDriveA = new CANTalon(2);
-		RobotMap.driveLeftDriveB = new CANTalon(3);
-		RobotMap.driveDriveMotors = new RobotDrive(RobotMap.driveLeftDriveA, RobotMap.driveLeftDriveB,
-				RobotMap.driveRightDriveA, RobotMap.driveRightDriveB);
+		RobotMap.driveDriveMotors = new RobotDrive(RobotMap.driveLeftDriveA, RobotMap.driveRightDriveA);
 		RobotMap.driveEncoderLeft = new Encoder(0, 1, false, EncodingType.k4X);
 		RobotMap.driveEncoderLeft.setDistancePerPulse(-Drive.WHEEL_DISTANCE_PER_PULSE);
 		RobotMap.driveEncoderLeft.setPIDSourceType(PIDSourceType.kRate);
@@ -53,10 +49,8 @@ public class Drive extends Subsystem {
 	}
 
 	public Drive() {
-		rightDriveFront = RobotMap.driveRightDriveB;
-		rightDriveRear = RobotMap.driveRightDriveA;
-		leftDriveFront = RobotMap.driveLeftDriveB;
-		leftDriveRear = RobotMap.driveLeftDriveA;
+		rightDrive = RobotMap.driveRightDriveB;
+		leftDrive = RobotMap.driveLeftDriveB;
 		driveMotors = RobotMap.driveDriveMotors;
 	}
 	
@@ -87,17 +81,13 @@ public class Drive extends Subsystem {
 	}
 
 	public void setBrakesOn() {
-		rightDriveFront.enableBrakeMode(true);
-		rightDriveRear.enableBrakeMode(true);
-		leftDriveFront.enableBrakeMode(true);
-		leftDriveRear.enableBrakeMode(true);
+		leftDrive.enableBrakeMode(true);
+		rightDrive.enableBrakeMode(true);
 	}
 
 	public void setBrakesOff() {
-		rightDriveFront.enableBrakeMode(false);
-		rightDriveRear.enableBrakeMode(false);
-		leftDriveFront.enableBrakeMode(false);
-		leftDriveRear.enableBrakeMode(false);
+		leftDrive.enableBrakeMode(false);
+		rightDrive.enableBrakeMode(false);
 	}
 
 	@Override

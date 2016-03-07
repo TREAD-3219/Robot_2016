@@ -1,12 +1,10 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
-import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.subsystems.Climber;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class EnableClimberButtons extends Command {
@@ -26,8 +24,8 @@ public class EnableClimberButtons extends Command {
 	public static boolean safetyClimberEnable = false;
 	
 	private static final String QUICK_RELEASE_OVERRIDE = "quick release override";
-	Servo servo4;
-	Servo servo5;
+	Servo leftServo;
+	Servo rightServo;
 	@Override
 	protected void end() {
 
@@ -44,13 +42,13 @@ public class EnableClimberButtons extends Command {
 	protected void initialize() {
 		// 1:55
 
-		this.setTimeout(1); // wait to trigger isFinished() to start end()
+		this.setTimeout(CLIMBER_TIMEOUT); // wait to trigger isFinished() to start end()
 		safetyClimberEnable = false;
 		SmartDashboard.putBoolean(QUICK_RELEASE_OVERRIDE, false);
-		servo4 = RobotMap.pwmServo_4;
-		servo5 = RobotMap.pwmServo_3;
-		servo4.setAngle(Climber.LEFT_SERVO_CLOSED);
-		servo5.setAngle(Climber.RIGHT_SERVO_CLOSED);
+		leftServo = RobotMap.climberReleaseServoLeft;
+		rightServo = RobotMap.climberReleaseServoRight;
+		leftServo.setAngle(Climber.LEFT_SERVO_CLOSED);
+		rightServo.setAngle(Climber.RIGHT_SERVO_CLOSED);
 
 	}
 

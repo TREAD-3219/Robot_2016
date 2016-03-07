@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -25,13 +26,21 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class FeedMech extends Subsystem {
 
+	public static final String FEEDER_POWER_TAG = "Feeder power";
 	private static final double FEEDER_STOP_SPEED = 0.0;
-	private Talon feederMotor = RobotMap.shooterFeederMotor;
-	private DigitalInput feederLimitSwitch = RobotMap.feederLimitSwitch;
+	private Talon feederMotor;
+	private DigitalInput feederLimitSwitch;
 
 	public double feederSpeeder = 0.3;
 
+	public static void setupRobotMap() {
+		RobotMap.shooterFeederMotor = new Talon(0);
+		RobotMap.feederLimitSwitch = new DigitalInput(9);
+	}
+
 	public FeedMech() {
+		feederMotor = RobotMap.shooterFeederMotor;
+		feederLimitSwitch = RobotMap.feederLimitSwitch;
     	feederMotor.setSafetyEnabled(false);
     	feederMotor.setInverted(true);
 	}
@@ -43,10 +52,12 @@ public class FeedMech extends Subsystem {
 	}
 	
 	public void spinFeeder(double speed) {
+		SmartDashboard.putNumber(FEEDER_POWER_TAG, speed);
 		feederMotor.set(speed);
 	}
 	public void stopFeeder() {
 		feederMotor.set(FEEDER_STOP_SPEED);
+		SmartDashboard.putNumber(FEEDER_POWER_TAG, FEEDER_STOP_SPEED);
 	}
 
     public void initDefaultCommand() {

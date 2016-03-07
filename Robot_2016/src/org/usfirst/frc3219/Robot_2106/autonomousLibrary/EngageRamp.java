@@ -14,14 +14,16 @@ public class EngageRamp extends AutoStraightCommand {
 
 	@Override
 	protected void end() {
+		//Robot.multiTool.stopMotors();
 	}
 
 	@Override
 	protected void execute() {
 		super.gyroStraight(RAMP_SPEED);
 		double deltaT = Timer.getFPGATimestamp() - this.dropTime;
-		if (deltaT > 0.65) {
-			Robot.multiTool.driveArmUpDown(0);
+		if (deltaT > 0.6) {
+			Robot.multiTool.driveArmUpDown(0.0);
+			Robot.multiTool.stopMotors();
 			
 		}
 	}
@@ -48,16 +50,16 @@ public class EngageRamp extends AutoStraightCommand {
 			break;
 			
 		case Moat:
-			armSpeed = 0.6;
+			armSpeed = 0.7;
 			break;
 
 		case RockWall:
-			armSpeed = 0.6;
+			armSpeed = 0.7;
 			break;
 			
 		default:
 			//Robot.multiTool.armSetPoint(MultiTool.STOW);
-			armSpeed = 0.6;
+			armSpeed = 0.7;
 			break;
 		} 
 		

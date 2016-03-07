@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoChevalDeFrise extends AutoStraightCommand {
 	double aveDistI = 0.0;
 	double aveDistF = 0.0;
-	private static final double MIN_ENCODER_DISTANCE = 90; // NOT CALIBRATED
+	private static final double MIN_ENCODER_DISTANCE = 70.0; // NOT CALIBRATED
 
 	@Override
 	protected void end() {

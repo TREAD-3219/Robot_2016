@@ -3,7 +3,6 @@ package org.usfirst.frc3219.Robot_2106.autonomousLibrary;
 import org.usfirst.frc3219.Robot_2016.Robot;
 
 public class AutoRotate extends AutoStraightCommand {
-	String whichPosition;
 
 	@Override
 	protected void end() {
@@ -17,13 +16,14 @@ public class AutoRotate extends AutoStraightCommand {
 
 	@Override
 	protected void initialize() {
+		System.out.println("AutoRotate.initialize");
 		this.setTimeout(2);
 		setDefenseDirection();
 	}
 
 	void setDefenseDirection() {
 		switch (Robot.position) {
-		case A: 
+		case A:
 			setGyroStraight(0.0, 216.0);
 			break;
 		case B:
@@ -34,6 +34,9 @@ public class AutoRotate extends AutoStraightCommand {
 			break;
 		case D:
 			setGyroStraight(0.0, 112.0);
+			break;
+		default:
+			System.out.println("Unknown case in setDefenseDirection");
 			break;
 		}
 	}
@@ -47,7 +50,7 @@ public class AutoRotate extends AutoStraightCommand {
 	protected boolean isFinished() {
 		double angle = Robot.sensors.navx.getAngle();
 		switch (Robot.position) {
-		case A: 
+		case A:
 			return angle > 214 && angle < 218;
 		case B:
 			return angle > 198 && angle < 202;
@@ -55,8 +58,11 @@ public class AutoRotate extends AutoStraightCommand {
 			return angle > 173 && angle < 177;
 		case D:
 			return angle > 110 && angle < 114;
+		default:
+			System.out.println("Unknown position in AutoRotate.isFinished");
+			break;
 		}
-			return this.isTimedOut();
-			
+
+		return this.isTimedOut();
 	}
 }

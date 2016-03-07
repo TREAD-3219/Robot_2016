@@ -8,6 +8,14 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc3219.Robot_2016.Robot.Defense;
 import org.usfirst.frc3219.Robot_2016.Robot.Position;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.ChevalDeFrise;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Drawbridge;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Moat;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Portcullis;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Ramparts;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RockWall;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RoughTerrain;
+import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.SallyPort;
 import org.usfirst.frc3219.Robot_2016.commands.DedReckoningChecks;
 import org.usfirst.frc3219.Robot_2016.commands.EnableClimberButtons;
 import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
@@ -24,14 +32,6 @@ import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc3219.autonomousCommandGroupLibrary.ChivalDeFrise;
-import frc3219.autonomousCommandGroupLibrary.Drawbridge;
-import frc3219.autonomousCommandGroupLibrary.Moat;
-import frc3219.autonomousCommandGroupLibrary.Portcullis;
-import frc3219.autonomousCommandGroupLibrary.Ramparts;
-import frc3219.autonomousCommandGroupLibrary.RockWall;
-import frc3219.autonomousCommandGroupLibrary.RoughTerrain;
-import frc3219.autonomousCommandGroupLibrary.SallyPort;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -55,6 +55,7 @@ public class Robot extends IterativeRobot {
 		ChevalDeFrise,
 		Drawbridge,
 		Moat,
+		NoDefense,
 		Portcullis,
 		Ramparts,
 		RockWall,
@@ -72,10 +73,12 @@ public class Robot extends IterativeRobot {
 	public static FeedMech feedMech;
 	public static MultiTool multiTool;
 	public static Navigation navigation;
+	
 	public static Defense defense;
 	public static Position position;
 	
-	Command sensorsCommand;
+	WatchSensors sensorsCommand;
+	DedReckoningChecks dedReckonCommand;
 	
     Command autonomousCommand = null;
  
@@ -95,11 +98,23 @@ public class Robot extends IterativeRobot {
     	camera = new Camera();
 		oi = new OI();
 
-        SmartDashboard.putNumber(Shooter.TOPSHOOTER, Shooter.TOP_SHOOTER_SPEED);
-        SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, Shooter.BOTTOM_SHOOTER_SPEED);
-        
+        smartDashboardInit();
+		       
         sensorsCommand = new WatchSensors();
+        dedReckonCommand = new DedReckoningChecks();
     }
+
+    /**
+     * This function is for initializing any SmartDashboard variables that
+     * should be set before anyone tries a getXXX or some other reason.
+     * 
+     */
+	public void smartDashboardInit() {
+		SmartDashboard.putNumber(Shooter.TOPSHOOTER, Shooter.TOP_SHOOTER_SPEED);
+        SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, Shooter.BOTTOM_SHOOTER_SPEED);
+		SmartDashboard.putBoolean(Climber.CLIMBER_RELEASED_TAG, false);
+		SmartDashboard.putBoolean(Climber.CLIMBER_RESET_TAG, false);
+	}
 	
 	/**
      * This function is called once each time the robot enters Disabled mode.
@@ -109,6 +124,10 @@ public class Robot extends IterativeRobot {
     public void disabledInit(){
     	if (sensorsCommand != null) {
     		sensorsCommand.start();
+    	}
+    	
+    	if (dedReckonCommand != null) {
+    		dedReckonCommand.start();
     	}
     }
 	
@@ -128,7 +147,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
      	Robot.climber.resetClimber(); // ensure servo's in correct position
     	
-     	String defenseName = (String) Robot.oi.autoDefenseChooser.getSelected();
+     	autonomousCommand = (Command) Robot.oi.autoDefenseChooser.getSelected();
      	String positionName = (String) Robot.oi.autoStartPosition.getSelected();
      	
      	if (positionName.equals(OI.POSITION_A)) {
@@ -141,39 +160,9 @@ public class Robot extends IterativeRobot {
      		position = Position.D;
      	} else {
      		position = Position.Unknown;
-     		System.out.println("Unknown Position!! " + positionName);
+     		System.out.println("autonomousInit: Unknown Position!! " + positionName);
      	}
-     	
-        autonomousCommand = null;
-        if (defenseName.equals(OI.CHIVAL_DE_FRISE)) {
-        	autonomousCommand = new ChivalDeFrise();
-        	defense = Defense.ChevalDeFrise;
-        } else if (defenseName.equals(OI.DRAWBRIDGE)) {
-        	autonomousCommand = new Drawbridge();
-        	defense = Defense.Drawbridge;
-        } else if (defenseName.equals(OI.MOAT)) {
-        	autonomousCommand = new Moat();
-        	defense = Defense.Moat;
-        } else if (defenseName.equals(OI.PORTCULLIS)) {
-        	autonomousCommand = new Portcullis();
-        	defense = Defense.Portcullis;
-        } else if (defenseName.equals(OI.RAMPARTS)) {
-        	autonomousCommand = new Ramparts();
-        	defense = Defense.Ramparts;
-        } else if (defenseName.equals(OI.ROCK_WALL)) {
-        	autonomousCommand = new RockWall();
-        	defense = Defense.RockWall;
-        } else if (defenseName.equals(OI.ROUGH_TERRAIN)) {
-        	autonomousCommand = new RoughTerrain();
-        	defense = Defense.RoughTerrain;
-        } else if (defenseName.equals(OI.SALLY_PORT)) {
-        	autonomousCommand = new SallyPort();
-        	defense = Defense.SallyPort;
-        } else {
-        	defense = Defense.Unknown;
-        	System.out.println("Unknown Defense!! " + defenseName);
-        }
-   
+    
          if (autonomousCommand != null) {
         	autonomousCommand.start();
         }

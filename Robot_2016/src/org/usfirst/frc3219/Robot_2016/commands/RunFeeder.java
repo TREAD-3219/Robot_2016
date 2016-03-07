@@ -10,7 +10,7 @@ public class RunFeeder extends Command { //Spins shooter while X is pressed
 
 	@Override
 	protected void initialize() {
-		Robot.feedMech.spinFeeder(1, FEEDER_SPEED);
+		Robot.feedMech.spinFeeder(FEEDER_SPEED);
 		
 	}
 

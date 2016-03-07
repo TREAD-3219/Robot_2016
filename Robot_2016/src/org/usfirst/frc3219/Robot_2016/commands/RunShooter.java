@@ -34,7 +34,6 @@ public class RunShooter extends Command { //This command is to be used in Comman
 	@Override
 	protected void execute() {
 		Robot.shooter.spinUp(topPower, bottomPower);
-		RobotMap.time = this.timeSinceInitialized();
 	}
 
 	@Override
@@ -50,6 +49,5 @@ public class RunShooter extends Command { //This command is to be used in Comman
 	@Override
 	protected void end() {
 		Robot.shooter.spinDown();
-
 	}
 }

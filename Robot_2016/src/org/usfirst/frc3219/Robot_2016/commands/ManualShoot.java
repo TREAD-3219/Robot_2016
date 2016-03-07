@@ -29,7 +29,6 @@ public class ManualShoot extends Command { // This class spins shooter when the
 
 	@Override
 	protected void execute() {
-		RobotMap.time = this.timeSinceInitialized();
 	}
 
 	@Override

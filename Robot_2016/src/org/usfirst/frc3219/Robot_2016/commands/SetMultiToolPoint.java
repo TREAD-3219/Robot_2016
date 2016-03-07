@@ -6,13 +6,16 @@ import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class SetMultiToolPoint extends Command {
-	double position;
+	private static final double TIMEOUT = .65;
+	private double position;
+	
+	public SetMultiToolPoint() {
+		position = 85.0;
+	}
 	
 	public SetMultiToolPoint(double pos) {
 		position = pos;
 	}
-
-	private static final int TIMEOUT = 2;
 
 	@Override
 	protected void end() {
@@ -25,15 +28,17 @@ public class SetMultiToolPoint extends Command {
 	@Override
 	protected void initialize() {
 		this.setTimeout(TIMEOUT);
+		Robot.multiTool.enable();
 		Robot.multiTool.armSetPoint(position);
 	}
 
 	@Override
 	protected void interrupted() {
+		end();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.multiTool.getPIDController().onTarget() || this.isTimedOut();
+		return Robot.multiTool.onTarget() || this.isTimedOut();
 	}
 }

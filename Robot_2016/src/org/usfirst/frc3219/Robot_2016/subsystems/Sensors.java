@@ -1,20 +1,16 @@
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
-import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
-import org.usfirst.frc3219.Robot_2016.commands.WatchSensors;
+import org.usfirst.frc3219.Robot_2016.utility.Utility;
 
 import com.kauailabs.navx.frc.AHRS;
 
-import Robot_2016.utility.Utility;
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSource {
 	private static final byte LIDAR_1_ADDR = 0x62;
@@ -23,12 +19,8 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	private static final int READ_CONTROL_REGISTER = 0x00;
 
 	private static final double RADIANS_TO_DEGREES = 180 / Math.PI;
-	private static final double TICKS_PER_REVOLUTION = 360.0;
-	private static final double DISTANCE_PER_PULSE = Drive.WHEEL_CIRCUMFERENCE / TICKS_PER_REVOLUTION;
-	private static final double LEFT_CALIBRATION = -1.0;
-	private static final double RIGHT_CALIBRATION = 1.0;
-	private static final double LEFT_DISTANCE_PER_PULSE = DISTANCE_PER_PULSE * LEFT_CALIBRATION;
-	private static final double RIGHT_DISTANCE_PER_PULSE = DISTANCE_PER_PULSE * RIGHT_CALIBRATION;
+
+	public static final double WHEEL_ENCODER_PULSE_PER_REVOLUTION = 360.0 * 4; // encoders counting all edges
 
 	public static final String TACH_RAW = "Tach_Raw";
 	public static final String LINE_SEEKER_TAG = "Line Seeker";
@@ -40,7 +32,7 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	public static final String LEFT_ENCODER_TAG = "Left Encoder";
 	public static final String RIGHT_ENCODER_TAG = "Right Encoder";
 	public static final String ANGLE = "Angle";
-	public static final double WHEEL_ENCODER_PULSE_PER_REVOLUTION = 360.0;
+	public static final String SHOOTER_SPEED = "Shooter Speed";
 
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	I2C lidar1 = new I2C(I2C.Port.kMXP, LIDAR_1_ADDR);
@@ -101,23 +93,9 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 		return this.navx.getAngle();
 	}
 
-	public double readShooterCounter1() {
-		return RobotMap.shooterCounter.getPeriod();
+	public double getShooterSpeed() {
+		return RobotMap.shooterCounter.getRate();
 	}
-
-	public void getCounterValues() {
-		int count = RobotMap.shooterCounter.get();
-		//SmartDashboard.putNumber(TACH_RAW, count);
-		double distance = RobotMap.shooterCounter.getDistance();
-		double period = RobotMap.shooterCounter.getPeriod();
-		double rate = RobotMap.shooterCounter.getRate();
-		boolean direction = RobotMap.shooterCounter.getDirection();
-		boolean stopped = RobotMap.shooterCounter.getStopped();
-	}
-
-	/*public boolean readLineSeeker() {
-		return RobotMap.lineSeekerInput.get();
-	}*/
 
 	public int readShooterCounter() {
 		return RobotMap.shooterCounter.get();
@@ -202,7 +180,6 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new WatchSensors());
 	}
 
 	@Override

@@ -8,35 +8,38 @@ import edu.wpi.first.wpilibj.command.Command;
 public class IntakeBall extends Command {
 	private static final int TIMEOUT = 5;
 // Starts feeder motor
-	private static final double ROLLER_SPEED = -1.0;
+	private static final double ROLLER_SPEED = 1.0;
 	private static final double FEEDER_SPEED = .3;
 	// stops either when button b is released, or limit switch is hit
 	boolean pressed;
-	int direction;
+	double feederSpeed = FEEDER_SPEED;
+	double rollerSpeed = ROLLER_SPEED;
 	
 	public IntakeBall() {
 		requires(Robot.feedMech);
-		requires(Robot.multiTool);
-		this.direction = 1;
+		//requires(Robot.multiTool);
+		this.feederSpeed = FEEDER_SPEED;
+		this.rollerSpeed = ROLLER_SPEED;
 	}
 
 	public IntakeBall(int direction) {
 		requires(Robot.feedMech);
-		this.direction = direction;
+		this.feederSpeed = FEEDER_SPEED * direction;
+		this.rollerSpeed = ROLLER_SPEED * direction;
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.feedMech.spinFeeder(direction, FEEDER_SPEED);
-		Robot.multiTool.driveRoller(ROLLER_SPEED * direction);
+		Robot.feedMech.spinFeeder(feederSpeed);
+		Robot.multiTool.driveRoller(rollerSpeed);
 		this.setTimeout(TIMEOUT);
 		pressed = false;
 	}
 
 	@Override
 	protected void execute() {
-		Robot.multiTool.driveRoller(ROLLER_SPEED * direction);
-		Robot.feedMech.spinFeeder(direction, FEEDER_SPEED);
+		Robot.multiTool.driveRoller(rollerSpeed);
+		Robot.feedMech.spinFeeder(feederSpeed);
 		if (!pressed) {
 			pressed = Robot.feedMech.getLimitSwitch();
 		}

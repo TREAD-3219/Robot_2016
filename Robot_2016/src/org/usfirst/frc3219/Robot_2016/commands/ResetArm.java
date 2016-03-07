@@ -6,20 +6,23 @@ import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ResetArm extends Command {
+	private double startPosition;
 	
 	public ResetArm() {
-		requires(Robot.multiTool);
+		// just take over - can't require multiTool
+		// because MultiToolMover is not interruptible
 	}
 
 	@Override
 	protected void initialize() {
+		startPosition = Robot.multiTool.getPosition();
 		Robot.multiTool.disable();
-		Robot.multiTool.driveArmUpDown(MultiTool.UP);
+		Robot.multiTool.driveArmUpDown(MultiTool.UP_POWER);
 	}
 
 	@Override
 	protected void execute() {
-		Robot.multiTool.driveArmUpDown(MultiTool.UP);
+		Robot.multiTool.driveArmUpDown(MultiTool.UP_POWER);
 	}
 
 	@Override
@@ -31,7 +34,8 @@ public class ResetArm extends Command {
 	protected void end() {
 		Robot.multiTool.resetEncoders();
 		Robot.multiTool.driveArmUpDown(0.0);
-		Robot.multiTool.driveArmHold();
+		Robot.multiTool.armSetPoint(startPosition);
+		Robot.multiTool.enable();
 	}
 
 	@Override

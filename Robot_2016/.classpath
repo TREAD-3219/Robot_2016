@@ -6,6 +6,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="var" path="navx_mxp"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/eclipse/libs/WPILib.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

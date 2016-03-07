@@ -16,18 +16,25 @@ import org.usfirst.frc3219.Robot_2016.RobotMap;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MultiTool extends PIDSubsystem {
 
 	static final double P = 0.01;
-	static final double I = 0.001;
-	static final double D = -0.01;
+	static final double I = 0.0001;
+	static final double D = -0.0025;
 
 	Talon driveRollerMotor = RobotMap.driveRollerMotorController;
 	Talon driveArmMotor = RobotMap.driveMultiToolArmMotor;
 	DigitalInput limitSwitchHigh = RobotMap.multiToolLimitSwitchHigh;
 	DigitalInput limitSwitchLow = RobotMap.multiToolLimitSwitchLow;
 	public static final String ARM_ENCODER_TAG = "Arm Encoder";
+	public static final String ARM_P = "Arm P";
+	public static final String ARM_I = "Arm I";
+	public static final String ARM_D = "Arm D";
+	public static final String ARM_LOWER_LIMIT_TAG = "Arm lower limit";
+	public static final String ARM_UPPER_LIMIT_TAG = "Arm upper limit";
+	public static final String ARM_POWER_SETTING_TAG = "Arm Power Setting";
 
 	public static int selectedTool = 0;
 
@@ -45,22 +52,29 @@ public class MultiTool extends PIDSubsystem {
 	public static final double NEUTRAL_POSITION = SHOOT_POSITION;
 	// -----------
 
+	private static final double MOTOR_POWER_MAX_DOWN = 0.5;
+	private static final double MOTOR_POWER_MAX_UP = -1.0;
+	private static final double ARM_TOLERANCE_PERCENT = 5.0;
 	private static final double ENCODER_MIN = 0;
-	private static final double ENCODER_MAX = 120;
+	private static final double ENCODER_MAX = 110;
 	public static final double RANGE = ENCODER_MAX - ENCODER_MIN;
-	private static final double ENCODER_PULSE_PER_REVOLUTION = 7;
+	private static final double ENCODER_PULSE_PER_REVOLUTION = 7.0 * 4.0; // not sure about this one...
 	private static final double ARM_GEAR_RATIO = 188;
 	private static final double ARM_PULSE_PER_REVOLUTION = ENCODER_PULSE_PER_REVOLUTION * ARM_GEAR_RATIO;
-	public static final double ARM_ENCODER_DEGREES_PER_PULSE = 360.0 / ARM_PULSE_PER_REVOLUTION;
-	public static final double UP = -0.5; // Must be negative
 
+	public static final double ARM_ENCODER_DEGREES_PER_PULSE = 360.0 / ARM_PULSE_PER_REVOLUTION;
+	public static final double UP_POWER = -0.5; // Must be negative
+	
 	public MultiTool() {
 		super(P, I, D);
 		this.setInputRange(ENCODER_MIN, ENCODER_MAX);
-		this.setOutputRange(-1.0, 1.0);
-		this.setPercentTolerance(5);
+		this.setOutputRange(MOTOR_POWER_MAX_UP, MOTOR_POWER_MAX_DOWN);
+		this.setPercentTolerance(MultiTool.ARM_TOLERANCE_PERCENT);
 		this.resetEncoders();
 		this.disable();
+		SmartDashboard.putNumber(ARM_P, P);
+		SmartDashboard.putNumber(ARM_I, I);
+		SmartDashboard.putNumber(ARM_D, D);
 	}
 
 	public void armSetPoint(double position) {
@@ -109,6 +123,13 @@ public class MultiTool extends PIDSubsystem {
 	public void resetEncoders() {
 		Robot.sensors.armEncoder.reset();
 	}
+	
+	public void resetPID() {
+		double p = SmartDashboard.getNumber(ARM_P, P);
+		double i = SmartDashboard.getNumber(ARM_I, I);
+		double d = SmartDashboard.getNumber(ARM_D, D);
+		this.getPIDController().setPID(p, i, d);
+	}
 
 	public void initDefaultCommand() {
 	}
@@ -123,9 +144,11 @@ public class MultiTool extends PIDSubsystem {
 	protected void usePIDOutput(double power) {
 		// positive power is DOWN
 		if (power < 0.0 && this.getUpperLimitSwitch() || power > 0.0 && this.getLowerLimitSwitch()) {
-			driveArmMotor.pidWrite(0.0);
-		} else {
-			driveArmMotor.pidWrite(power);
+			power = 0.0;
 		}
+		driveArmMotor.pidWrite(power);
+		SmartDashboard.putNumber(ARM_POWER_SETTING_TAG, power);
+		SmartDashboard.putBoolean(ARM_UPPER_LIMIT_TAG, this.getUpperLimitSwitch());
+		SmartDashboard.putBoolean(ARM_LOWER_LIMIT_TAG, this.getLowerLimitSwitch());
 	}
 }

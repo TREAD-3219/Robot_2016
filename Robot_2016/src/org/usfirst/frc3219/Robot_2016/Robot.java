@@ -98,12 +98,23 @@ public class Robot extends IterativeRobot {
     	camera = new Camera();
 		oi = new OI();
 
-        SmartDashboard.putNumber(Shooter.TOPSHOOTER, Shooter.TOP_SHOOTER_SPEED);
-        SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, Shooter.BOTTOM_SHOOTER_SPEED);
-        
+        smartDashboardInit();
+		       
         sensorsCommand = new WatchSensors();
         dedReckonCommand = new DedReckoningChecks();
     }
+
+    /**
+     * This function is for initializing any SmartDashboard variables that
+     * should be set before anyone tries a getXXX or some other reason.
+     * 
+     */
+	public void smartDashboardInit() {
+		SmartDashboard.putNumber(Shooter.TOPSHOOTER, Shooter.TOP_SHOOTER_SPEED);
+        SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, Shooter.BOTTOM_SHOOTER_SPEED);
+		SmartDashboard.putBoolean(Climber.CLIMBER_RELEASED_TAG, false);
+		SmartDashboard.putBoolean(Climber.CLIMBER_RESET_TAG, false);
+	}
 	
 	/**
      * This function is called once each time the robot enters Disabled mode.

@@ -13,7 +13,10 @@ package org.usfirst.frc3219.Robot_2016.subsystems;
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -150,5 +153,16 @@ public class MultiTool extends PIDSubsystem {
 		SmartDashboard.putNumber(ARM_POWER_SETTING_TAG, power);
 		SmartDashboard.putBoolean(ARM_UPPER_LIMIT_TAG, this.getUpperLimitSwitch());
 		SmartDashboard.putBoolean(ARM_LOWER_LIMIT_TAG, this.getLowerLimitSwitch());
+	}
+
+	public static void setupRobotMap() {
+		RobotMap.driveRollerMotorController = new Talon(1);
+		RobotMap.driveMultiToolArmMotor = new Talon(2);
+		RobotMap.multiToolLimitSwitchHigh = new DigitalInput(6);
+		RobotMap.multiToolLimitSwitchLow = new DigitalInput(7);
+		
+		RobotMap.sensorsArmEncoder = new Encoder(4, 5, false, EncodingType.k4X);
+		RobotMap.sensorsArmEncoder.setDistancePerPulse(ARM_ENCODER_DEGREES_PER_PULSE);
+		RobotMap.sensorsArmEncoder.setPIDSourceType(PIDSourceType.kRate);
 	}
 }

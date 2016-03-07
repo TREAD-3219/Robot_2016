@@ -14,12 +14,16 @@ import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class Climber extends Subsystem {
 
+	public static final String CLIMBER_RESET_TAG = "Climber Reset";
+	public static final String CLIMBER_RELEASED_TAG = "Climber Released";
+	
 	private static final double LEFT_RELEASE = 1.0;
 	private static final double RIGHT_RELEASE = -1.0;
 	private static final double LEFT_RESET = 0;
@@ -31,25 +35,31 @@ public class Climber extends Subsystem {
 	
 	Servo leftServo;
 	Servo rightServo;
-	Servo testServo;
 	
 	public Climber() {
-		leftServo = RobotMap.pwmServo_4;
-		rightServo = RobotMap.pwmServo_3;
+		leftServo = RobotMap.climberReleaseServoLeft;
+		rightServo = RobotMap.climberReleaseServoRight;
 		
 	}
 	
 	public void releaseClimber() {
+		SmartDashboard.putBoolean(CLIMBER_RELEASED_TAG, true);
 		leftServo.set(LEFT_RELEASE);
 		rightServo.set(RIGHT_RELEASE);
 	}
 
 	public void resetClimber() {
+		SmartDashboard.putBoolean(CLIMBER_RESET_TAG, true);
 		leftServo.set(LEFT_RESET);
 		rightServo.set(RIGHT_RESET);
 	}
 	
 	public void initDefaultCommand() {
 
+	}
+
+	public static void setupRobotMap() {
+		RobotMap.climberReleaseServoLeft = new Servo(4);
+		RobotMap.climberReleaseServoRight = new Servo(3);
 	}
 }

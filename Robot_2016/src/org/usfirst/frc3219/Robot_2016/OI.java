@@ -36,22 +36,21 @@ public class OI {
 	// You create one by telling it which joystick it's on and which button
 	// number it is.
 	private static final String AUTO_START_POSITION = "Auto Start Position";
-	private static final String AUTO_DEFENSE_CHOOSER = "autoDefenseChooser";
     public static final String DEFENSE_CHOOSER = "Defense Chooser";
 	public static final String CHEVAL_DE_FRISE = "Cheval de Frise";
 	public static final String DRAWBRIDGE = "Drawbridge";
-	public static final String SALLY_PORT = "Sally Port";
-	public static final String RAMPARTS = "Ramparts";
 	public static final String MOAT = "Moat";
+	public static final String NO_DEFENSE = "No Defense";
 	public static final String PORTCULLIS = "Portcullis";
+	public static final String RAMPARTS = "Ramparts";
 	public static final String ROCK_WALL = "Rock Wall";
 	public static final String ROUGH_TERRAIN = "Rough Terrain";
-	public static final String NO_DEFENSE = "No Defense";
+	public static final String SALLY_PORT = "Sally Port";
 	
-	public static final String POSITION_D = "Position D";
-	public static final String POSITION_C = "Position C";
-	public static final String POSITION_B = "Position B";
 	public static final String POSITION_A = "Position A";
+	public static final String POSITION_B = "Position B";
+	public static final String POSITION_C = "Position C";
+	public static final String POSITION_D = "Position D";
 
 
 	public Joystick joystick;

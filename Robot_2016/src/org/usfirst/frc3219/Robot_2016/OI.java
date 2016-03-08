@@ -9,6 +9,7 @@ import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.Ramparts;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RockWall;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RoughTerrain;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.SallyPort;
+import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoCenterToGoal;
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
 import org.usfirst.frc3219.Robot_2016.commands.IntakeBall;
 import org.usfirst.frc3219.Robot_2016.commands.ManualFeed;
@@ -16,7 +17,6 @@ import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
 import org.usfirst.frc3219.Robot_2016.commands.ResetArm;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
 import org.usfirst.frc3219.Robot_2016.commands.ServoControllerSafetyPressed;
-import org.usfirst.frc3219.Robot_2106.autonomousLibrary.AutoCenterToGoal;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;

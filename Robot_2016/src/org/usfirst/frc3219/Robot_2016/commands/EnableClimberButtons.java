@@ -1,24 +1,36 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
-import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.RobotMap;
+import org.usfirst.frc3219.Robot_2016.subsystems.Climber;
 
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class EnableClimberButtons extends Command {
-	public static boolean SafetyClimberEnable = false;
-
+	private static final double TESTING_TIMEOUT = 0.5;
+	private static final double CLIMBER_TIMEOUT = 135.0 - 20.0; // teleop time - high time.
+	
+	// I don't really like the use of a public variable for this
+	// public variables are generally bad design...  In this case,
+	// there is only one place that SETs the variable, so it's
+	// not terrible.  A better design would be to just DO whatever
+	// this triggers in the end() method here.  Such as - 
+	// Robot.oi.enableClimbRelease(); which does a Robot.oi.whenPressed(...)
+	// There would also have to be a separate button that calls enableClimbRelease
+	// which is the same button that does the equivalent of the SmartDashboard
+	// enableClimberOverride - a button or something checked in teleopPeriodic.
+	
+	public static boolean safetyClimberEnable = false;
+	
+	private static final String QUICK_RELEASE_OVERRIDE = "quick release override";
+	Servo leftServo;
+	Servo rightServo;
 	@Override
 	protected void end() {
 
-		SafetyClimberEnable = true;
+		safetyClimberEnable = true;
 		System.out.print("The climber can now be used!");
-		// Scheduler.getInstance().add(); // TODO add the command
-		/*
-		 * Command climbCommand = new ServoController();
-		 * Robot.oi.buttonStart.whenPressed(climbCommand);
-		 * Robot.oi.buttonY.whenPressed(climbCommand);
-		 */
 	}
 
 	@Override
@@ -29,8 +41,15 @@ public class EnableClimberButtons extends Command {
 	@Override
 	protected void initialize() {
 		// 1:55
-		this.setTimeout(60 + 55); // wait to trigger isFinished() to start end()
-		SafetyClimberEnable = false;
+
+		this.setTimeout(CLIMBER_TIMEOUT); // wait to trigger isFinished() to start end()
+		safetyClimberEnable = false;
+		SmartDashboard.putBoolean(QUICK_RELEASE_OVERRIDE, false);
+		leftServo = RobotMap.climberReleaseServoLeft;
+		rightServo = RobotMap.climberReleaseServoRight;
+		leftServo.setAngle(Climber.LEFT_SERVO_CLOSED);
+		rightServo.setAngle(Climber.RIGHT_SERVO_CLOSED);
+
 	}
 
 	@Override
@@ -40,8 +59,6 @@ public class EnableClimberButtons extends Command {
 
 	@Override
 	protected boolean isFinished() {
-
 		return this.isTimedOut();
 	}
-
 }

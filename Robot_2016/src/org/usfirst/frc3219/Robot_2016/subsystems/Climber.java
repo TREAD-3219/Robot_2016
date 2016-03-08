@@ -12,22 +12,54 @@ package org.usfirst.frc3219.Robot_2016.subsystems;
 
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class Climber extends Subsystem {
 
-	private final DigitalInput limitSwitch_1 = RobotMap.climberLimitSwitch_1;
-	// private final SpeedController speed_Controller_9 =
-	// RobotMap.climberSpeed_Controller_9;
-	private final DigitalInput limit_Switch_2 = RobotMap.climberLimit_Switch_2;
+	public static final String CLIMBER_RESET_TAG = "Climber Reset";
+	public static final String CLIMBER_RELEASED_TAG = "Climber Released";
+	
+	private static final double LEFT_RELEASE = 1.0;
+	private static final double RIGHT_RELEASE = -1.0;
+	private static final double LEFT_RESET = 0;
+	private static final double RIGHT_RESET = 1.0;
+	public static final float RIGHT_SERVO_CLOSED = 180.0f;
+	public static final float LEFT_SERVO_CLOSED = 0.0f;
+	public static final float RIGHT_SERVO_OPEN = 0.0f;
+	public static final float LEFT_SERVO_OPEN = 180.0f;
+	
+	Servo leftServo;
+	Servo rightServo;
+	
+	public Climber() {
+		leftServo = RobotMap.climberReleaseServoLeft;
+		rightServo = RobotMap.climberReleaseServoRight;
+		
+	}
+	
+	public void releaseClimber() {
+		SmartDashboard.putBoolean(CLIMBER_RELEASED_TAG, true);
+		leftServo.set(LEFT_RELEASE);
+		rightServo.set(RIGHT_RELEASE);
+	}
 
+	public void resetClimber() {
+		SmartDashboard.putBoolean(CLIMBER_RESET_TAG, true);
+		leftServo.set(LEFT_RESET);
+		rightServo.set(RIGHT_RESET);
+	}
+	
 	public void initDefaultCommand() {
 
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+	}
+
+	public static void setupRobotMap() {
+		RobotMap.climberReleaseServoLeft = new Servo(4);
+		RobotMap.climberReleaseServoRight = new Servo(3);
 	}
 }

@@ -5,25 +5,25 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class FeedShooter extends Command {
-	// need to feed shooter and check if limit switch is activated
+	private static final double FEEDER_SPEED = .3;
+	// for moving the ball from the feeder to the shooter
 	double time;
 	public FeedShooter() {
 		requires(Robot.shooter);
 	}
 	public FeedShooter(double seconds) {
-		requires(Robot.shooter);
+		requires(Robot.feedMech);
 		time = seconds;
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.feedMech.spinFeeder();
+		Robot.feedMech.spinFeeder(FEEDER_SPEED);
 		this.setTimeout(time);
 	}
 
 	@Override
 	protected void execute() {
-
 	}
 
 	@Override
@@ -33,8 +33,7 @@ public class FeedShooter extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		// return if timed out or if limit switch is clicked
-		return this.isTimedOut();
+		return this.isTimedOut(); 
 	}
 
 	@Override

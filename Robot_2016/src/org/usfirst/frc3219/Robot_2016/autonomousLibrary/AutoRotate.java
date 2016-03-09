@@ -21,19 +21,19 @@ public class AutoRotate extends AutoStraightCommand {
 		setDefenseDirection();
 	}
 
-	void setDefenseDirection() {
+	protected void setDefenseDirection() {
 		switch (Robot.position) {
 		case A:
-			setGyroStraight(0.0, 216.0);
+			setGyroStraight(0.0, 30.0);
 			break;
 		case B:
-			setGyroStraight(0.0, 200.0);
+			setGyroStraight(0.0, 10.0);
 			break;
 		case C:
-			setGyroStraight(0.0, 175.0);
+			setGyroStraight(0.0, -8.0);
 			break;
 		case D:
-			setGyroStraight(0.0, 112.0);
+			setGyroStraight(0.0, -27.0);
 			break;
 		default:
 			System.out.println("Unknown case in setDefenseDirection");
@@ -49,20 +49,21 @@ public class AutoRotate extends AutoStraightCommand {
 	@Override
 	protected boolean isFinished() {
 		double angle = Robot.sensors.navx.getAngle();
+		boolean isAngle = false;
 		switch (Robot.position) {
 		case A:
-			return angle > 214 && angle < 218;
+			isAngle = angle > 214 && angle < 218;
 		case B:
-			return angle > 198 && angle < 202;
+			isAngle = angle > 198 && angle < 202;
 		case C:
-			return angle > 173 && angle < 177;
+			isAngle = angle > 173 && angle < 177;
 		case D:
-			return angle > 110 && angle < 114;
+			isAngle = angle > 110 && angle < 114;
 		default:
 			System.out.println("Unknown position in AutoRotate.isFinished");
 			break;
 		}
-
-		return this.isTimedOut();
+		
+		return isAngle || this.isTimedOut();
 	}
 }

@@ -8,6 +8,7 @@ import org.usfirst.frc3219.Robot_2016.autonomousLibrary.EngageRamp;
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -15,11 +16,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class RoughTerrain extends CommandGroup {
     
     public  RoughTerrain() {
+    	SmartDashboard.putBoolean("EngageRampFinish", false);
+    	SmartDashboard.putBoolean("AutoRoughFinish", false);
+    	SmartDashboard.putBoolean("AutoRotateFinish", false);
     	this.addSequential(new EngageRamp());
     	this.addSequential(new AutoRough());
     	this.addSequential(new AutoRotate());
     	//this.addSequential(new AutoTurnTowardsGoal());
     	//this.addSequential(new AutoShoot());
+    	System.out.println("END OF AUTONOMOUS");
     }
 
     

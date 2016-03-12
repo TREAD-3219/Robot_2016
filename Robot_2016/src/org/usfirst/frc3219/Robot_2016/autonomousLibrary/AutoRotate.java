@@ -2,10 +2,15 @@ package org.usfirst.frc3219.Robot_2016.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class AutoRotate extends AutoStraightCommand {
+	
+	public boolean isFinished = false;
 
 	@Override
 	protected void end() {
+		SmartDashboard.putBoolean("AutoRotateFinished", true);
 		Robot.drive.driveValues(0.0, 0.0);
 	}
 
@@ -16,6 +21,8 @@ public class AutoRotate extends AutoStraightCommand {
 
 	@Override
 	protected void initialize() {
+		isFinished = false;
+		SmartDashboard.putBoolean("AutoRotateFinished", false);
 		System.out.println("AutoRotate.initialize");
 		this.setTimeout(2);
 		setDefenseDirection();
@@ -24,10 +31,10 @@ public class AutoRotate extends AutoStraightCommand {
 	protected void setDefenseDirection() {
 		switch (Robot.position) {
 		case A:
-			setGyroStraight(0.0, 30.0);
+			isFinished = setGyroStraight(0.0, 50.0);
 			break;
 		case B:
-			setGyroStraight(0.0, 10.0);
+			isFinished = setGyroStraight(0.0, 22.0);
 			break;
 		case C:
 			setGyroStraight(0.0, -8.0);
@@ -49,12 +56,12 @@ public class AutoRotate extends AutoStraightCommand {
 	@Override
 	protected boolean isFinished() {
 		double angle = Robot.sensors.navx.getAngle();
-		boolean isAngle = false;
-		switch (Robot.position) {
+		//boolean isAngle = false;
+		/*switch (Robot.position) {
 		case A:
 			isAngle = angle > 214 && angle < 218;
 		case B:
-			isAngle = angle > 198 && angle < 202;
+			isAngle = angle > 25 && angle < 35;
 		case C:
 			isAngle = angle > 173 && angle < 177;
 		case D:
@@ -62,8 +69,8 @@ public class AutoRotate extends AutoStraightCommand {
 		default:
 			System.out.println("Unknown position in AutoRotate.isFinished");
 			break;
-		}
+		}*/
 		
-		return isAngle || this.isTimedOut();
+		return isFinished || this.isTimedOut();
 	}
 }

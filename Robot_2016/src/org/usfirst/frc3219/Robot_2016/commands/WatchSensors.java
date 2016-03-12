@@ -25,11 +25,12 @@ public class WatchSensors extends NeverFinishCommand {
 		SmartDashboard.putNumber(Navigation.DED_REC_X, Robot.navigation.getDedRecX());
 		SmartDashboard.putNumber(Navigation.DED_REC_Y, Robot.navigation.getDedRecX());
 		SmartDashboard.putNumber(Navigation.DED_REC_ANGLE, Robot.navigation.getDedRecAngle());
-		SmartDashboard.putNumber(Sensors.LEFT_ENCODER_TAG, RobotMap.driveEncoderLeft.getDistance());
-		SmartDashboard.putNumber(Sensors.RIGHT_ENCODER_TAG, RobotMap.driveEncoderRight.getDistance());
+		SmartDashboard.putNumber(Sensors.LEFT_ENCODER_TAG, Robot.sensors.leftEncoderDistance());
+		SmartDashboard.putNumber(Sensors.RIGHT_ENCODER_TAG, Robot.sensors.rightEncoderDistance());
 		SmartDashboard.putBoolean("IsCentered", false);
 		SmartDashboard.putBoolean("isTipped", Robot.sensors.getTip() >= 5);
 		SmartDashboard.putNumber("isTippedDegree", Robot.sensors.getTip());
+		SmartDashboard.putNumber("AutoRotateAngle", Robot.sensors.navx.getAngle() - 360);
 
 
 	}
@@ -38,7 +39,7 @@ public class WatchSensors extends NeverFinishCommand {
 	protected void end() {
 	}
 
-	@Override
+	@Override 
 	protected void execute() {
 		this.showDataFromSensor();
 	}

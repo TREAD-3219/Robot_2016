@@ -87,17 +87,20 @@ public class Drive extends Subsystem {
 	}
 
 	public void setBrakesOn() {
-		rightDriveFront.enableBrakeMode(true);
-		rightDriveRear.enableBrakeMode(true);
-		leftDriveFront.enableBrakeMode(true);
-		leftDriveRear.enableBrakeMode(true);
+		//rightDriveFront.enableBrakeMode(true);
+		//rightDriveRear.enableBrakeMode(true);
+		//leftDriveFront.enableBrakeMode(true);
+		//leftDriveRear.enableBrakeMode(true);
+		System.out.println("Breaks on");
 	}
 
 	public void setBrakesOff() {
-		rightDriveFront.enableBrakeMode(false);
-		rightDriveRear.enableBrakeMode(false);
-		leftDriveFront.enableBrakeMode(false);
-		leftDriveRear.enableBrakeMode(false);
+		//rightDriveFront.enableBrakeMode(false);
+		//rightDriveRear.enableBrakeMode(false);
+		//leftDriveFront.enableBrakeMode(false);
+		//leftDriveRear.enableBrakeMode(false);
+		System.out.println("Breaks off");
+
 	}
 
 	@Override

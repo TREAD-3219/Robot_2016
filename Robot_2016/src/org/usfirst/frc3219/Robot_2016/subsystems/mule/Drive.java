@@ -37,8 +37,8 @@ public class Drive extends Subsystem {
 	double reverse = 1.0;
 
 	public static void setupRobotMap() {
-		RobotMap.driveRightDriveA = new CANTalon(1);
-		RobotMap.driveLeftDriveA = new CANTalon(2);
+		RobotMap.driveRightDriveA = new CANTalon(4);
+		RobotMap.driveLeftDriveA = new CANTalon(5);
 		RobotMap.driveDriveMotors = new RobotDrive(RobotMap.driveLeftDriveA, RobotMap.driveRightDriveA);
 		RobotMap.driveEncoderLeft = new Encoder(0, 1, false, EncodingType.k4X);
 		RobotMap.driveEncoderLeft.setDistancePerPulse(-Drive.WHEEL_DISTANCE_PER_PULSE);

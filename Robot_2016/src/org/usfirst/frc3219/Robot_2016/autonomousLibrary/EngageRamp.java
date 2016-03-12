@@ -15,6 +15,7 @@ public class EngageRamp extends AutoStraightCommand {
 	@Override
 	protected void end() {
 		//Robot.multiTool.stopMotors();
+		SmartDashboard.putBoolean("EngageRampFinished", true);
 	}
 
 	@Override
@@ -31,10 +32,11 @@ public class EngageRamp extends AutoStraightCommand {
 	@Override
 	protected void initialize() {
 		//SmartDashboard.putBoolean("isTipped", Robot.sensors.getTip() >= 5);
-		this.setTimeout(3.0);
+		this.setTimeout(1.5);
+		SmartDashboard.putBoolean("EngageRampFinished", false);
 		this.dropTime = Timer.getFPGATimestamp();
 		Robot.sensors.navx.reset();
-		Robot.drive.setBrakesOff();
+		//Robot.drive.setBrakesOff();
 		super.gyroStraight(RAMP_SPEED);
 		double armSpeed = 0;
 		
@@ -76,7 +78,7 @@ public class EngageRamp extends AutoStraightCommand {
 	protected boolean isFinished() {
 	//	SmartDashboard.putBoolean("isTipped", Robot.sensors.getTip() >= 5);
 		//SmartDashboard.putNumber("isTippedDegree", Robot.sensors.getTip());
-		return Robot.sensors.getTip() >= 5.0 || this.isTimedOut();
+		return Robot.sensors.getTip() >= 6.5 || this.isTimedOut();
 		
 	}
 }

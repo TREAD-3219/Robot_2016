@@ -1,4 +1,4 @@
-package org.usfirst.frc3219.Robot_2106.autonomousLibrary;
+package org.usfirst.frc3219.Robot_2016.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
@@ -6,7 +6,7 @@ import org.usfirst.frc3219.Robot_2016.RobotMap;
 public class AutoMoat extends AutoStraightCommand {
 	double aveDistI = 0.0;
 	double aveDistF = 0.0;
-	private static final double MIN_ENCODER_DISTANCE = 150;
+	private static final double MIN_ENCODER_DISTANCE = 70.0;
 
 	@Override
 	protected void end() {

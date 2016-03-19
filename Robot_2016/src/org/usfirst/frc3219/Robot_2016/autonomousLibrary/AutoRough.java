@@ -1,4 +1,4 @@
-package org.usfirst.frc3219.Robot_2106.autonomousLibrary;
+package org.usfirst.frc3219.Robot_2016.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
 
@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class AutoRough extends AutoStraightCommand {
 	private double aveDistI = 0.0;
 	private double aveDistF = 0.0;
-	private static final double MIN_ENCODER_DISTANCE = 60.0;
+	private static final double MIN_ENCODER_DISTANCE = 70.0;
 	private static final double ROUGH_SPEED = 0.85;
 
 	@Override

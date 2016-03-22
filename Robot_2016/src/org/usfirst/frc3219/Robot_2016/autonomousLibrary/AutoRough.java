@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class AutoRough extends AutoStraightCommand {
 	double aveDistI = 0.0;
 	double aveDistF = 0.0;
-	private static final double MIN_ENCODER_DISTANCE = 27.0; // CHANGED FOR MULE
+	private static final double MIN_ENCODER_DISTANCE = 35.0; // CHANGED FOR MULE
 	private static final double ROUGH_SPEED = 0.85;
 
 	@Override
@@ -28,7 +28,7 @@ public class AutoRough extends AutoStraightCommand {
 		aveDistI = Robot.sensors.getAvgEncoderDist();
 		gyroStraight(ROUGH_SPEED);
 	}
-
+	
 	@Override
 	protected void interrupted() {
 		// TODO Auto-generated method stub

@@ -1,26 +1,34 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.RobotMap;
+import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class ManualShoot extends Command {
-	
+public class ManualShoot extends Command { // This class spins shooter when the
+											// trigger is pressed
+	public static final String BOTTOM_WHEEL_SPEED = "ShooterBottom";
+	public static final String TOP_WHEEL_SPEED = "ShooterTop";
+	double topPower;
+	double bottomPower;
+
 	public ManualShoot() {
 		requires(Robot.shooter);
 	}
-	
-	
+
 	@Override
 	protected void initialize() {
-		//Robot.shooter.shoot(0.0);
-		
+		RobotMap.shooterCounter.reset();
+		Robot.shooter.spinUp(0, 0);
+		topPower = SmartDashboard.getNumber(TOP_WHEEL_SPEED, Shooter.TOP_SHOOTER_SPEED);
+		bottomPower = SmartDashboard.getNumber(BOTTOM_WHEEL_SPEED, Shooter.BOTTOM_SHOOTER_SPEED);
+		Robot.shooter.spinUp(topPower, bottomPower);
 	}
-	
+
 	@Override
 	protected void execute() {
-		//Robot.shooter.shoot(Robot.oi.gameController.getThrottle());
-		
 	}
 
 	@Override
@@ -30,14 +38,13 @@ public class ManualShoot extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	@Override
 	protected void end() {
-		//Robot.shooter.shoot(0.0);
-		
+		Robot.shooter.spinDown();
+		Robot.feedMech.stopFeeder();
 	}
-	
+
 }

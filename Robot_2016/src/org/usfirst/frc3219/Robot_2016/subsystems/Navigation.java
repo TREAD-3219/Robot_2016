@@ -2,112 +2,176 @@ package org.usfirst.frc3219.Robot_2016.subsystems;
 
 import java.awt.Point;
 
+import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.RobotMap;
+import org.usfirst.frc3219.Robot_2016.commands.DedReckoningChecks;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Navigation extends Subsystem{
-	Sensors sensors = new Sensors();
-	public Point deadReckoningLoc = new Point(0, 0); // called to change every
-														// time
+public class Navigation extends Subsystem {
+	public static final String DED_REC_AREA = "Dead Rec Area";
+	public static final String DED_REC_ANGLE = "Dead Rec Angle";
+	public static final String DED_REC_Y = "Dead Rec Y";
+	public static final String DED_REC_X = "Dead Rec X";
+	Sensors sensors;
+	public double dedRecX;
+	public double dedRecY;
+	private String dedRecArea = "null";
 	// the code tells the robot to move.
-	private double deadReckoningAngle;
-	private double deadRecLidar1Prediction;
-	private double deadRecLidar2Prediction;
-	private Point lidarLocation = new Point(0, 0);
-	private double lidar1;
-	private double lidar2;
-	private Point ultraSonicLocation = new Point(0, 0);
-	private double distanceFromWall;
-	private Point trustedPosition = new Point(0, 0);
+	private double dedRecAngle;
+	private double dedRecSpeed;
+	private double dedRecTotalForward;
+	private double dedRecLidar1Prediction;
+	private double dedRecLidar2Prediction;
+//	private Point lidarLocation = new Point(0, 0);
+//	private Point ultraSonicLocation = new Point(0, 0);
+//	private Point trustedPosition = new Point(0, 0);
 	private double trustedAngle;
+	
+	private boolean inOuterWorks = false;
+	
+	double lastLeftEncoder;
+	double lastRightEncoder;
 
-	public void deadReckoning() {
-		//here is where any needed calculations would go for deadReckoning
-		
-		
-		//predicts the distance the lidars will measure through triangulation.
-		double d = deadReckoningLoc.y;
-		double F = deadReckoningAngle;
-		double C = 45; //this is up to however we mount the lidars
-		double a = d / Math.cos(F);
-		double b = d / Math.cos(F + C);
-		
-		/*double B = 180 - (90 - F);
-		double c = (a * Math.sin(C)) / (180 - C - B);
-		double b = Math.sqrt(a * a + c * c - 2 * a * c * Math.cos(B));*/ 		//ignore me im an idiot, i wrote all this for nothing. Excuse me while i jump off a bridge
-		
-		
-		//Math.sqrt(a * a + (a * Math.sin(C)) / (180 - C - B) * (a * Math.sin(C)) / (180 - C - B) - 2 * a * (a * Math.sin(C)) / (180 - C - B) * Math.cos(180 - (90 - F)));
-		
-		
-		deadRecLidar1Prediction = a;
-		deadRecLidar2Prediction = b;
+	public Navigation() {
+		 sensors = new Sensors();
+	}
+	
+	public boolean inOuterWorks() {
+		return this.inOuterWorks;
+	}
+	// 
+	public double angleTurnToward(double x, double y) {
+		double a = x - dedRecX;
+		double b = y - dedRecY;
+		double c = Math.sqrt(a * a + b * b);
+		double A = Math.asin(a / c);
+		double B = 90 - A;
+		double finalTurnDegrees = B + dedRecAngle;
+		return finalTurnDegrees;
 	}
 
-	public void lidarTriangulation() {
-		lidar1 = sensors.readLidar1();
-		//lidar2 = sensors.readLidar2(); // this will maybe be added later?
+	public void setSpeed(double speed) {
+		dedRecSpeed = speed;
+	}
+
+	public double getSpeed() {
+		return dedRecSpeed;
+	}
+
+	public double distanceToPoint(double x, double y) {
+		double a = x - dedRecX;
+		double b = y - dedRecY;
+		double distance = Math.sqrt(a * a + b * b);
+		return distance;
+	}
+
+	public Point getDedRecPoint() {
+		Point estimateLoc = new Point(0, 0);
+		estimateLoc.x = (int) (dedRecX - (dedRecY % 1));
+		estimateLoc.y = (int) (dedRecY - (dedRecY % 1));
+		return estimateLoc;
+	}
+
+	public double getDedRecAngle() {
+		return dedRecAngle;
+	}
+
+	public double getDedRecX() {
+		return dedRecX;
+	}
+
+	public double getDedRecY() {
+		return dedRecY;
+	}
+
+	public void dedRecMoved(double distance) {
+		dedRecX += distance * Math.sin(dedRecAngle * (Math.PI / 180));
+		dedRecY += distance * Math.cos(dedRecAngle * (Math.PI / 180));
+		dedRecTotalForward += distance;
+	}
+
+	public void dedRecTurned(double degrees) {
+		dedRecAngle += degrees;
+	}
+
+	public String getDedRecArea() {
+		String territory;
+		double newX = dedRecX;
+		double newY = dedRecY;
+		if (dedRecY >= 324) {
+			territory = "Enemy";
+			newX = (dedRecX - 638) * -1;
+			newY = (dedRecY - 648) * -1;
+		} else {
+			territory = "Friendly";
+		}
+		if (newX <= 54 && newX >= 0 && newY <= 288 && newY >= 0) {
+			dedRecArea = (territory + "Secret Passage");
+		}
+		if (newX <= 319 && newX >= 54 && newY <= 190 && newY >= 0) {
+			dedRecArea = (territory + "Courtyard");
+		}
+		if (newX <= 319 && newX >= 54 && newY <= 238 && newY >= 190) {
+			dedRecArea = (territory + "Outer Works");
+		}
+		if (newX <= 319 && newX >= 0 && newY <= 324 && newY >= 238) {
+			dedRecArea = (territory + "Neutral Zone");
+		}
+		return dedRecArea;
+	}
+
+	public double lidarPrediction() {
+		double d = dedRecY;
+		double F = dedRecAngle;
+		// double C = 45; //this is up to however we mount the lidars
+		double a = d / Math.cos(F);
+		// double b = d / Math.cos(F + C);
+		dedRecLidar1Prediction = a;
+		// deadRecLidar2Prediction = b;
+		return a;
+	}
+
+	public double findLidarPositionY() {
+		double distanceFromWall = 0.0; // need to find distance using
+										// triangulation
+		double lidar1 = sensors.readLidar1();
+		double lidar2 = sensors.readLidar1(); // this will maybe be added later?
 		int C = 45;
 		double c = Math.sqrt(lidar1 * lidar1 + lidar2 * lidar2 - 2 * lidar1 * lidar2 * Math.cos(C));
 		double B = Math.asin((lidar2 * Math.sin(C)) / c);
 		double F = 90 - (180 - B);
 		double f = lidar1 * Math.sin(F);
 		distanceFromWall = Math.sqrt(f * f + lidar1 * lidar1);
+		return distanceFromWall;
 	}
 
-	public void ultraSonicTriangulation() {
-
-	}
-	public double[] compareDeadReckoning() {
-		double[] trustedMeasurements = new double[3];
-		trustedMeasurements[0] = Math.abs(deadRecLidar1Prediction - lidar1) / 5.0;
-		trustedMeasurements[1] = Math.abs(deadRecLidar2Prediction - lidar2) / 5.0;
-		return trustedMeasurements;
-	}
-	
-	public double[] compareLidars() {
-		double[] trustedMeasurements = new double[3];
-		return trustedMeasurements;
-	}
-	
-	public double[] compareUltraSonics() {
-		double[] trustedMeasurements = new double[3];
-		return trustedMeasurements;
-	}
-	
-	public void trustedPosition() {
-		double[] trustedStats = new double[3]; //0 is deadReckoning
-		double[] deadRecStats = compareDeadReckoning();
-		int sum = 0;
-		for (int i = 0; i < deadRecStats.length; i++) {
-			sum += deadRecStats[i];
-		}
-		trustedStats[0] = sum / deadRecStats.length;
-		if  (trustedStats[0] >= 4.0) {
-			//then use this as positioning
-		} else {
-			double[] lidarStats = compareLidars();
-			sum = 0;
-			for (int i = 0; i < lidarStats.length; i++) {
-				sum += lidarStats[i];
-			}
-			trustedStats[1] = sum / lidarStats.length;
-			if (trustedStats[1] >= 4.0) {
-				//then use that for navigation
-			} else {
-				double[] ultraSonicStats = compareUltraSonics();
-				sum = 0;
-				for (int i = 0; i < ultraSonicStats.length; i++) {
-					sum += ultraSonicStats[i];
-				}
-				trustedStats[2] = sum / ultraSonicStats.length;
-			}
-		}
+	public double findLidarPositionX() {
+		double distanceFromWall = 0.0; // need to find distance using
+										// triangulation
+		double lidar3 = sensors.readLidar1();
+		double lidar4 = sensors.readLidar1(); // these will maybe be added
+												// later?
+		int C = 45;
+		double c = Math.sqrt(lidar3 * lidar3 + lidar4 * lidar4 - 2 * lidar3 * lidar4 * Math.cos(C));
+		double B = Math.asin((lidar4 * Math.sin(C)) / c);
+		double F = 90 - (180 - B);
+		double f = lidar3 * Math.sin(F);
+		distanceFromWall = Math.sqrt(f * f + lidar3 * lidar3);
+		return distanceFromWall;
 	}
 
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-		
+		setDefaultCommand(new DedReckoningChecks());
 	}
 
+	public void checkAttitude() {
+		double pitch = Robot.sensors.navx.getPitch();
+		if (Math.abs(pitch) >= 5.0) {
+			inOuterWorks = true;
+		} else {
+			inOuterWorks = false;
+		}
+	}
 }

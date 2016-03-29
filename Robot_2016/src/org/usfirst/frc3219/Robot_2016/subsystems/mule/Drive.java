@@ -57,6 +57,21 @@ public class Drive extends Subsystem {
 	public void driveValues(double forward, double turnRate) {
 		driveMotors.arcadeDrive(forward * reverse, turnRate * reverse);
 	}
+	
+	public double getAvgEncoderDist() {
+		return (leftEncoderDistance() + rightEncoderDistance()) / 2.0;
+	}
+	//create independent constants for both encoders
+	
+	public double leftEncoderDistance(){
+		double res = leftEncoder.getDistance(); //multiplied by factor
+		return res;
+	}
+	
+	public double rightEncoderDistance(){
+		double res = rightEncoder.getDistance(); //multiplied by factor
+		return res;
+	}
 
 	public void setSafety(boolean safely) {
 		driveMotors.setSafetyEnabled(safely);

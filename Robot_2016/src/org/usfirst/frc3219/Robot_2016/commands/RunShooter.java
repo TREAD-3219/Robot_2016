@@ -1,50 +1,53 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.RobotMap;
+import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class RunShooter extends Command {
-	private double speed;
-	
+public class RunShooter extends Command { //This command is to be used in Command groups
+	//This only spins up the shooter DOES NOT SPIN DOWN SHOOTER!
+	double topPower;
+	double bottomPower;
+	double totalTime;
 	public RunShooter() {
 		requires(Robot.shooter);
-		speed = 10.0;
+		totalTime = 1.0;
 	}
 	
-	public RunShooter(double wheelSpeed) {
+	public RunShooter(double time) {
 		requires(Robot.shooter);
-		speed = wheelSpeed;
+		totalTime = time;
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.shooter.shoot(speed);
-		
+		RobotMap.shooterCounter.reset();
+		topPower = SmartDashboard.getNumber(Shooter.TOPSHOOTER, 1.0);
+		bottomPower = SmartDashboard.getNumber(Shooter.BOTTOMSHOOTER, 1.0);
+		Robot.shooter.spinUp(topPower, bottomPower);
+		this.setTimeout(totalTime);
 	}
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
-		
+		Robot.shooter.spinUp(topPower, bottomPower);
 	}
-	
+
 	@Override
 	protected void interrupted() {
 		end();
-		
 	}
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.isTimedOut();
 	}
-	
+
 	@Override
 	protected void end() {
-		Robot.shooter.shoot(0.0);
-		
+		Robot.shooter.spinDown();
 	}
-	
 }

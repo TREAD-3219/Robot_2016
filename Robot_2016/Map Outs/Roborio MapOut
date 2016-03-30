@@ -1,0 +1,32 @@
+Map out of Roborio
+
+Digital Input\
+0.Climber Limit Switch 1
+1.Encoder
+2.Encoder
+3.Encoder
+4.Encoder
+5.Rpm thing
+6.MultiTool Limit Switch High
+7.MultiTool Limit Switch Low
+8.Climber Limit Switch 2
+9.Line Seeker Input
+
+Analog Input
+0.Ultra Sonic 1
+1.Ultra Sonic 2
+2.
+3.
+
+PWM
+0.driveLeftDrive Jaguar
+1.driveRightDrive Jaguar
+2.driveRollerMotorController
+3.driveMultiToolArmMotor
+4.servo 1
+5.servo 2
+6.
+7.
+8.
+9.
+

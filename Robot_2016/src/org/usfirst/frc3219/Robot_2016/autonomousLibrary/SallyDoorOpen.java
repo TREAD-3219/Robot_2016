@@ -27,7 +27,7 @@ public class SallyDoorOpen extends Command{
 
 	@Override
 	protected void initialize() {
-		avDistI = Robot.sensors.aveDistEncoders();
+		avDistI = Robot.drive.getAvgEncoderDist();
 		Robot.drive.driveValues(SALLYBACKSPEED, SALLYTURNSPEED);
 	}
 
@@ -38,7 +38,7 @@ public class SallyDoorOpen extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		avDistF = Robot.sensors.aveDistEncoders();
+		avDistF = Robot.drive.getAvgEncoderDist();
 		if(avDistF - avDistI <= MIN_ENCODER_DISTANCE) {
 			return true;
 		}		

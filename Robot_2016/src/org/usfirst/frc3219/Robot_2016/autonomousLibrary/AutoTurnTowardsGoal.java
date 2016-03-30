@@ -17,14 +17,14 @@ public class AutoTurnTowardsGoal extends AutoStraightCommand {
 
 	@Override
 	protected void execute() {
-		currentEncoderDist = Robot.sensors.aveDistEncoders() - initEncoderDist;
+		currentEncoderDist = Robot.drive.getAvgEncoderDist() - initEncoderDist;
 		setGyroStraight(0.45, angleToTurnTo);
 	}
 
 	@Override
 	protected void initialize() {
 		this.setTimeout(2.5);
-		initEncoderDist = Robot.sensors.aveDistEncoders();
+		initEncoderDist = Robot.drive.getAvgEncoderDist();
 		switch (Robot.position) {
 		case A:
 			angleToTurnTo = 36;

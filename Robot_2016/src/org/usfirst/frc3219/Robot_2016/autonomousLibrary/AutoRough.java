@@ -19,7 +19,7 @@ public class AutoRough extends AutoStraightCommand {
 
 	@Override
 	protected void initialize() {
-		aveDistI = Robot.sensors.getAvgEncoderDist();
+		aveDistI = Robot.drive.getAvgEncoderDist();
 		gyroStraight(ROUGH_SPEED);
 
 	}
@@ -32,7 +32,7 @@ public class AutoRough extends AutoStraightCommand {
 
 	@Override
 	protected boolean isFinished() {
-		aveDistF = Robot.sensors.getAvgEncoderDist();
+		aveDistF = Robot.drive.getAvgEncoderDist();
 		return (aveDistF - aveDistI >= MIN_ENCODER_DISTANCE);
 	}
 }

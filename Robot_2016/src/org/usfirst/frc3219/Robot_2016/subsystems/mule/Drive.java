@@ -1,5 +1,6 @@
 package org.usfirst.frc3219.Robot_2016.subsystems.mule;
 
+import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
 import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
@@ -29,6 +30,8 @@ public class Drive extends Subsystem {
 	public static final double MAX_TURN_RATE_DPS = MAX_TURN_RATE * 360.0;
 	public static final double WHEEL_DISTANCE_PER_PULSE = WHEEL_CIRCUMFERENCE
 			/ Sensors.WHEEL_ENCODER_PULSE_PER_REVOLUTION;
+	public static final double LEFT_ENCODER_CORRECTION = 1;
+	public static final double RIGHT_ENCODER_CORRECTION = 1;
 
 	CANTalon rightDrive;
 	CANTalon leftDrive;
@@ -61,18 +64,17 @@ public class Drive extends Subsystem {
 	public double getAvgEncoderDist() {
 		return (leftEncoderDistance() + rightEncoderDistance()) / 2.0;
 	}
-	//create independent constants for both encoders
 	
 	public double leftEncoderDistance(){
-		double res = leftEncoder.getDistance(); //multiplied by factor
+		double res = Robot.sensors.leftEncoderDistance() * LEFT_ENCODER_CORRECTION; 
 		return res;
 	}
 	
 	public double rightEncoderDistance(){
-		double res = rightEncoder.getDistance(); //multiplied by factor
+		double res = Robot.sensors.rightEncoderDistance() * RIGHT_ENCODER_CORRECTION; 
 		return res;
 	}
-
+	
 	public void setSafety(boolean safely) {
 		driveMotors.setSafetyEnabled(safely);
 	}

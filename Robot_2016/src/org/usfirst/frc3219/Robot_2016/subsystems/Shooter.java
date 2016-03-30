@@ -53,15 +53,19 @@ public class Shooter extends Subsystem {
 		//return x;
 	//}
 	
-	public double findMotorSpeed(double v) { //gets the speed the motor has to shoot to hit a certain point
-		double motorSpeed = 1.0; //velocity times speed/velocity ratio
+	public double findMotorSpeed() { //gets the speed the motor has to shoot to hit a certain point
+		int x = 0; //find lidar i guess
+		final int shooterHeight = 27;
+		final int y = 80 - shooterHeight; //inches high of goal
+		double velocity = findVelocityForPoint(x, y);
+		double motorSpeed = 1.0; //velocity times speed/velocity ratio //TODO TODO TODO
 		return motorSpeed;
 	}
 	
 	public double findVelocityForPoint(double x, double y) {
 		double v;
 		double g = 386.088583;
-		double theta = 45 * (Math.PI / 180);
+		double theta = 54 * (Math.PI / 180);
 		v = Math.sqrt(((g * x * x) * (Math.pow(Math.tan(theta), 2) + 1)) / (2 * (Math.tan(theta) * x - y)));
 		return v;
 	}

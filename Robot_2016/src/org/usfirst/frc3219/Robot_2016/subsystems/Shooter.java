@@ -10,12 +10,10 @@
 
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
-import java.awt.Point;
-
-import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -24,20 +22,39 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Shooter extends Subsystem {
 
+	public static final double BOTTOM_SHOOTER_SPEED = 1.0;
+	public static final double TOP_SHOOTER_SPEED = 0.7;
+	private static final double SHOOTER_STOP_SPEED = 0.0;
+	private static final int COUNTER_SAMPLES_TO_AVERAGE = 3;
+	private static final double COUNTER_MAX_PERIOD = 0.1;
+	private static final int COUNTER_DISTANCE_PER_PULSE = 1;
 	public static final String TOPSHOOTER = "ShooterTop";
 	public static final String BOTTOMSHOOTER = "ShooterBottom";
+	private static final double SHOOTER_RPS_MINIMUM = 10; // 600 RPM - adjust this!
+	private static final String SHOOTER_MOTORS_TAG = "Shooter Motors";
 
-	CANTalon shooterTopMotor = RobotMap.driveLeftDriveShooter;
-	CANTalon shooterBottomMotor = RobotMap.driveRightDriveShooter;
+	private CANTalon shooterTopMotor;
+	private CANTalon shooterBottomMotor;
 	
-	public double findXPoint() { //YPoint is always 8'1", or 97"
-		double lidar = Robot.sensors.readLidar1();
-		double x = lidar + 5.55079;
-		return x;
+	public static void setupRobotMap() {
+		RobotMap.driveTopShooter = new CANTalon(6);
+		RobotMap.driveBottomShooter = new CANTalon(1);
+		RobotMap.shooterCounter = new Counter(8);
+		RobotMap.shooterCounter.setDistancePerPulse(1);
 	}
 	
+	public Shooter() {
+		shooterTopMotor = RobotMap.driveTopShooter;
+		shooterBottomMotor = RobotMap.driveBottomShooter;
+	}
+	//public double findXPoint() { //YPoint is always 8'1", or 97"
+		//double lidar = Robot.sensors.readLidar1();
+		//double x = lidar + 5.55079;
+		//return x;
+	//}
+	
 	public double findMotorSpeed(double v) { //gets the speed the motor has to shoot to hit a certain point
-		double motorSpeed = 0; //velocity times speed/velocity ratio
+		double motorSpeed = 1.0; //velocity times speed/velocity ratio
 		return motorSpeed;
 	}
 	
@@ -50,42 +67,48 @@ public class Shooter extends Subsystem {
 	}
 
 	public void init() {
-		RobotMap.driveDriveMotors.setSafetyEnabled(false);
-		RobotMap.driveDriveMotors.setSensitivity(0.5);
-		RobotMap.driveDriveMotors.setMaxOutput(1.0);
 		shooterTopMotor.setSafetyEnabled(false);
 		shooterBottomMotor.setSafetyEnabled(false);
 		shooterTopMotor.enableBrakeMode(false);
 		shooterBottomMotor.enableBrakeMode(false);
+		shooterTopMotor.setInverted(false);
+		shooterBottomMotor.setInverted(false);
 
 		// set up counter mode
-		RobotMap.normalCounter.setUpDownCounterMode();
+		RobotMap.shooterCounter.setUpDownCounterMode();
 
 		// Reset
-		RobotMap.normalCounter.reset();
+		RobotMap.shooterCounter.reset();
 
 		// Counter Setting
-		RobotMap.normalCounter.setMaxPeriod(0.1);
-		RobotMap.normalCounter.setUpdateWhenEmpty(true);
-		RobotMap.normalCounter.setReverseDirection(false);
-		RobotMap.normalCounter.setSamplesToAverage(10);
-		RobotMap.normalCounter.setDistancePerPulse(12);
+		RobotMap.shooterCounter.setMaxPeriod(COUNTER_MAX_PERIOD);
+		RobotMap.shooterCounter.setUpdateWhenEmpty(true);
+		RobotMap.shooterCounter.setReverseDirection(false);
+		RobotMap.shooterCounter.setSamplesToAverage(COUNTER_SAMPLES_TO_AVERAGE);
+		RobotMap.shooterCounter.setDistancePerPulse(COUNTER_DISTANCE_PER_PULSE);
 		
-		SmartDashboard.putNumber(TOPSHOOTER, 1.0);
-		SmartDashboard.putNumber(BOTTOMSHOOTER, 1.0);
+		SmartDashboard.putNumber(TOPSHOOTER, TOP_SHOOTER_SPEED);
+		SmartDashboard.putNumber(BOTTOMSHOOTER, BOTTOM_SHOOTER_SPEED);
 	}
 
 	public void spinUp(double TopPower, double BottomPower) {
 		this.shooterTopMotor.set(TopPower);
-		this.shooterBottomMotor.set(BottomPower);
+		this.shooterBottomMotor.set(BottomPower * -1);
+		SmartDashboard.putBoolean(SHOOTER_MOTORS_TAG, true);
 	}
 
 	public void spinDown() {
-		this.shooterBottomMotor.set(0.0);
-		this.shooterTopMotor.set(0.0);
+		this.shooterTopMotor.set(SHOOTER_STOP_SPEED);
+		this.shooterBottomMotor.set(SHOOTER_STOP_SPEED);
+		SmartDashboard.putBoolean(SHOOTER_MOTORS_TAG, false);
 	}
 
 	public void initDefaultCommand() {
+	}
 
+	public boolean atSpeed() {
+		boolean atMin = RobotMap.shooterCounter.getRate() > SHOOTER_RPS_MINIMUM;
+		SmartDashboard.putBoolean("Shooter at speed", atMin);
+		return atMin;
 	}
 }

@@ -2,112 +2,132 @@ package org.usfirst.frc3219.Robot_2016.subsystems;
 
 import java.awt.Point;
 
+import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.RobotMap;
+import org.usfirst.frc3219.Robot_2016.commands.DedReckoningChecks;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Navigation extends Subsystem {
-	Sensors sensors = new Sensors();
-	public static double deadRecX;
-	public static double deadRecY;
-	private static String deadRecArea = "null";
+	public static final String DED_REC_AREA = "Dead Rec Area";
+	public static final String DED_REC_ANGLE = "Dead Rec Angle";
+	public static final String DED_REC_Y = "Dead Rec Y";
+	public static final String DED_REC_X = "Dead Rec X";
+	Sensors sensors;
+	public double dedRecX;
+	public double dedRecY;
+	private String dedRecArea = "null";
 	// the code tells the robot to move.
-	private static double deadRecAngle;
-	private static double deadRecSpeed;
-	private static double deadRecTotalForward;
-	private double deadRecLidar1Prediction;
-	private double deadRecLidar2Prediction;
-	private Point lidarLocation = new Point(0, 0);
-	private Point ultraSonicLocation = new Point(0, 0);
-	private Point trustedPosition = new Point(0, 0);
+	private double dedRecAngle;
+	private double dedRecSpeed;
+	private double dedRecTotalForward;
+	private double dedRecLidar1Prediction;
+	private double dedRecLidar2Prediction;
+//	private Point lidarLocation = new Point(0, 0);
+//	private Point ultraSonicLocation = new Point(0, 0);
+//	private Point trustedPosition = new Point(0, 0);
 	private double trustedAngle;
-	public static boolean inOuterWorks = false;
+	
+	private boolean inOuterWorks = false;
+	
+	double lastLeftEncoder;
+	double lastRightEncoder;
 
-	public static double angleTurnToward(double x, double y) {
-		double a = x - deadRecX;
-		double b = y - deadRecY;
+	public Navigation() {
+		 sensors = new Sensors();
+	}
+	
+	public boolean inOuterWorks() {
+		return this.inOuterWorks;
+	}
+	// 
+	public double angleTurnToward(double x, double y) {
+		double a = x - dedRecX;
+		double b = y - dedRecY;
 		double c = Math.sqrt(a * a + b * b);
 		double A = Math.asin(a / c);
 		double B = 90 - A;
-		double finalTurnDegrees = B + deadRecAngle;
+		double finalTurnDegrees = B + dedRecAngle;
 		return finalTurnDegrees;
 	}
 
-	public static void setSpeed(double speed) {
-		deadRecSpeed = speed;
+	public void setSpeed(double speed) {
+		dedRecSpeed = speed;
 	}
 
-	public static double getSpeed() {
-		return deadRecSpeed;
+	public double getSpeed() {
+		return dedRecSpeed;
 	}
 
-	public static double distanceToPoint(double x, double y) {
-		double a = x - deadRecX;
-		double b = y - deadRecY;
+	public double distanceToPoint(double x, double y) {
+		double a = x - dedRecX;
+		double b = y - dedRecY;
 		double distance = Math.sqrt(a * a + b * b);
 		return distance;
 	}
 
-	public static Point getDeadRecPoint() {
+	public Point getDedRecPoint() {
 		Point estimateLoc = new Point(0, 0);
-		estimateLoc.x = (int) (deadRecX - (deadRecY % 1));
-		estimateLoc.y = (int) (deadRecY - (deadRecY % 1));
+		estimateLoc.x = (int) (dedRecX - (dedRecY % 1));
+		estimateLoc.y = (int) (dedRecY - (dedRecY % 1));
 		return estimateLoc;
 	}
 
-	public static double getDeadRecAngle() {
-		return deadRecAngle;
+	public double getDedRecAngle() {
+		return dedRecAngle;
 	}
 
-	public static double getDeadRecX() {
-		return deadRecX;
+	public double getDedRecX() {
+		return dedRecX;
 	}
 
-	public static double getDeadRecY() {
-		return deadRecY;
+	public double getDedRecY() {
+		return dedRecY;
 	}
 
-	public static void deadRecMoved(double distance) {
-		deadRecX += distance * Math.sin(deadRecAngle * (Math.PI / 180));
-		deadRecY += distance * Math.cos(deadRecAngle * (Math.PI / 180));
-		deadRecTotalForward += distance;
+	public void dedRecMoved(double distance) {
+		dedRecX += distance * Math.sin(dedRecAngle * (Math.PI / 180));
+		dedRecY += distance * Math.cos(dedRecAngle * (Math.PI / 180));
+		dedRecTotalForward += distance;
 	}
 
-	public static void deadRecTurned(double degrees) {
-		deadRecAngle += degrees;
+	public void dedRecTurned(double degrees) {
+		dedRecAngle += degrees;
 	}
 
-	public static String getDeadRecArea() {
+	public String getDedRecArea() {
 		String territory;
-		double newX = deadRecX;
-		double newY = deadRecY;
-		if (deadRecY >= 324) {
+		double newX = dedRecX;
+		double newY = dedRecY;
+		if (dedRecY >= 324) {
 			territory = "Enemy";
-			newX = (deadRecX - 638) * -1;
-			newY = (deadRecY - 648) * -1;
+			newX = (dedRecX - 638) * -1;
+			newY = (dedRecY - 648) * -1;
 		} else {
 			territory = "Friendly";
 		}
 		if (newX <= 54 && newX >= 0 && newY <= 288 && newY >= 0) {
-			deadRecArea = (territory + "Secret Passage");
+			dedRecArea = (territory + "Secret Passage");
 		}
 		if (newX <= 319 && newX >= 54 && newY <= 190 && newY >= 0) {
-			deadRecArea = (territory + "Courtyard");
+			dedRecArea = (territory + "Courtyard");
 		}
 		if (newX <= 319 && newX >= 54 && newY <= 238 && newY >= 190) {
-			deadRecArea = (territory + "Outer Works");
+			dedRecArea = (territory + "Outer Works");
 		}
 		if (newX <= 319 && newX >= 0 && newY <= 324 && newY >= 238) {
-			deadRecArea = (territory + "Neutral Zone");
+			dedRecArea = (territory + "Neutral Zone");
 		}
-		return deadRecArea;
+		return dedRecArea;
 	}
 
 	public double lidarPrediction() {
-		double d = deadRecY;
-		double F = deadRecAngle;
+		double d = dedRecY;
+		double F = dedRecAngle;
 		// double C = 45; //this is up to however we mount the lidars
 		double a = d / Math.cos(F);
 		// double b = d / Math.cos(F + C);
-		deadRecLidar1Prediction = a;
+		dedRecLidar1Prediction = a;
 		// deadRecLidar2Prediction = b;
 		return a;
 	}
@@ -141,48 +161,17 @@ public class Navigation extends Subsystem {
 		return distanceFromWall;
 	}
 
-	public boolean checkDeadRecAngle() {
-		boolean goodEnough = false;
-		int probabilityOfCorrectCount = 0;
-		if (Math.abs(deadRecAngle/* - compass */) <= 5.0) { // compass will be
-															// added from
-															// Robot.sensors
-			probabilityOfCorrectCount++;
-		}
-		if (Math.abs(deadRecAngle/* - findEncoderAngle() */) <= 5.0) {
-			probabilityOfCorrectCount++;
-		}
-		if (probabilityOfCorrectCount >= 3) {
-			goodEnough = true;
-		}
-		return goodEnough;
-	}
-
-	public boolean checkDeadRecLoc() {
-		boolean goodEnough = false;
-		int probabilityOfCorrectCount = 0;
-		if (Math.abs(deadRecY - findLidarPositionY()) <= 5.0) {
-			probabilityOfCorrectCount++;
-		}
-
-		if (Math.abs(deadRecX - findLidarPositionX()) <= 5.0) {
-			probabilityOfCorrectCount++;
-		}
-
-		if (Math.abs(deadRecTotalForward /* - findEncoderForwardDist() */) <= 5.0) {
-			probabilityOfCorrectCount++;
-		}
-		return goodEnough;
-	}
-
-	public void ultraSonicTriangulation() {
-
-	}
-
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-
+		setDefaultCommand(new DedReckoningChecks());
 	}
 
+	public void checkAttitude() {
+		double pitch = Robot.sensors.navx.getPitch();
+		if (Math.abs(pitch) >= 5.0) {
+			inOuterWorks = true;
+		} else {
+			inOuterWorks = false;
+		}
+	}
 }

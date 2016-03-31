@@ -21,6 +21,7 @@ public class SetMultiToolPoint extends Command {
 	// Timed version
 	@Override
 	protected void initialize() {
+		this.setTimeout(TIMEOUT);
 		Robot.multiTool.driveArmUpDown(DRIVE_SPEED);
 	}
 

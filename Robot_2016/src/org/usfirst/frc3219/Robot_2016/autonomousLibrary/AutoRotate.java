@@ -56,7 +56,6 @@ public class AutoRotate extends AutoStraightCommand {
 
 	@Override
 	protected boolean isFinished() {
-		double angle = Robot.sensors.navx.getAngle();
 		return isFinished || this.isTimedOut();
 	}
 }

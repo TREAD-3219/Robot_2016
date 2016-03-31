@@ -88,6 +88,7 @@ public class MultiTool extends PIDSubsystem {
 
 	@Override
 	public void enable() {
+		SmartDashboard.putBoolean("PID Enabled", true);
 		super.enable();
 	}
 	

@@ -2,10 +2,15 @@ package org.usfirst.frc3219.Robot_2016.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class AutoRotate extends AutoStraightCommand {
+	
+	public boolean isFinished = false;
 
 	@Override
 	protected void end() {
+		SmartDashboard.putBoolean("AutoRotateFinished", true);
 		Robot.drive.driveValues(0.0, 0.0);
 	}
 
@@ -16,27 +21,30 @@ public class AutoRotate extends AutoStraightCommand {
 
 	@Override
 	protected void initialize() {
+		isFinished = false;
+		SmartDashboard.putBoolean("AutoRotateFinished", false);
 		System.out.println("AutoRotate.initialize");
 		this.setTimeout(2);
 		setDefenseDirection();
 	}
 
-	void setDefenseDirection() {
+	protected void setDefenseDirection() {
 		switch (Robot.position) {
 		case A:
-			setGyroStraight(0.0, 216.0);
+			isFinished = setGyroStraight(0.0, 38.0); // Needs testing.
 			break;
 		case B:
-			setGyroStraight(0.0, 200.0);
+			isFinished = setGyroStraight(0.0, 22.0);
 			break;
 		case C:
-			setGyroStraight(0.0, 175.0);
+			isFinished = setGyroStraight(0.0, 354.0); // Needs testing. -6
 			break;
 		case D:
-			setGyroStraight(0.0, 112.0);
+			isFinished = setGyroStraight(0.0, 338.0); // Needs testing. -22
 			break;
 		default:
 			System.out.println("Unknown case in setDefenseDirection");
+			isFinished = true; // Bad code if it gets here!
 			break;
 		}
 	}
@@ -49,20 +57,6 @@ public class AutoRotate extends AutoStraightCommand {
 	@Override
 	protected boolean isFinished() {
 		double angle = Robot.sensors.navx.getAngle();
-		switch (Robot.position) {
-		case A:
-			return angle > 214 && angle < 218;
-		case B:
-			return angle > 198 && angle < 202;
-		case C:
-			return angle > 173 && angle < 177;
-		case D:
-			return angle > 110 && angle < 114;
-		default:
-			System.out.println("Unknown position in AutoRotate.isFinished");
-			break;
-		}
-
-		return this.isTimedOut();
+		return isFinished || this.isTimedOut();
 	}
 }

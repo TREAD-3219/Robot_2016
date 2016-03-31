@@ -15,6 +15,7 @@ public class EngageRamp extends AutoStraightCommand {
 	private static final double RAMP_SPEED = 0.9;
 
 	double dropTime;
+	private double armSpeed;
 
 	@Override
 	protected void end() {
@@ -30,7 +31,7 @@ public class EngageRamp extends AutoStraightCommand {
 			Robot.multiTool.driveArmUpDown(0.0);
 			SmartDashboard.putBoolean(DROP_ARMS_FINISH_TAG, true);
 		} else {
-			Robot.multiTool.driveArmUpDown(0);
+			Robot.multiTool.driveArmUpDown(armSpeed);
 		}
 	}
 
@@ -44,7 +45,7 @@ public class EngageRamp extends AutoStraightCommand {
 		Robot.sensors.navx.reset();
 		Robot.drive.setBrakesOff();
 		super.gyroStraight(RAMP_SPEED);
-		double armSpeed = 0;
+		armSpeed = 0;
 		
 		switch (Robot.defense) {
 		case ChevalDeFrise:

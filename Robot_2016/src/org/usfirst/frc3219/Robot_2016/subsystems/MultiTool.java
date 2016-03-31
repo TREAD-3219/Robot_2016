@@ -23,6 +23,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MultiTool extends PIDSubsystem {
 
+	private static final String DRIVE_ARM_HOLD_TAG = "Drive Arm Hold";
+	public static final String DRIVE_ARM_SPEED_TAG = "Drive Arm Speed";
 	static final double P = 0.01;
 	static final double I = 0.0001;
 	static final double D = -0.0025;
@@ -38,6 +40,7 @@ public class MultiTool extends PIDSubsystem {
 	public static final String ARM_LOWER_LIMIT_TAG = "Arm lower limit";
 	public static final String ARM_UPPER_LIMIT_TAG = "Arm upper limit";
 	public static final String ARM_POWER_SETTING_TAG = "Arm Power Setting";
+	public static final String ARM_SET_POINT = "Arm Set Point";
 
 	public static int selectedTool = 0;
 
@@ -61,12 +64,13 @@ public class MultiTool extends PIDSubsystem {
 	private static final double ENCODER_MIN = 0;
 	private static final double ENCODER_MAX = 110;
 	public static final double RANGE = ENCODER_MAX - ENCODER_MIN;
-	private static final double ENCODER_PULSE_PER_REVOLUTION = 7.0 * 4.0; // not sure about this one...
+	private static final double ENCODER_PULSE_PER_REVOLUTION = 7.0; // not sure about this one...
 	private static final double ARM_GEAR_RATIO = 188;
 	private static final double ARM_PULSE_PER_REVOLUTION = ENCODER_PULSE_PER_REVOLUTION * ARM_GEAR_RATIO;
 
 	public static final double ARM_ENCODER_DEGREES_PER_PULSE = 360.0 / ARM_PULSE_PER_REVOLUTION;
 	public static final double UP_POWER = -0.5; // Must be negative
+	
 	
 	public MultiTool() {
 		super(P, I, D);
@@ -78,8 +82,15 @@ public class MultiTool extends PIDSubsystem {
 		SmartDashboard.putNumber(ARM_P, P);
 		SmartDashboard.putNumber(ARM_I, I);
 		SmartDashboard.putNumber(ARM_D, D);
+		SmartDashboard.putNumber(ARM_SET_POINT, 0);
+		SmartDashboard.putBoolean(DRIVE_ARM_HOLD_TAG, false);
 	}
 
+	@Override
+	public void enable() {
+		super.enable();
+	}
+	
 	public void armSetPoint(double position) {
 		this.setSetpoint(position);
 	}
@@ -94,6 +105,7 @@ public class MultiTool extends PIDSubsystem {
 
 	public void stopMotors() {
 		driveArmMotor.set(0.0);
+		SmartDashboard.putNumber(DRIVE_ARM_SPEED_TAG, 0.0);
 		this.disable();
 	}
 
@@ -108,12 +120,15 @@ public class MultiTool extends PIDSubsystem {
 			if (this.getUpperLimitSwitch()) {
 				this.resetEncoders();
 			}
+			SmartDashboard.putNumber(DRIVE_ARM_SPEED_TAG, 0.0);
 		} else {
 			driveArmMotor.set(power);
+			SmartDashboard.putNumber(DRIVE_ARM_SPEED_TAG, power);
 		}
 	}
 
 	public void driveArmHold() {
+		SmartDashboard.putBoolean(DRIVE_ARM_HOLD_TAG, true);
 		double currentAngle = Robot.sensors.armEncoderAngle();
 		this.setSetpoint(currentAngle);
 		this.enable();

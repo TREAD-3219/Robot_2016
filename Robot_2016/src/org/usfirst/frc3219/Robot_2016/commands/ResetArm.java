@@ -32,9 +32,12 @@ public class ResetArm extends Command {
 
 	@Override
 	protected void end() {
+		// get the position readout before resetting
+		double currentPosition = Robot.multiTool.getPosition();
 		Robot.multiTool.resetEncoders();
 		Robot.multiTool.driveArmUpDown(0.0);
-		Robot.multiTool.armSetPoint(startPosition);
+		double correctedPosition = startPosition - currentPosition;
+		Robot.multiTool.armSetPoint(correctedPosition);
 		Robot.multiTool.enable();
 	}
 

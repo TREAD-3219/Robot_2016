@@ -44,12 +44,12 @@ public class MultiToolMover extends NeverFinishCommand {
 				setpointSet = false;
 			} else {
 				if (!setpointSet) {
-					Robot.multiTool.driveArmHold();
+					//Robot.multiTool.driveArmHold();
 					setpointSet = true;
 				}
 			}
 		} else if (!setpointSet) {
-			Robot.multiTool.driveArmHold();
+			//Robot.multiTool.driveArmHold();
 			setpointSet = true;
 		}
 	}

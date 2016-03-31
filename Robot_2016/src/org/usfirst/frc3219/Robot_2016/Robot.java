@@ -1,6 +1,11 @@
 
 package org.usfirst.frc3219.Robot_2016;
 
+import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoRotate;
+import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoRough;
+import org.usfirst.frc3219.Robot_2016.autonomousLibrary.EngageRamp;
+import org.usfirst.frc3219.Robot_2016.autonomousLibrary.StopRobotDrive;
+import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
 import org.usfirst.frc3219.Robot_2016.commands.DedReckoningChecks;
 import org.usfirst.frc3219.Robot_2016.commands.EnableClimberButtons;
 import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
@@ -8,12 +13,12 @@ import org.usfirst.frc3219.Robot_2016.commands.MultiToolMover;
 import org.usfirst.frc3219.Robot_2016.commands.WatchSensors;
 import org.usfirst.frc3219.Robot_2016.subsystems.Camera;
 import org.usfirst.frc3219.Robot_2016.subsystems.Climber;
-import org.usfirst.frc3219.Robot_2016.subsystems.mule.Drive;
+import org.usfirst.frc3219.Robot_2016.subsystems.Drive;
 import org.usfirst.frc3219.Robot_2016.subsystems.FeedMech;
 import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
 import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
-import org.usfirst.frc3219.Robot_2016.subsystems.mule.Shooter;
+import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -102,6 +107,14 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, Shooter.BOTTOM_SHOOTER_SPEED);
 		SmartDashboard.putBoolean(Climber.CLIMBER_RELEASED_TAG, false);
 		SmartDashboard.putBoolean(Climber.CLIMBER_RESET_TAG, false);
+		SmartDashboard.putNumber(MultiTool.DRIVE_ARM_SPEED_TAG, 0.0);
+    	SmartDashboard.putBoolean(EngageRamp.ENGAGE_RAMP_FINISH_TAG, false);
+    	SmartDashboard.putBoolean(AutoRough.AUTO_ROUGH_FINISH_TAG, false);
+    	SmartDashboard.putBoolean(AutoRotate.AUTO_ROTATE_FINISH_TAG, false);
+    	SmartDashboard.putBoolean(EngageRamp.DROP_ARMS_START_TAG, false);
+    	SmartDashboard.putBoolean(EngageRamp.DROP_ARMS_FINISH_TAG, false);
+    	SmartDashboard.putBoolean(StopRobotDrive.STOP_ROBOT_DRIVE_FINISH_TAG, false);
+    	SmartDashboard.putBoolean(AutoShoot.AUTO_SHOOT_START_TAG, false);
 	}
 	
 	/**

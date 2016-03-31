@@ -10,6 +10,7 @@ import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RockWall;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RoughTerrain;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.SallyPort;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoCenterToGoal;
+import org.usfirst.frc3219.Robot_2016.autonomousLibrary.DistanceTest;
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
 import org.usfirst.frc3219.Robot_2016.commands.IntakeBall;
 import org.usfirst.frc3219.Robot_2016.commands.ManualFeed;
@@ -17,6 +18,7 @@ import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
 import org.usfirst.frc3219.Robot_2016.commands.ResetArm;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
 import org.usfirst.frc3219.Robot_2016.commands.ServoControllerSafetyPressed;
+import org.usfirst.frc3219.Robot_2016.commands.SetMultiToolPoint;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -29,6 +31,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
+
 public class OI {
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
@@ -52,7 +55,8 @@ public class OI {
 	public static final String POSITION_C = "Position C";
 	public static final String POSITION_D = "Position D";
 
-
+	public static final String ARM_SET_POINT = "Arm Set Point";
+	
 	public Joystick joystick;
 	public Joystick gameController;
 	public JoystickButton intake;
@@ -63,8 +67,10 @@ public class OI {
 	public JoystickButton autoShoot;
 	public JoystickButton spitOut;
 	public JoystickButton resetArm;
+	public JoystickButton armTest;
 	public SendableChooser autoDefenseChooser;
 	public SendableChooser autoStartPosition;
+	private JoystickButton distanceTest;
 
 	public OI() {
 		joystick = new Joystick(0);
@@ -105,10 +111,17 @@ public class OI {
 		// start button
 		
 		// buttonY.whileHeld(servoSafety); // test enabling this if there is time.
-
+		
 		// pick an appropriate button - gameController?
 		resetArm = new JoystickButton(joystick, 8);
 		resetArm.whenPressed(new ResetArm());
+		
+		armTest = new JoystickButton(joystick, 5);
+		armTest.whenPressed(new SetMultiToolPoint(SmartDashboard.getNumber(ARM_SET_POINT)));
+		
+		distanceTest = new JoystickButton(joystick, 10);
+		distanceTest.whenPressed(new DistanceTest());
+		
 		
     	autoStartPosition = new SendableChooser();
 		autoStartPosition.addDefault(POSITION_A, POSITION_A);

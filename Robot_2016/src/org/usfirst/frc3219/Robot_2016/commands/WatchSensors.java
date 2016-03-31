@@ -1,7 +1,7 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
-import org.usfirst.frc3219.Robot_2016.RobotMap;
+import org.usfirst.frc3219.Robot_2016.subsystems.Drive;
 import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
 import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
@@ -27,12 +27,11 @@ public class WatchSensors extends NeverFinishCommand {
 		SmartDashboard.putNumber(Navigation.DED_REC_ANGLE, Robot.navigation.getDedRecAngle());
 		SmartDashboard.putNumber(Sensors.LEFT_ENCODER_TAG, Robot.sensors.leftEncoderDistance());
 		SmartDashboard.putNumber(Sensors.RIGHT_ENCODER_TAG, Robot.sensors.rightEncoderDistance());
+		SmartDashboard.putNumber(Drive.DISTANCE_TAG, Robot.drive.getAvgEncoderDist());
 		SmartDashboard.putBoolean("IsCentered", false);
 		SmartDashboard.putBoolean("isTipped", Robot.sensors.getTip() >= 5);
 		SmartDashboard.putNumber("isTippedDegree", Robot.sensors.getTip());
 		SmartDashboard.putNumber("AutoRotateAngle", Robot.sensors.navx.getAngle() - 360);
-
-
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoRotate;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoRough;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoTurnTowardsGoal;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.EngageRamp;
+import org.usfirst.frc3219.Robot_2016.autonomousLibrary.StopRobotDrive;
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -22,9 +23,8 @@ public class RoughTerrain extends CommandGroup {
     	this.addSequential(new EngageRamp());
     	this.addSequential(new AutoRough());
     	this.addSequential(new AutoRotate());
-		Robot.drive.driveValues(0, 0);
+    	this.addSequential(new StopRobotDrive());
 		this.addSequential(new AutoShoot());
-    	System.out.println("END OF AUTONOMOUS");
     }
 
     
@@ -34,6 +34,3 @@ public class RoughTerrain extends CommandGroup {
     	super.initialize();
     }
 }
-
-//FOR AUTOROUGH:
-	// First EngageRamp --> AutoRough --> AutoTurnAndShoot

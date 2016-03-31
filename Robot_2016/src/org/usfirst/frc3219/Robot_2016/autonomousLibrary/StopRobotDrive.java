@@ -4,8 +4,12 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class StopAtRamp extends Command {
+public class StopRobotDrive extends Command {
 
+	public StopRobotDrive() {
+		super("StopRobotDrive");
+	}
+	
 	@Override
 	protected void initialize() {
 		Robot.drive.setBrakesOn();

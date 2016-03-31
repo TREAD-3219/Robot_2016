@@ -30,6 +30,7 @@ public class Drive extends Subsystem { //encoders measuring about 1/3 real dista
 	public static final double WHEEL_DISTANCE_PER_PULSE = WHEEL_CIRCUMFERENCE / Sensors.WHEEL_ENCODER_PULSE_PER_REVOLUTION;
 	public static final double LEFT_ENCODER_CORRECTION = 1;
 	public static final double RIGHT_ENCODER_CORRECTION = 1;
+	public static final String DISTANCE_TAG = "Drive Distance";
 
 	CANTalon rightDriveFront = RobotMap.driveRightDriveB;
 	CANTalon rightDriveRear = RobotMap.driveRightDriveA;

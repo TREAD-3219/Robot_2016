@@ -25,7 +25,7 @@ public class AutoRough extends AutoStraightCommand {
 	protected void initialize() {
 		SmartDashboard.putBoolean("AutoRoughFinished", false);
 		this.setTimeout(2);
-		aveDistI = Robot.sensors.getAvgEncoderDist();
+		aveDistI = Robot.drive.getAvgEncoderDist();
 		gyroStraight(ROUGH_SPEED);
 	}
 	

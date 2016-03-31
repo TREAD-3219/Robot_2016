@@ -22,7 +22,7 @@ public class EngageRamp extends AutoStraightCommand {
 	protected void execute() {
 		super.gyroStraight(RAMP_SPEED);
 		double deltaT = Timer.getFPGATimestamp() - this.dropTime;
-		if (deltaT > 0.6) {
+		if (deltaT > 0.4) {
 			Robot.multiTool.driveArmUpDown(0.0);
 			Robot.multiTool.stopMotors();
 			

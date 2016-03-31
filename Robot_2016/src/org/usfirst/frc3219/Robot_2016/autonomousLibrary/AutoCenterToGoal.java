@@ -30,7 +30,7 @@ public class AutoCenterToGoal extends Command {
 	private int limitRight = OUTER_LIMIT_RIGHT;
 
 	public AutoCenterToGoal() {
-		requires(Robot.drive);
+		//requires(Robot.drive);
 		SmartDashboard.putNumber(CENTER_POINT, CENTER);
 	}
 

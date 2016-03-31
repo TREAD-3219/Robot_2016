@@ -16,6 +16,10 @@ import org.usfirst.frc3219.Robot_2016.commands.ManualFeed;
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
 import org.usfirst.frc3219.Robot_2016.commands.ResetArm;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
+import org.usfirst.frc3219.Robot_2016.commands.ServoControllerSafetyPressed;
+import org.usfirst.frc3219.Robot_2016.commands.SetMultiToolPoint;
+
+import com.sun.glass.ui.Robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -52,7 +56,8 @@ public class OI {
 	public static final String POSITION_C = "Position C";
 	public static final String POSITION_D = "Position D";
 
-
+	public static final String ARM_SET_POINT = "Arm Set Point";
+	
 	public Joystick joystick;
 	public Joystick gameController;
 	public JoystickButton intake;
@@ -63,6 +68,7 @@ public class OI {
 	public JoystickButton autoShoot;
 	public JoystickButton spitOut;
 	public JoystickButton resetArm;
+	public JoystickButton armTest;
 	public SendableChooser autoDefenseChooser;
 	public SendableChooser autoStartPosition;
 
@@ -105,10 +111,14 @@ public class OI {
 		// start button
 		
 		// buttonY.whileHeld(servoSafety); // test enabling this if there is time.
-
+		
 		// pick an appropriate button - gameController?
 		resetArm = new JoystickButton(joystick, 8);
 		resetArm.whenPressed(new ResetArm());
+		
+		armTest = new JoystickButton(joystick, 5);
+		armTest.whenPressed(new SetMultiToolPoint(SmartDashboard.getNumber(ARM_SET_POINT)));
+		
 		
     	autoStartPosition = new SendableChooser();
 		autoStartPosition.addDefault(POSITION_A, POSITION_A);

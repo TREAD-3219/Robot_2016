@@ -10,7 +10,7 @@ public class SetVelocity extends Command {
 
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
+		SmartDashboard.putNumber(Shooter.DEFAULT_SHOOTING_DISTANCE_TAG, 100);
 		
 	}
 

@@ -10,6 +10,7 @@ import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RockWall;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RoughTerrain;
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.SallyPort;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoCenterToGoal;
+import org.usfirst.frc3219.Robot_2016.autonomousLibrary.DistanceTest;
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
 import org.usfirst.frc3219.Robot_2016.commands.IntakeBall;
 import org.usfirst.frc3219.Robot_2016.commands.ManualFeed;
@@ -69,6 +70,7 @@ public class OI {
 	public JoystickButton armTest;
 	public SendableChooser autoDefenseChooser;
 	public SendableChooser autoStartPosition;
+	private JoystickButton distanceTest;
 
 	public OI() {
 		joystick = new Joystick(0);
@@ -116,6 +118,9 @@ public class OI {
 		
 		armTest = new JoystickButton(joystick, 5);
 		armTest.whenPressed(new SetMultiToolPoint(SmartDashboard.getNumber(ARM_SET_POINT)));
+		
+		distanceTest = new JoystickButton(joystick, 10);
+		distanceTest.whenPressed(new DistanceTest());
 		
 		
     	autoStartPosition = new SendableChooser();

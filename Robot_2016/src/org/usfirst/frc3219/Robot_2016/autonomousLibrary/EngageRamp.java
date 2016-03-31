@@ -1,7 +1,6 @@
 package org.usfirst.frc3219.Robot_2016.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
-import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,8 +23,6 @@ public class EngageRamp extends AutoStraightCommand {
 		double deltaT = Timer.getFPGATimestamp() - this.dropTime;
 		if (deltaT > 0.6) {
 			Robot.multiTool.driveArmUpDown(0.0);
-			Robot.multiTool.stopMotors();
-			
 		}
 	}
 
@@ -36,7 +33,7 @@ public class EngageRamp extends AutoStraightCommand {
 		SmartDashboard.putBoolean("EngageRampFinished", false);
 		this.dropTime = Timer.getFPGATimestamp();
 		Robot.sensors.navx.reset();
-		//Robot.drive.setBrakesOff();
+		Robot.drive.setBrakesOff();
 		super.gyroStraight(RAMP_SPEED);
 		double armSpeed = 0;
 		
@@ -51,22 +48,12 @@ public class EngageRamp extends AutoStraightCommand {
 			armSpeed = 0;
 			break;
 			
-		case Moat:
-			armSpeed = 0.7;
-			break;
-
-		case RockWall:
-			armSpeed = 0.7;
-			break;
-			
 		default:
-			//Robot.multiTool.armSetPoint(MultiTool.STOW);
 			armSpeed = 0.7;
 			break;
 		} 
 		
 		Robot.multiTool.driveArmUpDown(armSpeed);
-		
 	}
 
 	@Override

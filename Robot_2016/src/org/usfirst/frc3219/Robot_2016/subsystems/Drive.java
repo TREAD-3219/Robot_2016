@@ -18,7 +18,7 @@ public class Drive extends Subsystem { //encoders measuring about 1/3 real dista
 	private static final double MAX_MOTOR_RPM = 4000;
 	private static final double WHEEL_DIAMETER = 7.75;
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
-	private static final double GEAR_RATIO = 8.45;
+	private static final double GEAR_RATIO = 12.75;
 	private static final double MAX_WHEEL_RPM = MAX_MOTOR_RPM / GEAR_RATIO;
 	public static final double MAX_SPEED_IPM = WHEEL_CIRCUMFERENCE * MAX_WHEEL_RPM;
 	public static final double MAX_SPEED_IPS = MAX_SPEED_IPM / 60.0;
@@ -85,8 +85,12 @@ public class Drive extends Subsystem { //encoders measuring about 1/3 real dista
 	}
 
 	public double powerFromSpeed(double speed) {
+		if (speed < 1.0) {
+			return 0;
+		}
+		
 		double magnitude = Math.abs(speed);
-		double power = -0.00003 * magnitude * magnitude + 0.0111 * magnitude + 0.2176;
+		double power = -0.0000395 * magnitude * magnitude + 0.0111 * magnitude + 0.22;
 		double fixed = Math.min(1.0, power);
 		return fixed * Math.signum(speed);
 	}

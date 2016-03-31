@@ -40,12 +40,6 @@ public class DistanceTest extends Command {
 
 	@Override
 	protected void execute() {
-		if (Timer.getFPGATimestamp() - startTime > 0.1) {
-			double deltaSpeed = speed - Robot.sensors.getVelocity();
-			if (Math.abs(deltaSpeed) > speed * 0.2) {
-				speed = speed + (deltaSpeed * 0.25);
-			}
-		}
 		
 		Robot.drive.driveSpeed(speed, 0.0);
 	}

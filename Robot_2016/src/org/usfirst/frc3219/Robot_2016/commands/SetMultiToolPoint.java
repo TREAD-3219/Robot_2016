@@ -32,7 +32,7 @@ public class SetMultiToolPoint extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return this.isTimedOut();
+		return this.isTimedOut() && Robot.sensors.armEncoderAngle() >= position;
 	}
 
 	@Override

@@ -6,6 +6,8 @@ import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoRough;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.EngageRamp;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.StopRobotDrive;
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
+import org.usfirst.frc3219.Robot_2016.commands.SetMultiToolPoint;
+import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -17,7 +19,8 @@ public class RoughTerrain extends CommandGroup {
     
     public  RoughTerrain() {
     	this.addSequential(new EngageRamp());
-    	this.addSequential(new AutoRough());
+    	this.addParallel(new AutoRough());
+    	this.addParallel(new SetMultiToolPoint(MultiTool.SHOOT_POSITION));
     	this.addSequential(new AutoRotate());
     	this.addSequential(new StopRobotDrive());
 		this.addSequential(new AutoShoot());

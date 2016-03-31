@@ -5,8 +5,11 @@ import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.Encoder;
 
 /**
  *
@@ -36,9 +39,31 @@ public class Drive extends Subsystem {
 
 	double reverse = 1.0;
 	
+	public static void setupRobotMap() {
+		RobotMap.driveRightDriveA = new CANTalon(4);
+		RobotMap.driveRightDriveB = new CANTalon(5);
+		RobotMap.driveLeftDriveA = new CANTalon(2);
+		RobotMap.driveLeftDriveB = new CANTalon(3);
+		RobotMap.driveDriveMotors = new RobotDrive(RobotMap.driveLeftDriveA, RobotMap.driveLeftDriveB,
+				RobotMap.driveRightDriveA, RobotMap.driveRightDriveB);
+		RobotMap.driveEncoderLeft = new Encoder(0, 1, false, EncodingType.k4X);
+		RobotMap.driveEncoderLeft.setDistancePerPulse(-Drive.WHEEL_DISTANCE_PER_PULSE);
+		RobotMap.driveEncoderLeft.setPIDSourceType(PIDSourceType.kRate);
+		RobotMap.driveEncoderRight = new Encoder(2, 3, false, EncodingType.k4X);
+		RobotMap.driveEncoderRight.setDistancePerPulse(Drive.WHEEL_DISTANCE_PER_PULSE);
+		RobotMap.driveEncoderRight.setPIDSourceType(PIDSourceType.kRate);
+	}
+
+	public Drive() {
+		rightDriveRear = RobotMap.driveRightDriveA;
+		rightDriveFront = RobotMap.driveRightDriveB;
+		leftDriveRear = RobotMap.driveLeftDriveA;
+		leftDriveFront = RobotMap.driveLeftDriveB;
+		driveMotors = RobotMap.driveDriveMotors;
+	}
+	
 	public void driveValues(double forward, double turnRate){
 		driveMotors.arcadeDrive(forward*reverse, turnRate*reverse);
-
 	}
 	
 	public double getAvgEncoderDist() {

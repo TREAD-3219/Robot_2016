@@ -101,10 +101,6 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 		return RobotMap.shooterCounter.get();
 	}
 
-	public double aveDistEncoders(){
-		return(RobotMap.driveEncoderLeft.getDistance() + RobotMap.driveEncoderRight.getDistance()) / 2;
-	}
-
 	public int leftEncoderRaw(){
 		return leftEncoder.getRaw() / leftEncoder.getEncodingScale();
 
@@ -119,12 +115,12 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	}
 	
 	public double leftEncoderDistance(){
-		double res = leftEncoder.getDistance();
+		double res = -leftEncoder.getDistance(); // POSITIVE FOR COMPETITION VERSION
 		return res;
 	}
 	
 	public double rightEncoderDistance(){
-		double res = rightEncoder.getDistance();
+		double res = -rightEncoder.getDistance(); // POSITIVE FOR COMPETITION VERSION
 		return res;
 	}
 	
@@ -150,10 +146,6 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	
 	public double armEncoderAngle() {
 		return armEncoder.getDistance();
-	}
-
-	public double getAvgEncoderDist() {
-		return (leftEncoderDistance() + rightEncoderDistance()) / 2.0;
 	}
 
 	public double getVelocity() {

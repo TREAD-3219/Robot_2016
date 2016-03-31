@@ -1,6 +1,7 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoCenterToGoal;
+import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -13,7 +14,7 @@ public class AutoShoot extends CommandGroup {
 	}
 	
 	public void createShooterCommands() {
-		this.addSequential(new SetMultiToolPoint(85.0));
+		this.addSequential(new SetMultiToolPoint(MultiTool.SHOOT_POSITION));
 		this.addParallel(new ShootBoulder());
 		this.addParallel(new AutoCenterToGoal());
 	}

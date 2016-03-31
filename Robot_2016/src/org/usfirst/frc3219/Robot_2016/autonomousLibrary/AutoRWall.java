@@ -20,7 +20,7 @@ public class AutoRWall extends AutoStraightCommand {
 
 	@Override
 	protected void initialize() {
-		aveDistI = Robot.sensors.getAvgEncoderDist();
+		aveDistI = Robot.drive.getAvgEncoderDist();
 		gyroStraight(WALL_SPEED);
 	}
 
@@ -31,7 +31,7 @@ public class AutoRWall extends AutoStraightCommand {
 
 	@Override
 	protected boolean isFinished() {
-		double aveDistF = Robot.sensors.getAvgEncoderDist();
+		double aveDistF = Robot.drive.getAvgEncoderDist();
 		return aveDistF - aveDistI >= MIN_ENCODER_DISTANCE;
 	}
 }

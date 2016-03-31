@@ -2,10 +2,10 @@ package org.usfirst.frc3219.Robot_2016;
 
 import org.usfirst.frc3219.Robot_2016.subsystems.Camera;
 import org.usfirst.frc3219.Robot_2016.subsystems.Climber;
-import org.usfirst.frc3219.Robot_2016.subsystems.Drive;
+import org.usfirst.frc3219.Robot_2016.subsystems.mule.Drive;
 import org.usfirst.frc3219.Robot_2016.subsystems.FeedMech;
 import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
-import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
+import org.usfirst.frc3219.Robot_2016.subsystems.mule.Shooter;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Counter;

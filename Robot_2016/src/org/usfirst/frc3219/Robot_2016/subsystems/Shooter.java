@@ -58,7 +58,7 @@ public class Shooter extends Subsystem {
 		final int shooterHeight = 27;
 		final int y = 80 - shooterHeight; //inches high of goal
 		double velocity = findVelocityForPoint(x, y);
-		double motorSpeed = 1.0; //velocity times speed/velocity ratio //TODO TODO TODO
+		double motorSpeed = (velocity - 30.676620) / 283.740741; //velocity times speed/velocity ratio
 		return motorSpeed;
 	}
 	

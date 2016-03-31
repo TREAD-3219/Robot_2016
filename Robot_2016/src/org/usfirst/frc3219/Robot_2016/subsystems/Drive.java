@@ -28,6 +28,8 @@ public class Drive extends Subsystem { //encoders measuring about 1/3 real dista
 	private static final double MAX_TURN_RATE = MAX_SPEED_IPS / ROTATION_CIRCLE;
 	public static final double MAX_TURN_RATE_DPS = MAX_TURN_RATE * 360.0;
 	public static final double WHEEL_DISTANCE_PER_PULSE = WHEEL_CIRCUMFERENCE / Sensors.WHEEL_ENCODER_PULSE_PER_REVOLUTION;
+	public static final double LEFT_ENCODER_CORRECTION = -3.68;
+	public static final double RIGHT_ENCODER_CORRECTION = -3.68;
 	public static final String DISTANCE_TAG = "Drive Distance";
 
 	CANTalon rightDriveFront = RobotMap.driveRightDriveB;

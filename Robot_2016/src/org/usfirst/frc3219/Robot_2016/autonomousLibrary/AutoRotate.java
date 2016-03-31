@@ -7,10 +7,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class AutoRotate extends AutoStraightCommand {
 	
 	public boolean isFinished = false;
+	public static final String AUTO_ROTATE_FINISH_TAG = "AutoRotateFinish";
 
 	@Override
 	protected void end() {
-		SmartDashboard.putBoolean("AutoRotateFinished", true);
+		SmartDashboard.putBoolean(AUTO_ROTATE_FINISH_TAG, true);
 		Robot.drive.driveValues(0.0, 0.0);
 	}
 
@@ -22,7 +23,7 @@ public class AutoRotate extends AutoStraightCommand {
 	@Override
 	protected void initialize() {
 		isFinished = false;
-		SmartDashboard.putBoolean("AutoRotateFinished", false);
+		SmartDashboard.putBoolean(AUTO_ROTATE_FINISH_TAG, false);
 		System.out.println("AutoRotate.initialize");
 		this.setTimeout(2);
 		setDefenseDirection();

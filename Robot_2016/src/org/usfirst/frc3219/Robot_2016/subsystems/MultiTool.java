@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MultiTool extends PIDSubsystem {
 
+	public static final String DRIVE_ARM_SPEED_TAG = "Drive Arm Speed";
 	static final double P = 0.01;
 	static final double I = 0.0001;
 	static final double D = -0.0025;
@@ -97,6 +98,7 @@ public class MultiTool extends PIDSubsystem {
 
 	public void stopMotors() {
 		driveArmMotor.set(0.0);
+		SmartDashboard.putNumber(DRIVE_ARM_SPEED_TAG, 0.0);
 		this.disable();
 	}
 
@@ -111,8 +113,10 @@ public class MultiTool extends PIDSubsystem {
 			if (this.getUpperLimitSwitch()) {
 				this.resetEncoders();
 			}
+			SmartDashboard.putNumber(DRIVE_ARM_SPEED_TAG, 0.0);
 		} else {
 			driveArmMotor.set(power);
+			SmartDashboard.putNumber(DRIVE_ARM_SPEED_TAG, power);
 		}
 	}
 

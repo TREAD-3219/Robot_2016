@@ -1,6 +1,11 @@
 
 package org.usfirst.frc3219.Robot_2016;
 
+import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoRotate;
+import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoRough;
+import org.usfirst.frc3219.Robot_2016.autonomousLibrary.EngageRamp;
+import org.usfirst.frc3219.Robot_2016.autonomousLibrary.StopRobotDrive;
+import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
 import org.usfirst.frc3219.Robot_2016.commands.DedReckoningChecks;
 import org.usfirst.frc3219.Robot_2016.commands.EnableClimberButtons;
 import org.usfirst.frc3219.Robot_2016.commands.JoystickDrive;
@@ -102,6 +107,14 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, Shooter.BOTTOM_SHOOTER_SPEED);
 		SmartDashboard.putBoolean(Climber.CLIMBER_RELEASED_TAG, false);
 		SmartDashboard.putBoolean(Climber.CLIMBER_RESET_TAG, false);
+		SmartDashboard.putNumber(MultiTool.DRIVE_ARM_SPEED_TAG, 0.0);
+    	SmartDashboard.putBoolean(EngageRamp.ENGAGE_RAMP_FINISH_TAG, false);
+    	SmartDashboard.putBoolean(AutoRough.AUTO_ROUGH_FINISH_TAG, false);
+    	SmartDashboard.putBoolean(AutoRotate.AUTO_ROTATE_FINISH_TAG, false);
+    	SmartDashboard.putBoolean(EngageRamp.DROP_ARMS_START_TAG, false);
+    	SmartDashboard.putBoolean(EngageRamp.DROP_ARMS_FINISH_TAG, false);
+    	SmartDashboard.putBoolean(StopRobotDrive.STOP_ROBOT_DRIVE_FINISH_TAG, false);
+    	SmartDashboard.putBoolean(AutoShoot.AUTO_SHOOT_START_TAG, false);
 	}
 	
 	/**

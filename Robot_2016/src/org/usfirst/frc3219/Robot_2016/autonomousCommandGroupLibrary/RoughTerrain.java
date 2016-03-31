@@ -16,9 +16,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class RoughTerrain extends CommandGroup {
     
     public  RoughTerrain() {
-    	SmartDashboard.putBoolean("EngageRampFinish", false);
-    	SmartDashboard.putBoolean("AutoRoughFinish", false);
-    	SmartDashboard.putBoolean("AutoRotateFinish", false);
     	this.addSequential(new EngageRamp());
     	this.addSequential(new AutoRough());
     	this.addSequential(new AutoRotate());
@@ -31,5 +28,12 @@ public class RoughTerrain extends CommandGroup {
     protected void initialize() {
     	Robot.defense = Robot.Defense.RoughTerrain;
     	super.initialize();
+    	SmartDashboard.putBoolean(EngageRamp.ENGAGE_RAMP_FINISH_TAG, false);
+    	SmartDashboard.putBoolean(AutoRough.AUTO_ROUGH_FINISH_TAG, false);
+    	SmartDashboard.putBoolean(AutoRotate.AUTO_ROTATE_FINISH_TAG, false);
+    	SmartDashboard.putBoolean(EngageRamp.DROP_ARMS_START_TAG, false);
+    	SmartDashboard.putBoolean(EngageRamp.DROP_ARMS_FINISH_TAG, false);
+    	SmartDashboard.putBoolean(StopRobotDrive.STOP_ROBOT_DRIVE_FINISH_TAG, false);
+    	SmartDashboard.putBoolean(AutoShoot.AUTO_SHOOT_START_TAG, false);
     }
 }

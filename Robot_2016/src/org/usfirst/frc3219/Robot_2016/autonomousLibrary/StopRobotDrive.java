@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class StopRobotDrive extends Command {
 
+	public static final String STOP_ROBOT_DRIVE_FINISH_TAG = "StopRobotDriveFinish";
+
 	public StopRobotDrive() {
 		super("StopRobotDrive");
 	}

@@ -29,7 +29,7 @@ public class DriveOverObstacle extends AutoStraightCommand {
 
 	@Override
 	protected void initialize() {
-		initEncoder = Robot.sensors.getAvgEncoderDist();
+		initEncoder = Robot.drive.getAvgEncoderDist();
 		gyroStraight(ROBOT_SPEED);
 
 	}
@@ -42,7 +42,7 @@ public class DriveOverObstacle extends AutoStraightCommand {
 
 	@Override
 	protected boolean isFinished() {
-		double encoderDiff = Robot.sensors.getAvgEncoderDist() - initEncoder;
+		double encoderDiff = Robot.drive.getAvgEncoderDist() - initEncoder;
 		return (encoderDiff >= MIN_ENCODER_DISTANCE);
 	}
 

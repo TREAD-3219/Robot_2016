@@ -19,8 +19,6 @@ import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
 import org.usfirst.frc3219.Robot_2016.commands.ServoControllerSafetyPressed;
 import org.usfirst.frc3219.Robot_2016.commands.SetMultiToolPoint;
 
-import com.sun.glass.ui.Robot;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;

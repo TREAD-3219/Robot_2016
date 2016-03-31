@@ -12,7 +12,7 @@ public class AutoRough extends AutoStraightCommand {
 
 	@Override
 	protected void end() {
-		aveDistF = Robot.sensors.getAvgEncoderDist();
+		aveDistF = Robot.drive.getAvgEncoderDist();
 		SmartDashboard.putBoolean("AutoRoughFinish", true);
 	}
 
@@ -37,7 +37,7 @@ public class AutoRough extends AutoStraightCommand {
 
 	@Override
 	protected boolean isFinished() {
-		aveDistF = Robot.sensors.getAvgEncoderDist();
+		aveDistF = Robot.drive.getAvgEncoderDist();
 		boolean stop = (aveDistF - aveDistI >= MIN_ENCODER_DISTANCE);
 		SmartDashboard.putBoolean("AutoRoughFinished", stop);
 		return stop || this.isTimedOut();

@@ -22,7 +22,7 @@ public class AutoChevalDeFrise extends AutoStraightCommand {
 	@Override
 	protected void initialize() {
 		Robot.drive.setBrakesOn();
-		aveDistI = Robot.sensors.getAvgEncoderDist();
+		aveDistI = Robot.drive.getAvgEncoderDist();
 		gyroStraight(0.85);
 	}
 
@@ -33,7 +33,7 @@ public class AutoChevalDeFrise extends AutoStraightCommand {
 
 	@Override
 	protected boolean isFinished() {
-		aveDistF = Robot.sensors.getAvgEncoderDist();
+		aveDistF = Robot.drive.getAvgEncoderDist();
 		if(aveDistF - aveDistI >= MIN_ENCODER_DISTANCE) {
 			return true;
 		} else

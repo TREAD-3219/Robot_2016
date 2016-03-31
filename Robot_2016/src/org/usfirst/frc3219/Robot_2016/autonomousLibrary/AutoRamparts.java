@@ -19,7 +19,7 @@ public class AutoRamparts extends AutoStraightCommand {
 
 	@Override
 	protected void initialize() {
-		aveDistI = Robot.sensors.getAvgEncoderDist();
+		aveDistI = Robot.drive.getAvgEncoderDist();
 		gyroStraight(1.0);
 		Robot.drive.setBrakesOff();
 	}
@@ -31,7 +31,7 @@ public class AutoRamparts extends AutoStraightCommand {
 
 	@Override
 	protected boolean isFinished() {
-		aveDistF = Robot.sensors.getAvgEncoderDist();
+		aveDistF = Robot.drive.getAvgEncoderDist();
 		if (aveDistF - aveDistI >= MIN_ENCODER_DISTANCE) {
 			return true;
 		} else

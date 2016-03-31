@@ -24,7 +24,7 @@ public class DrawbridgePID_Back extends PIDCommand {
 	protected double returnPIDInput() {
 		double angle = Robot.sensors.armEncoderAngle();
 		double innerRobotAngle = 90 - angle;
-		encoderDiff = Robot.sensors.getAvgEncoderDist() - encoderInit;
+		encoderDiff = Robot.drive.getAvgEncoderDist() - encoderInit;
 		double angleDrawbridge = Math.asin((Math.sin(innerRobotAngle) * 26) / 37);
 		//double arcDrawbridge = (angleDrawbridge * (3.14159 / 180)) * 37;
 		//double driveComponentOne = 58.1196 - arcDrawbridge;

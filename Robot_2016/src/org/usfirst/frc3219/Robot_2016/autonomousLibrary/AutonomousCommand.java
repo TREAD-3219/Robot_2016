@@ -37,7 +37,7 @@ public class AutonomousCommand extends Command {
 	protected void initialize() {
 		speedSum = 0;
 		speedCounts = 0;
-		distanceStart = Robot.sensors.getAvgEncoderDist();
+		distanceStart = Robot.drive.getAvgEncoderDist();
 		speedPercent = SmartDashboard.getNumber("Auto Speed %");
 		double speed = Robot.drive.speedFromPower(speedPercent);
 		double timeout = (distanceWanted / speed) + 0.1;
@@ -57,7 +57,7 @@ public class AutonomousCommand extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		double distanceNow = Robot.sensors.getAvgEncoderDist();
+		double distanceNow = Robot.drive.getAvgEncoderDist();
 		double distance = distanceNow - distanceStart;
 		return (distance >= distanceWanted) || this.isTimedOut();
 	}

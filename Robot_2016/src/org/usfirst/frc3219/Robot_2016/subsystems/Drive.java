@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.Encoder;
 /**
  *
  */
-public class Drive extends Subsystem {
+public class Drive extends Subsystem { //encoders measuring about 1/3 real distance
 	private static final double MAX_MOTOR_RPM = 4000;
 	private static final double WHEEL_DIAMETER = 7.75;
 	public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;

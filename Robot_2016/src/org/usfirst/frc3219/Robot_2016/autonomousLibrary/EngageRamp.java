@@ -29,6 +29,8 @@ public class EngageRamp extends AutoStraightCommand {
 		if (deltaT > 0.6) {
 			Robot.multiTool.driveArmUpDown(0.0);
 			SmartDashboard.putBoolean(DROP_ARMS_FINISH_TAG, true);
+		} else {
+			Robot.multiTool.driveArmUpDown(0);
 		}
 	}
 

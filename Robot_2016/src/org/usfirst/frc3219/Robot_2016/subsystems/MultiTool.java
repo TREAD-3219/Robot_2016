@@ -23,6 +23,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MultiTool extends PIDSubsystem {
 
+	private static final String DRIVE_ARM_HOLD_TAG = "Drive Arm Hold";
+	public static final String DRIVE_ARM_SPEED_TAG = "Drive Arm Speed";
 	static final double P = 0.01;
 	static final double I = 0.0001;
 	static final double D = -0.0025;
@@ -81,8 +83,14 @@ public class MultiTool extends PIDSubsystem {
 		SmartDashboard.putNumber(ARM_I, I);
 		SmartDashboard.putNumber(ARM_D, D);
 		SmartDashboard.putNumber(ARM_SET_POINT, 0);
+		SmartDashboard.putBoolean(DRIVE_ARM_HOLD_TAG, false);
 	}
 
+	@Override
+	public void enable() {
+		super.enable();
+	}
+	
 	public void armSetPoint(double position) {
 		this.setSetpoint(position);
 	}
@@ -97,6 +105,7 @@ public class MultiTool extends PIDSubsystem {
 
 	public void stopMotors() {
 		driveArmMotor.set(0.0);
+		SmartDashboard.putNumber(DRIVE_ARM_SPEED_TAG, 0.0);
 		this.disable();
 	}
 
@@ -111,12 +120,15 @@ public class MultiTool extends PIDSubsystem {
 			if (this.getUpperLimitSwitch()) {
 				this.resetEncoders();
 			}
+			SmartDashboard.putNumber(DRIVE_ARM_SPEED_TAG, 0.0);
 		} else {
 			driveArmMotor.set(power);
+			SmartDashboard.putNumber(DRIVE_ARM_SPEED_TAG, power);
 		}
 	}
 
 	public void driveArmHold() {
+		SmartDashboard.putBoolean(DRIVE_ARM_HOLD_TAG, true);
 		double currentAngle = Robot.sensors.armEncoderAngle();
 		this.setSetpoint(currentAngle);
 		this.enable();

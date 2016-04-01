@@ -4,6 +4,7 @@ import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SetMultiToolPoint extends Command {
 	private static final double TIMEOUT = .65;
@@ -23,6 +24,8 @@ public class SetMultiToolPoint extends Command {
 	protected void initialize() {
 		this.setTimeout(TIMEOUT);
 		Robot.multiTool.driveArmUpDown(DRIVE_SPEED);
+		SmartDashboard.putBoolean("Timed Out", false);
+		SmartDashboard.putBoolean("posReached", false);
 	}
 
 	@Override
@@ -32,7 +35,11 @@ public class SetMultiToolPoint extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return this.isTimedOut();
+		boolean timed = this.isTimedOut();
+		SmartDashboard.putBoolean("Timed Out", timed);
+		boolean posReached = Robot.sensors.armEncoderAngle() >= position;
+		SmartDashboard.putBoolean("posReached", posReached);
+		return timed || posReached;
 	}
 
 	@Override

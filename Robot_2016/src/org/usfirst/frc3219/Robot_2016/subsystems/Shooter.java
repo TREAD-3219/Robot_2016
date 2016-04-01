@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Shooter extends Subsystem {
 
+	public static final String DEFAULT_SHOOTING_DISTANCE_TAG = "Distance From Target";
 	public static final double BOTTOM_SHOOTER_SPEED = 1.0;
 	public static final double TOP_SHOOTER_SPEED = 0.7;
 	private static final double SHOOTER_STOP_SPEED = 0.0;
@@ -93,6 +94,8 @@ public class Shooter extends Subsystem {
 		
 		SmartDashboard.putNumber(TOPSHOOTER, TOP_SHOOTER_SPEED);
 		SmartDashboard.putNumber(BOTTOMSHOOTER, BOTTOM_SHOOTER_SPEED);
+		SmartDashboard.putNumber(DEFAULT_SHOOTING_DISTANCE_TAG, 100);
+		
 	}
 
 	public void spinUp(double TopPower, double BottomPower) {

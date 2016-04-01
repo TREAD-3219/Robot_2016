@@ -54,7 +54,7 @@ public class MultiTool extends PIDSubsystem {
 	public static final double PORTCULLIS_START = 115.0;
 	public static final double PORTCULLIS_END = 33.0;
 	public static final double ROLLER_PICKUP = 104.0;
-	public static final double SHOOT_POSITION = 85.0;
+	public static final double SHOOT_POSITION = 75.0;
 	public static final double NEUTRAL_POSITION = SHOOT_POSITION;
 	// -----------
 
@@ -88,6 +88,7 @@ public class MultiTool extends PIDSubsystem {
 
 	@Override
 	public void enable() {
+		SmartDashboard.putBoolean("PID Enabled", true);
 		super.enable();
 	}
 	

@@ -10,7 +10,7 @@ public class SetVelocity extends Command {
 
 	@Override
 	protected void initialize() {
-		SmartDashboard.putNumber(Shooter.DEFAULT_SHOOTING_DISTANCE_TAG, 100);
+		//SmartDashboard.putNumber(Shooter.DEFAULT_SHOOTING_DISTANCE_TAG, 100);
 		this.setTimeout(1.0);
 		
 	}
@@ -18,7 +18,7 @@ public class SetVelocity extends Command {
 	@Override
 	protected void execute() {
 		double dist = SmartDashboard.getNumber(Shooter.DEFAULT_SHOOTING_DISTANCE_TAG);
-		double v = Robot.shooter.findVelocityForPoint(dist, 80 - 17);
+		double v = Robot.shooter.findVelocityForPoint(dist, 80 - 37); //TODO THIS IS WHERE YOU CAN CHANGE NUBERS TO AFFECT SPEED
 		double power = Robot.shooter.findMotorSpeed(v);
 		SmartDashboard.putNumber("Shooter Power Theoretical", power);
 		if (power <= 1.0 && power >= 0.0) {

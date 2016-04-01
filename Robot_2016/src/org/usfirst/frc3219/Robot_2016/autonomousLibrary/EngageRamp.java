@@ -11,7 +11,7 @@ public class EngageRamp extends AutoStraightCommand {
 	public static final String DROP_ARMS_FINISH_TAG = "DropArmsFinish";
 	public static final String ENGAGE_RAMP_FINISH_TAG = "EngageRampFinish";
 
-	private static final double MIN_TIP_ANGLE = 6.5;
+	private static final double MIN_TIP_ANGLE = 8.0; // Used to be 6.5
 	private static final double RAMP_SPEED = 0.9;
 
 	double dropTime;
@@ -38,7 +38,7 @@ public class EngageRamp extends AutoStraightCommand {
 	@Override
 	protected void initialize() {
 		SmartDashboard.putBoolean(IS_TIPPED_TAG, Robot.sensors.getTip() >= MIN_TIP_ANGLE);
-		this.setTimeout(3.0);
+		this.setTimeout(4.0);
 		SmartDashboard.putBoolean(ENGAGE_RAMP_FINISH_TAG, false);
 		SmartDashboard.putBoolean(DROP_ARMS_START_TAG, true);
 		//this.dropTime = Timer.getFPGATimestamp();

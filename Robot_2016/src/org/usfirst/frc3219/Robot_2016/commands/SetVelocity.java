@@ -18,7 +18,12 @@ public class SetVelocity extends Command {
 	@Override
 	protected void execute() {
 		double dist = SmartDashboard.getNumber(Shooter.DEFAULT_SHOOTING_DISTANCE_TAG);
-		double v = Robot.shooter.findVelocityForPoint(dist, 80 - 37); //TODO THIS IS WHERE YOU CAN CHANGE NUBERS TO AFFECT SPEED
+		if (Robot.sensors.lidarReadingOK()) {
+			dist = Robot.sensors.readLidar1();
+		}
+		
+		 //TODO THIS IS WHERE YOU CAN CHANGE NUMBERS TO AFFECT SPEED
+		double v = Robot.shooter.findVelocityForPoint(dist, 80 - 37);
 		double power = Robot.shooter.findMotorSpeed(v);
 		SmartDashboard.putNumber("Shooter Power Theoretical", power);
 		if (power <= 1.0 && power >= 0.0) {
@@ -36,20 +41,15 @@ public class SetVelocity extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return this.isTimedOut();
 	}
 
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

@@ -37,7 +37,9 @@ public class AutoRough extends AutoStraightCommand {
 	protected boolean isFinished() {
 		aveDistF = Robot.drive.getAvgEncoderDist();
 		boolean stop = (aveDistF - aveDistI >= MIN_ENCODER_DISTANCE);
+		SmartDashboard.putNumber("AutoRough Distance Traveled", aveDistF - aveDistI);
 		SmartDashboard.putBoolean(AUTO_ROUGH_FINISH_TAG, stop);
-		return stop || this.isTimedOut();
+		//return stop || this.isTimedOut();
+		return this.isTimedOut();
 	}
 }

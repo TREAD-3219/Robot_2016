@@ -41,7 +41,7 @@ public class EngageRamp extends AutoStraightCommand {
 		this.setTimeout(3.0);
 		SmartDashboard.putBoolean(ENGAGE_RAMP_FINISH_TAG, false);
 		SmartDashboard.putBoolean(DROP_ARMS_START_TAG, true);
-		this.dropTime = Timer.getFPGATimestamp();
+		//this.dropTime = Timer.getFPGATimestamp();
 		Robot.sensors.navx.reset();
 		Robot.drive.setBrakesOff();
 		super.gyroStraight(RAMP_SPEED);
@@ -74,6 +74,7 @@ public class EngageRamp extends AutoStraightCommand {
 	@Override
 	protected boolean isFinished() {
 		SmartDashboard.putBoolean(IS_TIPPED_TAG, Robot.sensors.getTip() >= MIN_TIP_ANGLE);
+		SmartDashboard.putBoolean("Engage Ramp Timed", this.isTimedOut());
 		//SmartDashboard.putNumber("isTippedDegree", Robot.sensors.getTip());
 		return Robot.sensors.getTip() >= MIN_TIP_ANGLE || this.isTimedOut();
 	}

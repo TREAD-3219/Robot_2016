@@ -24,9 +24,6 @@ public class DropArms extends Command {
 	protected void initialize() {
 		this.setTimeout(1.5); // Calibrate!!!
 		Robot.multiTool.armSetPoint(MultiTool.DRAWBRIDGE_START);
-		Robot.multiTool.getPIDController().enable();
-		Robot.multiTool.getPIDController().setPID(P, I, D);
-		Robot.multiTool.setPercentTolerance(5);
 	}
 
 	@Override
@@ -37,6 +34,6 @@ public class DropArms extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return this.isTimedOut() || Robot.multiTool.getPIDController().onTarget();
+		return this.isTimedOut();
 	}
 }

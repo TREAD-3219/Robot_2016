@@ -5,7 +5,6 @@ import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoPortcullisAlign;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoPortcullisBackUp;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoPortcullisRaise;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoRotate;
-import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoTurnTowardsGoal;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.DriveOverObstacle;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.EngageRamp;
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;

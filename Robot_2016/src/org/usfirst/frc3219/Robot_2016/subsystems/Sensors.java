@@ -1,6 +1,10 @@
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
+import java.util.Iterator;
+import java.util.Queue;
+
 import org.usfirst.frc3219.Robot_2016.RobotMap;
+import org.usfirst.frc3219.Robot_2016.utility.RingStore;
 import org.usfirst.frc3219.Robot_2016.utility.Utility;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -10,9 +14,13 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SPI.Port;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSource {
+	private static final double MAX_LIDAR_READ_STALENESS = 1.0;
+	private static final double MAX_LIDAR_TIME_RANGE = 3.0;
+	private static final int LIDAR_READ_QUEUE_LENGTH = 5;
 	private static final byte LIDAR_1_ADDR = 0x62;
 	private static final byte LIDAR_READ_START = (byte) 0x8F;
 	private static final int START_MEASUREMENT = 0x04;
@@ -37,17 +45,30 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	I2C lidar1 = new I2C(I2C.Port.kMXP, LIDAR_1_ADDR);
 	public AHRS navx = new AHRS(Port.kMXP);
+	
+	private RingStore<Double> lidarReadings;
+	private RingStore<Double> lidarReadTimes;
 
-	Encoder rightEncoder = RobotMap.driveEncoderRight;
-	Encoder leftEncoder = RobotMap.driveEncoderLeft;
-	Encoder armEncoder = RobotMap.sensorsArmEncoder;
+	Encoder rightEncoder;
+	Encoder leftEncoder;
+	Encoder armEncoder;
 
-	EncoderData rightData = new EncoderData(rightEncoder);
-	EncoderData leftData = new EncoderData(leftEncoder);
-	EncoderData armData = new EncoderData(armEncoder);
+	EncoderData rightData;
+	EncoderData leftData;
+	EncoderData armData;
 
-	double lastLidar1Read = 0.0;
+	public Sensors() {
+		Encoder rightEncoder = RobotMap.driveEncoderRight;
+		Encoder leftEncoder = RobotMap.driveEncoderLeft;
+		Encoder armEncoder = RobotMap.sensorsArmEncoder;
 
+		rightData = new EncoderData(rightEncoder);
+		leftData = new EncoderData(leftEncoder);
+		armData = new EncoderData(armEncoder);
+		lidarReadings = new RingStore<Double>(LIDAR_READ_QUEUE_LENGTH);
+		lidarReadTimes = new RingStore<Double>(LIDAR_READ_QUEUE_LENGTH);
+	}
+	
 	public void sensorReset(){
 		leftEncoder.reset();
 		rightEncoder.reset();
@@ -55,15 +76,14 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 		leftData.reset();
 		rightData.reset();
 		armData.reset();
-		this.lastLidar1Read = 0.0;
 	}
 	
 
 	private void startLidarMeasurement() {
-		boolean res = lidar1.write(READ_CONTROL_REGISTER, START_MEASUREMENT);
+		lidar1.write(READ_CONTROL_REGISTER, START_MEASUREMENT);
 	}
 
-	public double readLidar1() {
+	private double readLidarValue() {
 		byte[] bytes = new byte[2];
 		double res = -1.0;
 		// read the data from the last measure command
@@ -71,15 +91,58 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 
 			int cms = Utility.getShort(bytes, 0);
 			res = cms / 2.54;
-			if (res != 0) {
-				lastLidar1Read = res;
-			} else {
-				res = lastLidar1Read;
-			}
 			startLidarMeasurement();
 		}
 
-		return res;
+		return res;	
+	}
+	
+	public double readLidar1() {
+		double readVal = readLidarValue();
+		double readTime = Timer.getFPGATimestamp();
+		// much shorter indicates we're just seeing the MultiTool
+		// so skip them
+		if (readVal > 20.0) {
+			this.lidarReadings.add(readVal);
+			this.lidarReadTimes.add(readTime);
+		}
+		
+		return avgLidarRead();
+	}
+
+	private double avgLidarRead() {
+		double accum = 0.0;
+		Iterator<Double> iter = this.lidarReadings.iterator();
+		int count = 0;
+		while (iter.hasNext()) {
+			accum += iter.next();
+			count += 1;
+		}
+		
+		if (count == 0) {
+			return 0.0;
+		}
+		
+		return accum / count;
+	}
+	
+	public boolean lidarReadingOK() {
+		Iterator<Double> times = this.lidarReadTimes.iterator();
+		double minTime = Double.MAX_VALUE;
+		double maxTime = Double.MIN_VALUE;
+		while (times.hasNext()) {
+			double t = times.next();
+			if (t < minTime) {
+				minTime = t;
+			}
+			if (t > maxTime) {
+				maxTime = t;
+			}
+		}
+		
+		double deltaT = maxTime - minTime;
+		double recent = Timer.getFPGATimestamp() - maxTime;
+		return recent < MAX_LIDAR_READ_STALENESS && deltaT < MAX_LIDAR_TIME_RANGE;
 	}
 
 	public double getTip() {

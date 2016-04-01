@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Shooter extends Subsystem {
 
+	public static final String DEFAULT_SHOOTING_DISTANCE_TAG = "Distance From Target";
 	public static final double BOTTOM_SHOOTER_SPEED = 1.0;
 	public static final double TOP_SHOOTER_SPEED = 0.7;
 	private static final double SHOOTER_STOP_SPEED = 0.0;
@@ -54,7 +55,11 @@ public class Shooter extends Subsystem {
 	//}
 	
 	public double findMotorSpeed(double v) { //gets the speed the motor has to shoot to hit a certain point
-		double motorSpeed = 1.0; //velocity times speed/velocity ratio
+//		double x = SmartDashboard.getNumber(DEFAULT_SHOOTING_DISTANCE_TAG); //find lidar i guess
+//		final int shooterHeight = 27;
+//		final int y = 80 - shooterHeight; //inches high of goal
+//		double velocity = v;
+		double motorSpeed = (v - 30.676620) / 283.740741; //velocity times speed/velocity ratio
 		return motorSpeed;
 	}
 	
@@ -89,6 +94,8 @@ public class Shooter extends Subsystem {
 		
 		SmartDashboard.putNumber(TOPSHOOTER, TOP_SHOOTER_SPEED);
 		SmartDashboard.putNumber(BOTTOMSHOOTER, BOTTOM_SHOOTER_SPEED);
+		SmartDashboard.putNumber(DEFAULT_SHOOTING_DISTANCE_TAG, 100);
+		
 	}
 
 	public void spinUp(double TopPower, double BottomPower) {

@@ -1,44 +1,51 @@
 package org.usfirst.frc3219.Robot_2016.autonomousLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
-import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class EngageRamp extends AutoStraightCommand {
+	public static final String IS_TIPPED_TAG = "isTipped";
+	public static final String DROP_ARMS_START_TAG = "DropArmsStart";
+	public static final String DROP_ARMS_FINISH_TAG = "DropArmsFinish";
+	public static final String ENGAGE_RAMP_FINISH_TAG = "EngageRampFinish";
 
-	String whichArmPreset;
+	private static final double MIN_TIP_ANGLE = 8.0; // Used to be 6.5
 	private static final double RAMP_SPEED = 0.9;
+
 	double dropTime;
+	private double armSpeed;
 
 	@Override
 	protected void end() {
-		//Robot.multiTool.stopMotors();
-		SmartDashboard.putBoolean("EngageRampFinished", true);
+		Robot.multiTool.stopMotors();
+		SmartDashboard.putBoolean(ENGAGE_RAMP_FINISH_TAG, true);
 	}
 
 	@Override
 	protected void execute() {
 		super.gyroStraight(RAMP_SPEED);
-		double deltaT = Timer.getFPGATimestamp() - this.dropTime;
-		if (deltaT > 0.6) {
-			Robot.multiTool.driveArmUpDown(0.0);
-			Robot.multiTool.stopMotors();
-			
-		}
+		//double deltaT = Timer.getFPGATimestamp() - this.dropTime;
+		//if (deltaT > 0.4) {
+			//Robot.multiTool.driveArmUpDown(0.0);
+			//SmartDashboard.putBoolean(DROP_ARMS_FINISH_TAG, true);
+		//} else {
+			//Robot.multiTool.driveArmUpDown(armSpeed);
+		//}
 	}
 
 	@Override
 	protected void initialize() {
-		//SmartDashboard.putBoolean("isTipped", Robot.sensors.getTip() >= 5);
-		this.setTimeout(1.5);
-		SmartDashboard.putBoolean("EngageRampFinished", false);
-		this.dropTime = Timer.getFPGATimestamp();
+		SmartDashboard.putBoolean(IS_TIPPED_TAG, Robot.sensors.getTip() >= MIN_TIP_ANGLE);
+		this.setTimeout(2.0);
+		SmartDashboard.putBoolean(ENGAGE_RAMP_FINISH_TAG, false);
+		SmartDashboard.putBoolean(DROP_ARMS_START_TAG, true);
+		//this.dropTime = Timer.getFPGATimestamp();
 		Robot.sensors.navx.reset();
-		//Robot.drive.setBrakesOff();
+		Robot.drive.setBrakesOff();
 		super.gyroStraight(RAMP_SPEED);
-		double armSpeed = 0;
+		armSpeed = 0;
 		
 		switch (Robot.defense) {
 		case ChevalDeFrise:
@@ -51,22 +58,12 @@ public class EngageRamp extends AutoStraightCommand {
 			armSpeed = 0;
 			break;
 			
-		case Moat:
-			armSpeed = 0.7;
-			break;
-
-		case RockWall:
-			armSpeed = 0.7;
-			break;
-			
 		default:
-			//Robot.multiTool.armSetPoint(MultiTool.STOW);
 			armSpeed = 0.7;
 			break;
 		} 
 		
-		Robot.multiTool.driveArmUpDown(armSpeed);
-		
+		//Robot.multiTool.driveArmUpDown(armSpeed);
 	}
 
 	@Override
@@ -76,9 +73,9 @@ public class EngageRamp extends AutoStraightCommand {
 
 	@Override
 	protected boolean isFinished() {
-	//	SmartDashboard.putBoolean("isTipped", Robot.sensors.getTip() >= 5);
+		SmartDashboard.putBoolean(IS_TIPPED_TAG, Robot.sensors.getTip() >= MIN_TIP_ANGLE);
+		SmartDashboard.putBoolean("Engage Ramp Timed", this.isTimedOut());
 		//SmartDashboard.putNumber("isTippedDegree", Robot.sensors.getTip());
-		return Robot.sensors.getTip() >= 6.5 || this.isTimedOut();
-		
+		return Robot.sensors.getTip() >= MIN_TIP_ANGLE || this.isTimedOut();
 	}
 }

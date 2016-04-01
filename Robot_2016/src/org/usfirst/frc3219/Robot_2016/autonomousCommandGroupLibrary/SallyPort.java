@@ -2,7 +2,6 @@ package org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoRotate;
-import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoTurnTowardsGoal;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.DriveOverObstacle;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.EngageRamp;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.SallyDoorOpen;

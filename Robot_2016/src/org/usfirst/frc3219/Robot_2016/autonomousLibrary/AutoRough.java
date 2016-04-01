@@ -7,13 +7,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class AutoRough extends AutoStraightCommand {
 	double aveDistI = 0.0;
 	double aveDistF = 0.0;
+	public static final String AUTO_ROUGH_FINISH_TAG = "AutoRoughFinish";
 	private static final double MIN_ENCODER_DISTANCE = 35.0; // CHANGED FOR MULE
-	private static final double ROUGH_SPEED = 0.85;
+	private static final double ROUGH_SPEED = 0.95;
 
 	@Override
 	protected void end() {
-		aveDistF = Robot.sensors.getAvgEncoderDist();
-		SmartDashboard.putBoolean("AutoRoughFinish", true);
 	}
 
 	@Override
@@ -23,23 +22,24 @@ public class AutoRough extends AutoStraightCommand {
 
 	@Override
 	protected void initialize() {
-		SmartDashboard.putBoolean("AutoRoughFinished", false);
-		this.setTimeout(2);
+		SmartDashboard.putBoolean(AUTO_ROUGH_FINISH_TAG, false);
+		this.setTimeout(2.5);
 		aveDistI = Robot.drive.getAvgEncoderDist();
 		gyroStraight(ROUGH_SPEED);
 	}
 	
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
-
+		end();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		aveDistF = Robot.sensors.getAvgEncoderDist();
+		aveDistF = Robot.drive.getAvgEncoderDist();
 		boolean stop = (aveDistF - aveDistI >= MIN_ENCODER_DISTANCE);
-		SmartDashboard.putBoolean("AutoRoughFinished", stop);
-		return stop || this.isTimedOut();
+		SmartDashboard.putNumber("AutoRough Distance Traveled", aveDistF - aveDistI);
+		SmartDashboard.putBoolean(AUTO_ROUGH_FINISH_TAG, stop);
+		//return stop || this.isTimedOut();
+		return this.isTimedOut();
 	}
 }

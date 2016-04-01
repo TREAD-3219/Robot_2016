@@ -18,14 +18,12 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class MultiTool extends PIDSubsystem {
+public class MultiTool extends Subsystem {
 
-	static final double P = 0.01;
-	static final double I = 0.0001;
-	static final double D = -0.0025;
+	public static final String DRIVE_ARM_SPEED_TAG = "Drive Arm Speed";
 
 	Talon driveRollerMotor = RobotMap.driveRollerMotorController;
 	Talon driveArmMotor = RobotMap.driveMultiToolArmMotor;
@@ -38,6 +36,7 @@ public class MultiTool extends PIDSubsystem {
 	public static final String ARM_LOWER_LIMIT_TAG = "Arm lower limit";
 	public static final String ARM_UPPER_LIMIT_TAG = "Arm upper limit";
 	public static final String ARM_POWER_SETTING_TAG = "Arm Power Setting";
+	public static final String ARM_SET_POINT = "Arm Set Point";
 
 	public static int selectedTool = 0;
 
@@ -61,27 +60,19 @@ public class MultiTool extends PIDSubsystem {
 	private static final double ENCODER_MIN = 0;
 	private static final double ENCODER_MAX = 110;
 	public static final double RANGE = ENCODER_MAX - ENCODER_MIN;
-	private static final double ENCODER_PULSE_PER_REVOLUTION = 7.0 * 4.0; // not sure about this one...
+	private static final double ENCODER_PULSE_PER_REVOLUTION = 7.0; // not sure about this one...
 	private static final double ARM_GEAR_RATIO = 188;
 	private static final double ARM_PULSE_PER_REVOLUTION = ENCODER_PULSE_PER_REVOLUTION * ARM_GEAR_RATIO;
 
 	public static final double ARM_ENCODER_DEGREES_PER_PULSE = 360.0 / ARM_PULSE_PER_REVOLUTION;
 	public static final double UP_POWER = -0.5; // Must be negative
 	
+	
 	public MultiTool() {
-		super(P, I, D);
-		this.setInputRange(ENCODER_MIN, ENCODER_MAX);
-		this.setOutputRange(MOTOR_POWER_MAX_UP, MOTOR_POWER_MAX_DOWN);
-		this.setPercentTolerance(MultiTool.ARM_TOLERANCE_PERCENT);
 		this.resetEncoders();
-		this.disable();
-		SmartDashboard.putNumber(ARM_P, P);
-		SmartDashboard.putNumber(ARM_I, I);
-		SmartDashboard.putNumber(ARM_D, D);
 	}
 
 	public void armSetPoint(double position) {
-		this.setSetpoint(position);
 	}
 
 	public Boolean getUpperLimitSwitch() {
@@ -94,7 +85,7 @@ public class MultiTool extends PIDSubsystem {
 
 	public void stopMotors() {
 		driveArmMotor.set(0.0);
-		this.disable();
+		SmartDashboard.putNumber(DRIVE_ARM_SPEED_TAG, 0.0);
 	}
 
 	public void driveRoller(double speed) {
@@ -108,15 +99,14 @@ public class MultiTool extends PIDSubsystem {
 			if (this.getUpperLimitSwitch()) {
 				this.resetEncoders();
 			}
+			SmartDashboard.putNumber(DRIVE_ARM_SPEED_TAG, 0.0);
 		} else {
 			driveArmMotor.set(power);
+			SmartDashboard.putNumber(DRIVE_ARM_SPEED_TAG, power);
 		}
 	}
 
 	public void driveArmHold() {
-		double currentAngle = Robot.sensors.armEncoderAngle();
-		this.setSetpoint(currentAngle);
-		this.enable();
 	}
 
 	public double armEncoderSpeed() {
@@ -127,32 +117,7 @@ public class MultiTool extends PIDSubsystem {
 		Robot.sensors.armEncoder.reset();
 	}
 	
-	public void resetPID() {
-		double p = SmartDashboard.getNumber(ARM_P, P);
-		double i = SmartDashboard.getNumber(ARM_I, I);
-		double d = SmartDashboard.getNumber(ARM_D, D);
-		this.getPIDController().setPID(p, i, d);
-	}
-
 	public void initDefaultCommand() {
-	}
-
-	@Override
-	protected double returnPIDInput() {
-		double angle = Robot.sensors.armEncoderAngle();
-		return angle;
-	}
-
-	@Override
-	protected void usePIDOutput(double power) {
-		// positive power is DOWN
-		if (power < 0.0 && this.getUpperLimitSwitch() || power > 0.0 && this.getLowerLimitSwitch()) {
-			power = 0.0;
-		}
-		driveArmMotor.pidWrite(power);
-		SmartDashboard.putNumber(ARM_POWER_SETTING_TAG, power);
-		SmartDashboard.putBoolean(ARM_UPPER_LIMIT_TAG, this.getUpperLimitSwitch());
-		SmartDashboard.putBoolean(ARM_LOWER_LIMIT_TAG, this.getLowerLimitSwitch());
 	}
 
 	public static void setupRobotMap() {

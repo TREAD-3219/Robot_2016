@@ -11,7 +11,7 @@ public class ShootBoulder extends Command {
 	private static final double FEEDER_RUN_SPEED = .3;
 	private static final double FEEDER_STOP_SPEED = 0.0;
 	private static final double BOULDER_SHOT_TIME = .3;
-	private static final double SHOOTER_SPINUP_TIME = 0.7; // long enough?
+	private static final double SHOOTER_SPINUP_TIME = 1.0; // long enough?
 
 	enum ShootStates {
 		start, spinup, feed, stop;

@@ -9,7 +9,7 @@ public class AutoRough extends AutoStraightCommand {
 	double aveDistF = 0.0;
 	public static final String AUTO_ROUGH_FINISH_TAG = "AutoRoughFinish";
 	private static final double MIN_ENCODER_DISTANCE = 35.0; // CHANGED FOR MULE
-	private static final double ROUGH_SPEED = 0.85;
+	private static final double ROUGH_SPEED = 0.95;
 
 	@Override
 	protected void end() {
@@ -23,7 +23,7 @@ public class AutoRough extends AutoStraightCommand {
 	@Override
 	protected void initialize() {
 		SmartDashboard.putBoolean(AUTO_ROUGH_FINISH_TAG, false);
-		this.setTimeout(3.0);
+		this.setTimeout(2.5);
 		aveDistI = Robot.drive.getAvgEncoderDist();
 		gyroStraight(ROUGH_SPEED);
 	}

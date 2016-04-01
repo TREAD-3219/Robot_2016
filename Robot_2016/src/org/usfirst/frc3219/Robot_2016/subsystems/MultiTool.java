@@ -18,16 +18,12 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class MultiTool extends PIDSubsystem {
+public class MultiTool extends Subsystem {
 
-	private static final String DRIVE_ARM_HOLD_TAG = "Drive Arm Hold";
 	public static final String DRIVE_ARM_SPEED_TAG = "Drive Arm Speed";
-	static final double P = 0.01;
-	static final double I = 0.0001;
-	static final double D = -0.0025;
 
 	Talon driveRollerMotor = RobotMap.driveRollerMotorController;
 	Talon driveArmMotor = RobotMap.driveMultiToolArmMotor;
@@ -54,7 +50,7 @@ public class MultiTool extends PIDSubsystem {
 	public static final double PORTCULLIS_START = 115.0;
 	public static final double PORTCULLIS_END = 33.0;
 	public static final double ROLLER_PICKUP = 104.0;
-	public static final double SHOOT_POSITION = 75.0;
+	public static final double SHOOT_POSITION = 85.0;
 	public static final double NEUTRAL_POSITION = SHOOT_POSITION;
 	// -----------
 
@@ -73,27 +69,10 @@ public class MultiTool extends PIDSubsystem {
 	
 	
 	public MultiTool() {
-		super(P, I, D);
-		this.setInputRange(ENCODER_MIN, ENCODER_MAX);
-		this.setOutputRange(MOTOR_POWER_MAX_UP, MOTOR_POWER_MAX_DOWN);
-		this.setPercentTolerance(MultiTool.ARM_TOLERANCE_PERCENT);
 		this.resetEncoders();
-		this.disable();
-		SmartDashboard.putNumber(ARM_P, P);
-		SmartDashboard.putNumber(ARM_I, I);
-		SmartDashboard.putNumber(ARM_D, D);
-		SmartDashboard.putNumber(ARM_SET_POINT, 0);
-		SmartDashboard.putBoolean(DRIVE_ARM_HOLD_TAG, false);
 	}
 
-	@Override
-	public void enable() {
-		SmartDashboard.putBoolean("PID Enabled", true);
-		super.enable();
-	}
-	
 	public void armSetPoint(double position) {
-		this.setSetpoint(position);
 	}
 
 	public Boolean getUpperLimitSwitch() {
@@ -107,7 +86,6 @@ public class MultiTool extends PIDSubsystem {
 	public void stopMotors() {
 		driveArmMotor.set(0.0);
 		SmartDashboard.putNumber(DRIVE_ARM_SPEED_TAG, 0.0);
-		this.disable();
 	}
 
 	public void driveRoller(double speed) {
@@ -129,10 +107,6 @@ public class MultiTool extends PIDSubsystem {
 	}
 
 	public void driveArmHold() {
-		SmartDashboard.putBoolean(DRIVE_ARM_HOLD_TAG, true);
-		double currentAngle = Robot.sensors.armEncoderAngle();
-		this.setSetpoint(currentAngle);
-		this.enable();
 	}
 
 	public double armEncoderSpeed() {
@@ -143,32 +117,7 @@ public class MultiTool extends PIDSubsystem {
 		Robot.sensors.armEncoder.reset();
 	}
 	
-	public void resetPID() {
-		double p = SmartDashboard.getNumber(ARM_P, P);
-		double i = SmartDashboard.getNumber(ARM_I, I);
-		double d = SmartDashboard.getNumber(ARM_D, D);
-		this.getPIDController().setPID(p, i, d);
-	}
-
 	public void initDefaultCommand() {
-	}
-
-	@Override
-	protected double returnPIDInput() {
-		double angle = Robot.sensors.armEncoderAngle();
-		return angle;
-	}
-
-	@Override
-	protected void usePIDOutput(double power) {
-		// positive power is DOWN
-		if (power < 0.0 && this.getUpperLimitSwitch() || power > 0.0 && this.getLowerLimitSwitch()) {
-			power = 0.0;
-		}
-		driveArmMotor.pidWrite(power);
-		SmartDashboard.putNumber(ARM_POWER_SETTING_TAG, power);
-		SmartDashboard.putBoolean(ARM_UPPER_LIMIT_TAG, this.getUpperLimitSwitch());
-		SmartDashboard.putBoolean(ARM_LOWER_LIMIT_TAG, this.getLowerLimitSwitch());
 	}
 
 	public static void setupRobotMap() {

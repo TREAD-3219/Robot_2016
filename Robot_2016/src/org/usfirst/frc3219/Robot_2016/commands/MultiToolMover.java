@@ -25,7 +25,6 @@ public class MultiToolMover extends NeverFinishCommand {
 	protected void initialize() {
 		gameController = Robot.oi.gameController;
 		speed = gameController.getY();
-		Robot.multiTool.disable();
 		setpointSet = false;
 	}
 
@@ -41,16 +40,9 @@ public class MultiToolMover extends NeverFinishCommand {
 			if ((speed > MINIMUM_DOWN_SPEED && !Robot.multiTool.getLowerLimitSwitch())
 					|| (speed < MINIMUM_UP_SPEED && !Robot.multiTool.getUpperLimitSwitch())) {
 				Robot.multiTool.driveArmUpDown(speed);
-				setpointSet = false;
 			} else {
-				if (!setpointSet) {
-					//Robot.multiTool.driveArmHold();
-					setpointSet = true;
-				}
+				Robot.multiTool.driveArmUpDown(0);
 			}
-		} else if (!setpointSet) {
-			//Robot.multiTool.driveArmHold();
-			setpointSet = true;
 		}
 	}
 

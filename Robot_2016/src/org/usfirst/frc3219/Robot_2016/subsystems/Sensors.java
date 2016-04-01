@@ -1,6 +1,10 @@
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
+import java.util.Iterator;
+import java.util.Queue;
+
 import org.usfirst.frc3219.Robot_2016.RobotMap;
+import org.usfirst.frc3219.Robot_2016.utility.RingStore;
 import org.usfirst.frc3219.Robot_2016.utility.Utility;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -37,17 +41,30 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	I2C lidar1 = new I2C(I2C.Port.kMXP, LIDAR_1_ADDR);
 	public AHRS navx = new AHRS(Port.kMXP);
+	
+	private RingStore<Double> lidarReadings;
 
-	Encoder rightEncoder = RobotMap.driveEncoderRight;
-	Encoder leftEncoder = RobotMap.driveEncoderLeft;
-	Encoder armEncoder = RobotMap.sensorsArmEncoder;
+	Encoder rightEncoder;
+	Encoder leftEncoder;
+	Encoder armEncoder;
 
-	EncoderData rightData = new EncoderData(rightEncoder);
-	EncoderData leftData = new EncoderData(leftEncoder);
-	EncoderData armData = new EncoderData(armEncoder);
+	EncoderData rightData;
+	EncoderData leftData;
+	EncoderData armData;
 
 	double lastLidar1Read = 0.0;
 
+	public Sensors() {
+		Encoder rightEncoder = RobotMap.driveEncoderRight;
+		Encoder leftEncoder = RobotMap.driveEncoderLeft;
+		Encoder armEncoder = RobotMap.sensorsArmEncoder;
+
+		rightData = new EncoderData(rightEncoder);
+		leftData = new EncoderData(leftEncoder);
+		armData = new EncoderData(armEncoder);
+		lidarReadings = new RingStore<Double>(5);
+	}
+	
 	public void sensorReset(){
 		leftEncoder.reset();
 		rightEncoder.reset();
@@ -63,7 +80,7 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 		boolean res = lidar1.write(READ_CONTROL_REGISTER, START_MEASUREMENT);
 	}
 
-	public double readLidar1() {
+	private double readLidarValue() {
 		byte[] bytes = new byte[2];
 		double res = -1.0;
 		// read the data from the last measure command
@@ -71,15 +88,37 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 
 			int cms = Utility.getShort(bytes, 0);
 			res = cms / 2.54;
-			if (res != 0) {
-				lastLidar1Read = res;
-			} else {
-				res = lastLidar1Read;
-			}
 			startLidarMeasurement();
 		}
 
-		return res;
+		return res;	
+	}
+	
+	public double readLidar1() {
+		double readVal = readLidarValue();
+		// much shorter indicates we're just seeing the MultiTool
+		// so skip them
+		if (readVal > 20.0) {
+			this.lidarReadings.add(readVal);
+		}
+		
+		return avgLidarRead();
+	}
+
+	private double avgLidarRead() {
+		double accum = 0.0;
+		Iterator<Double> iter = this.lidarReadings.iterator();
+		int count = 0;
+		while (iter.hasNext()) {
+			accum += iter.next();
+			count += 1;
+		}
+		
+		if (count == 0) {
+			return 0.0;
+		}
+		
+		return accum / count;
 	}
 
 	public double getTip() {

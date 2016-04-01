@@ -11,6 +11,7 @@ public class SetVelocity extends Command {
 	@Override
 	protected void initialize() {
 		SmartDashboard.putNumber(Shooter.DEFAULT_SHOOTING_DISTANCE_TAG, 100);
+		this.setTimeout(1.0);
 		
 	}
 
@@ -19,6 +20,7 @@ public class SetVelocity extends Command {
 		double dist = SmartDashboard.getNumber(Shooter.DEFAULT_SHOOTING_DISTANCE_TAG);
 		double v = Robot.shooter.findVelocityForPoint(dist, 80 - 27);
 		double power = Robot.shooter.findMotorSpeed(v);
+		SmartDashboard.putNumber("Shooter Power Theoretical", power);
 		if (power <= 1.0 && power >= 0.0) {
 			SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, power);
 			SmartDashboard.putNumber(Shooter.TOPSHOOTER, power);
@@ -35,7 +37,7 @@ public class SetVelocity extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return false;
+		return this.isTimedOut();
 	}
 
 	@Override

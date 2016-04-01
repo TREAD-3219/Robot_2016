@@ -23,7 +23,7 @@ public class AutoRough extends AutoStraightCommand {
 	@Override
 	protected void initialize() {
 		SmartDashboard.putBoolean(AUTO_ROUGH_FINISH_TAG, false);
-		this.setTimeout(2);
+		this.setTimeout(3.0);
 		aveDistI = Robot.drive.getAvgEncoderDist();
 		gyroStraight(ROUGH_SPEED);
 	}

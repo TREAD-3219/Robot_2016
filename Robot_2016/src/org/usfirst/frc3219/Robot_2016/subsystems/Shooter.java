@@ -55,11 +55,11 @@ public class Shooter extends Subsystem {
 	//}
 	
 	public double findMotorSpeed(double v) { //gets the speed the motor has to shoot to hit a certain point
-		int x = 100; //find lidar i guess
-		final int shooterHeight = 27;
-		final int y = 80 - shooterHeight; //inches high of goal
-		double velocity = findVelocityForPoint(x, y);
-		double motorSpeed = (velocity - 30.676620) / 283.740741; //velocity times speed/velocity ratio
+//		double x = SmartDashboard.getNumber(DEFAULT_SHOOTING_DISTANCE_TAG); //find lidar i guess
+//		final int shooterHeight = 27;
+//		final int y = 80 - shooterHeight; //inches high of goal
+//		double velocity = v;
+		double motorSpeed = (v - 30.676620) / 283.740741; //velocity times speed/velocity ratio
 		return motorSpeed;
 	}
 	

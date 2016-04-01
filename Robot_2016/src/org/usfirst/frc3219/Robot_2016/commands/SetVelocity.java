@@ -25,11 +25,11 @@ public class SetVelocity extends Command {
 			SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, power);
 			SmartDashboard.putNumber(Shooter.TOPSHOOTER, power);
 		} else if (power > 1.0) {
-			SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, 1.0);
-			SmartDashboard.putNumber(Shooter.TOPSHOOTER, 1.0);
+			SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, 0.0);
+			SmartDashboard.putNumber(Shooter.TOPSHOOTER, 0.0);
 		} else if(power < 0.0) {
-			SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, 1.0);
-			SmartDashboard.putNumber(Shooter.TOPSHOOTER, .7);
+			SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, 0.0);
+			SmartDashboard.putNumber(Shooter.TOPSHOOTER, 0.0);
 		}
 		
 	}

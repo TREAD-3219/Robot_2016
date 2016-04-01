@@ -116,11 +116,11 @@ public class OI {
 		resetArm = new JoystickButton(joystick, 8);
 		resetArm.whenPressed(new ResetArm());
 		
-		armTest = new JoystickButton(joystick, 5);
-		armTest.whenPressed(new SetMultiToolPoint(SmartDashboard.getNumber(ARM_SET_POINT)));
-		
-		distanceTest = new JoystickButton(joystick, 10);
-		distanceTest.whenPressed(new DistanceTest());
+//		armTest = new JoystickButton(joystick, 5);
+//		armTest.whenPressed(new SetMultiToolPoint(SmartDashboard.getNumber(ARM_SET_POINT)));
+//		
+//		distanceTest = new JoystickButton(joystick, 10);
+//		distanceTest.whenPressed(new DistanceTest());
 		
 		
     	autoStartPosition = new SendableChooser();

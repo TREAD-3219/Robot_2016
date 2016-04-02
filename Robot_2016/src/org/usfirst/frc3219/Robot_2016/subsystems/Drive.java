@@ -68,17 +68,18 @@ public class Drive extends Subsystem { //encoders measuring about 1/3 real dista
 	}
 	
 	public double getAvgEncoderDist() {
-		return (leftEncoderDistance() + rightEncoderDistance()) / 2.0;
+		return 0.0;
+				//(leftEncoderDistance() + rightEncoderDistance()) / 2.0;
 	}
 	
 	public double leftEncoderDistance(){
-		double res = Robot.sensors.leftEncoderDistance() * LEFT_ENCODER_CORRECTION; 
-		return res;
+		//double res = Robot.sensors.leftEncoderDistance() * LEFT_ENCODER_CORRECTION; 
+		return 0.0;
 	}
 	
 	public double rightEncoderDistance(){
-		double res = Robot.sensors.rightEncoderDistance() * RIGHT_ENCODER_CORRECTION; 
-		return res;
+		//double res = Robot.sensors.rightEncoderDistance() * RIGHT_ENCODER_CORRECTION; 
+		return 0.0;
 	}
 
 	public void setSafety(boolean safely) {

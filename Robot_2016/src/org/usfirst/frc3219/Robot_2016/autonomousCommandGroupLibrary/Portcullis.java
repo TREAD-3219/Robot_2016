@@ -24,7 +24,7 @@ public class Portcullis extends CommandGroup {
     	this.addSequential(new DriveOverObstacle());
     	this.addSequential(new AutoRotate());
     	//this.addSequential(new AutoTurnTowardsGoal());
-    	this.addSequential(new AutoShoot());
+    	//this.addSequential(new AutoShoot());
     }
 
     

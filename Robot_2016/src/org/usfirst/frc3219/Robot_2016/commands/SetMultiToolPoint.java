@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SetMultiToolPoint extends Command {
 	private static final double TIMEOUT = .65;
-	private static final double DRIVE_SPEED = 0.6;
+	private static final double DRIVE_SPEED = -0.6;
 	private double position;
 	
 	public SetMultiToolPoint() {
@@ -37,7 +37,8 @@ public class SetMultiToolPoint extends Command {
 	protected boolean isFinished() {
 		boolean timed = this.isTimedOut();
 		SmartDashboard.putBoolean("Timed Out", timed);
-		boolean posReached = Robot.sensors.armEncoderAngle() >= position;
+		boolean posReached = false;
+				//Robot.sensors.armEncoderAngle() >= position;
 		SmartDashboard.putBoolean("posReached", posReached);
 		return timed || posReached;
 	}

@@ -22,7 +22,7 @@ public class Moat extends CommandGroup {
     	this.addSequential(new AutoMoat());
     	this.addSequential(new AutoRotate());
     	this.addSequential(new StopRobotDrive());
-    	this.addSequential(new AutoShoot());
+    	//this.addSequential(new AutoShoot());
     }
 
     

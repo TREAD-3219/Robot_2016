@@ -21,13 +21,13 @@ public class WatchSensors extends NeverFinishCommand {
 		SmartDashboard.putNumber(Sensors.LIDAR_TAG, sensors.readLidar1());
 		SmartDashboard.putNumber(Sensors.SHOOTER_RPM_TAG, sensors.getShooterSpeed());
 		SmartDashboard.putNumber(Sensors.ANGLE, sensors.getAngle());
-		SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
+		//SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
 		SmartDashboard.putNumber(Navigation.DED_REC_X, Robot.navigation.getDedRecX());
 		SmartDashboard.putNumber(Navigation.DED_REC_Y, Robot.navigation.getDedRecX());
 		SmartDashboard.putNumber(Navigation.DED_REC_ANGLE, Robot.navigation.getDedRecAngle());
-		SmartDashboard.putNumber(Sensors.LEFT_ENCODER_TAG, Robot.sensors.leftEncoderDistance());
-		SmartDashboard.putNumber(Sensors.RIGHT_ENCODER_TAG, Robot.sensors.rightEncoderDistance());
-		SmartDashboard.putNumber(Drive.DISTANCE_TAG, Robot.drive.getAvgEncoderDist());
+		//SmartDashboard.putNumber(Sensors.LEFT_ENCODER_TAG, Robot.sensors.leftEncoderDistance());
+		//SmartDashboard.putNumber(Sensors.RIGHT_ENCODER_TAG, Robot.sensors.rightEncoderDistance());
+		//SmartDashboard.putNumber(Drive.DISTANCE_TAG, Robot.drive.getAvgEncoderDist());
 		SmartDashboard.putBoolean("IsCentered", false);
 		SmartDashboard.putBoolean("isTipped", Robot.sensors.getTip() >= 5);
 		SmartDashboard.putNumber("isTippedDegree", Robot.sensors.getTip());

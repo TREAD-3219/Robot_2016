@@ -7,6 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SetVelocity extends Command {
+	
+	final int GOAL_HEIGHT = 80;
+	final int CAMERA_HEIGHT = 50; //TODO THIS IS A COMPLETE GUESS PLEASE FIX
+	final int SHOOTER_HEIGHT = 27;
 
 	@Override
 	protected void initialize() {
@@ -17,13 +21,17 @@ public class SetVelocity extends Command {
 
 	@Override
 	protected void execute() {
+		//double pixelHeight = Robot.sensors.getTargetPixls() 
+		//double dist = 1/PixelHeight
+		//TODO dist would be where you change to fit measurement tests(change number on top, no addition or subtraction)
+		//double horizDist = Math.sqrt((dist * dist) - (GOAL_HEIGHT - CAMERA_HEIGHT))
 		double dist = SmartDashboard.getNumber(Shooter.DEFAULT_SHOOTING_DISTANCE_TAG);
 		if (Robot.sensors.lidarReadingOK()) {
 			dist = Robot.sensors.readLidar1();
 		}
 		
 		 //TODO THIS IS WHERE YOU CAN CHANGE NUMBERS TO AFFECT SPEED
-		double v = Robot.shooter.findVelocityForPoint(dist, 80 - 37);
+		double v = Robot.shooter.findVelocityForPoint(dist, GOAL_HEIGHT - SHOOTER_HEIGHT);
 		double power = Robot.shooter.findMotorSpeed(v);
 		SmartDashboard.putNumber("Shooter Power Theoretical", power);
 		if (power <= 1.0 && power >= 0.0) {

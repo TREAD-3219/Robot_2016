@@ -118,6 +118,7 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber(Shooter.DEFAULT_SHOOTING_DISTANCE_TAG, 100);
     	SmartDashboard.putNumber(Shooter.SHOOT_MIN_DISTANCE, 48);
     	SmartDashboard.putNumber(Shooter.SHOOT_MAX_DISTANCE, 60);
+    	SmartDashboard.putBoolean(Shooter.SHOOTER_DISTANCE_GOOD, false);
 	}
 	
 	/**

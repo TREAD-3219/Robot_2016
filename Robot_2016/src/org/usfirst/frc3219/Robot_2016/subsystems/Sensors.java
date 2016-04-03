@@ -41,7 +41,6 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 	public static final String RIGHT_ENCODER_TAG = "Right Encoder";
 	public static final String ANGLE = "Angle";
 	public static final String SHOOTER_SPEED = "Shooter Speed";
-
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	I2C lidar1 = new I2C(I2C.Port.kMXP, LIDAR_1_ADDR);
 	public AHRS navx = new AHRS(Port.kMXP);
@@ -83,7 +82,7 @@ public class Sensors extends Subsystem implements edu.wpi.first.wpilibj.PIDSourc
 		lidar1.write(READ_CONTROL_REGISTER, START_MEASUREMENT);
 	}
 
-	private double readLidarValue() {
+	public double readLidarValue() {
 		byte[] bytes = new byte[2];
 		double res = -1.0;
 		// read the data from the last measure command

@@ -10,6 +10,7 @@
 
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
+import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -31,38 +32,46 @@ public class Shooter extends Subsystem {
 	private static final int COUNTER_DISTANCE_PER_PULSE = 1;
 	public static final String TOPSHOOTER = "ShooterTop";
 	public static final String BOTTOMSHOOTER = "ShooterBottom";
-	private static final double SHOOTER_RPS_MINIMUM = 10; // 600 RPM - adjust this!
+	private static final double SHOOTER_RPS_MINIMUM = 10; // 600 RPM - adjust
+															// this!
 	private static final String SHOOTER_MOTORS_TAG = "Shooter Motors";
+	public static final String SHOOTER_DISTANCE_GOOD = null;
 
 	private CANTalon shooterTopMotor;
 	private CANTalon shooterBottomMotor;
-	
+	public static final String SHOOT_MAX_DISTANCE = "Shoot Max Distance";
+	public static final String SHOOT_MIN_DISTANCE = "Shoot Min Distance";
+
 	public static void setupRobotMap() {
 		RobotMap.driveTopShooter = new CANTalon(6);
 		RobotMap.driveBottomShooter = new CANTalon(1);
 		RobotMap.shooterCounter = new Counter(8);
 		RobotMap.shooterCounter.setDistancePerPulse(1);
 	}
-	
+
 	public Shooter() {
 		shooterTopMotor = RobotMap.driveTopShooter;
 		shooterBottomMotor = RobotMap.driveBottomShooter;
 	}
-	//public double findXPoint() { //YPoint is always 8'1", or 97"
-		//double lidar = Robot.sensors.readLidar1();
-		//double x = lidar + 5.55079;
-		//return x;
-	//}
-	
-	public double findMotorSpeed(double v) { //gets the speed the motor has to shoot to hit a certain point
-//		double x = SmartDashboard.getNumber(DEFAULT_SHOOTING_DISTANCE_TAG); //find lidar i guess
-//		final int shooterHeight = 27;
-//		final int y = 80 - shooterHeight; //inches high of goal
-//		double velocity = v;
-		double motorSpeed = (v - 30.676620) / 283.740741; //velocity times speed/velocity ratio
+	// public double findXPoint() { //YPoint is always 8'1", or 97"
+	// double lidar = Robot.sensors.readLidar1();
+	// double x = lidar + 5.55079;
+	// return x;
+	// }
+
+	public double findMotorSpeed(double v) { // gets the speed the motor has to
+												// shoot to hit a certain point
+		// double x = SmartDashboard.getNumber(DEFAULT_SHOOTING_DISTANCE_TAG);
+		// //find lidar i guess
+		// final int shooterHeight = 27;
+		// final int y = 80 - shooterHeight; //inches high of goal
+		// double velocity = v;
+		double motorSpeed = (v - 30.676620) / 283.740741; // velocity times
+															// speed/velocity
+															// ratio
 		return motorSpeed;
 	}
-	
+
 	public double findVelocityForPoint(double x, double y) {
 		double v;
 		double g = 386.088583;
@@ -91,11 +100,11 @@ public class Shooter extends Subsystem {
 		RobotMap.shooterCounter.setReverseDirection(false);
 		RobotMap.shooterCounter.setSamplesToAverage(COUNTER_SAMPLES_TO_AVERAGE);
 		RobotMap.shooterCounter.setDistancePerPulse(COUNTER_DISTANCE_PER_PULSE);
-		
+
 		SmartDashboard.putNumber(TOPSHOOTER, TOP_SHOOTER_SPEED);
 		SmartDashboard.putNumber(BOTTOMSHOOTER, BOTTOM_SHOOTER_SPEED);
 		SmartDashboard.putNumber(DEFAULT_SHOOTING_DISTANCE_TAG, 100);
-		
+
 	}
 
 	public void spinUp(double TopPower, double BottomPower) {
@@ -117,5 +126,11 @@ public class Shooter extends Subsystem {
 		boolean atMin = RobotMap.shooterCounter.getRate() > SHOOTER_RPS_MINIMUM;
 		SmartDashboard.putBoolean("Shooter at speed", atMin);
 		return atMin;
+	}
+
+	public boolean distanceGood() {
+		double lidarValue = Robot.sensors.readLidar1();
+		return (lidarValue > SmartDashboard.getNumber(Shooter.SHOOT_MIN_DISTANCE)
+				&& lidarValue < SmartDashboard.getNumber(Shooter.SHOOT_MAX_DISTANCE));
 	}
 }

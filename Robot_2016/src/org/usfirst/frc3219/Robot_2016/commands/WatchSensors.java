@@ -5,6 +5,7 @@ import org.usfirst.frc3219.Robot_2016.subsystems.Drive;
 import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
 import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
+import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -32,6 +33,7 @@ public class WatchSensors extends NeverFinishCommand {
 		SmartDashboard.putBoolean("isTipped", Robot.sensors.getTip() >= 5);
 		SmartDashboard.putNumber("isTippedDegree", Robot.sensors.getTip());
 		SmartDashboard.putNumber("AutoRotateAngle", Robot.sensors.navx.getAngle() - 360);
+		SmartDashboard.putBoolean(Shooter.SHOOTER_DISTANCE_GOOD, Robot.shooter.distanceGood());
 	}
 
 	@Override

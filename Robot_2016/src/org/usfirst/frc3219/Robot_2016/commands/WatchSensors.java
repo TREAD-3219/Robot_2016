@@ -5,6 +5,7 @@ import org.usfirst.frc3219.Robot_2016.subsystems.Drive;
 import org.usfirst.frc3219.Robot_2016.subsystems.MultiTool;
 import org.usfirst.frc3219.Robot_2016.subsystems.Navigation;
 import org.usfirst.frc3219.Robot_2016.subsystems.Sensors;
+import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 

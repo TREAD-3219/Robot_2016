@@ -116,6 +116,9 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putBoolean(StopRobotDrive.STOP_ROBOT_DRIVE_FINISH_TAG, false);
     	SmartDashboard.putBoolean(AutoShoot.AUTO_SHOOT_START_TAG, false);
     	SmartDashboard.putNumber(Shooter.DEFAULT_SHOOTING_DISTANCE_TAG, 100);
+    	SmartDashboard.putNumber(Shooter.SHOOT_MIN_DISTANCE, 48);
+    	SmartDashboard.putNumber(Shooter.SHOOT_MAX_DISTANCE, 60);
+    	SmartDashboard.putBoolean(Shooter.SHOOTER_DISTANCE_GOOD, false);
 	}
 	
 	/**

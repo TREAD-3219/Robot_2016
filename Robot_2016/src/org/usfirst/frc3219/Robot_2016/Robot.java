@@ -115,6 +115,7 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putBoolean(EngageRamp.DROP_ARMS_FINISH_TAG, false);
     	SmartDashboard.putBoolean(StopRobotDrive.STOP_ROBOT_DRIVE_FINISH_TAG, false);
     	SmartDashboard.putBoolean(AutoShoot.AUTO_SHOOT_START_TAG, false);
+    	SmartDashboard.putNumber(Shooter.DEFAULT_SHOOTING_DISTANCE_TAG, 100);
 	}
 	
 	/**
@@ -123,6 +124,7 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
      */
     public void disabledInit(){
+		Robot.sensors.sensorReset();
     	if (sensorsCommand != null) {
     		sensorsCommand.start();
     	}

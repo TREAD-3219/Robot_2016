@@ -1,5 +1,6 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
+import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.subsystems.Climber;
 
@@ -14,8 +15,9 @@ public class ReleaseClimber extends Command {
 	
 	@Override
 	protected void end() {
-		servo4.setAngle(Climber.LEFT_SERVO_CLOSED);
-		servo5.setAngle(Climber.RIGHT_SERVO_CLOSED);
+		//servo4.setAngle(Climber.LEFT_SERVO_CLOSED);
+		//servo5.setAngle(Climber.RIGHT_SERVO_CLOSED);
+		Robot.climber.releaseClimber();
 		
 	}
 

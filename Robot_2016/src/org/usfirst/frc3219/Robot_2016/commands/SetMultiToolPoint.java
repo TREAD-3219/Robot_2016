@@ -10,11 +10,11 @@ public class SetMultiToolPoint extends Command {
 	private static final double TIMEOUT = .65;
 	private static final double DRIVE_SPEED = -0.6;
 	private double position;
-	
+
 	public SetMultiToolPoint() {
 		position = MultiTool.SHOOT_POSITION;
 	}
-	
+
 	public SetMultiToolPoint(double pos) {
 		position = pos;
 	}
@@ -37,8 +37,7 @@ public class SetMultiToolPoint extends Command {
 	protected boolean isFinished() {
 		boolean timed = this.isTimedOut();
 		SmartDashboard.putBoolean("Timed Out", timed);
-		boolean posReached = false;
-				//Robot.sensors.armEncoderAngle() >= position;
+		boolean posReached = Robot.sensors.armEncoderAngle() >= position;
 		SmartDashboard.putBoolean("posReached", posReached);
 		return timed || posReached;
 	}
@@ -53,31 +52,20 @@ public class SetMultiToolPoint extends Command {
 		end();
 	}
 
-/*	// Arm setpoint version
-   @Override
-	protected void end() {
-		// no end action, just leave at setPoint
-	}
-
-	@Override
-	protected void execute() {
-	}
-
-	@Override
-	protected void initialize() {
-		this.setTimeout(TIMEOUT);
-		Robot.multiTool.enable();
-		Robot.multiTool.armSetPoint(position);
-	}
-
-	@Override
-	protected void interrupted() {
-		end();
-	}
-
-	@Override
-	protected boolean isFinished() {
-		return Robot.multiTool.onTarget() || this.isTimedOut();
-	}
-*/
+	/*
+	 * // Arm setpoint version
+	 * 
+	 * @Override protected void end() { // no end action, just leave at setPoint
+	 * }
+	 * 
+	 * @Override protected void execute() { }
+	 * 
+	 * @Override protected void initialize() { this.setTimeout(TIMEOUT);
+	 * Robot.multiTool.enable(); Robot.multiTool.armSetPoint(position); }
+	 * 
+	 * @Override protected void interrupted() { end(); }
+	 * 
+	 * @Override protected boolean isFinished() { return
+	 * Robot.multiTool.onTarget() || this.isTimedOut(); }
+	 */
 }

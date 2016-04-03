@@ -65,8 +65,8 @@ public class Shooter extends Subsystem {
 	
 	public double findVelocityForPoint(double x, double y) {
 		double v;
-		double g = 386.088583;
-		double theta = 45 * (Math.PI / 180);
+		double g = 400; //386.088583
+		double theta = 54 * (Math.PI / 180);
 		v = Math.sqrt(((g * x * x) * (Math.pow(Math.tan(theta), 2) + 1)) / (2 * (Math.tan(theta) * x - y)));
 		return v;
 	}

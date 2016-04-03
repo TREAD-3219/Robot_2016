@@ -18,7 +18,7 @@ public class AutoCenterToGoal extends Command {
 	private static final double MAX_SPEED = 0.75;
 
 	private static final int CENTER = 320;
-	private static final int LIMIT_AREA = 10;
+	private static final int LIMIT_AREA = 15;
 	private static final int OUTER_LIMIT_LEFT = 150;
 	private static final int OUTER_LIMIT_RIGHT = 490;
 	private static final int LIMIT_LEFT_ADJUST = OUTER_LIMIT_LEFT - CENTER;
@@ -95,13 +95,13 @@ public class AutoCenterToGoal extends Command {
 
 		double X = camera.getCOG_X();
 		if (X <= OUTER_LIMIT_LEFT) { // Lower limits:
-			return 0.45;
+			return 0.65;
 		} else if (X >= OUTER_LIMIT_RIGHT) {
-			return -0.45;
+			return -0.65;
 		} else if (X >= OUTER_LIMIT_LEFT && X < CENTER - LIMIT_AREA) {
-			return 0.35;
+			return 0.55;
 		} else if (X <= OUTER_LIMIT_RIGHT && X > CENTER + LIMIT_AREA) {
-			return -0.35;
+			return -0.55;
 		} else
 			return 0;
 	}

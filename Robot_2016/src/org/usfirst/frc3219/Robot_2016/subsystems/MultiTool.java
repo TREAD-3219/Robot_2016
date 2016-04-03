@@ -94,7 +94,7 @@ public class MultiTool extends Subsystem {
 
 	public void driveArmUpDown(double power) {
 		// positive power is DOWN
-		if (power > 0.0 && this.getLowerLimitSwitch() || power < 0.0 && this.getUpperLimitSwitch()) {
+		if (power > 0.0 && this.getUpperLimitSwitch() || power < 0.0 && this.getLowerLimitSwitch()) {
 			driveArmMotor.set(0.0);
 			if (this.getUpperLimitSwitch()) {
 				this.resetEncoders();

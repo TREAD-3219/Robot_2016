@@ -22,7 +22,7 @@ public class Ramparts extends CommandGroup {
     	this.addSequential(new AutoRamparts());
     	this.addSequential(new AutoRotate());
     	this.addSequential(new StopRobotDrive());
-    	this.addSequential(new AutoShoot());
+    	//this.addSequential(new AutoShoot());
     }
 
     

@@ -1,6 +1,7 @@
 
 package org.usfirst.frc3219.Robot_2016;
 
+import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoCenterToGoal;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoRotate;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoRough;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.EngageRamp;
@@ -115,6 +116,7 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putBoolean(EngageRamp.DROP_ARMS_FINISH_TAG, false);
     	SmartDashboard.putBoolean(StopRobotDrive.STOP_ROBOT_DRIVE_FINISH_TAG, false);
     	SmartDashboard.putBoolean(AutoShoot.AUTO_SHOOT_START_TAG, false);
+		SmartDashboard.putBoolean(AutoCenterToGoal.OBJECT_NOT_RECOGNIZED, false);
 	}
 	
 	/**

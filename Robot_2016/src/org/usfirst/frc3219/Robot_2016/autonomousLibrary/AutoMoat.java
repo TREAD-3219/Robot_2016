@@ -21,7 +21,7 @@ public class AutoMoat extends AutoStraightCommand {
 
 	@Override
 	protected void initialize() {
-		this.setTimeout(5.5);
+		this.setTimeout(4.5);
 		double encoderInitialLeft = RobotMap.driveEncoderLeft.getDistance();
 		double encoderInitialRight = RobotMap.driveEncoderRight.getDistance();
 		aveDistI = (encoderInitialRight + encoderInitialLeft) / 2;

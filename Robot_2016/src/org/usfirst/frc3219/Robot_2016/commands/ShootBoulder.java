@@ -81,7 +81,7 @@ public class ShootBoulder extends Command {
 	protected void end() {
 		Robot.feedMech.stopFeeder();
 		Robot.shooter.spinDown();
-
+		SmartDashboard.putBoolean(AutoShoot.AUTO_SHOOT_START_TAG, false);
 	}
 
 	@Override

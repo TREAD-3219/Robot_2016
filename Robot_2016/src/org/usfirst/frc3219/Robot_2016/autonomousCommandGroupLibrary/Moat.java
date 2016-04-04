@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Moat extends CommandGroup {
     
     public  Moat() {
-    	this.addSequential(new SetMultiToolPoint(MultiTool.SHOOT_POSITION));
+    	this.addParallel(new SetMultiToolPoint(MultiTool.SHOOT_POSITION));
     	this.addSequential(new EngageRamp());
     	this.addSequential(new AutoMoat());
     	this.addSequential(new AutoRotate());

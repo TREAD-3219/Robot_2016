@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class RoughTerrain extends CommandGroup {
     
     public  RoughTerrain() {
-    	this.addSequential(new SetMultiToolPoint(MultiTool.SHOOT_POSITION));
+    	this.addParallel(new SetMultiToolPoint(MultiTool.SHOOT_POSITION));
     	this.addSequential(new EngageRamp());
     	this.addSequential(new AutoRough());
     	this.addSequential(new AutoRotate());

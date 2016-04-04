@@ -33,12 +33,11 @@ public class MultiToolMover extends NeverFinishCommand {
 
 		// consider a better scaling algorithm here... cubic?
 		// also, perhaps asymmetric? i.e., bigger up than down.
-		speed = gameController.getY() * 0.5;
+		speed = gameController.getY() * 0.5 * -1.0;
 
 		if (Math.abs(speed) > SPEED_TOLERENCE) {
 			// add a null zone to the controller
-			if ((speed > MINIMUM_DOWN_SPEED && !Robot.multiTool.getLowerLimitSwitch())
-					|| (speed < MINIMUM_UP_SPEED && !Robot.multiTool.getUpperLimitSwitch())) {
+			if (speed > MINIMUM_UP_SPEED || speed < MINIMUM_DOWN_SPEED) {
 				Robot.multiTool.driveArmUpDown(speed);
 			} else {
 				Robot.multiTool.driveArmUpDown(0);

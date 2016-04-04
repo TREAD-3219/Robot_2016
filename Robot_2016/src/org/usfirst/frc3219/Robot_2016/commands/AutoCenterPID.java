@@ -1,14 +1,26 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoCenterPID extends PIDCommand {
-	private static final double CENTER_X = 320.0;
-	private static final double P = 1.0 / CENTER_X;
+	private static final double CENTERING_TIMEOUT = 3.0;
+	private static final double IMAGE_CENTER_TOLERANCE_PIXELS = 10.0;
+	private static final double MOTOR_POWER_MAX = 0.8;
+	private static final double IMAGE_RIGHT_X = 639.0;
+	private static final double IMAGE_LEFT_X = 0.0;
+	private static final double CENTER_X = (IMAGE_LEFT_X + IMAGE_RIGHT_X) / 2;
+	private static final double P = 1.0 / CENTER_X; // full output at edge of frame
 	private static final double I = P / 20.0;
 	private static final double D = 0.0;
+	
+	private double lastDelta = 0.0;
+	private boolean error = false;
+	private int errorCount = 0;
+	private double centerX;
 	
 	public AutoCenterPID() {
 		super(P, I, D);
@@ -16,20 +28,28 @@ public class AutoCenterPID extends PIDCommand {
 	
 	@Override
 	protected double returnPIDInput() {
-		
+		// get distance of cogX from center
 		double cogX = Robot.camera.getCOG_X();
-		double delta = cogX - CENTER_X;
+		// the delta is the error!
+		double delta = centerX - cogX;
+		if (Robot.camera.getFileName().startsWith("Object")) {
+			SmartDashboard.putBoolean(Shooter.TARGET_NOT_VISIBLE, true);
+			return lastDelta;
+		}
+		lastDelta = delta;
 		return delta;
 	}
 
 	@Override
-	protected void usePIDOutput(double arg0) {
-		Robot.drive.driveValues(0, -arg0);
+	protected void usePIDOutput(double driveTurnPower) {
+		// should we enforce a minimum?
+		Robot.drive.driveValues(0, driveTurnPower);
 	}
 
 	@Override
 	protected void end() {
 		Robot.drive.driveValues(0.0, 0.0);
+		SmartDashboard.putBoolean(Shooter.IS_CENTERED, true);
 	}
 
 	@Override
@@ -38,11 +58,25 @@ public class AutoCenterPID extends PIDCommand {
 
 	@Override
 	protected void initialize() {
-		this.getPIDController().setAbsoluteTolerance(10.0);
+		this.error = false;
+		this.errorCount = 0;
+		SmartDashboard.putBoolean(Shooter.IS_CENTERED, false);
+		centerX = SmartDashboard.getNumber(Shooter.CENTER_POINT, CENTER_X);
+		if (Robot.camera.getFileName().startsWith("Object")) {
+			SmartDashboard.putBoolean(Shooter.TARGET_NOT_VISIBLE, true);
+			error = true;
+			return;
+		} else {
+			SmartDashboard.putBoolean(Shooter.TARGET_NOT_VISIBLE, false);
+			this.lastDelta = centerX - Robot.camera.getCOG_X();
+		}
+		
+		this.setTimeout(CENTERING_TIMEOUT);
+		this.getPIDController().setAbsoluteTolerance(IMAGE_CENTER_TOLERANCE_PIXELS);
 		this.getPIDController().setContinuous(false);
-		this.setSetpoint(CENTER_X);
-		this.getPIDController().setInputRange(1.0, 639.0);
-		this.getPIDController().setOutputRange(-0.8, 0.8);
+		this.setSetpoint(centerX);
+		this.getPIDController().setInputRange(IMAGE_LEFT_X, IMAGE_RIGHT_X);
+		this.getPIDController().setOutputRange(-MOTOR_POWER_MAX, MOTOR_POWER_MAX);
 		this.getPIDController().enable();
 	}
 
@@ -53,7 +87,7 @@ public class AutoCenterPID extends PIDCommand {
 
 	@Override
 	protected boolean isFinished() {
-		return this.isTimedOut() || this.getPIDController().onTarget();
+		return this.error || this.isTimedOut() || this.getPIDController().onTarget();
 	}
 
 }

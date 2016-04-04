@@ -21,13 +21,9 @@ public class AutoCenterToGoal extends Command {
 	private static final int LIMIT_AREA = 15;
 	private static final int OUTER_LIMIT_LEFT = 150;
 	private static final int OUTER_LIMIT_RIGHT = 490;
-	private static final int LIMIT_LEFT_ADJUST = OUTER_LIMIT_LEFT - CENTER;
-	private static final int LIMIT_RIGHT_ADJUST = OUTER_LIMIT_RIGHT - CENTER;
-	Camera camera = RobotMap.camera;
+	//Camera camera = RobotMap.camera;
 	private int state = 0;
 	private int centerPoint = CENTER;
-	private int limitLeft = OUTER_LIMIT_LEFT;
-	private int limitRight = OUTER_LIMIT_RIGHT;
 
 	public AutoCenterToGoal() {
 		//requires(Robot.drive);
@@ -56,8 +52,6 @@ public class AutoCenterToGoal extends Command {
 		this.setTimeout(TIMEOUT); // Timer for the program.
 		autoCenter();
 		centerPoint = (int) SmartDashboard.getNumber(CENTER_POINT, CENTER);
-		limitLeft = centerPoint + LIMIT_LEFT_ADJUST;
-		limitRight = centerPoint + LIMIT_RIGHT_ADJUST;
 	}
 
 	@Override
@@ -93,31 +87,44 @@ public class AutoCenterToGoal extends Command {
 		 * return rate;
 		 */
 
-		double X = camera.getCOG_X();
-		if (X <= OUTER_LIMIT_LEFT) { // Lower limits:
+//		double X = camera.getCOG_X();
+//		if (X <= OUTER_LIMIT_LEFT) { // Lower limits:
+//			return 0.65;
+//		} else if (X >= OUTER_LIMIT_RIGHT) {
+//			return -0.65;
+//		} else if (X >= OUTER_LIMIT_LEFT && X < CENTER - LIMIT_AREA) {
+//			return 0.55;
+//		} else if (X <= OUTER_LIMIT_RIGHT && X > CENTER + LIMIT_AREA) {
+//			return -0.55;
+//		} else
+//			return state = 1;
+		double X = Robot.camera.getCOG_X();
+		if (X <= CENTER - LIMIT_AREA) { // Lower limits:
 			return 0.65;
-		} else if (X >= OUTER_LIMIT_RIGHT) {
+		} else if (X >= CENTER + LIMIT_AREA) {
 			return -0.65;
-		} else if (X >= OUTER_LIMIT_LEFT && X < CENTER - LIMIT_AREA) {
-			return 0.55;
-		} else if (X <= OUTER_LIMIT_RIGHT && X > CENTER + LIMIT_AREA) {
-			return -0.55;
-		} else
-			return 0;
+		} else //if (X >= OUTER_LIMIT_LEFT && X < CENTER - LIMIT_AREA) {
+			//return 0.55;
+		//} else if (X <= OUTER_LIMIT_RIGHT && X > CENTER + LIMIT_AREA) {
+		//	return -0.55;
+		//} else
+			return state = 1;
 	}
 
 	public void autoCenter() {
-		if (!camera.getFileName().startsWith("Object")) {
+		if (!Robot.camera.getFileName().startsWith("Object")) {
 			state = 1;
 			return;
 		}
+		
+		Robot.drive.driveValues(0, this.turnRateAutoCenter());
 
-		double cogX = camera.getCOG_X();
-		if (cogX <= centerPoint - LIMIT_AREA || cogX >= centerPoint + LIMIT_AREA) {
-			Robot.drive.driveValues(0, this.turnRateAutoCenter());
-		} else {
-			Robot.drive.driveValues(0, 0);
-			state = 1; // Correction complete.
-		}
+//		double cogX = camera.getCOG_X();
+//		if (cogX <= centerPoint - LIMIT_AREA || cogX >= centerPoint + LIMIT_AREA) {
+//			Robot.drive.driveValues(0, this.turnRateAutoCenter());
+//		} else {
+//			Robot.drive.driveValues(0, 0);
+//			state = 1; // Correction complete.
+//		}
 	}
 }

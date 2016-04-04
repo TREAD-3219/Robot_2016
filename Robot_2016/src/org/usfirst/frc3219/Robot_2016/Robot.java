@@ -1,6 +1,7 @@
 
 package org.usfirst.frc3219.Robot_2016;
 
+import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoCenterToGoal;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoRotate;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoRough;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.EngageRamp;
@@ -105,6 +106,7 @@ public class Robot extends IterativeRobot {
 	public void smartDashboardInit() {
 		SmartDashboard.putNumber(Shooter.TOPSHOOTER, Shooter.TOP_SHOOTER_SPEED);
         SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, Shooter.BOTTOM_SHOOTER_SPEED);
+        SmartDashboard.putNumber(Shooter.CENTER_POINT, Camera.IMAGE_CENTER);
 		SmartDashboard.putBoolean(Climber.CLIMBER_RELEASED_TAG, false);
 		SmartDashboard.putBoolean(Climber.CLIMBER_RESET_TAG, false);
 		SmartDashboard.putNumber(MultiTool.DRIVE_ARM_SPEED_TAG, 0.0);
@@ -119,6 +121,7 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber(Shooter.SHOOT_MIN_DISTANCE, 48);
     	SmartDashboard.putNumber(Shooter.SHOOT_MAX_DISTANCE, 60);
     	SmartDashboard.putBoolean(Shooter.SHOOTER_DISTANCE_GOOD, false);
+		SmartDashboard.putBoolean(Shooter.TARGET_NOT_VISIBLE, false);
 	}
 	
 	/**

@@ -22,7 +22,7 @@ public class RockWall extends CommandGroup {
     	this.addSequential(new AutoRWall());
     	this.addSequential(new AutoRotate());
     	this.addSequential(new StopRobotDrive());
-    	//this.addSequential(new AutoShoot());
+    	this.addSequential(new AutoShoot());
     }
     
     @Override

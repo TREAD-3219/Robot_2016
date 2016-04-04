@@ -39,6 +39,9 @@ public class Shooter extends Subsystem {
 
 	private CANTalon shooterTopMotor;
 	private CANTalon shooterBottomMotor;
+	public static final String TARGET_NOT_VISIBLE = "TARGET_NOT_VISIBLE";
+	public static final String CENTER_POINT = "Center Point";
+	public static final String IS_CENTERED = "IsCentered";
 	public static final String SHOOT_MAX_DISTANCE = "Shoot Max Distance";
 	public static final String SHOOT_MIN_DISTANCE = "Shoot Min Distance";
 

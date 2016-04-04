@@ -3,14 +3,12 @@ package org.usfirst.frc3219.Robot_2016.autonomousLibrary;
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 import org.usfirst.frc3219.Robot_2016.subsystems.Camera;
+import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoCenterToGoal extends Command {
-	public static final String IS_CENTERED = "IsCentered";
-	public static final String CENTER_POINT = "Center Point";
-
 	private static final double TIMEOUT = 5.0;
 	private static final double MINIMUM_SPEED = 0.4;
 	private static final double UP_SCALER = 3.5;
@@ -27,14 +25,14 @@ public class AutoCenterToGoal extends Command {
 
 	public AutoCenterToGoal() {
 		//requires(Robot.drive);
-		SmartDashboard.putNumber(CENTER_POINT, CENTER);
+		SmartDashboard.putNumber(Shooter.CENTER_POINT, CENTER);
 	}
 
 	@Override
 	// Ends stops the turn.
 	protected void end() {
 		System.out.println("finished AutoCenterToGoal");
-		SmartDashboard.putBoolean(IS_CENTERED, true);
+		SmartDashboard.putBoolean(Shooter.IS_CENTERED, true);
 		Robot.drive.driveValues(0, 0);
 		state = 0;
 	}
@@ -47,11 +45,11 @@ public class AutoCenterToGoal extends Command {
 	@Override
 	protected void initialize() {
 		state = 0;
-		SmartDashboard.putBoolean(IS_CENTERED, false);
+		SmartDashboard.putBoolean(Shooter.IS_CENTERED, false);
 		System.out.println("enter autoCenter");
 		this.setTimeout(TIMEOUT); // Timer for the program.
 		autoCenter();
-		centerPoint = (int) SmartDashboard.getNumber(CENTER_POINT, CENTER);
+		centerPoint = (int) SmartDashboard.getNumber(Shooter.CENTER_POINT, CENTER);
 	}
 
 	@Override

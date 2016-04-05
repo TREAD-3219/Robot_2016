@@ -6,6 +6,7 @@ import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoRotate;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoRough;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.EngageRamp;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.StopRobotDrive;
+import org.usfirst.frc3219.Robot_2016.commands.AutoCenterPID;
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
 import org.usfirst.frc3219.Robot_2016.commands.DedReckoningChecks;
 import org.usfirst.frc3219.Robot_2016.commands.EnableClimberButtons;
@@ -106,6 +107,11 @@ public class Robot extends IterativeRobot {
 	public void smartDashboardInit() {
 		SmartDashboard.putNumber(Shooter.TOPSHOOTER, Shooter.TOP_SHOOTER_SPEED);
         SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, Shooter.BOTTOM_SHOOTER_SPEED);
+    	SmartDashboard.putNumber(Shooter.DEFAULT_SHOOTING_DISTANCE_TAG, 100);
+    	SmartDashboard.putNumber(Shooter.SHOOT_MIN_DISTANCE, 48);
+    	SmartDashboard.putNumber(Shooter.SHOOT_MAX_DISTANCE, 60);
+    	SmartDashboard.putBoolean(Shooter.SHOOTER_DISTANCE_GOOD, false);
+		SmartDashboard.putBoolean(Shooter.TARGET_NOT_VISIBLE, false);
         SmartDashboard.putNumber(Shooter.CENTER_POINT, Camera.IMAGE_CENTER);
 		SmartDashboard.putBoolean(Climber.CLIMBER_RELEASED_TAG, false);
 		SmartDashboard.putBoolean(Climber.CLIMBER_RESET_TAG, false);
@@ -117,11 +123,8 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putBoolean(EngageRamp.DROP_ARMS_FINISH_TAG, false);
     	SmartDashboard.putBoolean(StopRobotDrive.STOP_ROBOT_DRIVE_FINISH_TAG, false);
     	SmartDashboard.putBoolean(AutoShoot.AUTO_SHOOT_START_TAG, false);
-    	SmartDashboard.putNumber(Shooter.DEFAULT_SHOOTING_DISTANCE_TAG, 100);
-    	SmartDashboard.putNumber(Shooter.SHOOT_MIN_DISTANCE, 48);
-    	SmartDashboard.putNumber(Shooter.SHOOT_MAX_DISTANCE, 60);
-    	SmartDashboard.putBoolean(Shooter.SHOOTER_DISTANCE_GOOD, false);
-		SmartDashboard.putBoolean(Shooter.TARGET_NOT_VISIBLE, false);
+		SmartDashboard.putNumber(AutoCenterPID.AUTO_CENTER_PID_DRIVE_POWER, 0.0);
+		SmartDashboard.putBoolean(AutoCenterPID.AUTO_CENTER_PID_STARTED, true);
 	}
 	
 	/**

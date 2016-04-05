@@ -11,6 +11,7 @@ import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RoughTerrain
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.SallyPort;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoCenterToGoal;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.DistanceTest;
+import org.usfirst.frc3219.Robot_2016.commands.AutoCenterPID;
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
 import org.usfirst.frc3219.Robot_2016.commands.IntakeBall;
 import org.usfirst.frc3219.Robot_2016.commands.ManualFeed;
@@ -88,7 +89,7 @@ public class OI {
 		autoShoot.whenPressed(new AutoShoot());
 		
 		JoystickButton centerToGoal = new JoystickButton(gameController, 1);
-		centerToGoal.whenPressed(new AutoCenterToGoal());
+		centerToGoal.whenPressed(new AutoCenterPID());
 		// should shoot be a whileHeld?
 		// where are the manual shoot controls?
 		// we need those too for when the autoShoot fails.

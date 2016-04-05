@@ -69,7 +69,7 @@ public class Shooter extends Subsystem {
 		// final int shooterHeight = 27;
 		// final int y = 80 - shooterHeight; //inches high of goal
 		// double velocity = v;
-		double motorSpeed = (v - 30.676620) / 283.740741; // velocity times
+		double motorSpeed = (v - 30.676620) / 283.740741; // velocity times TODO IF ERROR VARIES, MESS WITH THIS CALCULATION
 															// speed/velocity
 															// ratio
 		return motorSpeed;
@@ -77,7 +77,7 @@ public class Shooter extends Subsystem {
 
 	public double findVelocityForPoint(double x, double y) {
 		double v;
-		double g = 400; //386.088583
+		double g = 400; //386.088583 TODO CHANGE THIS IF CONSTNATLY UNDER OR OVER SHOOTING
 		double theta = 54 * (Math.PI / 180);
 		v = Math.sqrt(((g * x * x) * (Math.pow(Math.tan(theta), 2) + 1)) / (2 * (Math.tan(theta) * x - y)));
 		return v;

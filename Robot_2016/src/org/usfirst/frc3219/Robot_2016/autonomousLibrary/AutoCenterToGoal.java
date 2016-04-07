@@ -9,6 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoCenterToGoal extends Command {
+	private static final String NO_CENTERING_POSSIBLE = "NoCenteringPossible";
+	private static final String TURN_LEFT_AUTO_CENTER = "TurnLeftAutoCenter";
+	private static final String TURN_RIGHT_AUTO_CENTER = "TurnRightAutoCenter";
 	private static final double TIMEOUT = 5.0;
 	private static final double MINIMUM_SPEED = 0.4;
 	private static final double UP_SCALER = 3.5;
@@ -19,12 +22,12 @@ public class AutoCenterToGoal extends Command {
 	private static final int LIMIT_AREA = 15;
 	private static final int OUTER_LIMIT_LEFT = 150;
 	private static final int OUTER_LIMIT_RIGHT = 490;
-	//Camera camera = RobotMap.camera;
+	// Camera camera = RobotMap.camera;
 	private int state = 0;
-	private int centerPoint = CENTER;
+	// private int centerPoint = CENTER;
 
 	public AutoCenterToGoal() {
-		//requires(Robot.drive);
+		// requires(Robot.drive);
 		SmartDashboard.putNumber(Shooter.CENTER_POINT, CENTER);
 	}
 
@@ -39,17 +42,22 @@ public class AutoCenterToGoal extends Command {
 
 	@Override
 	protected void execute() {
+		SmartDashboard.putNumber("CenterOfGravity_X", Robot.camera.getCOG_X());
 		autoCenter();
 	}
 
 	@Override
 	protected void initialize() {
 		state = 0;
+		SmartDashboard.putBoolean(TURN_RIGHT_AUTO_CENTER, false);
+		SmartDashboard.putBoolean(TURN_LEFT_AUTO_CENTER, false);
+		SmartDashboard.putBoolean(NO_CENTERING_POSSIBLE, false);
 		SmartDashboard.putBoolean(Shooter.IS_CENTERED, false);
 		System.out.println("enter autoCenter");
 		this.setTimeout(TIMEOUT); // Timer for the program.
 		autoCenter();
-		centerPoint = (int) SmartDashboard.getNumber(Shooter.CENTER_POINT, CENTER);
+		// centerPoint = (int) SmartDashboard.getNumber(Shooter.CENTER_POINT,
+		// CENTER);
 	}
 
 	@Override
@@ -61,7 +69,7 @@ public class AutoCenterToGoal extends Command {
 	protected boolean isFinished() {
 		// this should also check the drive stick to see if the driver
 		// is attempting to regain control.
-		return this.state == 1 || this.isTimedOut();
+		return state == 1 || this.isTimedOut();
 	}
 
 	public double turnRateAutoCenter() { // Gets turnRate for
@@ -85,44 +93,58 @@ public class AutoCenterToGoal extends Command {
 		 * return rate;
 		 */
 
-//		double X = camera.getCOG_X();
-//		if (X <= OUTER_LIMIT_LEFT) { // Lower limits:
-//			return 0.65;
-//		} else if (X >= OUTER_LIMIT_RIGHT) {
-//			return -0.65;
-//		} else if (X >= OUTER_LIMIT_LEFT && X < CENTER - LIMIT_AREA) {
-//			return 0.55;
-//		} else if (X <= OUTER_LIMIT_RIGHT && X > CENTER + LIMIT_AREA) {
-//			return -0.55;
-//		} else
-//			return state = 1;
+		// double X = camera.getCOG_X();
+		// if (X <= OUTER_LIMIT_LEFT) { // Lower limits:
+		// return 0.65;
+		// } else if (X >= OUTER_LIMIT_RIGHT) {
+		// return -0.65;
+		// } else if (X >= OUTER_LIMIT_LEFT && X < CENTER - LIMIT_AREA) {
+		// return 0.55;
+		// } else if (X <= OUTER_LIMIT_RIGHT && X > CENTER + LIMIT_AREA) {
+		// return -0.55;
+		// } else
+		// return state = 1;
+
+		// TEST
+		// ---------------------------------------
 		double X = Robot.camera.getCOG_X();
 		if (X <= CENTER - LIMIT_AREA) { // Lower limits:
-			return 0.65;
-		} else if (X >= CENTER + LIMIT_AREA) {
+			SmartDashboard.putBoolean(TURN_LEFT_AUTO_CENTER, true);
 			return -0.65;
-		} else //if (X >= OUTER_LIMIT_LEFT && X < CENTER - LIMIT_AREA) {
-			//return 0.55;
-		//} else if (X <= OUTER_LIMIT_RIGHT && X > CENTER + LIMIT_AREA) {
-		//	return -0.55;
-		//} else
-			return state = 1;
+		} else if (X >= CENTER + LIMIT_AREA) {
+			SmartDashboard.putBoolean(TURN_RIGHT_AUTO_CENTER, true);
+			return 0.65;
+		} else // if (X >= OUTER_LIMIT_LEFT && X < CENTER - LIMIT_AREA) {
+				// return 0.55;
+				// } else if (X <= OUTER_LIMIT_RIGHT && X > CENTER + LIMIT_AREA)
+				// {
+				// return -0.55;
+				// } else
+			SmartDashboard.putBoolean(TURN_RIGHT_AUTO_CENTER, false);
+		SmartDashboard.putBoolean(TURN_LEFT_AUTO_CENTER, false);
+		SmartDashboard.putBoolean(NO_CENTERING_POSSIBLE, true); // If within
+																// null area
+		// or outside camera
+		// viewing range or
+		// lost target.
+		state = 1;
+		return 0.0;
 	}
 
 	public void autoCenter() {
 		if (!Robot.camera.getFileName().startsWith("Object")) {
 			state = 1;
 			return;
+		} else {
+			Robot.drive.driveValues(0, this.turnRateAutoCenter());
 		}
-		
-		Robot.drive.driveValues(0, this.turnRateAutoCenter());
-
-//		double cogX = camera.getCOG_X();
-//		if (cogX <= centerPoint - LIMIT_AREA || cogX >= centerPoint + LIMIT_AREA) {
-//			Robot.drive.driveValues(0, this.turnRateAutoCenter());
-//		} else {
-//			Robot.drive.driveValues(0, 0);
-//			state = 1; // Correction complete.
-//		}
+		// double cogX = camera.getCOG_X();
+		// if (cogX <= centerPoint - LIMIT_AREA || cogX >= centerPoint +
+		// LIMIT_AREA) {
+		// Robot.drive.driveValues(0, this.turnRateAutoCenter());
+		// } else {
+		// Robot.drive.driveValues(0, 0);
+		// state = 1; // Correction complete.
+		// }
 	}
 }

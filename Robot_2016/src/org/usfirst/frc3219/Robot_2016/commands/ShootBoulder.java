@@ -12,9 +12,12 @@ public class ShootBoulder extends Command {
 	private static final double FEEDER_STOP_SPEED = 0.0;
 	private static final double BOULDER_SHOT_TIME = .3;
 	private static final double SHOOTER_SPINUP_TIME = 1.0; // long enough?
-	private int state = 0;
+	//-------
 	private static final int CONTINUE = 0;
 	private static final int END = 1;
+	private int state = CONTINUE;
+	//-------
+	private static final double MAX_TIP = 10.0;
 
 	enum ShootStates {
 		start, spinup, feed, stop;
@@ -34,7 +37,7 @@ public class ShootBoulder extends Command {
 	@Override
 	protected void initialize() {
 		state = CONTINUE;
-		if(!(Robot.camera.getFileName().startsWith("Object"))) {
+		if(Robot.sensors.getTip() >= MAX_TIP || !(Robot.camera.getFileName().startsWith("Object"))) {
 			state = END;
 			return;
 		}

@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SetVelocity extends Command {
 	
+	private static final int FULL_MOTOR_SPEED_DISTANCE = 80;
 	final int GOAL_HEIGHT = 80;
 	final int CAMERA_HEIGHT = 50; //TODO THIS IS A COMPLETE GUESS PLEASE FIX
 	final int SHOOTER_HEIGHT = 27;
@@ -28,6 +29,10 @@ public class SetVelocity extends Command {
 		double dist = SmartDashboard.getNumber(Shooter.DEFAULT_SHOOTING_DISTANCE_TAG);
 		if (Robot.sensors.lidarReadingOK()) {
 			dist = Robot.sensors.readLidar1();
+			if(dist <= FULL_MOTOR_SPEED_DISTANCE) {
+				SmartDashboard.putNumber(Shooter.BOTTOMSHOOTER, 1.0);
+				SmartDashboard.putNumber(Shooter.TOPSHOOTER, 1.0);
+			}
 		}
 		
 		 //TODO THIS IS WHERE YOU CAN CHANGE NUMBERS TO AFFECT SPEED

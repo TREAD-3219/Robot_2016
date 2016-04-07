@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MultiToolMover extends NeverFinishCommand {
+	private static final double ENCODER_ANGLE_TOLERANCE = 5.0;
 	private static final double MINIMUM_UP_SPEED = -0.1;
 	private static final double MINIMUM_DOWN_SPEED = 0.1;
 	private static final double SPEED_TOLERENCE = 0.1;
@@ -15,6 +16,7 @@ public class MultiToolMover extends NeverFinishCommand {
 	Joystick gameController;
 	double speed = 0.0;
 	boolean setpointSet = false;
+	double setPointAngle = 0;
 
 	public MultiToolMover() {
 		requires(Robot.multiTool);
@@ -41,6 +43,21 @@ public class MultiToolMover extends NeverFinishCommand {
 				Robot.multiTool.driveArmUpDown(speed);
 			} else {
 				Robot.multiTool.driveArmUpDown(0);
+			}
+			setpointSet = false;
+		} else {
+			if(!setpointSet) {
+				setPointAngle = Robot.sensors.armEncoderAngle();
+				setpointSet = true;
+			} else {
+				double delta = Robot.sensors.armEncoderAngle() - setPointAngle;
+				if(Math.abs(delta) >= ENCODER_ANGLE_TOLERANCE) {
+					if(delta > 0.0) {
+						Robot.multiTool.driveArmUpDown(0.2); // Go back up!
+					} else {
+						Robot.multiTool.driveArmUpDown(0.0); // Let it sag!
+					}
+				}
 			}
 		}
 	}

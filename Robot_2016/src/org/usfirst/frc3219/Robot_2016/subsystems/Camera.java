@@ -9,7 +9,7 @@ public class Camera {
 
 	// Blob Analysis
 	public double getCOG_X() {
-		return SmartDashboard.getNumber("COG_X", -1.0);
+		return SmartDashboard.getNumber("SHAPE_X_COORD", -1.0);
 	}
 
 	public String getFileName() {

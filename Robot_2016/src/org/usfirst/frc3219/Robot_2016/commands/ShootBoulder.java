@@ -12,6 +12,9 @@ public class ShootBoulder extends Command {
 	private static final double FEEDER_STOP_SPEED = 0.0;
 	private static final double BOULDER_SHOT_TIME = .3;
 	private static final double SHOOTER_SPINUP_TIME = 1.0; // long enough?
+	private int state = 0;
+	private static final int CONTINUE = 0;
+	private static final int END = 1;
 
 	enum ShootStates {
 		start, spinup, feed, stop;
@@ -30,6 +33,11 @@ public class ShootBoulder extends Command {
 	
 	@Override
 	protected void initialize() {
+		state = CONTINUE;
+		if(!(Robot.camera.getFileName().startsWith("Object"))) {
+			state = END;
+			return;
+		}
 		topPower = SmartDashboard.getNumber(Shooter.TOPSHOOTER, 0.0);
 		bottomPower = SmartDashboard.getNumber(Shooter.BOTTOMSHOOTER, 0.0);
 		feederSpeed = FEEDER_STOP_SPEED;
@@ -74,7 +82,7 @@ public class ShootBoulder extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return finished;
+		return finished || state == END;
 	}
 
 	@Override

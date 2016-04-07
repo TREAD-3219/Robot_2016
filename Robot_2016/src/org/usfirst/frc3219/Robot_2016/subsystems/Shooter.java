@@ -77,7 +77,7 @@ public class Shooter extends Subsystem {
 
 	public double findVelocityForPoint(double x, double y) {
 		double v;
-		double g = 400; //386.088583 TODO CHANGE THIS IF CONSTNATLY UNDER OR OVER SHOOTING
+		double g = 440; //386.088583 TODO CHANGE THIS IF CONSTNATLY UNDER OR OVER SHOOTING
 		double theta = 54 * (Math.PI / 180);
 		v = Math.sqrt(((g * x * x) * (Math.pow(Math.tan(theta), 2) + 1)) / (2 * (Math.tan(theta) * x - y)));
 		return v;

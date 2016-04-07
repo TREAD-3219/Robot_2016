@@ -12,7 +12,7 @@ public class EngageRamp extends AutoStraightCommand {
 	public static final String ENGAGE_RAMP_FINISH_TAG = "EngageRampFinish";
 
 	private static final double MIN_TIP_ANGLE = 8.0; // Used to be 6.5
-	private static final double RAMP_SPEED = 0.9;
+	private static final double RAMP_SPEED = 0.8;
 
 	double dropTime;
 	private double armSpeed;

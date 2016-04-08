@@ -59,8 +59,10 @@ public class AutoCenterToGoal extends Command {
 		if (Robot.camera.getCOG_X() <= CENTER - LIMIT_AREA) { // TURN LEFT
 																// PLEASE!
 			turningLeft = true;
+			turningRight = false;
 		} else if (Robot.camera.getCOG_X() >= CENTER + LIMIT_AREA) {
 			turningRight = true;
+			turningLeft = false;
 		} else {
 			state = END;
 			return;

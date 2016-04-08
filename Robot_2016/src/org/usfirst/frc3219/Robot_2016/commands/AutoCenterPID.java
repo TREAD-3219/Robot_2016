@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoCenterPID extends PIDCommand {
+	public static final String AUTO_CENTER_PID_DELTA = "autoCenterPID_Delta";
 	public static final String AUTO_CENTER_PID_DRIVE_POWER = "AutoCenterPID drivePower";
 	public static final String AUTO_CENTER_PID_STARTED = "AutoCenterPID started";
 	private static final double CENTERING_TIMEOUT = 3.0;
@@ -43,6 +44,7 @@ public class AutoCenterPID extends PIDCommand {
 			}
 			return lastDelta; // GOOD MOVE?
 		}
+		SmartDashboard.putNumber(AUTO_CENTER_PID_DELTA, delta);
 		lastDelta = delta;
 		return delta;
 	}

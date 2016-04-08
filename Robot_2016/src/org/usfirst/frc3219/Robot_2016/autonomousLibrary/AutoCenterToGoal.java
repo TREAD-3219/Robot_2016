@@ -31,7 +31,6 @@ public class AutoCenterToGoal extends Command {
 	private double lastTurnRate = 0;
 
 	public AutoCenterToGoal() {
-		// requires(Robot.drive);
 		SmartDashboard.putNumber(Shooter.CENTER_POINT, CENTER);
 	}
 
@@ -41,7 +40,13 @@ public class AutoCenterToGoal extends Command {
 		System.out.println("finished AutoCenterToGoal");
 		SmartDashboard.putBoolean(Shooter.IS_CENTERED, true);
 		Robot.drive.driveValues(0, 0);
+		// RESET FIELDS:
 		state = CONTINUE;
+		turningLeft = false;
+		turningRight = false;
+		droppedFramesCount = 0;
+		lastTurnRate = 0.0;
+		// -------------------
 		Robot.drive.setBrakesOn();
 	}
 
@@ -102,16 +107,16 @@ public class AutoCenterToGoal extends Command {
 																				// is
 																				// default
 																				// power.
-		if(!Robot.camera.targetDetected()) {
+		if (!Robot.camera.targetDetected()) {
 			droppedFramesCount++;
 			if (droppedFramesCount > 15) {
-				
+
 				state = END;
 				return 0.0;
 			}
 			return lastTurnRate;
 		}
-		
+
 		double overlap = SmartDashboard.getNumber(OVERLAP_FOR_AUTOCENTER);
 		if (turningLeft) {
 			if (targetPos_X <= CENTER + overlap) {
@@ -138,14 +143,13 @@ public class AutoCenterToGoal extends Command {
 			SmartDashboard.putBoolean(TURN_RIGHT_AUTO_CENTER, false);
 			SmartDashboard.putBoolean(TURN_LEFT_AUTO_CENTER, false);
 			SmartDashboard.putBoolean(NO_CENTERING_POSSIBLE, true); // If within
-																// null area
+			// null area
 			// or outside camera
 			// viewing range or
 			// lost target.
 			state = END;
 			return 0.0;
 		}
-
 
 		// if (targetPos_X <= CENTER - LIMIT_AREA) { // Lower limits:
 		// SmartDashboard.putBoolean(TURN_LEFT_AUTO_CENTER, true);

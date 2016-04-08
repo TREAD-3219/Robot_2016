@@ -35,7 +35,7 @@ public class MultiToolMover extends NeverFinishCommand {
 
 		// consider a better scaling algorithm here... cubic?
 		// also, perhaps asymmetric? i.e., bigger up than down.
-		speed = gameController.getY() * 0.5 * -1.0;
+		speed = gameController.getY() * -1.0;
 
 		if (Math.abs(speed) > SPEED_TOLERENCE) {
 			// add a null zone to the controller

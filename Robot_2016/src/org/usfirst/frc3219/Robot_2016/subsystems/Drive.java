@@ -39,6 +39,7 @@ public class Drive extends Subsystem { // encoders measuring about 1/3 real
 	CANTalon leftDriveFront = RobotMap.driveLeftDriveB;
 	CANTalon leftDriveRear = RobotMap.driveLeftDriveA;
 	RobotDrive driveMotors = RobotMap.driveDriveMotors;
+	private boolean weAreTakingOver;
 
 	public static void setupRobotMap() {
 		RobotMap.driveRightDriveA = new CANTalon(4);
@@ -64,7 +65,13 @@ public class Drive extends Subsystem { // encoders measuring about 1/3 real
 	}
 
 	public void driveValues(double forward, double turnRate) {
-		driveMotors.arcadeDrive(forward, turnRate);
+		if(!weAreTakingOver) {
+			driveMotors.arcadeDrive(forward, turnRate);		
+		}
+	}
+	
+	public void takeOver(boolean takingOver) {
+		this.weAreTakingOver = takingOver;
 	}
 
 	public double getAvgEncoderDist() {

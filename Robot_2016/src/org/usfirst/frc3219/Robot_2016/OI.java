@@ -13,6 +13,7 @@ import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoCenterToGoal;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.DistanceTest;
 import org.usfirst.frc3219.Robot_2016.commands.AutoCenterPID;
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
+import org.usfirst.frc3219.Robot_2016.commands.ClimberPushDrive;
 import org.usfirst.frc3219.Robot_2016.commands.IntakeBall;
 import org.usfirst.frc3219.Robot_2016.commands.ManualFeed;
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
@@ -73,6 +74,8 @@ public class OI {
 	public SendableChooser autoDefenseChooser;
 	public SendableChooser autoStartPosition;
 	private JoystickButton distanceTest;
+	public static JoystickButton leftClimb;
+	public static JoystickButton rightClimb;
 
 	public OI() {
 		joystick = new Joystick(0);
@@ -118,14 +121,14 @@ public class OI {
 		// buttonY.whileHeld(servoSafety); // test enabling this if there is time.
 		
 		// pick an appropriate button - gameController?
-		resetArm = new JoystickButton(joystick, 8);
-		resetArm.whenPressed(new ResetArm());
+		//resetArm = new JoystickButton(joystick, 8);
+		//resetArm.whenPressed(new ResetArm());
 		
-//		armTest = new JoystickButton(joystick, 5);
-//		armTest.whenPressed(new SetMultiToolPoint(SmartDashboard.getNumber(ARM_SET_POINT)));
-//		
-//		distanceTest = new JoystickButton(joystick, 10);
-//		distanceTest.whenPressed(new DistanceTest());
+		leftClimb = new JoystickButton(joystick, 8);
+		Command climb = new ClimberPushDrive();
+		leftClimb.whileHeld(climb);
+		rightClimb = new JoystickButton(joystick, 9);
+		rightClimb.whileHeld(climb);
 		
 		
     	autoStartPosition = new SendableChooser();

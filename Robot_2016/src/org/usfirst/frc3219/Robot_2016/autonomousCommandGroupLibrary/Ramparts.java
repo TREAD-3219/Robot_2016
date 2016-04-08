@@ -24,7 +24,6 @@ public class Ramparts extends CommandGroup {
     	this.addSequential(new StopRobotDrive());
     	this.addSequential(new AutoShoot());
     }
-
     
     @Override
     protected void initialize() {

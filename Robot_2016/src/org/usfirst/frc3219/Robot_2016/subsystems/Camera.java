@@ -1,9 +1,11 @@
 package org.usfirst.frc3219.Robot_2016.subsystems;
 
+import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class Camera {
 	public static final double IMAGE_CENTER = 320.0;
 
@@ -14,6 +16,10 @@ public class Camera {
 
 	public String getFileName() {
 		return SmartDashboard.getString("SHAPE_FILENAME", "unknown");
+	}
+
+	public boolean targetDetected() {
+		return Robot.camera.getFileName().startsWith("Object");
 	}
 
 	public static void setupRobotMap() {

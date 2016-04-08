@@ -21,7 +21,9 @@ public class AutoCenterToGoal extends Command {
 	private static final int OUTER_LIMIT_LEFT = 150;
 	private static final int OUTER_LIMIT_RIGHT = 490;
 	// Camera camera = RobotMap.camera;
-	private int state = 0;
+	private static final int CONTINUE = 0;
+	private static final int END = 1;
+	private int state = CONTINUE;
 	private boolean turningLeft = false;
 	private boolean turningRight = false;
 	// private int centerPoint = CENTER;
@@ -37,7 +39,8 @@ public class AutoCenterToGoal extends Command {
 		System.out.println("finished AutoCenterToGoal");
 		SmartDashboard.putBoolean(Shooter.IS_CENTERED, true);
 		Robot.drive.driveValues(0, 0);
-		state = 0;
+		state = CONTINUE;
+		Robot.drive.setBrakesOn();
 	}
 
 	@Override
@@ -47,14 +50,15 @@ public class AutoCenterToGoal extends Command {
 
 	@Override
 	protected void initialize() {
-		state = 0;
+		state = CONTINUE;
+		Robot.drive.setBrakesOff();
 		if (Robot.camera.getCOG_X() <= CENTER - LIMIT_AREA) { // TURN LEFT
 																// PLEASE!
 			turningLeft = true;
 		} else if (Robot.camera.getCOG_X() >= CENTER + LIMIT_AREA) {
 			turningRight = true;
 		} else {
-			state = 1;
+			state = END;
 			return;
 		}
 		SmartDashboard.putBoolean(TURN_RIGHT_AUTO_CENTER, false);
@@ -77,7 +81,7 @@ public class AutoCenterToGoal extends Command {
 	protected boolean isFinished() {
 		// this should also check the drive stick to see if the driver
 		// is attempting to regain control.
-		return state == 1 || this.isTimedOut();
+		return state == END || this.isTimedOut();
 	}
 
 	public double turnRateAutoCenter() { // Gets turnRate for
@@ -110,7 +114,7 @@ public class AutoCenterToGoal extends Command {
 				return drivePower;
 			} else {
 				// STOP
-				state = 1;
+				state = END;
 				return 0.0;
 			}
 		} else if (turningRight) {
@@ -118,7 +122,7 @@ public class AutoCenterToGoal extends Command {
 				return -drivePower;
 			} else {
 				// STOP
-				state = 1;
+				state = END;
 				return 0.0;
 			}
 		} else {
@@ -130,7 +134,7 @@ public class AutoCenterToGoal extends Command {
 			// or outside camera
 			// viewing range or
 			// lost target.
-			state = 1;
+			state = END;
 			return 0.0;
 		}
 
@@ -155,7 +159,7 @@ public class AutoCenterToGoal extends Command {
 
 	public void autoCenter() {
 		if (!Robot.camera.getFileName().startsWith("Object")) {
-			state = 1;
+			state = END;
 			return;
 		} else {
 			Robot.drive.driveValues(0, this.turnRateAutoCenter());

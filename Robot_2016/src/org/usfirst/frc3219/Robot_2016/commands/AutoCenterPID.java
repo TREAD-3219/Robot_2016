@@ -15,8 +15,9 @@ public class AutoCenterPID extends PIDCommand {
 	private static final double IMAGE_RIGHT_X = 639.0;
 	private static final double IMAGE_LEFT_X = 0.0;
 	private static final double CENTER_X = (IMAGE_LEFT_X + IMAGE_RIGHT_X) / 2;
-	private static final double P = 1.0 / CENTER_X; // full output at edge of frame
-	private static final double I = P / 20.0;
+	private static final double P = 0.6 / CENTER_X; // full output at edge of frame
+	private static final double I = 0.0;
+			//P / 20.0;
 	private static final double D = 0.0;
 	
 	private double lastDelta = 0.0;
@@ -40,8 +41,7 @@ public class AutoCenterPID extends PIDCommand {
 			if (errorCount > 50) {
 				error = true;
 			}
-			return 0.0; // GOOD MOVE?
-					//lastDelta;
+			return lastDelta; // GOOD MOVE?
 		}
 		lastDelta = delta;
 		return delta;
@@ -51,7 +51,7 @@ public class AutoCenterPID extends PIDCommand {
 	protected void usePIDOutput(double driveTurnPower) {
 		// should we enforce a minimum?
 		SmartDashboard.putNumber(AUTO_CENTER_PID_DRIVE_POWER, driveTurnPower);
-		Robot.drive.driveValues(0, driveTurnPower);
+		Robot.drive.driveValues(0, -driveTurnPower);
 	}
 
 	@Override

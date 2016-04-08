@@ -27,13 +27,6 @@ public class EngageRamp extends AutoStraightCommand {
 	@Override
 	protected void execute() {
 		super.gyroStraight(RAMP_SPEED);
-		//double deltaT = Timer.getFPGATimestamp() - this.dropTime;
-		//if (deltaT > 0.4) {
-			//Robot.multiTool.driveArmUpDown(0.0);
-			//SmartDashboard.putBoolean(DROP_ARMS_FINISH_TAG, true);
-		//} else {
-			//Robot.multiTool.driveArmUpDown(armSpeed);
-		//}
 	}
 
 	@Override

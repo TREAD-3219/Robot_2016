@@ -20,6 +20,7 @@ import org.usfirst.frc3219.Robot_2016.commands.ResetArm;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
 import org.usfirst.frc3219.Robot_2016.commands.ServoControllerSafetyPressed;
 import org.usfirst.frc3219.Robot_2016.commands.SetMultiToolPoint;
+import org.usfirst.frc3219.Robot_2016.commands.SetVelocity;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -83,10 +84,13 @@ public class OI {
 		reverse.whenPressed(new ReverseCommand());
 
 		intake = new JoystickButton(gameController, 3);
-		intake.whileHeld(new IntakeBall());
+		intake.whenPressed(new IntakeBall());
 		
 		autoShoot = new JoystickButton(gameController, 6);
 		autoShoot.whenPressed(new AutoShoot());
+		
+		JoystickButton autoVelocity = new JoystickButton(gameController, 7);
+		autoVelocity.whenPressed(new SetVelocity());
 		
 		JoystickButton centerToGoal = new JoystickButton(gameController, 1);
 		centerToGoal.whenPressed(new AutoCenterPID());

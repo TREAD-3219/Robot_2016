@@ -1,8 +1,10 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.subsystems.FeedMech;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class FeedShooter extends Command {
 	private static final double FEEDER_SPEED = .3;
@@ -18,6 +20,7 @@ public class FeedShooter extends Command {
 
 	@Override
 	protected void initialize() {
+		SmartDashboard.putBoolean(FeedMech.BALL_FED_TAG, false);
 		Robot.feedMech.spinFeeder(FEEDER_SPEED);
 		this.setTimeout(time);
 	}

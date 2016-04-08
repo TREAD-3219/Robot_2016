@@ -40,8 +40,6 @@ public class Drive extends Subsystem { // encoders measuring about 1/3 real
 	CANTalon leftDriveRear = RobotMap.driveLeftDriveA;
 	RobotDrive driveMotors = RobotMap.driveDriveMotors;
 
-	double reverse = 1.0;
-
 	public static void setupRobotMap() {
 		RobotMap.driveRightDriveA = new CANTalon(4);
 		RobotMap.driveRightDriveB = new CANTalon(5);
@@ -66,7 +64,7 @@ public class Drive extends Subsystem { // encoders measuring about 1/3 real
 	}
 
 	public void driveValues(double forward, double turnRate) {
-		driveMotors.arcadeDrive(forward * reverse, turnRate * reverse);
+		driveMotors.arcadeDrive(forward, turnRate);
 	}
 
 	public double getAvgEncoderDist() {

@@ -127,6 +127,8 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber(AutoCenterToGoal.OVERLAP_FOR_AUTOCENTER, 8.0);
 		SmartDashboard.putNumber(AutoCenterPID.AUTO_CENTER_PID_DRIVE_POWER, 0.0);
 		SmartDashboard.putBoolean(AutoCenterPID.AUTO_CENTER_PID_STARTED, true);
+		SmartDashboard.putBoolean(FeedMech.BALL_FED_TAG, false);
+		SmartDashboard.putNumber(Shooter.GRAVITY_TAG, 400);
 	}
 	
 	/**

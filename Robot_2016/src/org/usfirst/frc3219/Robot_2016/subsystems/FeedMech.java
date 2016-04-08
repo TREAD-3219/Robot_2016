@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 
 public class FeedMech extends Subsystem {
-
+	public static final String BALL_FED_TAG = "Ball Fed";
 	public static final String FEEDER_POWER_TAG = "Feeder power";
 	private static final double FEEDER_STOP_SPEED = 0.0;
 	private Talon feederMotor;

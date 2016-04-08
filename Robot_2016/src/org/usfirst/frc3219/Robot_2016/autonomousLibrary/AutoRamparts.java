@@ -3,6 +3,7 @@ package org.usfirst.frc3219.Robot_2016.autonomousLibrary;
 import org.usfirst.frc3219.Robot_2016.Robot;
 
 public class AutoRamparts extends AutoStraightCommand {
+	private static final double RAMPART_TURNRATE = 0.7;
 	private static final double RAMPART_SPEED = 1.0;
 	double aveDistI = 0.0;
 	double aveDistF = 0.0;
@@ -14,7 +15,7 @@ public class AutoRamparts extends AutoStraightCommand {
 
 	@Override
 	protected void execute() {
-		gyroStraight(RAMPART_SPEED);
+		gyroStraight(RAMPART_SPEED, RAMPART_TURNRATE);
 		
 	}
 

@@ -20,10 +20,10 @@ public class WatchSensors extends NeverFinishCommand {
 
 	public void showDataFromSensor() {
 		SmartDashboard.putNumber(Sensors.LIDAR_TAG, sensors.readLidar1());
-		//SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
-		//SmartDashboard.putNumber(Sensors.LEFT_ENCODER_TAG, Robot.sensors.leftEncoderDistance());
-		//SmartDashboard.putNumber(Sensors.RIGHT_ENCODER_TAG, Robot.sensors.rightEncoderDistance());
-		//SmartDashboard.putNumber(Drive.DISTANCE_TAG, Robot.drive.getAvgEncoderDist());
+		SmartDashboard.putNumber(MultiTool.ARM_ENCODER_TAG, Robot.sensors.armEncoderAngle());
+		SmartDashboard.putNumber(Sensors.LEFT_ENCODER_TAG, Robot.sensors.leftEncoderDistance());
+		SmartDashboard.putNumber(Sensors.RIGHT_ENCODER_TAG, Robot.sensors.rightEncoderDistance());
+		SmartDashboard.putNumber(Drive.DISTANCE_TAG, Robot.drive.getAvgEncoderDist());
 		SmartDashboard.putBoolean("IsCentered", false);
 		SmartDashboard.putBoolean("isTipped", Robot.sensors.getTip() >= 8);
 		SmartDashboard.putNumber("isTippedDegree", Robot.sensors.getTip());

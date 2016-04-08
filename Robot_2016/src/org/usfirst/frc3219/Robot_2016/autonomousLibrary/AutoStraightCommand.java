@@ -17,6 +17,17 @@ public abstract class AutoStraightCommand extends Command {
 			Robot.drive.driveValues(speed, 0.0);
 		}
 	}
+	
+	public void gyroStraight(double speed, double turnRate) {
+		double angle = Robot.sensors.navx.getAngle();
+		if (angle > 1 && angle < 180) {
+			Robot.drive.driveValues(speed, turnRate);
+		} else if (angle < 359 && angle > 180) {
+			Robot.drive.driveValues(speed, -turnRate);
+		} else {
+			Robot.drive.driveValues(speed, 0.0);
+		}
+	}
 
 	public boolean setGyroStraight(double speed, double angle) {
 		// SETUP

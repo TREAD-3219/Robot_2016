@@ -28,6 +28,7 @@ public class WatchSensors extends NeverFinishCommand {
 		SmartDashboard.putBoolean("isTipped", Robot.sensors.getTip() >= 8);
 		SmartDashboard.putNumber("isTippedDegree", Robot.sensors.getTip());
 		SmartDashboard.putNumber("AutoRotateAngle", Robot.sensors.navx.getAngle() - 360);
+		SmartDashboard.putNumber("AutoCenterGaugeError", Robot.camera.getCOG_X() - SmartDashboard.getNumber(Shooter.CENTER_POINT, 0.0));
 	}
 
 	@Override

@@ -127,7 +127,7 @@ public class OI {
 		leftClimb = new JoystickButton(joystick, 8);
 		Command climb = new ClimberPushDrive();
 		leftClimb.whileHeld(climb);
-		rightClimb = new JoystickButton(joystick, 9);
+		rightClimb = new JoystickButton(joystick, 7);
 		rightClimb.whileHeld(climb);
 		
 		

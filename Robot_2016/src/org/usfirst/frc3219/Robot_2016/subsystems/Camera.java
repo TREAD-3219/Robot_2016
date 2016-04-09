@@ -26,4 +26,5 @@ public class Camera {
 		RobotMap.roboRealmTable = NetworkTable.getTable("SmartDashboard");
 		RobotMap.camera = new Camera();
 	}
+	
 }

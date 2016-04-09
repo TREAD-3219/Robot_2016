@@ -26,8 +26,8 @@ public class ClimberPushDrive extends Command {
 		if(leftPressed && rightPressed) {
 			leftFront.set(-1.0);
 			leftBack.set(-1.0);
-			rightFront.set(-1.0);
-			rightBack.set(-1.0);
+			rightFront.set(1.0);
+			rightBack.set(1.0);
 		} else if(leftPressed) {
 			leftFront.set(-1.0);
 			leftBack.set(-1.0);
@@ -36,8 +36,8 @@ public class ClimberPushDrive extends Command {
 		} else if(rightPressed) {
 			leftFront.set(0.0);
 			leftBack.set(0.0);
-			rightFront.set(-1.0);
-			rightBack.set(-1.0);
+			rightFront.set(1.0);
+			rightBack.set(1.0);
 		} else {
 			return; //AH!
 		}

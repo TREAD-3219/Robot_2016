@@ -31,6 +31,9 @@ public class ManualShoot extends Command { // This class spins shooter when the
 
 	@Override
 	protected void execute() {
+		topPower = SmartDashboard.getNumber(TOP_WHEEL_SPEED, Shooter.TOP_SHOOTER_SPEED);
+		bottomPower = SmartDashboard.getNumber(BOTTOM_WHEEL_SPEED, Shooter.BOTTOM_SHOOTER_SPEED);
+		Robot.shooter.spinUp(topPower, bottomPower);
 	}
 
 	@Override

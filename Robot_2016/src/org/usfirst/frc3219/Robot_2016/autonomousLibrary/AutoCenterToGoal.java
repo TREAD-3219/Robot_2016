@@ -14,7 +14,7 @@ public class AutoCenterToGoal extends Command {
 	private static final String TURN_RIGHT_AUTO_CENTER = "TurnRightAutoCenter";
 	public static final String TURN_RATE_FOR_AUTOCENTER = "TurnRateForAutoCenter";
 	public static final String OVERLAP_FOR_AUTOCENTER = "OverlapForAutoCenter";
-	private static final double TIMEOUT = 5.0;
+	private static final double TIMEOUT = 4.0;
 
 	private static final int CENTER = 320;
 	private static final int LIMIT_AREA = 5;

@@ -123,12 +123,12 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putBoolean(EngageRamp.DROP_ARMS_FINISH_TAG, false);
     	SmartDashboard.putBoolean(StopRobotDrive.STOP_ROBOT_DRIVE_FINISH_TAG, false);
     	SmartDashboard.putBoolean(AutoShoot.AUTO_SHOOT_START_TAG, false);
-    	SmartDashboard.putNumber(AutoCenterToGoal.TURN_RATE_FOR_AUTOCENTER, 0.8);
-    	SmartDashboard.putNumber(AutoCenterToGoal.OVERLAP_FOR_AUTOCENTER, 15.0);
+    	SmartDashboard.putNumber(AutoCenterToGoal.TURN_RATE_FOR_AUTOCENTER, 0.6);
+    	SmartDashboard.putNumber(AutoCenterToGoal.OVERLAP_FOR_AUTOCENTER, 0.0);
 		SmartDashboard.putNumber(AutoCenterPID.AUTO_CENTER_PID_DRIVE_POWER, 0.0);
 		SmartDashboard.putBoolean(AutoCenterPID.AUTO_CENTER_PID_STARTED, true);
 		SmartDashboard.putBoolean(FeedMech.BALL_FED_TAG, false);
-		SmartDashboard.putNumber(Shooter.GRAVITY_TAG, 400);
+		SmartDashboard.putNumber(Shooter.GRAVITY_TAG, 450);
 		SmartDashboard.putNumber(AutoCenterPID.AUTO_CENTER_PID_DELTA, 0.0);
 	}
 	

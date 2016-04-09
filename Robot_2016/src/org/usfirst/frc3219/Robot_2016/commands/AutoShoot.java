@@ -18,9 +18,10 @@ public class AutoShoot extends CommandGroup {
 	
 	public void createShooterCommands() {
 		//this.addParallel(new SetMultiToolPoint(MultiTool.SHOOT_POSITION));
+		
+		this.addSequential(new AutoCenterToGoal());
 		this.addSequential(new SetVelocity());
-		this.addParallel(new AutoCenterToGoal());
-		this.addParallel(new ShootBoulder());
+		this.addSequential(new ShootBoulder());
 
 	}
 	

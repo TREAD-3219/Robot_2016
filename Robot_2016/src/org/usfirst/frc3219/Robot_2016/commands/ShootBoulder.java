@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShootBoulder extends Command {
-	private static final int COG_X_RIGHT_LIMIT = 350;
-	private static final int COG_X_LEFT_LIMIT = 290;
+	private static final int COG_X_RIGHT_LIMIT = 360;
+	private static final int COG_X_LEFT_LIMIT = 280;
 	private static final double FEEDER_RUN_SPEED = .3;
 	private static final double FEEDER_STOP_SPEED = 0.0;
 	private static final double BOULDER_SHOT_TIME = .3;

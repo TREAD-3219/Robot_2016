@@ -3,6 +3,8 @@ package org.usfirst.frc3219.Robot_2016.autonomousLibrary;
 import org.usfirst.frc3219.Robot_2016.Robot;
 
 public class AutoRamparts extends AutoStraightCommand {
+	private static final double RAMPART_TURNRATE = 0.7;
+	private static final double RAMPART_SPEED = 1.0;
 	double aveDistI = 0.0;
 	double aveDistF = 0.0;
 	private static final double MIN_ENCODER_DISTANCE = 70.0;
@@ -13,7 +15,7 @@ public class AutoRamparts extends AutoStraightCommand {
 
 	@Override
 	protected void execute() {
-		gyroStraight(1.0);
+		gyroStraight(RAMPART_SPEED, RAMPART_TURNRATE);
 		
 	}
 
@@ -21,7 +23,7 @@ public class AutoRamparts extends AutoStraightCommand {
 	protected void initialize() {
 		aveDistI = Robot.drive.getAvgEncoderDist();
 		this.setTimeout(3.0);
-		gyroStraight(1.0);
+		gyroStraight(RAMPART_SPEED);
 		Robot.drive.setBrakesOff();
 	}
 

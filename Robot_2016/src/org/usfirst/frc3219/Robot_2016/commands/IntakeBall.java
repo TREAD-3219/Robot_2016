@@ -1,12 +1,14 @@
 package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
+import org.usfirst.frc3219.Robot_2016.subsystems.FeedMech;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class IntakeBall extends Command {
-	private static final int TIMEOUT = 5;
+	private static final int TIMEOUT = 4;
 // Starts feeder motor
 	private static final double ROLLER_SPEED = 1.0;
 	private static final double FEEDER_SPEED = .3;
@@ -34,6 +36,7 @@ public class IntakeBall extends Command {
 		Robot.multiTool.driveRoller(rollerSpeed);
 		this.setTimeout(TIMEOUT);
 		pressed = false;
+		SmartDashboard.putBoolean(FeedMech.BALL_FED_TAG, false);
 	}
 
 	@Override
@@ -50,6 +53,11 @@ public class IntakeBall extends Command {
 		boolean finished = false;
 		if (pressed) {
 			finished = !Robot.feedMech.getLimitSwitch();
+		}
+		if (finished) {
+			SmartDashboard.putBoolean(FeedMech.BALL_FED_TAG, true);
+		} else {
+			SmartDashboard.putBoolean(FeedMech.BALL_FED_TAG, false);
 		}
 		return finished || this.isTimedOut();
 	}

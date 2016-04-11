@@ -7,14 +7,18 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoCenterPID extends PIDCommand {
+	public static final String AUTO_CENTER_PID_DELTA = "autoCenterPID_Delta";
+	public static final String AUTO_CENTER_PID_DRIVE_POWER = "AutoCenterPID drivePower";
+	public static final String AUTO_CENTER_PID_STARTED = "AutoCenterPID started";
 	private static final double CENTERING_TIMEOUT = 3.0;
 	private static final double IMAGE_CENTER_TOLERANCE_PIXELS = 10.0;
 	private static final double MOTOR_POWER_MAX = 0.8;
 	private static final double IMAGE_RIGHT_X = 639.0;
 	private static final double IMAGE_LEFT_X = 0.0;
 	private static final double CENTER_X = (IMAGE_LEFT_X + IMAGE_RIGHT_X) / 2;
-	private static final double P = 1.0 / CENTER_X; // full output at edge of frame
-	private static final double I = P / 20.0;
+	private static final double P = 0.6 / CENTER_X; // full output at edge of frame
+	private static final double I = 0.0;
+			//P / 20.0;
 	private static final double D = 0.0;
 	
 	private double lastDelta = 0.0;
@@ -32,10 +36,15 @@ public class AutoCenterPID extends PIDCommand {
 		double cogX = Robot.camera.getCOG_X();
 		// the delta is the error!
 		double delta = centerX - cogX;
-		if (Robot.camera.getFileName().startsWith("Object")) {
+		if (!Robot.camera.targetDetected()) {
 			SmartDashboard.putBoolean(Shooter.TARGET_NOT_VISIBLE, true);
-			return lastDelta;
+			errorCount += 1;
+			if (errorCount > 50) {
+				error = true;
+			}
+			return lastDelta; // GOOD MOVE?
 		}
+		SmartDashboard.putNumber(AUTO_CENTER_PID_DELTA, delta);
 		lastDelta = delta;
 		return delta;
 	}
@@ -43,13 +52,15 @@ public class AutoCenterPID extends PIDCommand {
 	@Override
 	protected void usePIDOutput(double driveTurnPower) {
 		// should we enforce a minimum?
-		Robot.drive.driveValues(0, driveTurnPower);
+		SmartDashboard.putNumber(AUTO_CENTER_PID_DRIVE_POWER, driveTurnPower);
+		Robot.drive.driveValues(0, -driveTurnPower);
 	}
 
 	@Override
 	protected void end() {
 		Robot.drive.driveValues(0.0, 0.0);
 		SmartDashboard.putBoolean(Shooter.IS_CENTERED, true);
+		Robot.drive.setBrakesOn();
 	}
 
 	@Override
@@ -58,11 +69,13 @@ public class AutoCenterPID extends PIDCommand {
 
 	@Override
 	protected void initialize() {
+		SmartDashboard.putBoolean(AUTO_CENTER_PID_STARTED, true);
+		SmartDashboard.putBoolean(Shooter.IS_CENTERED, false);
 		this.error = false;
 		this.errorCount = 0;
 		SmartDashboard.putBoolean(Shooter.IS_CENTERED, false);
 		centerX = SmartDashboard.getNumber(Shooter.CENTER_POINT, CENTER_X);
-		if (Robot.camera.getFileName().startsWith("Object")) {
+		if (!Robot.camera.targetDetected()) {
 			SmartDashboard.putBoolean(Shooter.TARGET_NOT_VISIBLE, true);
 			error = true;
 			return;
@@ -71,6 +84,7 @@ public class AutoCenterPID extends PIDCommand {
 			this.lastDelta = centerX - Robot.camera.getCOG_X();
 		}
 		
+		Robot.drive.setBrakesOff();
 		this.setTimeout(CENTERING_TIMEOUT);
 		this.getPIDController().setAbsoluteTolerance(IMAGE_CENTER_TOLERANCE_PIXELS);
 		this.getPIDController().setContinuous(false);

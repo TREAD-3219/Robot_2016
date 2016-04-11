@@ -12,10 +12,11 @@ public class EngageRamp extends AutoStraightCommand {
 	public static final String ENGAGE_RAMP_FINISH_TAG = "EngageRampFinish";
 
 	private static final double MIN_TIP_ANGLE = 8.0; // Used to be 6.5
-	private static final double RAMP_SPEED = 0.9;
+	private static final double RAMP_SPEED = 0.8;
 
 	double dropTime;
 	private double armSpeed;
+	private double initialTime = 0;
 
 	@Override
 	protected void end() {
@@ -26,19 +27,13 @@ public class EngageRamp extends AutoStraightCommand {
 	@Override
 	protected void execute() {
 		super.gyroStraight(RAMP_SPEED);
-		//double deltaT = Timer.getFPGATimestamp() - this.dropTime;
-		//if (deltaT > 0.4) {
-			//Robot.multiTool.driveArmUpDown(0.0);
-			//SmartDashboard.putBoolean(DROP_ARMS_FINISH_TAG, true);
-		//} else {
-			//Robot.multiTool.driveArmUpDown(armSpeed);
-		//}
 	}
 
 	@Override
 	protected void initialize() {
 		SmartDashboard.putBoolean(IS_TIPPED_TAG, Robot.sensors.getTip() >= MIN_TIP_ANGLE);
 		this.setTimeout(2.0);
+		initialTime = Timer.getFPGATimestamp();
 		SmartDashboard.putBoolean(ENGAGE_RAMP_FINISH_TAG, false);
 		SmartDashboard.putBoolean(DROP_ARMS_START_TAG, true);
 		//this.dropTime = Timer.getFPGATimestamp();
@@ -76,6 +71,7 @@ public class EngageRamp extends AutoStraightCommand {
 		SmartDashboard.putBoolean(IS_TIPPED_TAG, Robot.sensors.getTip() >= MIN_TIP_ANGLE);
 		SmartDashboard.putBoolean("Engage Ramp Timed", this.isTimedOut());
 		//SmartDashboard.putNumber("isTippedDegree", Robot.sensors.getTip());
-		return Robot.sensors.getTip() >= MIN_TIP_ANGLE || this.isTimedOut();
+		boolean tipped = Timer.getFPGATimestamp() - initialTime >= 1.0 && Robot.sensors.getTip() >= MIN_TIP_ANGLE;
+		return tipped || this.isTimedOut();
 	}
 }

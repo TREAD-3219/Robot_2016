@@ -35,10 +35,12 @@ public class AutoRotate extends AutoStraightCommand {
 			isFinished = setGyroStraight(0.0, 38.0); // Needs testing.
 			break;
 		case B:
-			isFinished = setGyroStraight(0.0, 22.0);
+			isFinished = true;
+			//setGyroStraight(0.0, 22.0);
 			break;
 		case C:
-			isFinished = setGyroStraight(0.0, 354.0); // Needs testing. -6
+			isFinished = true;
+			//setGyroStraight(0.0, 354.0); // Needs testing. -6
 			break;
 		case D:
 			isFinished = setGyroStraight(0.0, 338.0); // Needs testing. -22

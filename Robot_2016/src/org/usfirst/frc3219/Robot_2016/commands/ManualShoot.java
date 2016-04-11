@@ -2,6 +2,7 @@ package org.usfirst.frc3219.Robot_2016.commands;
 
 import org.usfirst.frc3219.Robot_2016.Robot;
 import org.usfirst.frc3219.Robot_2016.RobotMap;
+import org.usfirst.frc3219.Robot_2016.subsystems.FeedMech;
 import org.usfirst.frc3219.Robot_2016.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -20,6 +21,7 @@ public class ManualShoot extends Command { // This class spins shooter when the
 
 	@Override
 	protected void initialize() {
+		SmartDashboard.putBoolean(FeedMech.BALL_FED_TAG, false);
 		RobotMap.shooterCounter.reset();
 		Robot.shooter.spinUp(0, 0);
 		topPower = SmartDashboard.getNumber(TOP_WHEEL_SPEED, Shooter.TOP_SHOOTER_SPEED);
@@ -29,6 +31,9 @@ public class ManualShoot extends Command { // This class spins shooter when the
 
 	@Override
 	protected void execute() {
+		topPower = SmartDashboard.getNumber(TOP_WHEEL_SPEED, Shooter.TOP_SHOOTER_SPEED);
+		bottomPower = SmartDashboard.getNumber(BOTTOM_WHEEL_SPEED, Shooter.BOTTOM_SHOOTER_SPEED);
+		Robot.shooter.spinUp(topPower, bottomPower);
 	}
 
 	@Override

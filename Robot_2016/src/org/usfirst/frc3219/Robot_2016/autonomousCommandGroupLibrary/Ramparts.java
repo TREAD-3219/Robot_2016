@@ -20,11 +20,10 @@ public class Ramparts extends CommandGroup {
     	this.addParallel(new SetMultiToolPoint(MultiTool.SHOOT_POSITION));
     	this.addSequential(new EngageRamp());
     	this.addSequential(new AutoRamparts());
-    	this.addSequential(new AutoRotate());
+    	//this.addSequential(new AutoRotate());
     	this.addSequential(new StopRobotDrive());
     	this.addSequential(new AutoShoot());
     }
-
     
     @Override
     protected void initialize() {

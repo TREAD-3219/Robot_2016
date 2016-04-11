@@ -21,7 +21,7 @@ public class RoughTerrain extends CommandGroup {
     	this.addParallel(new SetMultiToolPoint(MultiTool.SHOOT_POSITION));
     	this.addSequential(new EngageRamp());
     	this.addSequential(new AutoRough());
-    	this.addSequential(new AutoRotate());
+    	//this.addSequential(new AutoRotate());
     	this.addSequential(new StopRobotDrive());
 		this.addSequential(new AutoShoot());
     }

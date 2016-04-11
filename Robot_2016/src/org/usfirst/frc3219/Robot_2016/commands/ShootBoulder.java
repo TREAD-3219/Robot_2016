@@ -8,10 +8,18 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShootBoulder extends Command {
+	private static final int COG_X_RIGHT_LIMIT = 360;
+	private static final int COG_X_LEFT_LIMIT = 280;
 	private static final double FEEDER_RUN_SPEED = .3;
 	private static final double FEEDER_STOP_SPEED = 0.0;
 	private static final double BOULDER_SHOT_TIME = .3;
 	private static final double SHOOTER_SPINUP_TIME = 1.0; // long enough?
+	// -------
+	private static final int CONTINUE = 0;
+	private static final int END = 1;
+	private int state = CONTINUE;
+	// -------
+	private static final double MAX_TIP = 10.0;
 
 	enum ShootStates {
 		start, spinup, feed, stop;
@@ -27,9 +35,20 @@ public class ShootBoulder extends Command {
 	public ShootBoulder() {
 		requires(Robot.shooter);
 	}
-	
+
 	@Override
 	protected void initialize() {
+		state = CONTINUE;
+		
+		// DON'T SHOOT IF: Tipping, detecting the wrong shape, or if the robot
+		// is not targeting correctly.
+		if (Robot.sensors.getTip() >= MAX_TIP || !(Robot.camera.targetDetected())
+				|| (Robot.camera.getCOG_X() < COG_X_LEFT_LIMIT || Robot.camera.getCOG_X() > COG_X_RIGHT_LIMIT)) {
+			state = END;
+			return;
+		}
+		//----------
+		
 		topPower = SmartDashboard.getNumber(Shooter.TOPSHOOTER, 0.0);
 		bottomPower = SmartDashboard.getNumber(Shooter.BOTTOMSHOOTER, 0.0);
 		feederSpeed = FEEDER_STOP_SPEED;
@@ -44,11 +63,10 @@ public class ShootBoulder extends Command {
 		Robot.shooter.spinUp(topPower, bottomPower);
 		Robot.feedMech.spinFeeder(feederSpeed);
 		double deltaTime = Timer.getFPGATimestamp() - startTime;
-		
+
 		switch (states) {
 		case spinup:
-			if ((Robot.shooter.atSpeed()
-					&& SmartDashboard.getBoolean("IsCentered"))
+			if ((Robot.shooter.atSpeed() && SmartDashboard.getBoolean("IsCentered"))
 					|| deltaTime > SHOOTER_SPINUP_TIME) {
 				states = ShootStates.feed;
 				feederSpeed = FEEDER_RUN_SPEED;
@@ -64,7 +82,7 @@ public class ShootBoulder extends Command {
 			feederSpeed = FEEDER_STOP_SPEED;
 			finished = true;
 			break;
-			
+
 		default:
 			System.out.println("ShootBoulder unknown state: " + states.name());
 			finished = true;
@@ -74,7 +92,7 @@ public class ShootBoulder extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return finished;
+		return finished || state == END;
 	}
 
 	@Override

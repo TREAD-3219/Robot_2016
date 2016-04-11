@@ -11,7 +11,9 @@ import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.RoughTerrain
 import org.usfirst.frc3219.Robot_2016.autonomousCommandGroupLibrary.SallyPort;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.AutoCenterToGoal;
 import org.usfirst.frc3219.Robot_2016.autonomousLibrary.DistanceTest;
+import org.usfirst.frc3219.Robot_2016.commands.AutoCenterPID;
 import org.usfirst.frc3219.Robot_2016.commands.AutoShoot;
+import org.usfirst.frc3219.Robot_2016.commands.ClimberPushDrive;
 import org.usfirst.frc3219.Robot_2016.commands.IntakeBall;
 import org.usfirst.frc3219.Robot_2016.commands.ManualFeed;
 import org.usfirst.frc3219.Robot_2016.commands.ManualShoot;
@@ -19,6 +21,7 @@ import org.usfirst.frc3219.Robot_2016.commands.ResetArm;
 import org.usfirst.frc3219.Robot_2016.commands.ReverseCommand;
 import org.usfirst.frc3219.Robot_2016.commands.ServoControllerSafetyPressed;
 import org.usfirst.frc3219.Robot_2016.commands.SetMultiToolPoint;
+import org.usfirst.frc3219.Robot_2016.commands.SetVelocity;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -71,6 +74,8 @@ public class OI {
 	public SendableChooser autoDefenseChooser;
 	public SendableChooser autoStartPosition;
 	private JoystickButton distanceTest;
+	public static JoystickButton leftClimb;
+	public static JoystickButton rightClimb;
 
 	public OI() {
 		joystick = new Joystick(0);
@@ -82,13 +87,16 @@ public class OI {
 		reverse.whenPressed(new ReverseCommand());
 
 		intake = new JoystickButton(gameController, 3);
-		intake.whileHeld(new IntakeBall());
+		intake.whenPressed(new IntakeBall());
 		
 		autoShoot = new JoystickButton(gameController, 6);
 		autoShoot.whenPressed(new AutoShoot());
 		
+		JoystickButton autoVelocity = new JoystickButton(gameController, 7);
+		autoVelocity.whenPressed(new SetVelocity());
+		
 		JoystickButton centerToGoal = new JoystickButton(gameController, 1);
-		centerToGoal.whenPressed(new AutoCenterToGoal());
+		centerToGoal.whenPressed(new AutoCenterPID());
 		// should shoot be a whileHeld?
 		// where are the manual shoot controls?
 		// we need those too for when the autoShoot fails.
@@ -113,14 +121,14 @@ public class OI {
 		// buttonY.whileHeld(servoSafety); // test enabling this if there is time.
 		
 		// pick an appropriate button - gameController?
-		resetArm = new JoystickButton(joystick, 8);
-		resetArm.whenPressed(new ResetArm());
+		//resetArm = new JoystickButton(joystick, 8);
+		//resetArm.whenPressed(new ResetArm());
 		
-//		armTest = new JoystickButton(joystick, 5);
-//		armTest.whenPressed(new SetMultiToolPoint(SmartDashboard.getNumber(ARM_SET_POINT)));
-//		
-//		distanceTest = new JoystickButton(joystick, 10);
-//		distanceTest.whenPressed(new DistanceTest());
+		leftClimb = new JoystickButton(joystick, 8);
+		Command climb = new ClimberPushDrive();
+		leftClimb.whileHeld(climb);
+		rightClimb = new JoystickButton(joystick, 7);
+		rightClimb.whileHeld(climb);
 		
 		
     	autoStartPosition = new SendableChooser();

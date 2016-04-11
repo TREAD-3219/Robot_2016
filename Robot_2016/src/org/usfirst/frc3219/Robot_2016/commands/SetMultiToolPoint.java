@@ -37,7 +37,8 @@ public class SetMultiToolPoint extends Command {
 	protected boolean isFinished() {
 		boolean timed = this.isTimedOut();
 		SmartDashboard.putBoolean("Timed Out", timed);
-		boolean posReached = Robot.sensors.armEncoderAngle() >= position;
+		boolean posReached = false;
+				//Robot.sensors.armEncoderAngle() >= position;
 		SmartDashboard.putBoolean("posReached", posReached);
 		return timed || posReached;
 	}

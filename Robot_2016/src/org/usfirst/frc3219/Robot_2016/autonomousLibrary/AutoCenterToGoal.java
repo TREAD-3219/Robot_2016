@@ -32,6 +32,7 @@ public class AutoCenterToGoal extends Command {
 
 	public AutoCenterToGoal() {
 		SmartDashboard.putNumber(Shooter.CENTER_POINT, CENTER);
+		SmartDashboard.putBoolean(Shooter.IS_CENTERED, false);
 	}
 
 	@Override
